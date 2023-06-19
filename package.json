@@ -1,8 +1,15 @@
 {
   "name": "@stackfactor/client-api",
   "version": "1.0.1",
-  "description": "StackFactor Client API",
+  "description": "Node.js library for the StackFactor API",
   "main": "index.js",
+  "exports": {
+    ".": {
+      "require": "./index.js",
+      "import": "./index.js",
+      "default": "./index.js"
+    }
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
