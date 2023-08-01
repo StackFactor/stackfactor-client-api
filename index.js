@@ -2,10 +2,11 @@ const actionNotifications = require("./lib/actionNotifications");
 const address = require("./lib/address");
 const config = require("./lib/config");
 const constants = require("./lib/constants");
+const departmentTraingPlans = require("./lib/departmentTrainingPlans");
 const integration = require("./lib/integration");
 const integrationsConfiguration = require("./lib/integrationConfiguration");
-const departmentTraingPlans = require("./lib/departmentTrainingPlans");
 const groups = require("./lib/groups");
+const learningContent = require("./lib/learningContent");
 const role = require("./lib/role");
 const roleTemplate = require("./lib/roleTemplate");
 const skill = require("./lib/skill");
@@ -31,6 +32,7 @@ module.exports = {
   integrationsConfiguration,
   departmentTraingPlans,
   groups,
+  learningContent,
   RESONSE_TYPE: constants.RESONSE_TYPE,
   role,
   roleTemplate,
