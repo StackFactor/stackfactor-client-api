@@ -2,6 +2,7 @@ const actionNotifications = require("./lib/actionNotifications");
 const address = require("./lib/address");
 const config = require("./lib/config");
 const constants = require("./lib/constants");
+const dashboard = require("./lib/dashboard");
 const departmentTraingPlans = require("./lib/departmentTrainingPlans");
 const integration = require("./lib/integration");
 const integrationsConfiguration = require("./lib/integrationConfiguration");
@@ -27,6 +28,7 @@ module.exports = {
   actionNotifications,
   address,
   config,
+  dashboard,
   DOCUMENT_VERSION: constants.DOCUMENT_VERSION,
   integration,
   integrationsConfiguration,
