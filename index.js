@@ -1,32 +1,32 @@
-import actionNotifications from "./lib/actionNotifications";
+import actionNotifications from "./lib/actionNotifications.js";
 import axios, {
   errorToString,
   getErrorType,
   shouldReturnError,
-} from "./lib/axiosClient";
-import address from "./lib/address";
-import config from "./lib/config";
-import constants from "./lib/constants";
-import contentGenerator from "./lib/integrations/contentGenerator";
-import dashboard from "./lib/dashboard";
-import departmentTraingPlans from "./lib/departmentTrainingPlans";
-import integration from "./lib/integration";
-import integrationConfiguration from "./lib/integrationConfiguration";
-import groups from "./lib/groups";
-import learningContent from "./lib/learningContent";
-import logger from "./lib/logger";
-import role from "./lib/role";
-import roleTemplate from "./lib/roleTemplate";
-import skill from "./lib/skill";
-import skillAssessment from "./lib/skillAssessments";
-import skillAssessmentTestingSession from "./lib/skillAssessmentTestingSession";
-import skillTemplate from "./lib/skillTemplate";
-import team from "./lib/teams";
-import tenant from "./lib/tenants";
-import trainingPlanTemplate from "./lib/trainingPlanTemplate";
-import trainingPlan from "./lib/trainingPlans";
-import userInformation from "./lib/userInformation";
-import users from "./lib/users";
+} from "./lib/axiosClient.js";
+import address from "./lib/address.js";
+import config from "./lib/config.js";
+import constants from "./lib/constants.js";
+import contentGenerator from "./lib/integrations/contentGenerator.js";
+import dashboard from "./lib/dashboard.js";
+import departmentTraingPlans from "./lib/departmentTrainingPlans.js";
+import integration from "./lib/integration.js";
+import integrationConfiguration from "./lib/integrationConfiguration.js";
+import groups from "./lib/groups.js";
+import learningContent from "./lib/learningContent.js";
+import logger from "./lib/logger.js";
+import role from "./lib/role.js";
+import roleTemplate from "./lib/roleTemplate.js";
+import skill from "./lib/skill.js";
+import skillAssessment from "./lib/skillAssessments.js";
+import skillAssessmentTestingSession from "./lib/skillAssessmentTestingSession.js";
+import skillTemplate from "./lib/skillTemplate.js";
+import team from "./lib/teams.js";
+import tenant from "./lib/tenants.js";
+import trainingPlanTemplate from "./lib/trainingPlanTemplate.js";
+import trainingPlan from "./lib/trainingPlans.js";
+import userInformation from "./lib/userInformation.js";
+import users from "./lib/users.js";
 
 export default {
   actionNotifications: actionNotifications,
