@@ -3,10 +3,17 @@ export { actionNotifications };
 import {
   client,
   errorToString,
+  getErrorInformation,
   getErrorType,
   shouldReturnError,
 } from "./lib/axiosClient.js";
-export { client, errorToString, getErrorType, shouldReturnError };
+export {
+  client,
+  errorToString,
+  getErrorInformation,
+  getErrorType,
+  shouldReturnError,
+};
 import address from "./lib/address.js";
 export { address };
 import config from "./lib/config.js";
@@ -62,6 +69,7 @@ export default {
   contentGenerator: contentGenerator,
   dashboard: dashboard,
   errorToString: errorToString,
+  getErrorInformation: getErrorInformation,
   getErrorType: getErrorType,
   DOCUMENT_VERSION: constants.DOCUMENT_VERSION,
   integration: integration,
