@@ -41,6 +41,7 @@ module.exports = {
   groups,
   learningContent,
   logger,
+  PERMISIONS: constants.PERMISIONS,
   responseType: constants.RESONSE_TYPE,
   role,
   roleTemplate,
