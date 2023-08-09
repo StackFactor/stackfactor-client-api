@@ -34,7 +34,7 @@ import trainingPlan from "./lib/trainingPlans.js";
 import userInformation from "./lib/userInformation.js";
 import users from "./lib/users.js";
 
-export {
+const exports = {
   actionNotifications,
   address,
   client,
@@ -67,3 +67,5 @@ export {
   userInformation,
   users,
 };
+
+export default exports;
