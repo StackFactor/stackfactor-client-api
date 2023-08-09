@@ -21,7 +21,7 @@ const team = require("./lib/teams");
 // const templatePhase = require("./lib/templatePhase");
 // const templateRelease = require("./lib/templateRelease");
 const templates = require("./lib/templates");
-const tenants = require("./lib/tenants");
+const tenant = require("./lib/tenants");
 const trainingPlanTemplate = require("./lib/trainingPlanTemplate");
 const trainingPlan = require("./lib/trainingPlans");
 const userInformation = require("./lib/userInformation");
@@ -55,7 +55,7 @@ module.exports = {
   // templatePhase,
   // templateRelease,
   templates,
-  tenants,
+  tenant,
   trainingPlanTemplate,
   trainingPlan,
   userInformation,
