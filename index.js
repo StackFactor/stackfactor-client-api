@@ -24,7 +24,7 @@ const trainingPlan = require("./lib/trainingPlans");
 const userInformation = require("./lib/userInformation");
 const users = require("./lib/users");
 
-module.exports = {
+export default {
   actionNotifications,
   address,
   axios,
