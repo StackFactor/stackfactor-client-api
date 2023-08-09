@@ -1,5 +1,4 @@
 import actionNotifications from "./lib/actionNotifications.js";
-export { actionNotifications };
 import {
   client,
   errorToString,
