@@ -1,8 +1,12 @@
 import actionNotifications from "./lib/actionNotifications";
-import axios from "./lib/axiosClient";
+import axios, {
+  errorToString,
+  getErrorType,
+  shouldReturnError,
+} from "./lib/axiosClient";
 import address from "./lib/address";
 import config from "./lib/config";
-import importants from "./lib/importants";
+import constants from "./lib/constants";
 import contentGenerator from "./lib/integrations/contentGenerator";
 import dashboard from "./lib/dashboard";
 import departmentTraingPlans from "./lib/departmentTrainingPlans";
@@ -25,34 +29,34 @@ import userInformation from "./lib/userInformation";
 import users from "./lib/users";
 
 export default {
-  actionNotifications,
-  address,
-  axios,
-  config,
-  contentGenerator,
-  dashboard,
-  errorToString: axios.errorToString,
-  getErrorType: axios.getErrorType,
-  DOCUMENT_VERSION: importants.DOCUMENT_VERSION,
-  integration,
-  integrationConfiguration,
-  departmentTraingPlans,
-  groups,
-  learningContent,
-  logger,
-  PERMISSIONS: importants.PERMISSIONS,
-  responseType: importants.RESONSE_TYPE,
-  role,
-  roleTemplate,
-  shouldReturnError: axios.shouldReturnError,
-  skill,
-  skillAssessment,
-  skillAssessmentTestingSession,
-  skillTemplate,
-  team,
-  tenant,
-  trainingPlanTemplate,
-  trainingPlan,
-  userInformation,
-  users,
+  actionNotifications: actionNotifications,
+  address: address,
+  axios: axios,
+  config: config,
+  contentGenerator: contentGenerator,
+  dashboard: dashboard,
+  errorToString: errorToString,
+  getErrorType: getErrorType,
+  DOCUMENT_VERSION: constants.DOCUMENT_VERSION,
+  integration: integration,
+  integrationConfiguration: integrationConfiguration,
+  departmentTraingPlans: departmentTraingPlans,
+  groups: groups,
+  learningContent: learningContent,
+  logger: logger,
+  PERMISSIONS: constants.PERMISSIONS,
+  RESONSE_TYPE: constants.RESONSE_TYPE,
+  role: role,
+  roleTemplate: roleTemplate,
+  shouldReturnError: shouldReturnError,
+  skill: skill,
+  skillAssessment: skillAssessment,
+  skillAssessmentTestingSession: skillAssessmentTestingSession,
+  skillTemplate: skillTemplate,
+  team: team,
+  tenant: tenant,
+  trainingPlanTemplate: trainingPlanTemplate,
+  trainingPlan: trainingPlan,
+  userInformation: userInformation,
+  users: users,
 };
