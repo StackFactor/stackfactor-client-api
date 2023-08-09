@@ -18,7 +18,6 @@ const skillAssessment = require("./lib/skillAssessments");
 const skillAssessmentTestingSession = require("./lib/skillAssessmentTestingSession");
 const skillTemplate = require("./lib/skillTemplate");
 const team = require("./lib/teams");
-const templates = require("./lib/templates");
 const tenant = require("./lib/tenants");
 const trainingPlanTemplate = require("./lib/trainingPlanTemplate");
 const trainingPlan = require("./lib/trainingPlans");
@@ -51,7 +50,6 @@ module.exports = {
   skillAssessmentTestingSession,
   skillTemplate,
   team,
-  templates,
   tenant,
   trainingPlanTemplate,
   trainingPlan,
