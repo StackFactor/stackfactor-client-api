@@ -1,13 +1,13 @@
 {
   "name": "@stackfactor/client-api",
-  "version": "1.0.39",
+  "version": "1.0.40",
   "description": "Node.js library for the StackFactor API",
   "main": "index.js",
   "exports": {
     ".": {
-      "require": "./client-api/index.js",
-      "import": "./client-api/index.js",
-      "default": "./client-api/index.js"
+      "require": "./index.js",
+      "import": "./index.js",
+      "default": "./index.js"
     }
   },
   "type": "module",
