@@ -1,28 +1,28 @@
-const actionNotifications = require("./lib/actionNotifications");
-const axios = require("./lib/axiosClient");
-const address = require("./lib/address");
-const config = require("./lib/config");
-const constants = require("./lib/constants");
-const contentGenerator = require("./lib/integrations/contentGenerator");
-const dashboard = require("./lib/dashboard");
-const departmentTraingPlans = require("./lib/departmentTrainingPlans");
-const integration = require("./lib/integration");
-const integrationConfiguration = require("./lib/integrationConfiguration");
-const groups = require("./lib/groups");
-const learningContent = require("./lib/learningContent");
-const logger = require("./lib/logger");
-const role = require("./lib/role");
-const roleTemplate = require("./lib/roleTemplate");
-const skill = require("./lib/skill");
-const skillAssessment = require("./lib/skillAssessments");
-const skillAssessmentTestingSession = require("./lib/skillAssessmentTestingSession");
-const skillTemplate = require("./lib/skillTemplate");
-const team = require("./lib/teams");
-const tenant = require("./lib/tenants");
-const trainingPlanTemplate = require("./lib/trainingPlanTemplate");
-const trainingPlan = require("./lib/trainingPlans");
-const userInformation = require("./lib/userInformation");
-const users = require("./lib/users");
+import actionNotifications from "./lib/actionNotifications";
+import axios from "./lib/axiosClient";
+import address from "./lib/address";
+import config from "./lib/config";
+import importants from "./lib/importants";
+import contentGenerator from "./lib/integrations/contentGenerator";
+import dashboard from "./lib/dashboard";
+import departmentTraingPlans from "./lib/departmentTrainingPlans";
+import integration from "./lib/integration";
+import integrationConfiguration from "./lib/integrationConfiguration";
+import groups from "./lib/groups";
+import learningContent from "./lib/learningContent";
+import logger from "./lib/logger";
+import role from "./lib/role";
+import roleTemplate from "./lib/roleTemplate";
+import skill from "./lib/skill";
+import skillAssessment from "./lib/skillAssessments";
+import skillAssessmentTestingSession from "./lib/skillAssessmentTestingSession";
+import skillTemplate from "./lib/skillTemplate";
+import team from "./lib/teams";
+import tenant from "./lib/tenants";
+import trainingPlanTemplate from "./lib/trainingPlanTemplate";
+import trainingPlan from "./lib/trainingPlans";
+import userInformation from "./lib/userInformation";
+import users from "./lib/users";
 
 export default {
   actionNotifications,
@@ -33,15 +33,15 @@ export default {
   dashboard,
   errorToString: axios.errorToString,
   getErrorType: axios.getErrorType,
-  DOCUMENT_VERSION: constants.DOCUMENT_VERSION,
+  DOCUMENT_VERSION: importants.DOCUMENT_VERSION,
   integration,
   integrationConfiguration,
   departmentTraingPlans,
   groups,
   learningContent,
   logger,
-  PERMISSIONS: constants.PERMISSIONS,
-  responseType: constants.RESONSE_TYPE,
+  PERMISSIONS: importants.PERMISSIONS,
+  responseType: importants.RESONSE_TYPE,
   role,
   roleTemplate,
   shouldReturnError: axios.shouldReturnError,
