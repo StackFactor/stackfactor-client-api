@@ -1,5 +1,5 @@
 const actionNotifications = require("./lib/actionNotifications");
-const axios = require("./lib/axios");
+const axios = require("./lib/axiosClient");
 const address = require("./lib/address");
 const config = require("./lib/config");
 const constants = require("./lib/constants");
