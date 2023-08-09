@@ -12,7 +12,7 @@ import config from "./lib/config.js";
 export * from "./lib/config.js";
 import constants from "./lib/constants.js";
 import contentGenerator from "./lib/integrations/contentGenerator.js";
-export * from "./lib/contentGenerator.js";
+export * from "./lib/integrations/contentGenerator.js";
 import dashboard from "./lib/dashboard.js";
 export * from "./lib/dashboard.js";
 import departmentTraingPlans from "./lib/departmentTrainingPlans.js";
