@@ -30,6 +30,7 @@ const users = require("./lib/users");
 module.exports = {
   actionNotifications,
   address,
+  axios,
   config,
   dashboard,
   errorToString: axios.errorToString,
