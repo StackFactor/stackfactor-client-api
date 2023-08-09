@@ -3,6 +3,7 @@ const axios = require("./lib/axios");
 const address = require("./lib/address");
 const config = require("./lib/config");
 const constants = require("./lib/constants");
+const contentGenerator = require("./lib/integrations/contentGenerator");
 const dashboard = require("./lib/dashboard");
 const departmentTraingPlans = require("./lib/departmentTrainingPlans");
 const integration = require("./lib/integration");
@@ -17,9 +18,6 @@ const skillAssessment = require("./lib/skillAssessments");
 const skillAssessmentTestingSession = require("./lib/skillAssessmentTestingSession");
 const skillTemplate = require("./lib/skillTemplate");
 const team = require("./lib/teams");
-// const templateDocument = require("./lib/templateDocument");
-// const templatePhase = require("./lib/templatePhase");
-// const templateRelease = require("./lib/templateRelease");
 const templates = require("./lib/templates");
 const tenant = require("./lib/tenants");
 const trainingPlanTemplate = require("./lib/trainingPlanTemplate");
@@ -32,6 +30,7 @@ module.exports = {
   address,
   axios,
   config,
+  contentGenerator,
   dashboard,
   errorToString: axios.errorToString,
   getErrorType: axios.getErrorType,
@@ -52,9 +51,6 @@ module.exports = {
   skillAssessmentTestingSession,
   skillTemplate,
   team,
-  // templateDocument,
-  // templatePhase,
-  // templateRelease,
   templates,
   tenant,
   trainingPlanTemplate,
