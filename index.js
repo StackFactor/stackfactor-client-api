@@ -1,5 +1,5 @@
 import actionNotifications from "./lib/actionNotifications.js";
-export * from "./actionNotification.js";
+export * from "./lib/actionNotification.js";
 import axios, {
   errorToString,
   getErrorType,
