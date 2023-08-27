@@ -20,6 +20,7 @@ import integration from "./lib/integration.js";
 import integrationConfiguration from "./lib/integrationConfiguration.js";
 import groups from "./lib/groups.js";
 import learningContent from "./lib/learningContent.js";
+import learningPath from "./lib/learningPath.js";
 import logger from "./lib/logger.js";
 import role from "./lib/role.js";
 import roleTemplate from "./lib/roleTemplate.js";
@@ -29,7 +30,6 @@ import skillAssessmentTestingSession from "./lib/skillAssessmentTestingSession.j
 import skillTemplate from "./lib/skillTemplate.js";
 import team from "./lib/teams.js";
 import tenant from "./lib/tenants.js";
-import trainingPlanTemplate from "./lib/trainingPlanTemplate.js";
 import trainingPlan from "./lib/trainingPlans.js";
 import userInformation from "./lib/userInformation.js";
 import users from "./lib/users.js";
@@ -50,6 +50,7 @@ export {
   departmentTraingPlans,
   groups,
   learningContent,
+  learningPath,
   logger,
   PERMISSIONS,
   RESPONSE_TYPE,
@@ -62,7 +63,6 @@ export {
   skillTemplate,
   team,
   tenant,
-  trainingPlanTemplate,
   trainingPlan,
   userInformation,
   users,
