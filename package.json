@@ -1,6 +1,6 @@
 {
   "name": "@stackfactor/client-api",
-  "version": "1.0.83",
+  "version": "1.0.84",
   "description": "Node.js library for the StackFactor API",
   "main": "index.js",
   "exports": {
