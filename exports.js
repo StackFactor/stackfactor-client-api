@@ -11,6 +11,7 @@ import config from "./lib/config.js";
 import {
   DOCUMENT_VERSION,
   PERMISSIONS,
+  PERMISSION_DESCRIPTIONS,
   RESPONSE_TYPE,
 } from "./lib/constants.js";
 import contentGenerator from "./lib/integrations/contentGenerator.js";
@@ -53,6 +54,7 @@ export {
   learningPath,
   logger,
   PERMISSIONS,
+  PERMISSION_DESCRIPTIONS,
   RESPONSE_TYPE,
   role,
   roleTemplate,
