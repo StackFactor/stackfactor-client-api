@@ -6,6 +6,7 @@ import {
   getErrorType,
   shouldReturnError,
 } from "./lib/axiosClient.js";
+import aiAssistant from "./lib/aiAssistant.js";
 import address from "./lib/address.js";
 import config from "./lib/config.js";
 import {
@@ -38,6 +39,7 @@ import users from "./lib/users.js";
 export {
   actionNotifications,
   address,
+  aiAssistant,
   client,
   config,
   contentGenerator,
