@@ -24,6 +24,7 @@ import groups from "./lib/groups.js";
 import learningContent from "./lib/learningContent.js";
 import learningPath from "./lib/learningPath.js";
 import logger from "./lib/logger.js";
+import microSkillsQuizes from "./lib/microSkillsQuizes.js";
 import role from "./lib/role.js";
 import roleTemplate from "./lib/roleTemplate.js";
 import skill from "./lib/skill.js";
@@ -55,6 +56,7 @@ export {
   learningContent,
   learningPath,
   logger,
+  microSkillsQuizes,
   PERMISSIONS,
   PERMISSION_DESCRIPTIONS,
   RESPONSE_TYPE,
