@@ -1,6 +1,6 @@
 {
   "name": "@stackfactor/client-api",
-  "version": "1.1.31",
+  "version": "1.1.32",
   "description": "Node.js library for the StackFactor API",
   "main": "index.js",
   "exports": {
@@ -12,6 +12,7 @@
   },
   "type": "module",
   "scripts": {
+    "lint": "eslint lib/**/*.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -30,5 +31,9 @@
     "html2plaintext": "^2.1.4",
     "https": "^1.0.0",
     "node-html-parser": "^6.1.5"
+  },
+  "devDependencies": {
+    "eslint": "^8.57.0",
+    "eslint-plugin-react": "^7.34.0"
   }
 }
