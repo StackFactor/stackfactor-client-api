@@ -34,6 +34,7 @@ import skillTemplate from "./lib/skillTemplate.js";
 import team from "./lib/teams.js";
 import tenant from "./lib/tenants.js";
 import trainingPlan from "./lib/trainingPlans.js";
+import trainingPlanProficiencyLevel from "./lib/trainingPlansProficiencyLevels.js";
 import userInformation from "./lib/userInformation.js";
 import users from "./lib/users.js";
 
@@ -70,6 +71,7 @@ export {
   team,
   tenant,
   trainingPlan,
+  trainingPlanProficiencyLevel,
   userInformation,
   users,
 };
