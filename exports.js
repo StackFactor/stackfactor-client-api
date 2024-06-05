@@ -7,6 +7,7 @@ import {
   shouldReturnError,
 } from "./lib/axiosClient.js";
 import aiAssistant from "./lib/aiAssistant.js";
+import avatar from "./lib/avatar.js";
 import address from "./lib/address.js";
 import config from "./lib/config.js";
 import {
@@ -42,6 +43,7 @@ export {
   actionNotifications,
   address,
   aiAssistant,
+  avatar,
   client,
   config,
   contentGenerator,
