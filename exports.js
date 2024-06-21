@@ -32,6 +32,7 @@ import skill from "./lib/skill.js";
 import skillAssessment from "./lib/skillAssessments.js";
 import skillAssessmentTestingSession from "./lib/skillAssessmentTestingSession.js";
 import skillTemplate from "./lib/skillTemplate.js";
+import talentTransfromation from "./lib/talentTransfromation.js";
 import team from "./lib/teams.js";
 import tenant from "./lib/tenants.js";
 import trainingPlan from "./lib/trainingPlans.js";
@@ -70,6 +71,7 @@ export {
   skillAssessment,
   skillAssessmentTestingSession,
   skillTemplate,
+  talentTransfromation,
   team,
   tenant,
   trainingPlan,
