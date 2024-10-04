@@ -28,6 +28,7 @@ import logger from "./lib/logger.js";
 import microSkillsQuizes from "./lib/microSkillsQuizes.js";
 import role from "./lib/role.js";
 import roleTemplate from "./lib/roleTemplate.js";
+import security from "./lib/security.js";
 import skill from "./lib/skill.js";
 import skillAssessment from "./lib/skillAssessments.js";
 import skillAssessmentTestingSession from "./lib/skillAssessmentTestingSession.js";
@@ -66,6 +67,7 @@ export {
   RESPONSE_TYPE,
   role,
   roleTemplate,
+  security,
   shouldReturnError,
   skill,
   skillAssessment,
