@@ -26,7 +26,7 @@ import learningContent from "./lib/learningContent.js";
 import learningPath from "./lib/learningPath.js";
 import logger from "./lib/logger.js";
 import microSkillsQuizes from "./lib/microSkillsQuizes.js";
-import quota from "./lib/quota.js";
+import quotas from "./lib/quotas.js";
 import role from "./lib/role.js";
 import roleTemplate from "./lib/roleTemplate.js";
 import security from "./lib/security.js";
@@ -65,7 +65,7 @@ export {
   microSkillsQuizes,
   PERMISSIONS,
   PERMISSION_DESCRIPTIONS,
-  quota,
+  quotas,
   RESPONSE_TYPE,
   role,
   roleTemplate,
