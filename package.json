@@ -33,6 +33,8 @@
     "node-html-parser": "^6.1.5"
   },
   "devDependencies": {
+    "@types/axios": "^0.14.4",
+    "@types/node": "^22.13.5",
     "eslint": "^8.57.0",
     "eslint-plugin-react": "^7.34.0"
   }
