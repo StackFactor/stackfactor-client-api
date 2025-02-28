@@ -1,5 +1,5 @@
 import { AxiosError, AxiosResponse } from "axios";
-import { client } from "./axiosClient";
+import { client } from "./axiosClient.js";
 
 /**
  * Add users to team

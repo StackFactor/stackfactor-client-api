@@ -1,5 +1,5 @@
 import { AxiosError, AxiosResponse } from "axios";
-import { client, errorToString } from "./axiosClient";
+import { client, errorToString } from "./axiosClient.js";
 import axiosLib from "axios";
 import htmlParser from "node-html-parser";
 import htmlToText from "html2plaintext";

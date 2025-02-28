@@ -1,5 +1,5 @@
 import { AxiosResponse } from "axios";
-import { client } from "./axiosClient";
+import { client } from "./axiosClient.js";
 
 /**
  * Get avatar for an elementId

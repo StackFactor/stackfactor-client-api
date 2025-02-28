@@ -1,6 +1,6 @@
 import axios, { AxiosError, AxiosResponse } from "axios";
-import { RESPONSE_TYPE } from "./constants";
-import * as utils from "./utils";
+import { RESPONSE_TYPE } from "./constants.js";
+import * as utils from "./utils.js";
 
 interface ErrorResponse {
   msg: string;

@@ -1,6 +1,6 @@
 {
   "name": "@stackfactor/client-api",
-  "version": "1.1.139",
+  "version": "1.1.145",
   "description": "Node.js library for the StackFactor API",
   "main": "./dist/cjs/index.js",
   "module": "./dist/esm/index.js",
@@ -11,6 +11,13 @@
       "require": "./dist/cjs/index.js"
     }
   },
+  "files": [
+    "declarations",
+    "dist",
+    "package.json",
+    "README.md",
+    "LICENSE"
+  ],
   "type": "module",
   "scripts": {
     "build": "npm run build:esm && npm run build:cjs",
@@ -34,7 +41,7 @@
     "axios": "^1.8.1",
     "dotenv": "^16.4.7",
     "html2plaintext": "^2.1.4",
-    "https": "^1.0.0",
+    "https": "latest",
     "node-html-parser": "^7.0.1"
   },
   "devDependencies": {
