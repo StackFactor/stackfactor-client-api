@@ -7,7 +7,7 @@ import { client } from "./axiosClient";
  * @param {String} token Authorization token
  * @returns {Promise<object>}
  */
-const createRoleTemplate = (data: object, token: string): Promise<object> => {
+export const createRoleTemplate = (data: object, token: string): Promise<object> => {
   return new Promise((resolve, reject) => {
     const requestData = {
       data: data,
@@ -32,7 +32,7 @@ const createRoleTemplate = (data: object, token: string): Promise<object> => {
  * @param {String} token Authorization token
  * @returns {Promise<object>}
  */
-const deleteRoleTemplate = (
+export const deleteRoleTemplate = (
   id: string,
   comments: string,
   token: string
@@ -62,7 +62,7 @@ const deleteRoleTemplate = (
  * @param {String} token Authorization token
  * @returns {Promise<object>}
  */
-const discardRoleTemplateChanges = (
+export const discardRoleTemplateChanges = (
   id: string,
   token: string
 ): Promise<object> => {
@@ -89,7 +89,7 @@ const discardRoleTemplateChanges = (
  * @param {String} token Authorization token
  * @returns {Promise<object>}
  */
-const getRoleTemplateInformationById = (
+export const getRoleTemplateInformationById = (
   id: string,
   version: string,
   token: string
@@ -120,7 +120,7 @@ const getRoleTemplateInformationById = (
  * @param {String} token Authorization token
  * @returns {Promise<object>}
  */
-const getRoleTemplateList = (
+export const getRoleTemplateList = (
   filter: string[],
   version: string,
   includeDeleted: boolean,
@@ -154,7 +154,7 @@ const getRoleTemplateList = (
  * @param {String} token Authorization token
  * @returns {Promise<object>}
  */
-const publishTemplate = (
+export const publishTemplate = (
   id: number,
   comments: string,
   token: string
@@ -186,7 +186,7 @@ const publishTemplate = (
  * @param {String} token Authorization token
  * @returns {Promise<object>}
  */
-const setTemplateInformation = (
+export const setTemplateInformation = (
   id: string,
   data: object,
   token: string
@@ -220,7 +220,7 @@ const setTemplateInformation = (
  * @param {String} token Authorization token
  * @returns {Promise<object>}
  */
-const setTemplateTags = (
+export const setTemplateTags = (
   id: string,
   tags: object,
   token: string
@@ -254,7 +254,7 @@ const setTemplateTags = (
  * @param {String} token Authorization token
  * @returns {Promise<object>}
  */
-const watchRoleTemplate = (
+export const watchRoleTemplate = (
   id: string,
   watch: boolean,
   token: string
@@ -279,16 +279,4 @@ const watchRoleTemplate = (
         reject(error);
       });
   });
-};
-
-export default {
-  createRoleTemplate,
-  deleteRoleTemplate,
-  discardRoleTemplateChanges,
-  getRoleTemplateInformationById,
-  getRoleTemplateList,
-  publishTemplate,
-  setTemplateInformation,
-  setTemplateTags,
-  watchRoleTemplate,
 };

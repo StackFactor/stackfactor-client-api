@@ -7,7 +7,7 @@ import { client } from "./axiosClient";
  * @param {String} token
  * @returns {Promise<object>} An object containing the proficiency level information
  */
-const getTrainingPlanProficiencyLevel = (
+export const getTrainingPlanProficiencyLevel = (
   proficiencyLevelId: string,
   token: string
 ): Promise<object> => {
@@ -36,7 +36,7 @@ const getTrainingPlanProficiencyLevel = (
  * @param {String} token Authorization token
  * @returns {Promise<object>}
  */
-const getTrainingPlanProficiencyLevelList = (
+export const getTrainingPlanProficiencyLevelList = (
   includeDeleted: boolean,
   includeDetailedInformation: boolean,
   includeArchived: boolean,
@@ -71,7 +71,7 @@ const getTrainingPlanProficiencyLevelList = (
  * @param {String} token
  * @returns {Promise<void>}
  */
-const reorderTrainingPlansProficiencyLevels = (
+export const reorderTrainingPlansProficiencyLevels = (
   order: object[],
   token: string
 ): Promise<void> => {
@@ -100,7 +100,7 @@ const reorderTrainingPlansProficiencyLevels = (
  * @param {String} token
  * @returns {Promise<void>}
  */
-const updateTrainingPlanProficiencyLevel = (
+export const updateTrainingPlanProficiencyLevel = (
   proficiencyLevelId: string,
   data: object,
   token: string
@@ -122,12 +122,3 @@ const updateTrainingPlanProficiencyLevel = (
       });
   });
 };
-
-const trainingPlanProficiencyLevel = {
-  getTrainingPlanProficiencyLevel,
-  getTrainingPlanProficiencyLevelList,
-  reorderTrainingPlansProficiencyLevels,
-  updateTrainingPlanProficiencyLevel,
-};
-
-export default trainingPlanProficiencyLevel;

@@ -14,7 +14,7 @@ interface Activity {
  * @param {String} token Authorization token
  * @returns {Promise<object>}
  */
-const createDepartmentTrainingPlan = (
+export const createDepartmentTrainingPlan = (
   name: string,
   summary: string,
   skill: string,
@@ -51,7 +51,7 @@ const createDepartmentTrainingPlan = (
  * @param {String} token Authorization token
  * @returns {Promise<object>}
  */
-const deleteDepartmentTrainingPlan = (
+export const deleteDepartmentTrainingPlan = (
   id: string,
   token: string
 ): Promise<object> => {
@@ -79,7 +79,7 @@ const deleteDepartmentTrainingPlan = (
  * @param {String} token Authorization token
  * @returns {Promise<object>}
  */
-const getDepartmentTrainingPlanInformationById = (
+export const getDepartmentTrainingPlanInformationById = (
   id: number,
   version: string,
   token: string
@@ -108,7 +108,7 @@ const getDepartmentTrainingPlanInformationById = (
  * @param {String} token Authorization token
  * @returns {Promise<object>}
  */
-const getDepartmentTrainingPlanList = (
+export const getDepartmentTrainingPlanList = (
   filter: string,
   version: string,
   token: string
@@ -141,7 +141,7 @@ const getDepartmentTrainingPlanList = (
  * @param {String} token Authorization token
  * @returns {Promise<object>}
  */
-const publishDepartmentTrainingPlan = (
+export const publishDepartmentTrainingPlan = (
   id: number,
   token: string
 ): Promise<object> => {
@@ -170,7 +170,7 @@ const publishDepartmentTrainingPlan = (
  * @param {String} token Authorization token
  * @returns {Promise<object>}
  */
-const setDepartmentTrainingPlanInformation = (
+export const setDepartmentTrainingPlanInformation = (
   id: string,
   data: object,
   token: string
@@ -195,14 +195,3 @@ const setDepartmentTrainingPlanInformation = (
       });
   });
 };
-
-const departmentTrainingPlans = {
-  createDepartmentTrainingPlan,
-  deleteDepartmentTrainingPlan,
-  getDepartmentTrainingPlanInformationById,
-  getDepartmentTrainingPlanList,
-  publishDepartmentTrainingPlan,
-  setDepartmentTrainingPlanInformation,
-};
-
-export default departmentTrainingPlans;

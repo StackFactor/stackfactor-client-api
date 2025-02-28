@@ -6,7 +6,7 @@ import { client } from "./axiosClient";
  * @param {String} id The id of the training plan to be deleted
  * @param {String} token Authorization token
  */
-const archiveTrainingPlan = (id: string, token: string): Promise<object> => {
+export const archiveTrainingPlan = (id: string, token: string): Promise<object> => {
   return new Promise((resolve, reject) => {
     const request = client.get(`api/v1/trainingplans/archive/${id}`, {
       headers: { authorization: token },
@@ -28,7 +28,7 @@ const archiveTrainingPlan = (id: string, token: string): Promise<object> => {
  * @param {Boolean} saveAsDraft Save as draft flag
  * @param {String} token Authorization token
  */
-const createTrainingPlan = (
+export const createTrainingPlan = (
   data: object,
   type: number,
   saveAsDraft: boolean,
@@ -61,7 +61,7 @@ const createTrainingPlan = (
  * @param {String} comments The comments for approver
  * @param {String} token Authorization token
  */
-const deleteTrainingPlan = (
+export const deleteTrainingPlan = (
   id: string,
   comments: string,
   token: string
@@ -90,7 +90,7 @@ const deleteTrainingPlan = (
  * @param {String} id The id of the training plan to be deleted
  * @param {String} token Authorization token
  */
-const discardTrainingPlanChanges = (
+export const discardTrainingPlanChanges = (
   id: string,
   token: string
 ): Promise<object> => {
@@ -116,7 +116,7 @@ const discardTrainingPlanChanges = (
  * @param {Boolean} saveBaseline If set to true it will save the baseline
  * @param {String} token Authorization token
  */
-const generateNewBaseline = (
+export const generateNewBaseline = (
   id: string,
   data: object,
   returnMinimized: boolean,
@@ -153,7 +153,7 @@ const generateNewBaseline = (
  * @param {String} version The version of the training plan
  * @param {String} token Authorization token
  */
-const getTrainingPlanById = (
+export const getTrainingPlanById = (
   id: string,
   version: string,
   token: string
@@ -179,7 +179,7 @@ const getTrainingPlanById = (
  * Get tasks summary for a recipient across all of the training plans
  * @param {String} token Authorization token
  */
-const getAllTrainingPlansTasksSummary = (
+export const getAllTrainingPlansTasksSummary = (
   token: string | null = null
 ): Promise<object> => {
   return new Promise((resolve, reject) => {
@@ -207,7 +207,7 @@ const getAllTrainingPlansTasksSummary = (
  * @param {Boolean} returnDefaultIfVersionNotAvailable If set to true it will load the draft information if the plan was never published
  * @param {String} token Authorization token
  */
-const getListOfTrainingPlans = (
+export const getListOfTrainingPlans = (
   users: string[],
   types: number[],
   version: string,
@@ -246,7 +246,7 @@ const getListOfTrainingPlans = (
  * @param {String} comments The comments to be include with the request
  * @param {String} token Authorization token
  */
-const publishTrainingPlan = (
+export const publishTrainingPlan = (
   id: string,
   comments: string,
   token: string
@@ -278,7 +278,7 @@ const publishTrainingPlan = (
  * @param {Boolean} saveAsDraft Save as draft flag
  * @param {String} token Authorization token
  */
-const updateTrainingPlan = (
+export const updateTrainingPlan = (
   planId: string,
   data: object,
   saveAsDraft: boolean,
@@ -314,7 +314,7 @@ const updateTrainingPlan = (
  * @param {String} token
  * @returns {Promise<object>}
  */
-const updateTrainingPlanTaskStatus = (
+export const updateTrainingPlanTaskStatus = (
   id: string,
   status: number,
   token: string
@@ -344,7 +344,7 @@ const updateTrainingPlanTaskStatus = (
  * @param {String} token Authorization token
  * @returns {Promise<object>}
  */
-const updateActivities = (
+export const updateActivities = (
   planId: string,
   data: object,
   token: string
@@ -365,19 +365,4 @@ const updateActivities = (
         reject(error);
       });
   });
-};
-
-export default {
-  archiveTrainingPlan,
-  createTrainingPlan,
-  deleteTrainingPlan,
-  discardTrainingPlanChanges,
-  generateNewBaseline,
-  getAllTrainingPlansTasksSummary,
-  getTrainingPlanById,
-  getListOfTrainingPlans,
-  publishTrainingPlan,
-  updateTrainingPlan,
-  updateTrainingPlanTaskStatus,
-  updateActivities,
 };

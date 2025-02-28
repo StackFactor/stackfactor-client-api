@@ -7,7 +7,7 @@ import { client } from "./axiosClient";
  * @param {String} authToken - Authorization token
  * @returns {Promise<object>}
  */
-const autoComplete = (input: string, authToken: string): Promise<object> => {
+export const autoComplete = (input: string, authToken: string): Promise<object> => {
   return new Promise((resolve, reject) => {
     const getAddressesRequest = client.post(
       `api/v1/address/autocomplete/`,
@@ -23,5 +23,3 @@ const autoComplete = (input: string, authToken: string): Promise<object> => {
       });
   });
 };
-
-export default { autoComplete };

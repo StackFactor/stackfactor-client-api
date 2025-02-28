@@ -8,7 +8,7 @@ import { client } from "./axiosClient";
  * @param {String} authToken - Authentication token
  * @returns {Promise<object>}
  */
-const addPermissionsToGroup = (
+export const addPermissionsToGroup = (
   groupId: string,
   permissions: string[],
   authToken: string
@@ -39,7 +39,7 @@ const addPermissionsToGroup = (
  * @param {String} authToken - Authentication token
  * @returns {Promise<object>}
  */
-const addUsersToGroup = (
+export const addUsersToGroup = (
   groupId: string,
   users: string[],
   authToken: string
@@ -70,7 +70,7 @@ const addUsersToGroup = (
  * @param {String} authToken The authorization token
  * @returns {Promise<object>}
  */
-const createGroup = (
+export const createGroup = (
   name: string,
   description: string,
   authToken: string
@@ -101,7 +101,7 @@ const createGroup = (
  * @param {String} authToken The authentication token
  * @returns {Promise<object>}
  */
-const deleteGroup = (
+export const deleteGroup = (
   groupId: string,
   defaultGroupId: string,
   authToken: string
@@ -129,7 +129,7 @@ const deleteGroup = (
  * @param {String} authToken The authentication token
  * @returns {Promise<object>}
  */
-const getAllPermissions = (authToken: string): Promise<object> => {
+export const getAllPermissions = (authToken: string): Promise<object> => {
   return new Promise((resolve, reject) => {
     const request = client.get(`api/v1/groups/permissions/getAllPermissions`, {
       headers: { authorization: authToken },
@@ -150,7 +150,7 @@ const getAllPermissions = (authToken: string): Promise<object> => {
  * @param {String} authToken The authentication token
  * @returns {Promise<object>}
  */
-const getGroupById = (groupId: string, authToken: string): Promise<object> => {
+export const getGroupById = (groupId: string, authToken: string): Promise<object> => {
   return new Promise((resolve, reject) => {
     const request = client.get(`api/v1/groups/group/${groupId}`, {
       headers: { authorization: authToken },
@@ -170,7 +170,7 @@ const getGroupById = (groupId: string, authToken: string): Promise<object> => {
  * @param {String} authToken The authentication token
  * @returns {Promise<object>}
  */
-const getGroups = (authToken: string): Promise<object> => {
+export const getGroups = (authToken: string): Promise<object> => {
   return new Promise((resolve, reject) => {
     const request = client.get(`api/v1/groups/`, {
       headers: { authorization: authToken },
@@ -190,7 +190,7 @@ const getGroups = (authToken: string): Promise<object> => {
  * @param {String} authToken The authentication token
  * @returns {Promise<object>}
  */
-const getUserPermissions = (authToken: string): Promise<object> => {
+export const getUserPermissions = (authToken: string): Promise<object> => {
   return new Promise((resolve, reject) => {
     const request = client.get(`api/v1/groups/users/getuserpermissions`, {
       headers: { authorization: authToken },
@@ -212,7 +212,7 @@ const getUserPermissions = (authToken: string): Promise<object> => {
  * @param {String} authToken The authentication token
  * @returns {Promise<object>}
  */
-const removePermissionsFromGroup = (
+export const removePermissionsFromGroup = (
   groupId: string,
   permissions: string[],
   authToken: string
@@ -243,7 +243,7 @@ const removePermissionsFromGroup = (
  * @param {String} authToken The authentication token
  * @returns {Promise<object>}
  */
-const removeUsersFromGroup = (
+export const removeUsersFromGroup = (
   groupId: string,
   users: string[],
   authToken: string
@@ -273,7 +273,7 @@ const removeUsersFromGroup = (
  * @param {String} authToken The authentication token
  * @returns {Promise<object>}
  */
-const setDefault = (groupId: string, authToken: string): Promise<object> => {
+export const setDefault = (groupId: string, authToken: string): Promise<object> => {
   return new Promise((resolve, reject) => {
     const request = client.put(
       `api/v1/groups/setDefault/`,
@@ -300,7 +300,7 @@ const setDefault = (groupId: string, authToken: string): Promise<object> => {
  * @param {String} authToken The authentication token
  * @returns {Promise<object>}
  */
-const updateGroup = (
+export const updateGroup = (
   groupId: string,
   name: string,
   description: string,
@@ -324,19 +324,4 @@ const updateGroup = (
         reject(error);
       });
   });
-};
-
-export default {
-  addPermissionsToGroup,
-  addUsersToGroup,
-  createGroup,
-  deleteGroup,
-  getAllPermissions,
-  getGroupById,
-  getGroups,
-  getUserPermissions,
-  removePermissionsFromGroup,
-  removeUsersFromGroup,
-  setDefault,
-  updateGroup,
 };

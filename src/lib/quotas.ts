@@ -6,7 +6,7 @@ import { client } from "./axiosClient";
  * @param {String} token
  * @returns {Promise<object>}
  */
-const getAllQuota = (token: string): Promise<object> => {
+export const getAllQuota = (token: string): Promise<object> => {
   return new Promise((resolve, reject) => {
     const confirmationRequest = client.get(`/api/v1/quotas/getallquota`, {
       headers: { authorization: token },
@@ -28,7 +28,7 @@ const getAllQuota = (token: string): Promise<object> => {
  * @param {String} token
  * @returns {Promise<object>}
  */
-const increaseQuotaUtilization = (
+export const increaseQuotaUtilization = (
   quotaId: string,
   value: number,
   token: string
@@ -52,9 +52,4 @@ const increaseQuotaUtilization = (
         reject(error);
       });
   });
-};
-
-export default {
-  getAllQuota,
-  increaseQuotaUtilization,
 };

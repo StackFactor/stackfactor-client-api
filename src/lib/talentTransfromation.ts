@@ -6,7 +6,7 @@ import { client } from "./axiosClient";
  * @param {String} authToken The authentication token
  * @returns {Promise<object>}
  */
-const getTalentTransformationStepsForCurrentUser = (
+export const getTalentTransformationStepsForCurrentUser = (
   authToken: string
 ): Promise<object> => {
   return new Promise((resolve, reject) => {
@@ -33,7 +33,7 @@ const getTalentTransformationStepsForCurrentUser = (
  * @param {String} authToken
  * @returns {Promise<object>} The talent transformation summary
  */
-const getTalentTransformationSummary = (authToken: string): Promise<object> => {
+export const getTalentTransformationSummary = (authToken: string): Promise<object> => {
   return new Promise((resolve, reject) => {
     const request = client.get(
       `api/v1/talenttransformation/summary`,
@@ -59,7 +59,7 @@ const getTalentTransformationSummary = (authToken: string): Promise<object> => {
  * @param {String} authToken
  * @returns {Promise<object>} The talent transformation summary
  */
-const getTalentTransformationSummaryForTeam = (
+export const getTalentTransformationSummaryForTeam = (
   teamId: string,
   authToken: string
 ): Promise<object> => {
@@ -90,7 +90,7 @@ const getTalentTransformationSummaryForTeam = (
  * @param {String} token Authorization token
  * @returns {Promise<object>}
  */
-const setTalentTransformationStepData = (
+export const setTalentTransformationStepData = (
   id: string,
   data: object,
   returnAllStepsStatuses: boolean,
@@ -117,11 +117,4 @@ const setTalentTransformationStepData = (
         reject(error);
       });
   });
-};
-
-export default {
-  getTalentTransformationStepsForCurrentUser,
-  getTalentTransformationSummary,
-  getTalentTransformationSummaryForTeam,
-  setTalentTransformationStepData,
 };

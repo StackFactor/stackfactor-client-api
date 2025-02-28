@@ -393,17 +393,3 @@ export const setDefaultIntegration = (
       });
   });
 };
-
-export default {
-  createIntegration,
-  deleteIntegration,
-  discardIntegrationChanges,
-  getContentInformationByUrl,
-  getContentInformationByUrlFromBrowser,
-  getEnabledContentProviders,
-  getIntegrationInformationById,
-  getIntegrationsList,
-  publishIntegration,
-  setDefaultIntegration,
-  setIntegrationInformation,
-};

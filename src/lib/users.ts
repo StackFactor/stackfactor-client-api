@@ -8,7 +8,7 @@ import { client } from "./axiosClient";
  * @param {string} token Authorization token
  * @returns {Promise<object>}
  */
-const addAPIToken = (name: string, expiration: Date, token: string): Promise<object> => {
+export const addAPIToken = (name: string, expiration: Date, token: string): Promise<object> => {
   return new Promise((resolve, reject) => {
     const requestData = {
       name: name,
@@ -40,7 +40,7 @@ const addAPIToken = (name: string, expiration: Date, token: string): Promise<obj
  * @param {string} validationCode The code was provided to the user in advance by email
  * @returns {Promise<void>}
  */
-const confirmEmailAddress = (validationCode: string): Promise<void> => {
+export const confirmEmailAddress = (validationCode: string): Promise<void> => {
   return new Promise((resolve, reject) => {
     const requestData = {
       validationCode: validationCode,
@@ -65,7 +65,7 @@ const confirmEmailAddress = (validationCode: string): Promise<void> => {
  * @param {string} token Authorization token
  * @returns {Promise<object>}
  */
-const confirmPhone = (validationCode: string, token: string): Promise<object> => {
+export const confirmPhone = (validationCode: string, token: string): Promise<object> => {
   return new Promise((resolve, reject) => {
     const requestData = {
       validationCode: validationCode,
@@ -93,7 +93,7 @@ const confirmPhone = (validationCode: string, token: string): Promise<object> =>
  * @param {string} token Authorization token
  * @returns {Promise<object>}
  */
-const confirmPhoneGenerateCode = (phoneNumber: string, token: string): Promise<object> => {
+export const confirmPhoneGenerateCode = (phoneNumber: string, token: string): Promise<object> => {
   return new Promise((resolve, reject) => {
     const requestData = {
       phoneNumber: phoneNumber,
@@ -125,7 +125,7 @@ const confirmPhoneGenerateCode = (phoneNumber: string, token: string): Promise<o
  * @param {string} inviteCode Invitation code received in advance from one of the account owners
  * @returns {Promise<object>}
  */
-const createAccount = (
+export const createAccount = (
   email: string,
   firstName: string,
   lastName: string,
@@ -173,7 +173,7 @@ const createAccount = (
  * @param {string} token Invitation token provided to the user
  * @returns {Promise<object>}
  */
-const createUserAccount = (
+export const createUserAccount = (
   email: string,
   firstName: string,
   lastName: string,
@@ -215,7 +215,7 @@ const createUserAccount = (
  * @param {string} authToken Authorization token
  * @returns {Promise<string>}
  */
-const deleteAPIToken = (token: string, authToken: string): Promise<string> => {
+export const deleteAPIToken = (token: string, authToken: string): Promise<string> => {
   return new Promise((resolve, reject) => {
     const deleteTokenRequest = client.delete(`api/v1/users/user/token`, {
       headers: { authorization: authToken },
@@ -239,7 +239,7 @@ const deleteAPIToken = (token: string, authToken: string): Promise<string> => {
  * @param {string} token Authorization token
  * @returns {Promise<object>}
  */
-const deleteUsers = (userIds: string[], token: string): Promise<object> => {
+export const deleteUsers = (userIds: string[], token: string): Promise<object> => {
   return new Promise((resolve, reject) => {
     const deleteTokenRequest = client.delete(`api/v1/users/`, {
       headers: { authorization: token },
@@ -262,7 +262,7 @@ const deleteUsers = (userIds: string[], token: string): Promise<object> => {
  * @param {string} token Authorization token
  * @returns {Promise<object>}
  */
-const getAPITokens = (token: string): Promise<object> => {
+export const getAPITokens = (token: string): Promise<object> => {
   return new Promise((resolve, reject) => {
     const getTokensRequest = client.get(`api/v1/users/getapitokens`, {
       headers: { authorization: token },
@@ -283,7 +283,7 @@ const getAPITokens = (token: string): Promise<object> => {
  * @param {string} token Authorization token
  * @returns {Promise<object>}
  */
-const getUserById = (id: string, token: string): Promise<object> => {
+export const getUserById = (id: string, token: string): Promise<object> => {
   return new Promise((resolve, reject) => {
     const getUserInformationRequest = client.get(`api/v1/users/user/${id}`, {
       headers: { authorization: token },
@@ -309,7 +309,7 @@ const getUserById = (id: string, token: string): Promise<object> => {
  * @param {string} token Authorization token
  * @returns {Promise<object>}
  */
-const getUserInformation = (userId: string, category: string, token: string): Promise<object> => {
+export const getUserInformation = (userId: string, category: string, token: string): Promise<object> => {
   return new Promise((resolve, reject) => {
     const confirmationRequest = client.get(
       `api/v1/users/user/${userId || 0}/${category || "*"}`,
@@ -334,7 +334,7 @@ const getUserInformation = (userId: string, category: string, token: string): Pr
  * @param {string} token Authorization token
  * @returns {Promise<object>}
  */
-const getUsers = (filter: object, fields: string[], token: string): Promise<object> => {
+export const getUsers = (filter: object, fields: string[], token: string): Promise<object> => {
   return new Promise((resolve, reject) => {
     const requestData = {
       filter: filter,
@@ -361,7 +361,7 @@ const getUsers = (filter: object, fields: string[], token: string): Promise<obje
  * @param {string} authToken Authorization token
  * @returns {Promise<object>}
  */
-const inviteUsers = (invitees: string[], groupId: string, teamId: string, authToken: string): Promise<object> => {
+export const inviteUsers = (invitees: string[], groupId: string, teamId: string, authToken: string): Promise<object> => {
   return new Promise((resolve, reject) => {
     const requestData = {
       invitees: invitees,
@@ -388,7 +388,7 @@ const inviteUsers = (invitees: string[], groupId: string, teamId: string, authTo
  * @param {string} password User's password
  * @returns {Promise<object>}
  */
-const login = (email: string, password: string): Promise<object> => {
+export const login = (email: string, password: string): Promise<object> => {
   return new Promise((resolve, reject) => {
     const requestData = {
       email: email,
@@ -412,7 +412,7 @@ const login = (email: string, password: string): Promise<object> => {
  * @param {string} redirectUri
  * @returns {Promise<object>}
  */
-const loginExchangeKeys = (code: string, codeVerifier: string, redirectUri: string): Promise<object> => {
+export const loginExchangeKeys = (code: string, codeVerifier: string, redirectUri: string): Promise<object> => {
   return new Promise((resolve, reject) => {
     const requestData = {
       code: code,
@@ -435,7 +435,7 @@ const loginExchangeKeys = (code: string, codeVerifier: string, redirectUri: stri
  * @param {string} token Authorization token
  * @returns {Promise<object>}
  */
-const logout = (token: string): Promise<object> => {
+export const logout = (token: string): Promise<object> => {
   return new Promise((resolve, reject) => {
     const request = client.post(
       "api/v1/auth/logout",
@@ -460,7 +460,7 @@ const logout = (token: string): Promise<object> => {
  * @param {string} refreshToken User's auth token to be refreshed
  * @returns {Promise<object>}
  */
-const refreshToken = (refreshToken: string): Promise<object> => {
+export const refreshToken = (refreshToken: string): Promise<object> => {
   return new Promise((resolve, reject) => {
     const request = client.post("api/v1/auth/refreshToken", {
       refreshToken: refreshToken,
@@ -481,7 +481,7 @@ const refreshToken = (refreshToken: string): Promise<object> => {
  * @param {string} authToken Authorization token
  * @returns {Promise<string>}
  */
-const removeAPIToken = (id: string, authToken: string): Promise<string> => {
+export const removeAPIToken = (id: string, authToken: string): Promise<string> => {
   return new Promise((resolve, reject) => {
     const requestData = {
       id: id,
@@ -509,7 +509,7 @@ const removeAPIToken = (id: string, authToken: string): Promise<string> => {
  * @param {string} authToken Authorization token
  * @returns {Promise<object>}
  */
-const resendInvitationEmails = (invitees: string[], authToken: string): Promise<object> => {
+export const resendInvitationEmails = (invitees: string[], authToken: string): Promise<object> => {
   return new Promise((resolve, reject) => {
     const requestData = {
       invitees: invitees,
@@ -535,7 +535,7 @@ const resendInvitationEmails = (invitees: string[], authToken: string): Promise<
  * @param {string} password User's new password
  * @returns {Promise<object>}
  */
-const resetPassword = (email: string, code: string, password: string): Promise<object> => {
+export const resetPassword = (email: string, code: string, password: string): Promise<object> => {
   return new Promise((resolve, reject) => {
     const postData = {
       email: email,
@@ -559,7 +559,7 @@ const resetPassword = (email: string, code: string, password: string): Promise<o
  * @param {string} token
  * @returns {Promise<object>}
  */
-const sendEmailConfirmationCode = (email: string, token: string): Promise<object> => {
+export const sendEmailConfirmationCode = (email: string, token: string): Promise<object> => {
   return new Promise((resolve, reject) => {
     const postData = {
       email: email,
@@ -586,7 +586,7 @@ const sendEmailConfirmationCode = (email: string, token: string): Promise<object
  * @param {string} email Email of the user who needs to reset the password
  * @returns {Promise<object>}
  */
-const sendPasswordResetNotification = (email: string): Promise<object> => {
+export const sendPasswordResetNotification = (email: string): Promise<object> => {
   return new Promise((resolve, reject) => {
     const postData = {
       email: email,
@@ -613,7 +613,7 @@ const sendPasswordResetNotification = (email: string): Promise<object> => {
  * @param {string} token Authorization token
  * @returns {Promise<object>}
  */
-const setUserInformation = (userId: string, category: string, data: object, token: string): Promise<object> => {
+export const setUserInformation = (userId: string, category: string, data: object, token: string): Promise<object> => {
   return new Promise((resolve, reject) => {
     const requestData = {
       data: category ? { [category]: data } : data,
@@ -640,7 +640,7 @@ const setUserInformation = (userId: string, category: string, data: object, toke
  * @param {string} token Authorization token
  * @returns {Promise<object>}
  */
-const updateUserEmail = (
+export const updateUserEmail = (
   email: string,
   verificationCode: string,
   password: string,
@@ -676,7 +676,7 @@ const updateUserEmail = (
  * @param {String} token Authorization token
  * @returns {Promise<object>}
  */
-const updateUserGroups = (
+export const updateUserGroups = (
   userId: string,
   groups: string[],
   token: string
@@ -710,7 +710,7 @@ const updateUserGroups = (
  * @param {String} token Authorization token
  * @returns {Promise<object>}
  */
-const updateUserPassword = (
+export const updateUserPassword = (
   password: string,
   newPassword: string,
   token: string
@@ -743,7 +743,7 @@ const updateUserPassword = (
  * @param {String} code Provided reset code
  * @returns {Promise<object>}
  */
-const validateResetPasswordCode = (
+export const validateResetPasswordCode = (
   email: string,
   code: string
 ): Promise<object> => {
@@ -761,34 +761,4 @@ const validateResetPasswordCode = (
         reject(error);
       });
   });
-};
-
-export default {
-  addAPIToken,
-  confirmEmailAddress,
-  confirmPhone,
-  confirmPhoneGenerateCode,
-  createAccount,
-  createUserAccount,
-  deleteAPIToken,
-  deleteUsers,
-  getAPITokens,
-  getUserById,
-  getUserInformation,
-  getUsers,
-  inviteUsers,
-  login,
-  loginExchangeKeys,
-  logout,
-  refreshToken,
-  removeAPIToken,
-  resendInvitationEmails,
-  resetPassword,
-  sendEmailConfirmationCode,
-  sendPasswordResetNotification,
-  setUserInformation,
-  updateUserEmail,
-  updateUserGroups,
-  updateUserPassword,
-  validateResetPasswordCode,
 };

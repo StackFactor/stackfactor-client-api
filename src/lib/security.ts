@@ -6,7 +6,7 @@ import { client } from "./axiosClient";
  * @param {String} authToken - Authorization token
  * @returns {Promise<object>}
  */
-const getAuthConnections = (authToken: string): Promise<object> => {
+export const getAuthConnections = (authToken: string): Promise<object> => {
   return new Promise((resolve, reject) => {
     const getConfigInformationRequest = client.get(
       `api/v1/security/authconnections`,
@@ -28,7 +28,7 @@ const getAuthConnections = (authToken: string): Promise<object> => {
  * @param {String} authToken - Authorization token
  * @returns {Promise<object>}
  */
-const setAuthConnections = (
+export const setAuthConnections = (
   data: object,
   authToken: string
 ): Promise<object> => {
@@ -54,7 +54,7 @@ const setAuthConnections = (
  * @param {String} authToken
  * @returns {Promise<object>}
  */
-const resetMFA = (userId: string, authToken: string): Promise<object> => {
+export const resetMFA = (userId: string, authToken: string): Promise<object> => {
   return new Promise((resolve, reject) => {
     const resetMFARequest = client.post(
       `api/v1/security/resetmfa`,
@@ -76,7 +76,7 @@ const resetMFA = (userId: string, authToken: string): Promise<object> => {
  * @param {String} authToken
  * @returns {Promise<object>}
  */
-const synchronizeWithAuth0 = (authToken: string): Promise<object> => {
+export const synchronizeWithAuth0 = (authToken: string): Promise<object> => {
   return new Promise((resolve, reject) => {
     const synchronizeRequest = client.get(
       `api/v1/security/synchronizewithauth0`,
@@ -90,11 +90,4 @@ const synchronizeWithAuth0 = (authToken: string): Promise<object> => {
         reject(error);
       });
   });
-};
-
-export default {
-  getAuthConnections,
-  resetMFA,
-  setAuthConnections,
-  synchronizeWithAuth0,
 };

@@ -7,7 +7,7 @@ import { client } from "./axiosClient";
  * @param {String} authToken - Authorization token
  * @returns {Promise<object>}
  */
-const getConfigurationById = (
+export const getConfigurationById = (
   id: string,
   authToken: string
 ): Promise<object> => {
@@ -32,7 +32,7 @@ const getConfigurationById = (
  * @param {String} authToken - Authorization token
  * @returns {Promise<object>}
  */
-const getConfigurationByType = (
+export const getConfigurationByType = (
   type: string,
   authToken: string
 ): Promise<object> => {
@@ -58,7 +58,7 @@ const getConfigurationByType = (
  * @param {String} authToken - Authorization token
  * @returns {Promise<object>}
  */
-const setConfigurationById = (
+export const setConfigurationById = (
   id: string,
   data: object,
   authToken: string
@@ -77,10 +77,4 @@ const setConfigurationById = (
         reject(error);
       });
   });
-};
-
-export default {
-  getConfigurationById,
-  getConfigurationByType,
-  setConfigurationById,
 };

@@ -25,7 +25,7 @@ interface GenerateLearningActivityContentData {
  * @param {String} token Authorization token
  * @returns {Promise<object>} The created learning content
  */
-const createLearningContent = (
+export const createLearningContent = (
   data: object,
   token: string
 ): Promise<object> => {
@@ -57,7 +57,7 @@ const createLearningContent = (
  * @param {String} token Authorization token
  * @returns {Promise<object>} The response from the server
  */
-const deleteLearningContent = (
+export const deleteLearningContent = (
   id: string,
   comments: string,
   token: string
@@ -87,7 +87,7 @@ const deleteLearningContent = (
  * @param {String} token Authorization token
  * @returns {Promise<object>} The response from the server
  */
-const discardLearningContentChanges = (
+export const discardLearningContentChanges = (
   id: string,
   token: string
 ): Promise<object> => {
@@ -117,7 +117,7 @@ const discardLearningContentChanges = (
  * @param {List<String>} sections
  * @param {String} token
  */
-const generateLearningActivityContent = (
+export const generateLearningActivityContent = (
   learningObjectives: string,
   skillId: string,
   microSkillId: string,
@@ -159,7 +159,7 @@ const generateLearningActivityContent = (
  * @param {String} token
  * @returns {Promise<object>}
  */
-const generateMicroSkillTestKnowledge = (
+export const generateMicroSkillTestKnowledge = (
   microSkill: string,
   token: string
 ): Promise<object> => {
@@ -191,7 +191,7 @@ const generateMicroSkillTestKnowledge = (
  * @param {String} token Authorization token
  * @returns {Promise<object>} The response from the server
  */
-const getLearningContentInformationById = (
+export const getLearningContentInformationById = (
   id: string,
   version: string,
   token: string
@@ -221,7 +221,7 @@ const getLearningContentInformationById = (
  * @param {String} token Authorization token
  * @returns {Promise<Array<Object>>} The list of available content
  */
-const getLearningContentList = (
+export const getLearningContentList = (
   filter: string[],
   version: string,
   includeDeleted: boolean,
@@ -256,7 +256,7 @@ const getLearningContentList = (
  * @param {String} token Authorization token
  * @returns {Promise<object>} The response from the server
  */
-const migrateLearningContentStorageType = (
+export const migrateLearningContentStorageType = (
   id: string,
   token: string
 ): Promise<object> => {
@@ -286,7 +286,7 @@ const migrateLearningContentStorageType = (
  * @param {String} token Authorization token
  * @returns {Promise<object>} The response from the server
  */
-const publishLearningContent = (
+export const publishLearningContent = (
   id: string,
   comments: string,
   token: string
@@ -319,7 +319,7 @@ const publishLearningContent = (
  * @param {String} token Authorization token
  * @returns {Promise<object>} The updated learning content
  */
-const setLearningContentInformation = (
+export const setLearningContentInformation = (
   id: string,
   data: object,
   token: string
@@ -353,7 +353,7 @@ const setLearningContentInformation = (
  * @param {String} token
  * @returns {Promise<object>}
  */
-const setLearningContentPartialContentInformation = (
+export const setLearningContentPartialContentInformation = (
   id: string,
   data: object,
   token: string
@@ -389,7 +389,7 @@ const setLearningContentPartialContentInformation = (
  * @param {String} token
  * @returns {Promise<String>} OK word if the operation was successful
  */
-const setLearningContentLearningContentInformation = (
+export const setLearningContentLearningContentInformation = (
   id: string,
   learningcontentid: string,
   microSkillId: string,
@@ -428,7 +428,7 @@ const setLearningContentLearningContentInformation = (
  * @param {String} token
  * @returns {Promise<String>} OK word if the operation was successful
  */
-const setLearningContentLearningMicroSkillContentInformation = (
+export const setLearningContentLearningMicroSkillContentInformation = (
   id: string,
   microskillid: string,
   data: object,
@@ -461,7 +461,7 @@ const setLearningContentLearningMicroSkillContentInformation = (
  * @param {Object} tags Updated learning content tags
  * @param {String} token Authorization token
  */
-const setLearningContentTags = (
+export const setLearningContentTags = (
   id: string,
   tags: object,
   token: string
@@ -494,7 +494,7 @@ const setLearningContentTags = (
  * @param {Boolean} watch Set to true or false
  * @param {String} token Authorization token
  */
-const watchLearningContent = (
+export const watchLearningContent = (
   id: string,
   watch: boolean,
   token: string
@@ -519,22 +519,4 @@ const watchLearningContent = (
         reject(error);
       });
   });
-};
-
-export default {
-  createLearningContent,
-  deleteLearningContent,
-  discardLearningContentChanges,
-  getLearningContentInformationById,
-  generateLearningActivityContent,
-  generateMicroSkillTestKnowledge,
-  getLearningContentList,
-  migrateLearningContentStorageType,
-  publishLearningContent,
-  setLearningContentPartialContentInformation,
-  setLearningContentLearningContentInformation,
-  setLearningContentLearningMicroSkillContentInformation,
-  setLearningContentInformation,
-  setLearningContentTags,
-  watchLearningContent,
 };

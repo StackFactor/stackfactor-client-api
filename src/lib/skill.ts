@@ -7,7 +7,7 @@ import { client } from "./axiosClient";
  * @param {String} token Authorization token
  * @returns {Promise<object>}
  */
-const createSkill = (data: object, token: string): Promise<object> => {
+export const createSkill = (data: object, token: string): Promise<object> => {
   return new Promise((resolve, reject) => {
     const confirmationRequest = client.put(
       "api/v1/skills",
@@ -32,7 +32,7 @@ const createSkill = (data: object, token: string): Promise<object> => {
  * @param {String} token Authorization token
  * @returns {Promise<object>}
  */
-const createSkillsFromTemplates = (
+export const createSkillsFromTemplates = (
   templateIds: string[],
   token: string
 ): Promise<object> => {
@@ -64,7 +64,7 @@ const createSkillsFromTemplates = (
  * @param {String} token Authorization token
  * @returns {Promise<object>}
  */
-const deleteSkill = (
+export const deleteSkill = (
   id: string,
   comments: string,
   token: string
@@ -94,7 +94,7 @@ const deleteSkill = (
  * @param {String} token Authorization token
  * @returns {Promise<object>}
  */
-const discardSkillChanges = (id: string, token: string): Promise<object> => {
+export const discardSkillChanges = (id: string, token: string): Promise<object> => {
   return new Promise((resolve, reject) => {
     const data = {};
     const request = client.get(`api/v1/skills/discard/${id}`, {
@@ -116,7 +116,7 @@ const discardSkillChanges = (id: string, token: string): Promise<object> => {
  * @param {String} token Authorization token
  * @returns {Promise<object>}
  */
-const getImportedSkillTemplates = (token: string): Promise<object> => {
+export const getImportedSkillTemplates = (token: string): Promise<object> => {
   return new Promise((resolve, reject) => {
     const request = client.get(`api/v1/skills/getimportedskilltemplates`, {
       headers: { authorization: token },
@@ -138,7 +138,7 @@ const getImportedSkillTemplates = (token: string): Promise<object> => {
  * @param {Boolean} includeRoleInformation
  * @returns {Promise<object>}
  */
-const getSkillRelatedRoles = (
+export const getSkillRelatedRoles = (
   id: string,
   token: string,
   includeRoleInformation = false
@@ -166,7 +166,7 @@ const getSkillRelatedRoles = (
  * @param {String} token Authorization token
  * @returns {Promise<object>}
  */
-const getSkillRequiredAssessmentType = (
+export const getSkillRequiredAssessmentType = (
   id: string,
   token: string
 ): Promise<object> => {
@@ -195,7 +195,7 @@ const getSkillRequiredAssessmentType = (
  * @param {String} token Authorization token
  * @returns {Promise<object>}
  */
-const getSkillInformationById = (
+export const getSkillInformationById = (
   id: string,
   version: string,
   returnNullIfVersionNotFound: boolean,
@@ -228,7 +228,7 @@ const getSkillInformationById = (
  * @param {String} token Authorization token
  * @returns {Promise<object>}
  */
-const getSkillList = (
+export const getSkillList = (
   filter: string[],
   version: string,
   includeDeleted: boolean,
@@ -266,7 +266,7 @@ const getSkillList = (
  * @param {String} token Authorization token
  * @returns {Promise<object>}
  */
-const getTeamSkillsById = (
+export const getTeamSkillsById = (
   teamId: string,
   maxDepth: number,
   returnNullIfVersionNotFound: boolean,
@@ -295,7 +295,7 @@ const getTeamSkillsById = (
  * @param {String} token Authorization token
  * @returns {Promise<object>}
  */
-const getCurrentUserTeamSkills = (
+export const getCurrentUserTeamSkills = (
   maxDepth: number,
   token: string
 ): Promise<object> => {
@@ -322,7 +322,7 @@ const getCurrentUserTeamSkills = (
  * @param {String} token Authorization token
  * @returns {Promise<object>}
  */
-const getSkillTemplateUpdates = (
+export const getSkillTemplateUpdates = (
   id: string,
   token: string
 ): Promise<object> => {
@@ -350,7 +350,7 @@ const getSkillTemplateUpdates = (
  * @param {String} token Authorization token
  * @returns {Promise<object>}
  */
-const importSkillTemplates = (
+export const importSkillTemplates = (
   data: string[],
   publish: boolean,
   token: string
@@ -384,7 +384,7 @@ const importSkillTemplates = (
  * @param {String} token Authorization token
  * @returns {Promise<object>}
  */
-const publishSkill = (
+export const publishSkill = (
   id: string,
   comments: string,
   token: string
@@ -412,7 +412,7 @@ const publishSkill = (
  * @param {String} token Authorization token
  * @returns {Promise<object>}
  */
-const setSkillInformation = (
+export const setSkillInformation = (
   id: string,
   data: object,
   token: string
@@ -446,7 +446,7 @@ const setSkillInformation = (
  * @param {String} token Authorization token
  * @returns {Promise<object>}
  */
-const setSkillInformationFromTemplate = (
+export const setSkillInformationFromTemplate = (
   id: string,
   data: object,
   token: string
@@ -479,7 +479,7 @@ const setSkillInformationFromTemplate = (
  * @param {String} token Authorization token
  * @returns {Promise<object>}
  */
-const validateSkill = (id: string, token: string): Promise<object> => {
+export const validateSkill = (id: string, token: string): Promise<object> => {
   return new Promise((resolve, reject) => {
     const requestData = {
       id: id,
@@ -508,7 +508,7 @@ const validateSkill = (id: string, token: string): Promise<object> => {
  * @param {String} token Authorization token
  * @returns {Promise<object>}
  */
-const watchSkill = (
+export const watchSkill = (
   id: string,
   watch: boolean,
   token: string
@@ -529,25 +529,4 @@ const watchSkill = (
         reject(error);
       });
   });
-};
-
-export default {
-  createSkill,
-  createSkillsFromTemplates,
-  deleteSkill,
-  discardSkillChanges,
-  getImportedSkillTemplates,
-  getSkillRelatedRoles,
-  getSkillRequiredAssessmentType,
-  getSkillInformationById,
-  getSkillList,
-  getSkillTemplateUpdates,
-  getTeamSkillsById,
-  getCurrentUserTeamSkills,
-  importSkillTemplates,
-  publishSkill,
-  setSkillInformation,
-  setSkillInformationFromTemplate,
-  validateSkill,
-  watchSkill,
 };

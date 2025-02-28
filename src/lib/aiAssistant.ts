@@ -28,7 +28,7 @@ interface StartConversationData {
  * @param {String} token Authorization token
  * @returns {Promise<object>}
  */
-const askQuestion = (
+export const askQuestion = (
   conversationId: string,
   question: string,
   updatedContext: string,
@@ -63,7 +63,7 @@ const askQuestion = (
  * @param {String} token Authorization token
  * @returns {Promise<object>}
  */
-const endConversation = (
+export const endConversation = (
   conversationId: string,
   token: string
 ): Promise<object> => {
@@ -94,7 +94,7 @@ const endConversation = (
  * @param {String} token
  * @returns {Promise<object>}
  */
-const getConversationByElementId = (
+export const getConversationByElementId = (
   elementId: string,
   token: string
 ): Promise<object> => {
@@ -121,7 +121,7 @@ const getConversationByElementId = (
  * @param {String} token
  * @returns {Promise<object>}
  */
-const getVoiceAssistantUrl = (
+export const getVoiceAssistantUrl = (
   language: string,
   token: string
 ): Promise<object> => {
@@ -152,7 +152,7 @@ const getVoiceAssistantUrl = (
  * @param {String} conversationId Optional
  * @returns {Promise<object>}
  */
-const startConversation = (
+export const startConversation = (
   elementId: string,
   elementType: string,
   question: string,
@@ -187,12 +187,4 @@ const startConversation = (
         reject(error);
       });
   });
-};
-
-export default {
-  askQuestion,
-  endConversation,
-  getConversationByElementId,
-  getVoiceAssistantUrl,
-  startConversation,
 };

@@ -9,7 +9,7 @@ import { client } from "./axiosClient";
  * @param {String} token Authorization token
  * @returns {Promise<object>}
  */
-const addEntryToArrayBusinessProperty = (
+export const addEntryToArrayBusinessProperty = (
   userId: string,
   property: string,
   data: object,
@@ -44,7 +44,7 @@ const addEntryToArrayBusinessProperty = (
  * @param {String} token Authorization token
  * @returns {Promise<object>}
  */
-const removeEntryFromArrayBusinessProperty = (
+export const removeEntryFromArrayBusinessProperty = (
   userId: string,
   property: string,
   id: string,
@@ -76,7 +76,7 @@ const removeEntryFromArrayBusinessProperty = (
  * @param {String} token Authorization token
  * @returns {Promise<object>}
  */
-const updateEntryfromArrayBusinessProperty = (
+export const updateEntryfromArrayBusinessProperty = (
   userId: string,
   property: string,
   id: string,
@@ -102,10 +102,4 @@ const updateEntryfromArrayBusinessProperty = (
         reject(error);
       });
   });
-};
-
-export default {
-  addEntryToArrayBusinessProperty,
-  removeEntryFromArrayBusinessProperty,
-  updateEntryfromArrayBusinessProperty,
 };

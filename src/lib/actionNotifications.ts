@@ -6,7 +6,7 @@ import { client } from "./axiosClient";
  * @param {String} token The authentication token
  * @returns {Promise<object>}
  */
-const getAllUserNotifications = (token: string): Promise<object> => {
+export const getAllUserNotifications = (token: string): Promise<object> => {
   return new Promise((resolve, reject) => {
     const request = client.get(`api/v1/actionnotifications`, {
       headers: { authorization: token },
@@ -28,7 +28,7 @@ const getAllUserNotifications = (token: string): Promise<object> => {
  * @param {String} authToken The authentication token
  * @returns {Promise<object>}
  */
-const markNotifications = (
+export const markNotifications = (
   ids: string[],
   status: string,
   authToken: string
@@ -60,7 +60,7 @@ const markNotifications = (
  * @param {String} authToken The authentication token
  * @returns {Promise<object>}
  */
-const processNotification = (
+export const processNotification = (
   id: string,
   action: string,
   comments: string,
@@ -84,10 +84,4 @@ const processNotification = (
         reject(error);
       });
   });
-};
-
-export default {
-  getAllUserNotifications,
-  markNotifications,
-  processNotification,
 };

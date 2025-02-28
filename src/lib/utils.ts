@@ -8,7 +8,7 @@ dotenv.config();
  * Returns the backend base API URL
  * @returns {String}
  */
-const getBaseUrl = (): string => {
+export const getBaseUrl = (): string => {
   if (process.env.REACT_APP_BACKEND_URL) {
     return process.env.REACT_APP_BACKEND_URL;
   } else {
@@ -37,7 +37,7 @@ const getBaseUrl = (): string => {
  * @returns {Object}
  */
 /* eslint-disable @typescript-eslint/no-explicit-any */
-const removeNullProperties = (object: { [key: string]: any }): object => {
+export const removeNullProperties = (object: { [key: string]: any }): object => {
   Object.keys(object).forEach((key) => {
     const value = object[key];
     const hasProperties = value && Object.keys(value).length > 0;
@@ -49,7 +49,3 @@ const removeNullProperties = (object: { [key: string]: any }): object => {
   });
   return object;
 };
-
-const utils = { getBaseUrl, removeNullProperties };
-
-export default utils;

@@ -17,7 +17,7 @@ interface LearningPathData {
  * @param {String} token Authorization token
  * @returns {Promise<object>}
  */
-const createLearningPath = (data: object, token: string): Promise<object> => {
+export const createLearningPath = (data: object, token: string): Promise<object> => {
   return new Promise((resolve, reject) => {
     const confirmationRequest = client.put(
       "api/v1/learningpaths",
@@ -43,7 +43,7 @@ const createLearningPath = (data: object, token: string): Promise<object> => {
  * @param {String} token Authorization token
  * @returns {Promise<object>}
  */
-const deleteLearningPath = (id: string, comments: string, token: string): Promise<object> => {
+export const deleteLearningPath = (id: string, comments: string, token: string): Promise<object> => {
   return new Promise((resolve, reject) => {
     const data: LearningPathData = {
       id: id,
@@ -69,7 +69,7 @@ const deleteLearningPath = (id: string, comments: string, token: string): Promis
  * @param {String} token Authorization token
  * @returns {Promise<object>}
  */
-const discardLearningPathChanges = (id: string, token: string): Promise<object> => {
+export const discardLearningPathChanges = (id: string, token: string): Promise<object> => {
   return new Promise((resolve, reject) => {
     const data = {};
     const request = client.get(`api/v1/learningpaths/discard/${id}`, {
@@ -93,7 +93,7 @@ const discardLearningPathChanges = (id: string, token: string): Promise<object> 
  * @param {String} token Authorization token
  * @returns {Promise<object>}
  */
-const getLearningPathInformationById = (id: string, version: string, token: string): Promise<object> => {
+export const getLearningPathInformationById = (id: string, version: string, token: string): Promise<object> => {
   return new Promise((resolve, reject) => {
     const confirmationRequest = client.get(
       `api/v1/learningpaths/${id}/${version}`,
@@ -119,7 +119,7 @@ const getLearningPathInformationById = (id: string, version: string, token: stri
  * @param {String} token Authorization token
  * @returns {Promise<Array<Object>>} The list of available content
  */
-const getLearningPathsList = (
+export const getLearningPathsList = (
   list: string[],
   version: string,
   includeDeleted: boolean,
@@ -155,7 +155,7 @@ const getLearningPathsList = (
  * @param {String} token Authorization token
  * @returns {Promise<object>}
  */
-const publishLearningPath = (id: string, comments: string, token: string): Promise<object> => {
+export const publishLearningPath = (id: string, comments: string, token: string): Promise<object> => {
   return new Promise((resolve, reject) => {
     const data: LearningPathData = {};
     if (comments) data.comments = comments;
@@ -183,7 +183,7 @@ const publishLearningPath = (id: string, comments: string, token: string): Promi
  * @param {String} token Authorization token
  * @returns {Promise<object>}
  */
-const setLearningPathInformation = (id: string, data: object, token: string): Promise<object> => {
+export const setLearningPathInformation = (id: string, data: object, token: string): Promise<object> => {
   return new Promise((resolve, reject) => {
     const requestData: LearningPathData = {
       data: data,
@@ -213,7 +213,7 @@ const setLearningPathInformation = (id: string, data: object, token: string): Pr
  * @param {String} token Authorization token
  * @returns {Promise<object>}
  */
-const setLearningPathTags = (id: string, tags: object, token: string): Promise<object> => {
+export const setLearningPathTags = (id: string, tags: object, token: string): Promise<object> => {
   return new Promise((resolve, reject) => {
     const requestData: LearningPathData = {
       tags: tags,
@@ -234,15 +234,4 @@ const setLearningPathTags = (id: string, tags: object, token: string): Promise<o
         reject(error);
       });
   });
-};
-
-export default {
-  createLearningPath,
-  deleteLearningPath,
-  discardLearningPathChanges,
-  getLearningPathInformationById,
-  getLearningPathsList,
-  publishLearningPath,
-  setLearningPathInformation,
-  setLearningPathTags,
 };

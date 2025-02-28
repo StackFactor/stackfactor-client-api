@@ -9,7 +9,7 @@ import { client } from "./axiosClient";
  * @param {String} authToken - Authorization token
  * @returns {Promise<object>}
  */
-const addCardToDashboard = (
+export const addCardToDashboard = (
   id: string,
   position: number,
   data: object,
@@ -40,7 +40,7 @@ const addCardToDashboard = (
  * @param {String} authToken - Authorization token
  * @returns {Promise<object>}
  */
-const getDashboardCardsList = (authToken: string): Promise<object> => {
+export const getDashboardCardsList = (authToken: string): Promise<object> => {
   return new Promise((resolve, reject) => {
     const request = client.get(`/api/v1/dashboard/card`, {
       headers: { authorization: authToken },
@@ -61,7 +61,7 @@ const getDashboardCardsList = (authToken: string): Promise<object> => {
  * @param {String} authToken - Authorization token
  * @returns {Promise<object>}
  */
-const removeCardFromDashboard = (
+export const removeCardFromDashboard = (
   id: string,
   authToken: string
 ): Promise<object> => {
@@ -80,10 +80,4 @@ const removeCardFromDashboard = (
         reject(error);
       });
   });
-};
-
-export default {
-  addCardToDashboard,
-  getDashboardCardsList,
-  removeCardFromDashboard,
 };

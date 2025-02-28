@@ -1,17 +1,22 @@
 import axios, { AxiosError, AxiosResponse } from "axios";
 import { RESPONSE_TYPE } from "./constants";
-import utils from "./utils";
+import * as utils from "./utils";
 
 interface ErrorResponse {
   msg: string;
   param: string;
   value: string;
-  errors: Array<object>;
+  toString: () => string;
+}
+
+interface CustomAxiosResponse extends AxiosResponse {
+  errors?: ErrorResponse[];
+  toString: () => string;
 }
 
 const baseUrl = utils.getBaseUrl();
 
-const client = axios.create({
+export const client = axios.create({
   baseURL: baseUrl,
   withCredentials: true,
 });
@@ -21,13 +26,13 @@ const client = axios.create({
  * @param {AxiosError} error
  * @returns {string}
  */
-const errorToString = (error: AxiosError): string => {
+export const errorToString = (error: AxiosError): string => {
   if (error != null) {
     if (error.response?.data) {
       let asString = "";
-      
-      if (Array.isArray((error.response.data as AxiosResponse).errors)) {
-        (error.response.data as AxiosResponse).errors.forEach(
+      const responseData = error.response.data as CustomAxiosResponse;
+      if (Array.isArray(responseData.errors)) {
+        responseData.errors.forEach(
           (item: ErrorResponse, index: number) => {
             asString += `${index > 0 ? ", " : ""} ${item.msg} param ${
               item.param
@@ -35,12 +40,12 @@ const errorToString = (error: AxiosError): string => {
           }
         );
         return asString;
-      } else if ((error.response.data as AxiosResponse).errors) {
-        return (error.response.data as AxiosResponse).errors.toString();
+      } else if (responseData.errors) {
+        return JSON.stringify(responseData.errors);
       } else if (error.response.statusText) {
         return error.response.statusText.toString();
       } else {
-        return (error.response.data as AxiosResponse).toString();
+        return responseData.toString();
       }
     } else {
       return error.message ? error.message : "Unknown error";
@@ -54,7 +59,7 @@ const errorToString = (error: AxiosError): string => {
  * @param {AxiosError} error
  * @returns {number} The error code
  */
-const getErrorType = (error: AxiosError): number => {
+export const getErrorType = (error: AxiosError): number => {
   if (error.response?.status) {
     return error.response.status;
   } else return RESPONSE_TYPE.SERVICE_UNAVAILABLE;
@@ -65,7 +70,7 @@ const getErrorType = (error: AxiosError): number => {
  * @param {AxiosError} error
  * @returns {Object}
  */
-const getErrorInformation = (
+export const getErrorInformation = (
   error: AxiosError
 ): { status: number; message: string } => {
   return {
@@ -80,7 +85,7 @@ const getErrorInformation = (
  * @param {AxiosError} error - The error returned by the server
  * @returns {boolean}
  */
-const shouldReturnError = (
+export const shouldReturnError = (
   returnAllExceptions: boolean,
   error: AxiosError
 ): boolean => {
@@ -89,12 +94,4 @@ const shouldReturnError = (
   } else {
     return true;
   }
-};
-
-export {
-  client,
-  errorToString,
-  getErrorType,
-  getErrorInformation,
-  shouldReturnError,
 };

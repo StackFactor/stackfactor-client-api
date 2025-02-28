@@ -7,7 +7,7 @@ import { client } from "./axiosClient";
  * @param {String} token Authorization token
  * @returns {Promise<object>}
  */
-const createSkillTemplate = (data: object, token: string): Promise<object> => {
+export const createSkillTemplate = (data: object, token: string): Promise<object> => {
   return new Promise((resolve, reject) => {
     const requestData = {
       data: data,
@@ -32,7 +32,7 @@ const createSkillTemplate = (data: object, token: string): Promise<object> => {
  * @param {String} token Authorization token
  * @returns {Promise<object>}
  */
-const deleteSkillTemplate = (
+export const deleteSkillTemplate = (
   id: number,
   comments: string,
   token: string
@@ -62,7 +62,7 @@ const deleteSkillTemplate = (
  * @param {String} token Authorization token
  * @returns {Promise<object>}
  */
-const discardSkillTemplateChanges = (
+export const discardSkillTemplateChanges = (
   id: string,
   token: string
 ): Promise<object> => {
@@ -90,7 +90,7 @@ const discardSkillTemplateChanges = (
  * @param {String} token Authorization token
  * @returns {Promise<object>}
  */
-const getSkillTemplateInformationById = (
+export const getSkillTemplateInformationById = (
   id: string,
   version: string,
   returnNullIfVersionNotFound: boolean,
@@ -122,7 +122,7 @@ const getSkillTemplateInformationById = (
  * @param {String} token Authorization token
  * @returns {Promise<object>}
  */
-const getSkillTemplateList = (
+export const getSkillTemplateList = (
   filter: string[],
   version: string,
   includeDeleted: boolean,
@@ -158,7 +158,7 @@ const getSkillTemplateList = (
  * @param {String} token Authorization token
  * @returns {Promise<object>}
  */
-const getTechnologyStacks = (token: string): Promise<object> => {
+export const getTechnologyStacks = (token: string): Promise<object> => {
   return new Promise((resolve, reject) => {
     const confirmationRequest = client.get(`api/v1/skilltemplates/stacks`, {
       headers: { authorization: token },
@@ -180,7 +180,7 @@ const getTechnologyStacks = (token: string): Promise<object> => {
  * @param {String} token Authorization token
  * @returns {Promise<object>}
  */
-const publishTemplate = (
+export const publishTemplate = (
   id: number,
   comments: string,
   token: string
@@ -212,7 +212,7 @@ const publishTemplate = (
  * @param {String} token Authorization token
  * @returns {Promise<object>}
  */
-const setTemplateInformation = (
+export const setTemplateInformation = (
   id: string,
   data: object,
   token: string
@@ -246,7 +246,7 @@ const setTemplateInformation = (
  * @param {String} token Authorization token
  * @returns {Promise<object>}
  */
-const setTemplateTags = (
+export const setTemplateTags = (
   id: string,
   tags: object,
   token: string
@@ -279,7 +279,7 @@ const setTemplateTags = (
  * @param {String} token Authorization token
  * @returns {Promise<object>}
  */
-const validateTemplate = (id: string, token: string): Promise<object> => {
+export const validateTemplate = (id: string, token: string): Promise<object> => {
   return new Promise((resolve, reject) => {
     const requestData = {
       id: id,
@@ -308,7 +308,7 @@ const validateTemplate = (id: string, token: string): Promise<object> => {
  * @param {String} token Authorization token
  * @returns {Promise<object>}
  */
-const watchSkillTemplate = (
+export const watchSkillTemplate = (
   id: string,
   watch: boolean,
   token: string
@@ -333,18 +333,4 @@ const watchSkillTemplate = (
         reject(error);
       });
   });
-};
-
-export default {
-  createSkillTemplate,
-  deleteSkillTemplate,
-  discardSkillTemplateChanges,
-  getSkillTemplateInformationById,
-  getSkillTemplateList,
-  getTechnologyStacks,
-  publishTemplate,
-  setTemplateInformation,
-  setTemplateTags,
-  validateTemplate,
-  watchSkillTemplate,
 };

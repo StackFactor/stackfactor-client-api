@@ -1,6 +1,6 @@
 {
   "name": "@stackfactor/client-api",
-  "version": "1.1.134",
+  "version": "1.1.137",
   "description": "Node.js library for the StackFactor API",
   "main": "dist/cjs/index.js",
   "module": "dist/esm/index.js",
@@ -13,7 +13,9 @@
   },
   "type": "module",
   "scripts": {
-    "build": "tsc",
+    "build": "npm run build:esm && npm run build:cjs",
+    "build:esm": "tsc --project tsconfig.esm.json",
+    "build:cjs": "tsc --project tsconfig.cjs.json",
     "build:watch": "tsc --watch",
     "test": "jest",
     "lint": "eslint 'src/**/*.{ts,tsx}'"

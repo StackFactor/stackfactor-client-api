@@ -8,7 +8,7 @@ import { client } from "./axiosClient";
  * @param {String} token
  * @returns {Promise<object>}
  */
-const getResponses = (
+export const getResponses = (
   learningContentId: string,
   microSkillId: string,
   token: string
@@ -38,7 +38,7 @@ const getResponses = (
  * @param {String} token Authorization token
  * @returns {Promise<object>}
  */
-const saveResponses = (
+export const saveResponses = (
   learningContentId: string,
   microSkillId: string,
   responses: object[],
@@ -63,9 +63,4 @@ const saveResponses = (
         reject(error);
       });
   });
-};
-
-export default {
-  getResponses,
-  saveResponses,
 };

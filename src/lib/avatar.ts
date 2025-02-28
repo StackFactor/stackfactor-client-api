@@ -1,4 +1,4 @@
-import { AxiosError, AxiosResponse } from "axios";
+import { AxiosResponse } from "axios";
 import { client } from "./axiosClient";
 
 /**
@@ -10,7 +10,7 @@ import { client } from "./axiosClient";
  * @param {String} token
  * @returns {Promise<Blob>}
  */
-const getAvatar = (
+export const getAvatar = (
   elementId: string,
   type: string,
   width: number,
@@ -35,8 +35,4 @@ const getAvatar = (
         reject("Error getting avatar");
       });
   });
-};
-
-export default {
-  getAvatar,
 };

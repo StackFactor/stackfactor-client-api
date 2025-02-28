@@ -95,6 +95,3 @@ export const generateContentAsync = (
   });
 };
 
-const contentGenerator = { generateContent, generateContentAsync };
-
-export default contentGenerator;

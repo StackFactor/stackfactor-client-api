@@ -7,7 +7,7 @@ import { client } from "./axiosClient";
  * @param {String} token Authorization token
  * @returns {Promise<object>}
  */
-const getTenantInformation = (
+export const getTenantInformation = (
   category: string,
   token: string
 ): Promise<object> => {
@@ -35,7 +35,7 @@ const getTenantInformation = (
  * @param {String} token Authorization token
  * @returns {Promise<object>}
  */
-const setTenantInformation = (
+export const setTenantInformation = (
   category: string,
   data: object,
   token: string
@@ -61,5 +61,3 @@ const setTenantInformation = (
       });
   });
 };
-
-export default { getTenantInformation, setTenantInformation };

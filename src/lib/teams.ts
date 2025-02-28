@@ -8,7 +8,7 @@ import { client } from "./axiosClient";
  * @param {String} authToken - Authentication token
  * @returns {Promise<object>}
  */
-const addUsersToTeam = (
+export const addUsersToTeam = (
   teamId: string,
   users: string[],
   authToken: string
@@ -40,7 +40,7 @@ const addUsersToTeam = (
  * @param {String} authToken The authorization token
  * @returns {Promise<object>}
  */
-const createTeam = (
+export const createTeam = (
   name: string,
   managerId: string,
   description: string,
@@ -73,7 +73,7 @@ const createTeam = (
  * @param {String} authToken The authentication token
  * @returns {Promise<object>}
  */
-const deleteTeam = (
+export const deleteTeam = (
   teamId: string,
   defaultTeamId: string,
   authToken: string
@@ -103,7 +103,7 @@ const deleteTeam = (
  * @param {String} authToken The authentication token
  * @returns {Promise<object>}
  */
-const getTeamById = (
+export const getTeamById = (
   teamId: string,
   includeUserSummaryInformation: boolean,
   authToken: string
@@ -132,7 +132,7 @@ const getTeamById = (
  * @param {String} authToken The authentication token
  * @returns {Promise<object>}
  */
-const getTeamByIdRoles = (
+export const getTeamByIdRoles = (
   teamId: string,
   authToken: string
 ): Promise<object> => {
@@ -155,7 +155,7 @@ const getTeamByIdRoles = (
  * @param {String} authToken The authentication token
  * @returns {Promise<object>}
  */
-const getTeams = (authToken: string): Promise<object> => {
+export const getTeams = (authToken: string): Promise<object> => {
   return new Promise((resolve, reject) => {
     const request = client.get(`api/v1/teams/`, {
       headers: { authorization: authToken },
@@ -177,7 +177,7 @@ const getTeams = (authToken: string): Promise<object> => {
  * @param {String} authToken The authentication token
  * @returns {Promise<object>}
  */
-const getTeamByUserId = (
+export const getTeamByUserId = (
   userId: string,
   includeUserSummaryInformation: boolean,
   authToken: string
@@ -206,7 +206,7 @@ const getTeamByUserId = (
  * @param {String} authToken The authentication token
  * @returns {Promise<object>}
  */
-const getTopTeam = (
+export const getTopTeam = (
   includeUserSummaryInformation: boolean,
   authToken: string
 ): Promise<object> => {
@@ -235,7 +235,7 @@ const getTopTeam = (
  * @param {String} authToken The authentication token
  * @returns {Promise<object>}
  */
-const removeUsersFromTeam = (
+export const removeUsersFromTeam = (
   teamId: string,
   users: string[],
   authToken: string
@@ -265,7 +265,7 @@ const removeUsersFromTeam = (
  * @param {String} authToken The authentication token
  * @returns {Promise<object>}
  */
-const setDefault = (teamId: string, authToken: string): Promise<object> => {
+export const setDefault = (teamId: string, authToken: string): Promise<object> => {
   return new Promise((resolve, reject) => {
     const request = client.put(
       `api/v1/teams/setDefault/`,
@@ -291,7 +291,7 @@ const setDefault = (teamId: string, authToken: string): Promise<object> => {
  * @param {String} authToken The authentication token
  * @returns {Promise<object>}
  */
-const updateTeam = (
+export const updateTeam = (
   teamId: string,
   data: object,
   authToken: string
@@ -313,18 +313,4 @@ const updateTeam = (
         reject(error);
       });
   });
-};
-
-export default {
-  addUsersToTeam,
-  createTeam,
-  deleteTeam,
-  getTeamById,
-  getTeamByIdRoles,
-  getTeams,
-  getTeamByUserId,
-  getTopTeam,
-  removeUsersFromTeam,
-  setDefault,
-  updateTeam,
 };

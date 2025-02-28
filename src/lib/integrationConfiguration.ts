@@ -8,7 +8,7 @@ import { client } from "./axiosClient";
  * @param {String} token Authorization token
  * @returns {Promise<object>}
  */
-const getIntegrationsConfiguration = (
+export const getIntegrationsConfiguration = (
   ids: string[],
   type: number,
   token: string
@@ -41,7 +41,7 @@ const getIntegrationsConfiguration = (
  * @param {String} token Authorization token
  * @returns {Promise<object>}
  */
-const saveIntegrationConfiguration = (
+export const saveIntegrationConfiguration = (
   id: string,
   type: number,
   configuration: object,
@@ -78,7 +78,7 @@ const saveIntegrationConfiguration = (
  * @param {String} token Authorization token
  * @returns {Promise<object>}
  */
-const testIntegrationConfiguration = (
+export const testIntegrationConfiguration = (
   id: string,
   type: string,
   configuration: object,
@@ -105,10 +105,4 @@ const testIntegrationConfiguration = (
         reject(error);
       });
   });
-};
-
-export default {
-  getIntegrationsConfiguration,
-  saveIntegrationConfiguration,
-  testIntegrationConfiguration,
 };

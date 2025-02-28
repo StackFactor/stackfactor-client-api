@@ -9,7 +9,7 @@ import { client } from "./axiosClient";
  * @param {String} token Authorization token
  * @returns {Promise<object>}
  */
-const comments = (
+export const comments = (
   elementId: string,
   elementType: string,
   data: object,
@@ -45,7 +45,7 @@ const comments = (
  * @param {String} token
  * @returns {Promise<object>}
  */
-const getListByElementId = (
+export const getListByElementId = (
   elementId: string,
   page: number | null,
   elementsPerPage: number | null,
@@ -67,5 +67,3 @@ const getListByElementId = (
       });
   });
 };
-
-export default { comments, getListByElementId };

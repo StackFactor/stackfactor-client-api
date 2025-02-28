@@ -9,7 +9,7 @@ import { client } from "./axiosClient";
  * @param {String} token Authorization token
  * @returns {Promise<object>}
  */
-const addEntry = (
+export const addEntry = (
   id: string,
   data: object,
   comments: string,
@@ -46,7 +46,7 @@ const addEntry = (
  * @param {String} token Authorization token
  * @returns {Promise<object>}
  */
-const create = (
+export const create = (
   data: object,
   comments: string,
   userId: string,
@@ -82,7 +82,7 @@ const create = (
  * @param {String} token Authorization token
  * @returns {Promise<object>}
  */
-const deleteSkillAssessment = (
+export const deleteSkillAssessment = (
   id: number,
   comments: string,
   token: string
@@ -112,7 +112,7 @@ const deleteSkillAssessment = (
  * @param {String} token
  * @returns {Promise<object>}
  */
-const getById = (id: string, token: string): Promise<object> => {
+export const getById = (id: string, token: string): Promise<object> => {
   return new Promise((resolve, reject) => {
     const confirmationRequest = client.get(`api/v1/skillassessments/${id}`, {
       headers: { authorization: token },
@@ -134,7 +134,7 @@ const getById = (id: string, token: string): Promise<object> => {
  * @param {String} token
  * @returns {Promise<object>} The skill assessment
  */
-const getByUserAndSkill = (
+export const getByUserAndSkill = (
   userId: string,
   skillId: string,
   token: string
@@ -162,7 +162,7 @@ const getByUserAndSkill = (
  * @param {String} token Authorization token
  * @returns {Promise<object>}
  */
-const getList = (userId: string, token: string): Promise<object> => {
+export const getList = (userId: string, token: string): Promise<object> => {
   return new Promise((resolve, reject) => {
     const requestData: { userId?: string } = {};
     if (userId) requestData.userId = userId;
@@ -181,13 +181,4 @@ const getList = (userId: string, token: string): Promise<object> => {
         reject(error);
       });
   });
-};
-
-export default {
-  addEntry,
-  create,
-  deleteSkillAssessment,
-  getById,
-  getByUserAndSkill,
-  getList,
 };

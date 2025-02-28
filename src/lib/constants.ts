@@ -1,9 +1,9 @@
-const DOCUMENT_VERSION = {
+export const DOCUMENT_VERSION = {
   DRAFT: "draft",
   PUBLISHED: "published",
 } as const;
 
-const RESPONSE_TYPE = {
+export const RESPONSE_TYPE = {
   MULTIPLE_CHOICES: 300,
   MOVED_PERMANENTLY: 301,
   FOUND: 302,
@@ -40,7 +40,7 @@ const RESPONSE_TYPE = {
   INITIALIZATION_FAILURE: 550,
 } as const;
 
-const PERMISSIONS = {
+export const PERMISSIONS = {
   ACCESS_TO_CONTENT_GENERATORS: "651d81d626fb9aafa4077520",
   ADMIN_AUTHOR_CONTENT: "5ea3d1152839450e16e72bba",
   ADMIN_PROMOTE_CONTENT: "5ea3d10bea252025c8ec351b",
@@ -66,7 +66,7 @@ const PERMISSIONS = {
   TALENT_TRANSFORMATION_CHAMPION: "5fac210f7e6539d37a897c95",
 } as const;
 
-const PERMISSION_DESCRIPTIONS: { [key: string]: string } = {
+export const PERMISSION_DESCRIPTIONS: { [key: string]: string } = {
   "5ea3d1152839450e16e72bba": "Author content",
   "5ea3d10bea252025c8ec351b": "Promote content",
   "61970935cee185acf08111f6": "Manage content providers",
@@ -87,11 +87,4 @@ const PERMISSION_DESCRIPTIONS: { [key: string]: string } = {
   "5dd61314afc2455a89b1a37b": "Manage teams",
   "5dd612e40f0bc559c41a2b29": "Manage users",
   "5fac2126427ce31f8a92c0cb": "Promote content",
-};
-
-export {
-  DOCUMENT_VERSION,
-  PERMISSIONS,
-  PERMISSION_DESCRIPTIONS,
-  RESPONSE_TYPE,
 };

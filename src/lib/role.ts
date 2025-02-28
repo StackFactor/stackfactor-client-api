@@ -7,7 +7,7 @@ import { client } from "./axiosClient";
  * @param {String} token Authorization token
  * @returns {Promise<object>}
  */
-const createRole = (data: object, token: string): Promise<object> => {
+export const createRole = (data: object, token: string): Promise<object> => {
   return new Promise((resolve, reject) => {
     const confirmationRequest = client.put(
       "api/v1/roles",
@@ -33,7 +33,7 @@ const createRole = (data: object, token: string): Promise<object> => {
  * @param {String} token Authorization token
  * @returns {Promise<object>}
  */
-const createRoleFromTemplate = (
+export const createRoleFromTemplate = (
   templateId: string,
   data: object,
   token: string
@@ -79,7 +79,7 @@ const createRoleFromTemplate = (
  * @param {String} token Authorization token
  * @returns {Promise<object>}
  */
-const deleteRole = (
+export const deleteRole = (
   id: string,
   comments: string,
   token: string
@@ -109,7 +109,7 @@ const deleteRole = (
  * @param {String} token Authorization token
  * @returns {Promise<object>}
  */
-const discardRoleChanges = (id: string, token: string): Promise<object> => {
+export const discardRoleChanges = (id: string, token: string): Promise<object> => {
   return new Promise((resolve, reject) => {
     const data = {};
     const request = client.get(`api/v1/roles/discard/${id}`, {
@@ -131,7 +131,7 @@ const discardRoleChanges = (id: string, token: string): Promise<object> => {
  * @param {String} token
  * @returns {Promise<object>}
  */
-const getImportedRoleTemplates = (token: string): Promise<object> => {
+export const getImportedRoleTemplates = (token: string): Promise<object> => {
   return new Promise((resolve, reject) => {
     const request = client.get(`api/v1/roles/getimportedroletemplates`, {
       headers: { authorization: token },
@@ -154,7 +154,7 @@ const getImportedRoleTemplates = (token: string): Promise<object> => {
  * @param {String} token Authorization token
  * @returns {Promise<object>}
  */
-const getRoleInformationById = (
+export const getRoleInformationById = (
   id: number,
   version: string,
   returnNullIfVersionNotFound: boolean,
@@ -188,7 +188,7 @@ const getRoleInformationById = (
  * @param {String} token Authorization token
  * @returns {Promise<object>}
  */
-const getRolesList = (
+export const getRolesList = (
   filter: object,
   version: string,
   includeDeleted: boolean,
@@ -232,7 +232,7 @@ const getRolesList = (
  * @param {String} token
  * @returns {Promise<object>}
  */
-const getRoleTemplateUpdates = (id: string, token: string): Promise<object> => {
+export const getRoleTemplateUpdates = (id: string, token: string): Promise<object> => {
   return new Promise((resolve, reject) => {
     const confirmationRequest = client.get(
       `api/v1/roles/getroletemplateupdates/${id}`,
@@ -256,7 +256,7 @@ const getRoleTemplateUpdates = (id: string, token: string): Promise<object> => {
  * @param {String} token
  * @returns {Promise<object>}
  */
-const importRoleTemplates = (
+export const importRoleTemplates = (
   data: object[],
   token: string
 ): Promise<object> => {
@@ -289,7 +289,7 @@ const importRoleTemplates = (
  * @param {String} token Authorization token
  * @returns {Promise<object>}
  */
-const publishRole = (
+export const publishRole = (
   id: number,
   comments: string,
   token: string
@@ -317,7 +317,7 @@ const publishRole = (
  * @param {String} token Authorization token
  * @returns {Promise<object>}
  */
-const setRoleInformation = (
+export const setRoleInformation = (
   id: string,
   data: object,
   token: string
@@ -347,7 +347,7 @@ const setRoleInformation = (
  * @param {String} token Authorization token
  * @returns {Promise<object>}
  */
-const setRoleInformationFromTemplate = (
+export const setRoleInformationFromTemplate = (
   id: string,
   data: object,
   token: string
@@ -382,7 +382,7 @@ const setRoleInformationFromTemplate = (
  * @param {String} token Authorization token
  * @returns {Promise<object>}
  */
-const setUserRoles = (
+export const setUserRoles = (
   id: string,
   roles: object[],
   jobDescription: string,
@@ -414,7 +414,7 @@ const setUserRoles = (
  * @param {String} token Authorization token
  * @returns {Promise<object>}
  */
-const watchRole = (
+export const watchRole = (
   id: string,
   watch: boolean,
   token: string
@@ -435,21 +435,4 @@ const watchRole = (
         reject(error);
       });
   });
-};
-
-export default {
-  createRole,
-  createRoleFromTemplate,
-  deleteRole,
-  discardRoleChanges,
-  getImportedRoleTemplates,
-  getRoleInformationById,
-  getRolesList,
-  getRoleTemplateUpdates,
-  importRoleTemplates,
-  publishRole,
-  setRoleInformation,
-  setRoleInformationFromTemplate,
-  setUserRoles,
-  watchRole,
 };
