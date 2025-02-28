@@ -1,6 +1,6 @@
 import axios, { AxiosError } from "axios";
-import { RESPONSE_TYPE } from "./constants.js";
-import utils from "./utils.js";
+import { RESPONSE_TYPE } from "./constants.ts";
+import utils from "./utils.ts";
 
 const baseUrl = utils.getBaseUrl();
 
