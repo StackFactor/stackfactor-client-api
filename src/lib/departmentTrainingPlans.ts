@@ -1,4 +1,4 @@
-import { client } from "./axiosClient.js";
+import { client } from "./axiosClient";
 
 interface Activity {
   // Define the structure of an activity object here

@@ -1,4 +1,4 @@
-import { client } from "./axiosClient.js";
+import { client } from "./axiosClient";
 
 /**
  * Create comments for a specified element id

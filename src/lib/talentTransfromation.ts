@@ -1,4 +1,4 @@
-import { client } from "./axiosClient.js";
+import { client } from "./axiosClient";
 
 /**
  * Get talent transformation steps for the current user

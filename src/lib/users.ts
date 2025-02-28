@@ -1,5 +1,5 @@
 /* eslint-disable no-undef */
-import { client } from "./axiosClient.js";
+import { client } from "./axiosClient";
 
 /**
  * Add a new API Token

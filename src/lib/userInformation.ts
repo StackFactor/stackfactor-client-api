@@ -1,4 +1,4 @@
-import { client } from "./axiosClient.js";
+import { client } from "./axiosClient";
 
 /**
  * Add an entry to an array type business property such as experience, education or certifications

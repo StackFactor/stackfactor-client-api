@@ -1,4 +1,4 @@
-import { client } from "./axiosClient.js";
+import { client } from "./axiosClient";
 
 /**
  * Get the specified configuration by Id. It returns a promise

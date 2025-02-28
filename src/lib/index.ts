@@ -1,46 +1,46 @@
-import actionNotifications from "./actionNotifications.js";
+import actionNotifications from "./actionNotifications";
 import {
   client,
   errorToString,
   getErrorInformation,
   getErrorType,
   shouldReturnError,
-} from "./axiosClient.js";
-import aiAssistant from "./aiAssistant.js";
-import avatar from "./avatar.js";
-import address from "./address.js";
-import config from "./config.js";
+} from "./axiosClient";
+import aiAssistant from "./aiAssistant";
+import avatar from "./avatar";
+import address from "./address";
+import config from "./config";
 import {
   DOCUMENT_VERSION,
   PERMISSIONS,
   PERMISSION_DESCRIPTIONS,
   RESPONSE_TYPE,
-} from "./constants.js";
-import contentGenerator from "./integrations/contentGenerator.js";
-import dashboard from "./dashboard.js";
-import departmentTraingPlans from "./departmentTrainingPlans.js";
-import integration from "./integration.js";
-import integrationConfiguration from "./integrationConfiguration.js";
-import groups from "./groups.js";
-import learningContent from "./learningContent.js";
-import learningPath from "./learningPath.js";
-import logger from "./logger.js";
-import microSkillsQuizes from "./microSkillsQuizes.js";
-import quotas from "./quotas.js";
-import role from "./role.js";
-import roleTemplate from "./roleTemplate.js";
-import security from "./security.js";
-import skill from "./skill.js";
-import skillAssessment from "./skillAssessments.js";
-import skillAssessmentTestingSession from "./skillAssessmentTestingSession.js";
-import skillTemplate from "./skillTemplate.js";
-import talentTransfromation from "./talentTransfromation.js";
-import team from "./teams.js";
-import tenant from "./tenants.js";
-import trainingPlan from "./trainingPlans.js";
-import trainingPlanProficiencyLevel from "./trainingPlansProficiencyLevels.js";
-import userInformation from "./userInformation.js";
-import users from "./users.js";
+} from "./constants";
+import contentGenerator from "./integrations/contentGenerator";
+import dashboard from "./dashboard";
+import departmentTraingPlans from "./departmentTrainingPlans";
+import integration from "./integration";
+import integrationConfiguration from "./integrationConfiguration";
+import groups from "./groups";
+import learningContent from "./learningContent";
+import learningPath from "./learningPath";
+import logger from "./logger";
+import microSkillsQuizes from "./microSkillsQuizes";
+import quotas from "./quotas";
+import role from "./role";
+import roleTemplate from "./roleTemplate";
+import security from "./security";
+import skill from "./skill";
+import skillAssessment from "./skillAssessments";
+import skillAssessmentTestingSession from "./skillAssessmentTestingSession";
+import skillTemplate from "./skillTemplate";
+import talentTransfromation from "./talentTransfromation";
+import team from "./teams";
+import tenant from "./tenants";
+import trainingPlan from "./trainingPlans";
+import trainingPlanProficiencyLevel from "./trainingPlansProficiencyLevels";
+import userInformation from "./userInformation";
+import users from "./users";
 
 export {
   actionNotifications,

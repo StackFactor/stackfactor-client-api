@@ -1,4 +1,4 @@
-import { client, errorToString } from "./axiosClient.js";
+import { client, errorToString } from "./axiosClient";
 import axiosLib from "axios";
 import htmlParser from "node-html-parser";
 import htmlToText from "html2plaintext";
