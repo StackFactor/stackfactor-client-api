@@ -239,28 +239,28 @@ export const getContentInformationByUrlFromBrowser = (
         const duration = getReadingTime(htmlToText(response.data));
         const titleTag = document.querySelector("title");
         const title = titleTag ? titleTag.rawText : "";
-        let description = "";
+        const description = "";
         const descriptionEl = document.querySelector("meta");
         try {
           if (descriptionEl) {
-            const descriptionParentNode = descriptionEl.parentNode;
-            if (descriptionParentNode) {
+          const descriptionParentNode = descriptionEl.parentNode;
+            if (descriptionEl) {
               const descriptionChildNodes = descriptionParentNode.childNodes;
               if (descriptionChildNodes) {
-                const descriptionRawAttr = descriptionChildNodes.find((item) =>
-                  (item as any).rawAttrs.includes("description")
-                );
-                if (descriptionRawAttr) {
-                  const descriptionContent = (
-                    descriptionRawAttr as any
-                  ).rawAttrs.substring(
-                    (descriptionRawAttr as any).rawAttrs.indexOf("content=") + 9
-                  );
-                  description = descriptionContent.substring(
-                    0,
-                    descriptionContent.length - 1
-                  );
-                }
+                //TODO: Code needs fixing
+                // const descriptionRawAttr = descriptionChildNodes.find((element) => {
+                //   return element.rawAttrs && element.rawAttrs.includes("description");
+                // });
+                // if (descriptionRawAttr) {
+                //   const element = descriptionRawAttr as any; // Cast to any to access rawAttrs
+                //   const descriptionContent = element.rawAttrs.substring(
+                //     element.rawAttrs.indexOf("content=") + 8
+                //   );
+                //   description = descriptionContent.substring(
+                //     0,
+                //     descriptionContent.length - 1
+                //   );
+                // }
               }
             }
           }

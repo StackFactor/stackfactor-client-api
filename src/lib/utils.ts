@@ -1,18 +1,8 @@
-/* eslint-disable no-undef */
-//import dotenv from "dotenv";
+import dotenv from "dotenv";
 // Load environment variables from .env file
-//dotenv.config();
+dotenv.config();
 
-/**
- * Convert object to array
- * @param {Object} data
- * @returns {Array}
- */
-const objectToArray = (data: object): any[] => {
-  if (typeof data === "object") {
-    return [...Object.values(data)];
-  } else throw new Error("Invalid type");
-};
+
 
 /**
  * Returns the backend base API URL
@@ -46,6 +36,7 @@ const getBaseUrl = (): string => {
  * @param {Object} object
  * @returns {Object}
  */
+/* eslint-disable @typescript-eslint/no-explicit-any */
 const removeNullProperties = (object: { [key: string]: any }): object => {
   Object.keys(object).forEach((key) => {
     const value = object[key];
@@ -59,6 +50,6 @@ const removeNullProperties = (object: { [key: string]: any }): object => {
   return object;
 };
 
-const utils = { getBaseUrl, objectToArray, removeNullProperties };
+const utils = { getBaseUrl, removeNullProperties };
 
 export default utils;

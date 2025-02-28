@@ -1,11 +1,7 @@
 import { client } from "./axiosClient";
 
 interface Activity {
-  // Define the structure of an activity object here
-}
-
-interface Filter {
-  // Define the structure of a filter object here
+  _id: string;
 }
 
 /**
@@ -21,7 +17,7 @@ const createDepartmentTrainingPlan = (
   name: string,
   summary: string,
   skill: string,
-  activities: Activity[],
+  activities: Array<Activity>,
   token: string
 ): Promise<object> => {
   return new Promise((resolve, reject) => {
@@ -106,13 +102,13 @@ const getDepartmentTrainingPlanInformationById = (
 
 /**
  * Get department training plan list
- * @param {Filter} filter The filter used to select the plan
+ * @param {String} filter The filter used to select the plan
  * @param {String} version The version of the plan
  * @param {String} token Authorization token
  * @returns {Promise<Object>}
  */
 const getDepartmentTrainingPlanList = (
-  filter: Filter,
+  filter: string,
   version: string,
   token: string
 ): Promise<object> => {
