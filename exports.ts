@@ -1,46 +1,46 @@
-import actionNotifications from "./lib/actionNotifications.ts";
+import actionNotifications from "./src/lib/actionNotifications.ts";
 import {
   client,
   errorToString,
   getErrorInformation,
   getErrorType,
   shouldReturnError,
-} from "./lib/axiosClient.ts";
-import aiAssistant from "./lib/aiAssistant.ts";
-import avatar from "./lib/avatar.ts";
-import address from "./lib/address.ts";
-import config from "./lib/config.ts";
+} from "./src/lib/axiosClient.ts";
+import aiAssistant from "./src/lib/aiAssistant.ts";
+import avatar from "./src/lib/avatar.ts";
+import address from "./src/lib/address.ts";
+import config from "./src/lib/config.ts";
 import {
   DOCUMENT_VERSION,
   PERMISSIONS,
   PERMISSION_DESCRIPTIONS,
   RESPONSE_TYPE,
-} from "./lib/constants.ts";
-import contentGenerator from "./lib/integrations/contentGenerator.ts";
-import dashboard from "./lib/dashboard.ts";
-import departmentTraingPlans from "./lib/departmentTrainingPlans.ts";
-import integration from "./lib/integration.ts";
-import integrationConfiguration from "./lib/integrationConfiguration.ts";
-import groups from "./lib/groups.ts";
-import learningContent from "./lib/learningContent.ts";
-import learningPath from "./lib/learningPath.ts";
-import logger from "./lib/logger.ts";
-import microSkillsQuizes from "./lib/microSkillsQuizes.ts";
-import quotas from "./lib/quotas.ts";
-import role from "./lib/role.ts";
-import roleTemplate from "./lib/roleTemplate.ts";
-import security from "./lib/security.ts";
-import skill from "./lib/skill.ts";
-import skillAssessment from "./lib/skillAssessments.ts";
-import skillAssessmentTestingSession from "./lib/skillAssessmentTestingSession.ts";
-import skillTemplate from "./lib/skillTemplate.ts";
-import talentTransfromation from "./lib/talentTransfromation.ts";
-import team from "./lib/teams.ts";
-import tenant from "./lib/tenants.ts";
-import trainingPlan from "./lib/trainingPlans.ts";
-import trainingPlanProficiencyLevel from "./lib/trainingPlansProficiencyLevels.ts";
-import userInformation from "./lib/userInformation.ts";
-import users from "./lib/users.ts";
+} from "./src/lib/constants.ts";
+import contentGenerator from "./src/lib/integrations/contentGenerator.ts";
+import dashboard from "./src/lib/dashboard.ts";
+import departmentTraingPlans from "./src/lib/departmentTrainingPlans.ts";
+import integration from "./src/lib/integration.ts";
+import integrationConfiguration from "./src/lib/integrationConfiguration.ts";
+import groups from "./src/lib/groups.ts";
+import learningContent from "./src/lib/learningContent.ts";
+import learningPath from "./src/lib/learningPath.ts";
+import logger from "./src/lib/logger.ts";
+import microSkillsQuizes from "./src/lib/microSkillsQuizes.ts";
+import quotas from "./src/lib/quotas.ts";
+import role from "./src/lib/role.ts";
+import roleTemplate from "./src/lib/roleTemplate.ts";
+import security from "./src/lib/security.ts";
+import skill from "./src/lib/skill.ts";
+import skillAssessment from "./src/lib/skillAssessments.ts";
+import skillAssessmentTestingSession from "./src/lib/skillAssessmentTestingSession.ts";
+import skillTemplate from "./src/lib/skillTemplate.ts";
+import talentTransfromation from "./src/lib/talentTransfromation.ts";
+import team from "./src/lib/teams.ts";
+import tenant from "./src/lib/tenants.ts";
+import trainingPlan from "./src/lib/trainingPlans.ts";
+import trainingPlanProficiencyLevel from "./src/lib/trainingPlansProficiencyLevels.ts";
+import userInformation from "./src/lib/userInformation.ts";
+import users from "./src/lib/users.ts";
 
 export {
   actionNotifications,
