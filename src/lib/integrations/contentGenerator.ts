@@ -69,7 +69,7 @@ export const generateContentAsync = (
   token: string
 ): Promise<object> => {
   return new Promise((resolve, reject) => {
-    let data_: GenerateContentAsyncData = {
+    const data_: GenerateContentAsyncData = {
       id: id,
       data: data,
       comments: comments,
