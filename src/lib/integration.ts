@@ -1,3 +1,4 @@
+import { Axios, AxiosResponse } from "axios";
 import { client, errorToString } from "./axiosClient";
 import axiosLib from "axios";
 import htmlParser from "node-html-parser";
@@ -45,10 +46,10 @@ export const createIntegration = (
       headers: { authorization: token },
     });
     confirmationRequest
-      .then((response) => {
+      .then((response : AxiosResponse) => {
         resolve(response.data);
       })
-      .catch((error) => {
+      .catch((error : Error) => {
         reject(error);
       });
   });
@@ -71,10 +72,10 @@ export const deleteIntegration = (
       },
     });
     request
-      .then((response) => {
+      .then((response : AxiosResponse) => {
         resolve(response.data);
       })
-      .catch((error) => {
+      .catch((error : Error) => {
         reject(error);
       });
   });
@@ -96,10 +97,10 @@ export const discardIntegrationChanges = (
       data: data,
     });
     request
-      .then((response) => {
+      .then((response : AxiosResponse) => {
         resolve(response.data);
       })
-      .catch((error) => {
+      .catch((error : Error) => {
         reject(error);
       });
   });
@@ -124,10 +125,10 @@ export const getIntegrationInformationById = (
       }
     );
     confirmationRequest
-      .then((response) => {
+      .then((response : AxiosResponse) => {
         resolve(response.data);
       })
-      .catch((error) => {
+      .catch((error : Error) => {
         reject(error);
       });
   });
@@ -159,10 +160,10 @@ export const getIntegrationsList = (
       headers: { authorization: token },
     });
     confirmationRequest
-      .then((response) => {
+      .then((response : AxiosResponse) => {
         resolve(response.data);
       })
-      .catch((error) => {
+      .catch((error : Error) => {
         reject(error);
       });
   });
@@ -192,10 +193,10 @@ export const getContentInformationByUrl = (
       }
     );
     confirmationRequest
-      .then((response) => {
+      .then((response : AxiosResponse) => {
         resolve(response.data);
       })
-      .catch((error) => {
+      .catch((error : Error) => {
         reject(error);
       });
   });
@@ -227,7 +228,7 @@ export const getContentInformationByUrlFromBrowser = (
       },
     });
     confirmationRequest
-      .then((response) => {
+      .then((response : AxiosResponse) => {
         //get the reading time
         const getReadingTime = (text: string): number => {
           const wpm = 225;
@@ -275,7 +276,7 @@ export const getContentInformationByUrlFromBrowser = (
           });
         }
       })
-      .catch((error) => {
+      .catch((error : AxiosError) => {
         reject(new Error(errorToString(error)));
       });
   });
@@ -298,10 +299,10 @@ export const getEnabledContentProviders = (
       }
     );
     confirmationRequest
-      .then((response) => {
+      .then((response : AxiosResponse) => {
         resolve(response.data);
       })
-      .catch((error) => {
+      .catch((error : Error) => {
         reject(error);
       });
   });
@@ -325,10 +326,10 @@ export const publishIntegration = (
       }
     );
     confirmationRequest
-      .then((response) => {
+      .then((response : AxiosResponse) => {
         resolve(response.data);
       })
-      .catch((error) => {
+      .catch((error : Error) => {
         reject(error);
       });
   });
@@ -357,10 +358,10 @@ export const setIntegrationInformation = (
       }
     );
     confirmationRequest
-      .then((response) => {
+      .then((response : AxiosResponse) => {
         resolve(response.data);
       })
-      .catch((error) => {
+      .catch((error : Error) => {
         reject(error);
       });
   });
@@ -384,10 +385,10 @@ export const setDefaultIntegration = (
       }
     );
     confirmationRequest
-      .then((response) => {
+      .then((response : AxiosResponse) => {
         resolve(response.data);
       })
-      .catch((error) => {
+      .catch((error : Error) => {
         reject(error);
       });
   });

@@ -1,3 +1,4 @@
+import { AxiosResponse } from "axios";
 import { client } from "./axiosClient";
 
 /**
@@ -6,7 +7,7 @@ import { client } from "./axiosClient";
  * @param {Object} data
  * @param {String} comments
  * @param {String} token Authorization token
- * @returns {Promise<Object>}
+ * @returns {Promise<object>}
  */
 const addEntry = (
   id: string,
@@ -28,10 +29,10 @@ const addEntry = (
       }
     );
     confirmationRequest
-      .then((response) => {
+      .then((response : AxiosResponse) => {
         resolve(response.data);
       })
-      .catch((error) => {
+      .catch((error : Error) => {
         reject(error);
       });
   });
@@ -43,7 +44,7 @@ const addEntry = (
  * @param {String} comments
  * @param {String} userId
  * @param {String} token Authorization token
- * @returns {Promise<Object>}
+ * @returns {Promise<object>}
  */
 const create = (
   data: object,
@@ -65,10 +66,10 @@ const create = (
       }
     );
     confirmationRequest
-      .then((response) => {
+      .then((response : AxiosResponse) => {
         resolve(response.data);
       })
-      .catch((error) => {
+      .catch((error : Error) => {
         reject(error);
       });
   });
@@ -79,7 +80,7 @@ const create = (
  * @param {number} id The id of the skill to be deleted
  * @param {String} comments The comments included with the deletion
  * @param {String} token Authorization token
- * @returns {Promise<Object>}
+ * @returns {Promise<object>}
  */
 const deleteSkillAssessment = (
   id: number,
@@ -96,10 +97,10 @@ const deleteSkillAssessment = (
       data: data,
     });
     request
-      .then((response) => {
+      .then((response : AxiosResponse) => {
         resolve(response.data);
       })
-      .catch((error) => {
+      .catch((error : Error) => {
         reject(error);
       });
   });
@@ -109,7 +110,7 @@ const deleteSkillAssessment = (
  * Get skill assessment by id
  * @param {String} id
  * @param {String} token
- * @returns {Promise<Object>}
+ * @returns {Promise<object>}
  */
 const getById = (id: string, token: string): Promise<object> => {
   return new Promise((resolve, reject) => {
@@ -117,10 +118,10 @@ const getById = (id: string, token: string): Promise<object> => {
       headers: { authorization: token },
     });
     confirmationRequest
-      .then((response) => {
+      .then((response : AxiosResponse) => {
         resolve(response.data);
       })
-      .catch((error) => {
+      .catch((error : Error) => {
         reject(error);
       });
   });
@@ -131,7 +132,7 @@ const getById = (id: string, token: string): Promise<object> => {
  * @param {String} userId
  * @param {String} skillId
  * @param {String} token
- * @returns {Promise<Object>} The skill assessment
+ * @returns {Promise<object>} The skill assessment
  */
 const getByUserAndSkill = (
   userId: string,
@@ -146,10 +147,10 @@ const getByUserAndSkill = (
       }
     );
     confirmationRequest
-      .then((response) => {
+      .then((response : AxiosResponse) => {
         resolve(response.data);
       })
-      .catch((error) => {
+      .catch((error : Error) => {
         reject(error);
       });
   });
@@ -159,7 +160,7 @@ const getByUserAndSkill = (
  * Get list
  * @param {String} userId The user used to select the skill
  * @param {String} token Authorization token
- * @returns {Promise<Object>}
+ * @returns {Promise<object>}
  */
 const getList = (userId: string, token: string): Promise<object> => {
   return new Promise((resolve, reject) => {
@@ -173,10 +174,10 @@ const getList = (userId: string, token: string): Promise<object> => {
       }
     );
     confirmationRequest
-      .then((response) => {
+      .then((response : AxiosResponse) => {
         resolve(response.data);
       })
-      .catch((error) => {
+      .catch((error : Error) => {
         reject(error);
       });
   });

@@ -1,10 +1,11 @@
+import { AxiosResponse } from "axios";
 import { client } from "./axiosClient";
 
 /**
  * Get training plan proficiency level
  * @param {String} proficiencyLevelId
  * @param {String} token
- * @returns {Promise<Object>} An object containing the proficiency level information
+ * @returns {Promise<object>} An object containing the proficiency level information
  */
 const getTrainingPlanProficiencyLevel = (
   proficiencyLevelId: string,
@@ -18,10 +19,10 @@ const getTrainingPlanProficiencyLevel = (
       }
     );
     confirmationRequest
-      .then((response) => {
+      .then((response : AxiosResponse) => {
         resolve(response.data);
       })
-      .catch((error) => {
+      .catch((error : Error) => {
         reject(error);
       });
   });
@@ -33,7 +34,7 @@ const getTrainingPlanProficiencyLevel = (
  * @param {Boolean} includeDetailedInformation If set to true it will return detailed information for each plan
  * @param {Boolean} includeArchived If set to true it will return all the closed items too
  * @param {String} token Authorization token
- * @returns {Promise<Object>}
+ * @returns {Promise<object>}
  */
 const getTrainingPlanProficiencyLevelList = (
   includeDeleted: boolean,
@@ -55,10 +56,10 @@ const getTrainingPlanProficiencyLevelList = (
       }
     );
     confirmationRequest
-      .then((response) => {
+      .then((response : AxiosResponse) => {
         resolve(response.data);
       })
-      .catch((error) => {
+      .catch((error : Error) => {
         reject(error);
       });
   });
@@ -86,7 +87,7 @@ const reorderTrainingPlansProficiencyLevels = (
       .then(() => {
         resolve();
       })
-      .catch((error) => {
+      .catch((error : Error) => {
         reject(error);
       });
   });
@@ -116,7 +117,7 @@ const updateTrainingPlanProficiencyLevel = (
       .then(() => {
         resolve();
       })
-      .catch((error) => {
+      .catch((error : Error) => {
         reject(error);
       });
   });

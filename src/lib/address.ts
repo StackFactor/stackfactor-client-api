@@ -1,10 +1,11 @@
+import { AxiosResponse } from "axios";
 import { client } from "./axiosClient";
 
 /**
  * Validate Address
  * @param {String} input - the address in raw format
  * @param {String} authToken - Authorization token
- * @returns {Promise<Object>}
+ * @returns {Promise<object>}
  */
 const autoComplete = (input: string, authToken: string): Promise<object> => {
   return new Promise((resolve, reject) => {
@@ -14,10 +15,10 @@ const autoComplete = (input: string, authToken: string): Promise<object> => {
       { headers: { authorization: authToken } }
     );
     getAddressesRequest
-      .then((response) => {
+      .then((response : AxiosResponse) => {
         resolve(response.data);
       })
-      .catch((error) => {
+      .catch((error : Error) => {
         reject(error);
       });
   });

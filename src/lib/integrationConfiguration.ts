@@ -1,3 +1,4 @@
+import { AxiosResponse } from "axios";
 import { client } from "./axiosClient";
 
 /**
@@ -5,7 +6,7 @@ import { client } from "./axiosClient";
  * @param {Array<String>} ids
  * @param {Number} type
  * @param {String} token Authorization token
- * @returns {Promise<Object>}
+ * @returns {Promise<object>}
  */
 const getIntegrationsConfiguration = (
   ids: string[],
@@ -23,10 +24,10 @@ const getIntegrationsConfiguration = (
       }
     );
     confirmationRequest
-      .then((response) => {
+      .then((response : AxiosResponse) => {
         resolve(response.data);
       })
-      .catch((error) => {
+      .catch((error : Error) => {
         reject(error);
       });
   });
@@ -38,7 +39,7 @@ const getIntegrationsConfiguration = (
  * @param {Number} type The type of configuration
  * @param {Object} configuration Data used to update the integration configuration
  * @param {String} token Authorization token
- * @returns {Promise<Object>}
+ * @returns {Promise<object>}
  */
 const saveIntegrationConfiguration = (
   id: string,
@@ -60,10 +61,10 @@ const saveIntegrationConfiguration = (
       }
     );
     confirmationRequest
-      .then((response) => {
+      .then((response : AxiosResponse) => {
         resolve(response.data);
       })
-      .catch((error) => {
+      .catch((error : Error) => {
         reject(error);
       });
   });
@@ -75,7 +76,7 @@ const saveIntegrationConfiguration = (
  * @param {String} type The type of configuration
  * @param {Object} configuration Configuration to be tested
  * @param {String} token Authorization token
- * @returns {Promise<Object>}
+ * @returns {Promise<object>}
  */
 const testIntegrationConfiguration = (
   id: string,
@@ -97,10 +98,10 @@ const testIntegrationConfiguration = (
       }
     );
     confirmationRequest
-      .then((response) => {
+      .then((response : AxiosResponse) => {
         resolve(response.data);
       })
-      .catch((error) => {
+      .catch((error : Error) => {
         reject(error);
       });
   });

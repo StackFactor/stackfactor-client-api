@@ -1,3 +1,4 @@
+import { AxiosResponse } from "axios";
 import { client } from "./axiosClient";
 
 /**
@@ -11,10 +12,10 @@ const archiveTrainingPlan = (id: string, token: string): Promise<object> => {
       headers: { authorization: token },
     });
     request
-      .then((response) => {
+      .then((response : AxiosResponse) => {
         resolve(response.data);
       })
-      .catch((error) => {
+      .catch((error : Error) => {
         reject(error);
       });
   });
@@ -45,10 +46,10 @@ const createTrainingPlan = (
       headers: { authorization: token },
     });
     confirmationRequest
-      .then((response) => {
+      .then((response : AxiosResponse) => {
         resolve(response.data);
       })
-      .catch((error) => {
+      .catch((error : Error) => {
         reject(error);
       });
   });
@@ -75,10 +76,10 @@ const deleteTrainingPlan = (
       data: data,
     });
     request
-      .then((response) => {
+      .then((response : AxiosResponse) => {
         resolve(response.data);
       })
-      .catch((error) => {
+      .catch((error : Error) => {
         reject(error);
       });
   });
@@ -98,10 +99,10 @@ const discardTrainingPlanChanges = (
       headers: { authorization: token },
     });
     request
-      .then((response) => {
+      .then((response : AxiosResponse) => {
         resolve(response.data);
       })
-      .catch((error) => {
+      .catch((error : Error) => {
         reject(error);
       });
   });
@@ -137,10 +138,10 @@ const generateNewBaseline = (
       }
     );
     confirmationRequest
-      .then((response) => {
+      .then((response : AxiosResponse) => {
         resolve(response.data);
       })
-      .catch((error) => {
+      .catch((error : Error) => {
         reject(error);
       });
   });
@@ -165,10 +166,10 @@ const getTrainingPlanById = (
       }
     );
     confirmationRequest
-      .then((response) => {
+      .then((response : AxiosResponse) => {
         resolve(response.data);
       })
-      .catch((error) => {
+      .catch((error : Error) => {
         reject(error);
       });
   });
@@ -186,10 +187,10 @@ const getAllTrainingPlansTasksSummary = (
       headers: token ? { authorization: token } : {},
     });
     confirmationRequest
-      .then((response) => {
+      .then((response : AxiosResponse) => {
         resolve(response.data);
       })
-      .catch((error) => {
+      .catch((error : Error) => {
         reject(error);
       });
   });
@@ -230,10 +231,10 @@ const getListOfTrainingPlans = (
       headers: { authorization: token },
     });
     confirmationRequest
-      .then((response) => {
+      .then((response : AxiosResponse) => {
         resolve(response.data);
       })
-      .catch((error) => {
+      .catch((error : Error) => {
         reject(error);
       });
   });
@@ -261,10 +262,10 @@ const publishTrainingPlan = (
       }
     );
     confirmationRequest
-      .then((response) => {
+      .then((response : AxiosResponse) => {
         resolve(response.data);
       })
-      .catch((error) => {
+      .catch((error : Error) => {
         reject(error);
       });
   });
@@ -297,10 +298,10 @@ const updateTrainingPlan = (
       }
     );
     confirmationRequest
-      .then((response) => {
+      .then((response : AxiosResponse) => {
         resolve(response.data);
       })
-      .catch((error) => {
+      .catch((error : Error) => {
         reject(error);
       });
   });
@@ -311,7 +312,7 @@ const updateTrainingPlan = (
  * @param {String} id The ID of the training plan
  * @param {Number} status
  * @param {String} token
- * @returns {Promise<Object>}
+ * @returns {Promise<object>}
  */
 const updateTrainingPlanTaskStatus = (
   id: string,
@@ -330,7 +331,7 @@ const updateTrainingPlanTaskStatus = (
       .then(() => {
         resolve({});
       })
-      .catch((error) => {
+      .catch((error : Error) => {
         reject(error);
       });
   });
@@ -341,7 +342,7 @@ const updateTrainingPlanTaskStatus = (
  * @param {String} planId
  * @param {Object} data Ordered array of objects containing the activity Id and the new status
  * @param {String} token Authorization token
- * @returns {Promise<Object>}
+ * @returns {Promise<object>}
  */
 const updateActivities = (
   planId: string,
@@ -360,7 +361,7 @@ const updateActivities = (
       .then(() => {
         resolve({});
       })
-      .catch((error) => {
+      .catch((error : Error) => {
         reject(error);
       });
   });

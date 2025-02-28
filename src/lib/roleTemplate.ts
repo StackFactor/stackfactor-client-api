@@ -1,10 +1,11 @@
+import { AxiosResponse } from "axios";
 import { client } from "./axiosClient";
 
 /**
  * Create role template and set information
  * @param {Object} data
  * @param {String} token Authorization token
- * @returns {Promise<Object>}
+ * @returns {Promise<object>}
  */
 const createRoleTemplate = (data: object, token: string): Promise<object> => {
   return new Promise((resolve, reject) => {
@@ -15,10 +16,10 @@ const createRoleTemplate = (data: object, token: string): Promise<object> => {
       headers: { authorization: token },
     });
     confirmationRequest
-      .then((response) => {
+      .then((response : AxiosResponse) => {
         resolve(response.data);
       })
-      .catch((error) => {
+      .catch((error : Error) => {
         reject(error);
       });
   });
@@ -29,7 +30,7 @@ const createRoleTemplate = (data: object, token: string): Promise<object> => {
  * @param {String} id The id of the template to be deleted
  * @param {String} comments The comments included with the deletion
  * @param {String} token Authorization token
- * @returns {Promise<Object>}
+ * @returns {Promise<object>}
  */
 const deleteRoleTemplate = (
   id: string,
@@ -46,10 +47,10 @@ const deleteRoleTemplate = (
       data: data,
     });
     request
-      .then((response) => {
+      .then((response : AxiosResponse) => {
         resolve(response.data);
       })
-      .catch((error) => {
+      .catch((error : Error) => {
         reject(error);
       });
   });
@@ -59,7 +60,7 @@ const deleteRoleTemplate = (
  * Discard the role template draft changes
  * @param {String} id The id of the role template to be deleted
  * @param {String} token Authorization token
- * @returns {Promise<Object>}
+ * @returns {Promise<object>}
  */
 const discardRoleTemplateChanges = (
   id: string,
@@ -72,10 +73,10 @@ const discardRoleTemplateChanges = (
       data: data,
     });
     request
-      .then((response) => {
+      .then((response : AxiosResponse) => {
         resolve(response.data);
       })
-      .catch((error) => {
+      .catch((error : Error) => {
         reject(error);
       });
   });
@@ -86,7 +87,7 @@ const discardRoleTemplateChanges = (
  * @param {String} id The id of the template
  * @param {String} version The version of the template
  * @param {String} token Authorization token
- * @returns {Promise<Object>}
+ * @returns {Promise<object>}
  */
 const getRoleTemplateInformationById = (
   id: string,
@@ -101,10 +102,10 @@ const getRoleTemplateInformationById = (
       }
     );
     confirmationRequest
-      .then((response) => {
+      .then((response : AxiosResponse) => {
         resolve(response.data);
       })
-      .catch((error) => {
+      .catch((error : Error) => {
         reject(error);
       });
   });
@@ -117,7 +118,7 @@ const getRoleTemplateInformationById = (
  * @param {Boolean} includeDeleted When true it will return the deleted records as well
  * @param {Boolean} namesOnly When true it will return only the names of the templates
  * @param {String} token Authorization token
- * @returns {Promise<Object>}
+ * @returns {Promise<object>}
  */
 const getRoleTemplateList = (
   filter: string[],
@@ -137,10 +138,10 @@ const getRoleTemplateList = (
       headers: { authorization: token },
     });
     confirmationRequest
-      .then((response) => {
+      .then((response : AxiosResponse) => {
         resolve(response.data);
       })
-      .catch((error) => {
+      .catch((error : Error) => {
         reject(error);
       });
   });
@@ -151,7 +152,7 @@ const getRoleTemplateList = (
  * @param {number} id The id of the template to be published
  * @param {String} comments The comments to be include with the request
  * @param {String} token Authorization token
- * @returns {Promise<Object>}
+ * @returns {Promise<object>}
  */
 const publishTemplate = (
   id: number,
@@ -169,10 +170,10 @@ const publishTemplate = (
       }
     );
     confirmationRequest
-      .then((response) => {
+      .then((response : AxiosResponse) => {
         resolve(response.data);
       })
-      .catch((error) => {
+      .catch((error : Error) => {
         reject(error);
       });
   });
@@ -183,7 +184,7 @@ const publishTemplate = (
  * @param {String} id The id of the template to be updated
  * @param {Object} data Data used to update the template
  * @param {String} token Authorization token
- * @returns {Promise<Object>}
+ * @returns {Promise<object>}
  */
 const setTemplateInformation = (
   id: string,
@@ -203,10 +204,10 @@ const setTemplateInformation = (
       }
     );
     confirmationRequest
-      .then((response) => {
+      .then((response : AxiosResponse) => {
         resolve(response.data);
       })
-      .catch((error) => {
+      .catch((error : Error) => {
         reject(error);
       });
   });
@@ -217,7 +218,7 @@ const setTemplateInformation = (
  * @param {String} id The id of the template to be updated
  * @param {Object} tags Updated template tags
  * @param {String} token Authorization token
- * @returns {Promise<Object>}
+ * @returns {Promise<object>}
  */
 const setTemplateTags = (
   id: string,
@@ -237,10 +238,10 @@ const setTemplateTags = (
       }
     );
     confirmationRequest
-      .then((response) => {
+      .then((response : AxiosResponse) => {
         resolve(response.data);
       })
-      .catch((error) => {
+      .catch((error : Error) => {
         reject(error);
       });
   });
@@ -251,7 +252,7 @@ const setTemplateTags = (
  * @param {String} id The id of the skill to be updated
  * @param {Boolean} watch Set to true or false
  * @param {String} token Authorization token
- * @returns {Promise<Object>}
+ * @returns {Promise<object>}
  */
 const watchRoleTemplate = (
   id: string,
@@ -271,10 +272,10 @@ const watchRoleTemplate = (
       }
     );
     confirmationRequest
-      .then((response) => {
+      .then((response : AxiosResponse) => {
         resolve(response.data);
       })
-      .catch((error) => {
+      .catch((error : Error) => {
         reject(error);
       });
   });

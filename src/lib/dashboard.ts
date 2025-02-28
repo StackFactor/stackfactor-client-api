@@ -1,3 +1,4 @@
+import { AxiosResponse } from "axios";
 import { client } from "./axiosClient";
 
 /**
@@ -6,7 +7,7 @@ import { client } from "./axiosClient";
  * @param {Number} position - The position on the dashboard
  * @param {Object} data - The card settings data
  * @param {String} authToken - Authorization token
- * @returns {Promise<Object>}
+ * @returns {Promise<object>}
  */
 const addCardToDashboard = (
   id: string,
@@ -25,10 +26,10 @@ const addCardToDashboard = (
       { headers: { authorization: authToken } }
     );
     request
-      .then((response) => {
+      .then((response : AxiosResponse) => {
         resolve(response.data);
       })
-      .catch((error) => {
+      .catch((error : Error) => {
         reject(error);
       });
   });
@@ -37,7 +38,7 @@ const addCardToDashboard = (
 /**
  * Get the list of the cards from the dashboard
  * @param {String} authToken - Authorization token
- * @returns {Promise<Object>}
+ * @returns {Promise<object>}
  */
 const getDashboardCardsList = (authToken: string): Promise<object> => {
   return new Promise((resolve, reject) => {
@@ -45,10 +46,10 @@ const getDashboardCardsList = (authToken: string): Promise<object> => {
       headers: { authorization: authToken },
     });
     request
-      .then((response) => {
+      .then((response : AxiosResponse) => {
         resolve(response.data);
       })
-      .catch((error) => {
+      .catch((error : Error) => {
         reject(error);
       });
   });
@@ -58,7 +59,7 @@ const getDashboardCardsList = (authToken: string): Promise<object> => {
  * Remove a card from the dashboard
  * @param {String} id - the id of the configuration element
  * @param {String} authToken - Authorization token
- * @returns {Promise<Object>}
+ * @returns {Promise<object>}
  */
 const removeCardFromDashboard = (
   id: string,
@@ -72,10 +73,10 @@ const removeCardFromDashboard = (
       },
     });
     request
-      .then((response) => {
+      .then((response : AxiosResponse) => {
         resolve(response.data);
       })
-      .catch((error) => {
+      .catch((error : Error) => {
         reject(error);
       });
   });

@@ -1,3 +1,4 @@
+import { AxiosResponse } from "axios";
 import { client } from "./axiosClient";
 
 /**
@@ -6,7 +7,7 @@ import { client } from "./axiosClient";
  * @param {String} property
  * @param {Object} data
  * @param {String} token Authorization token
- * @returns {Promise<Object>}
+ * @returns {Promise<object>}
  */
 const addEntryToArrayBusinessProperty = (
   userId: string,
@@ -26,10 +27,10 @@ const addEntryToArrayBusinessProperty = (
       }
     );
     confirmationRequest
-      .then((response) => {
+      .then((response : AxiosResponse) => {
         resolve(response.data);
       })
-      .catch((error) => {
+      .catch((error : Error) => {
         reject(error);
       });
   });
@@ -41,7 +42,7 @@ const addEntryToArrayBusinessProperty = (
  * @param {String} property
  * @param {String} id
  * @param {String} token Authorization token
- * @returns {Promise<Object>}
+ * @returns {Promise<object>}
  */
 const removeEntryFromArrayBusinessProperty = (
   userId: string,
@@ -57,10 +58,10 @@ const removeEntryFromArrayBusinessProperty = (
       }
     );
     confirmationRequest
-      .then((response) => {
+      .then((response : AxiosResponse) => {
         resolve(response.data);
       })
-      .catch((error) => {
+      .catch((error : Error) => {
         reject(error);
       });
   });
@@ -73,7 +74,7 @@ const removeEntryFromArrayBusinessProperty = (
  * @param {String} id
  * @param {Object} data
  * @param {String} token Authorization token
- * @returns {Promise<Object>}
+ * @returns {Promise<object>}
  */
 const updateEntryfromArrayBusinessProperty = (
   userId: string,
@@ -94,10 +95,10 @@ const updateEntryfromArrayBusinessProperty = (
       }
     );
     confirmationRequest
-      .then((response) => {
+      .then((response : AxiosResponse) => {
         resolve(response.data);
       })
-      .catch((error) => {
+      .catch((error : Error) => {
         reject(error);
       });
   });

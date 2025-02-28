@@ -1,3 +1,4 @@
+import { AxiosResponse } from "axios";
 import { client } from "./axiosClient";
 
 /**
@@ -5,7 +6,7 @@ import { client } from "./axiosClient";
  * @param {String} teamId The team Id
  * @param {Array<String>} users The users to be added
  * @param {String} authToken - Authentication token
- * @returns {Promise<Object>}
+ * @returns {Promise<object>}
  */
 const addUsersToTeam = (
   teamId: string,
@@ -22,10 +23,10 @@ const addUsersToTeam = (
       { headers: { authorization: authToken } }
     );
     request
-      .then((response) => {
+      .then((response : AxiosResponse) => {
         resolve(response.data);
       })
-      .catch((error) => {
+      .catch((error : Error) => {
         reject(error);
       });
   });
@@ -37,7 +38,7 @@ const addUsersToTeam = (
  * @param {String} managerId The id of the manager
  * @param {String} description The description of the team
  * @param {String} authToken The authorization token
- * @returns {Promise<Object>}
+ * @returns {Promise<object>}
  */
 const createTeam = (
   name: string,
@@ -56,10 +57,10 @@ const createTeam = (
       { headers: { authorization: authToken } }
     );
     request
-      .then((response) => {
+      .then((response : AxiosResponse) => {
         resolve(response.data);
       })
-      .catch((error) => {
+      .catch((error : Error) => {
         reject(error);
       });
   });
@@ -70,7 +71,7 @@ const createTeam = (
  * @param {String} teamId The team to be deleted
  * @param {String} defaultTeamId The default team all the users will be moved to
  * @param {String} authToken The authentication token
- * @returns {Promise<Object>}
+ * @returns {Promise<object>}
  */
 const deleteTeam = (
   teamId: string,
@@ -86,10 +87,10 @@ const deleteTeam = (
       },
     });
     request
-      .then((response) => {
+      .then((response : AxiosResponse) => {
         resolve(response.data);
       })
-      .catch((error) => {
+      .catch((error : Error) => {
         reject(error);
       });
   });
@@ -100,7 +101,7 @@ const deleteTeam = (
  * @param {String} teamId The team Id
  * @param {Boolean} includeUserSummaryInformation True if request to load user summary information
  * @param {String} authToken The authentication token
- * @returns {Promise<Object>}
+ * @returns {Promise<object>}
  */
 const getTeamById = (
   teamId: string,
@@ -116,10 +117,10 @@ const getTeamById = (
       { headers: { authorization: authToken } }
     );
     request
-      .then((response) => {
+      .then((response : AxiosResponse) => {
         resolve(response.data);
       })
-      .catch((error) => {
+      .catch((error : Error) => {
         reject(error);
       });
   });
@@ -129,7 +130,7 @@ const getTeamById = (
  * Get team roles
  * @param {String} teamId The team Id
  * @param {String} authToken The authentication token
- * @returns {Promise<Object>}
+ * @returns {Promise<object>}
  */
 const getTeamByIdRoles = (
   teamId: string,
@@ -140,10 +141,10 @@ const getTeamByIdRoles = (
       headers: { authorization: authToken },
     });
     request
-      .then((response) => {
+      .then((response : AxiosResponse) => {
         resolve(response.data);
       })
-      .catch((error) => {
+      .catch((error : Error) => {
         reject(error);
       });
   });
@@ -152,7 +153,7 @@ const getTeamByIdRoles = (
 /**
  * Get teams for current tenant
  * @param {String} authToken The authentication token
- * @returns {Promise<Object>}
+ * @returns {Promise<object>}
  */
 const getTeams = (authToken: string): Promise<object> => {
   return new Promise((resolve, reject) => {
@@ -160,10 +161,10 @@ const getTeams = (authToken: string): Promise<object> => {
       headers: { authorization: authToken },
     });
     request
-      .then((response) => {
+      .then((response : AxiosResponse) => {
         resolve(response.data);
       })
-      .catch((error) => {
+      .catch((error : Error) => {
         reject(error);
       });
   });
@@ -174,7 +175,7 @@ const getTeams = (authToken: string): Promise<object> => {
  * @param {String} userId
  * @param {Boolean} includeUserSummaryInformation True if request to load user summary information
  * @param {String} authToken The authentication token
- * @returns {Promise<Object>}
+ * @returns {Promise<object>}
  */
 const getTeamByUserId = (
   userId: string,
@@ -190,10 +191,10 @@ const getTeamByUserId = (
       { headers: { authorization: authToken } }
     );
     request
-      .then((response) => {
+      .then((response : AxiosResponse) => {
         resolve(response.data);
       })
-      .catch((error) => {
+      .catch((error : Error) => {
         reject(error);
       });
   });
@@ -203,7 +204,7 @@ const getTeamByUserId = (
  * Get top team in the organization, usually the executive team
  * @param {Boolean} includeUserSummaryInformation True if request to load user summary information
  * @param {String} authToken The authentication token
- * @returns {Promise<Object>}
+ * @returns {Promise<object>}
  */
 const getTopTeam = (
   includeUserSummaryInformation: boolean,
@@ -218,10 +219,10 @@ const getTopTeam = (
       { headers: { authorization: authToken } }
     );
     request
-      .then((response) => {
+      .then((response : AxiosResponse) => {
         resolve(response.data);
       })
-      .catch((error) => {
+      .catch((error : Error) => {
         reject(error);
       });
   });
@@ -232,7 +233,7 @@ const getTopTeam = (
  * @param {String} teamId The team Id
  * @param {Array<String>} users The users to be removed from the team
  * @param {String} authToken The authentication token
- * @returns {Promise<Object>}
+ * @returns {Promise<object>}
  */
 const removeUsersFromTeam = (
   teamId: string,
@@ -249,10 +250,10 @@ const removeUsersFromTeam = (
       { headers: { authorization: authToken } }
     );
     request
-      .then((response) => {
+      .then((response : AxiosResponse) => {
         resolve(response.data);
       })
-      .catch((error) => {
+      .catch((error : Error) => {
         reject(error);
       });
   });
@@ -262,7 +263,7 @@ const removeUsersFromTeam = (
  * Set team as default
  * @param {String} teamId The team Id
  * @param {String} authToken The authentication token
- * @returns {Promise<Object>}
+ * @returns {Promise<object>}
  */
 const setDefault = (teamId: string, authToken: string): Promise<object> => {
   return new Promise((resolve, reject) => {
@@ -274,10 +275,10 @@ const setDefault = (teamId: string, authToken: string): Promise<object> => {
       { headers: { authorization: authToken } }
     );
     request
-      .then((response) => {
+      .then((response : AxiosResponse) => {
         resolve(response.data);
       })
-      .catch((error) => {
+      .catch((error : Error) => {
         reject(error);
       });
   });
@@ -288,7 +289,7 @@ const setDefault = (teamId: string, authToken: string): Promise<object> => {
  * @param {String} teamId The team Id
  * @param {Object} data The updated data of the team
  * @param {String} authToken The authentication token
- * @returns {Promise<Object>}
+ * @returns {Promise<object>}
  */
 const updateTeam = (
   teamId: string,
@@ -305,10 +306,10 @@ const updateTeam = (
       { headers: { authorization: authToken } }
     );
     request
-      .then((response) => {
+      .then((response : AxiosResponse) => {
         resolve(response.data);
       })
-      .catch((error) => {
+      .catch((error : Error) => {
         reject(error);
       });
   });

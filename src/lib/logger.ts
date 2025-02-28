@@ -1,3 +1,4 @@
+import { AxiosResponse } from "axios";
 import { client } from "./axiosClient";
 
 /**
@@ -6,7 +7,7 @@ import { client } from "./axiosClient";
  * @param {String} elementType
  * @param {Object} data
  * @param {String} token Authorization token
- * @returns {Promise<Object>}
+ * @returns {Promise<object>}
  */
 const comments = (
   elementId: string,
@@ -27,10 +28,10 @@ const comments = (
       }
     );
     confirmationRequest
-      .then((response) => {
+      .then((response : AxiosResponse) => {
         resolve(response.data);
       })
-      .catch((error) => {
+      .catch((error : Error) => {
         reject(error);
       });
   });
@@ -42,7 +43,7 @@ const comments = (
  * @param {Number} page The results page
  * @param {Number} elementsPerPage The number of elements per page
  * @param {String} token
- * @returns {Promise<Object>}
+ * @returns {Promise<object>}
  */
 const getListByElementId = (
   elementId: string,
@@ -61,7 +62,7 @@ const getListByElementId = (
       .then((result) => {
         resolve(result.data);
       })
-      .catch((error) => {
+      .catch((error : Error) => {
         reject(error);
       });
   });

@@ -1,10 +1,11 @@
+import { AxiosResponse } from "axios";
 import { client } from "./axiosClient";
 
 /**
  * Create role and set information
  * @param {Object} data
  * @param {String} token Authorization token
- * @returns {Promise<Object>}
+ * @returns {Promise<object>}
  */
 const createRole = (data: object, token: string): Promise<object> => {
   return new Promise((resolve, reject) => {
@@ -16,10 +17,10 @@ const createRole = (data: object, token: string): Promise<object> => {
       }
     );
     confirmationRequest
-      .then((response) => {
+      .then((response : AxiosResponse) => {
         resolve(response.data);
       })
-      .catch((error) => {
+      .catch((error : Error) => {
         reject(error);
       });
   });
@@ -30,7 +31,7 @@ const createRole = (data: object, token: string): Promise<object> => {
  * @param {String} templateId
  * @param {Object} data
  * @param {String} token Authorization token
- * @returns {Promise<Object>}
+ * @returns {Promise<object>}
  */
 const createRoleFromTemplate = (
   templateId: string,
@@ -62,10 +63,10 @@ const createRoleFromTemplate = (
       }
     );
     confirmationRequest
-      .then((response) => {
+      .then((response : AxiosResponse) => {
         resolve(response.data);
       })
-      .catch((error) => {
+      .catch((error : Error) => {
         reject(error);
       });
   });
@@ -76,7 +77,7 @@ const createRoleFromTemplate = (
  * @param {String} id The id of the role to be deleted
  * @param {String} comments The comments included with the deletion
  * @param {String} token Authorization token
- * @returns {Promise<Object>}
+ * @returns {Promise<object>}
  */
 const deleteRole = (
   id: string,
@@ -93,10 +94,10 @@ const deleteRole = (
       data: data,
     });
     request
-      .then((response) => {
+      .then((response : AxiosResponse) => {
         resolve(response.data);
       })
-      .catch((error) => {
+      .catch((error : Error) => {
         reject(error);
       });
   });
@@ -106,7 +107,7 @@ const deleteRole = (
  * Discard the role draft changes
  * @param {String} id The id of the role to be deleted
  * @param {String} token Authorization token
- * @returns {Promise<Object>}
+ * @returns {Promise<object>}
  */
 const discardRoleChanges = (id: string, token: string): Promise<object> => {
   return new Promise((resolve, reject) => {
@@ -116,10 +117,10 @@ const discardRoleChanges = (id: string, token: string): Promise<object> => {
       data: data,
     });
     request
-      .then((response) => {
+      .then((response : AxiosResponse) => {
         resolve(response.data);
       })
-      .catch((error) => {
+      .catch((error : Error) => {
         reject(error);
       });
   });
@@ -128,7 +129,7 @@ const discardRoleChanges = (id: string, token: string): Promise<object> => {
 /**
  * Get the list of imported role templates
  * @param {String} token
- * @returns {Promise<Object>}
+ * @returns {Promise<object>}
  */
 const getImportedRoleTemplates = (token: string): Promise<object> => {
   return new Promise((resolve, reject) => {
@@ -136,10 +137,10 @@ const getImportedRoleTemplates = (token: string): Promise<object> => {
       headers: { authorization: token },
     });
     request
-      .then((response) => {
+      .then((response : AxiosResponse) => {
         resolve(response.data);
       })
-      .catch((error) => {
+      .catch((error : Error) => {
         reject(error);
       });
   });
@@ -151,7 +152,7 @@ const getImportedRoleTemplates = (token: string): Promise<object> => {
  * @param {String} version The version to be retrieved
  * @param {Boolean} returnNullIfVersionNotFound Return null if the version is not found
  * @param {String} token Authorization token
- * @returns {Promise<Object>}
+ * @returns {Promise<object>}
  */
 const getRoleInformationById = (
   id: number,
@@ -167,10 +168,10 @@ const getRoleInformationById = (
       }
     );
     confirmationRequest
-      .then((response) => {
+      .then((response : AxiosResponse) => {
         resolve(response.data);
       })
-      .catch((error) => {
+      .catch((error : Error) => {
         reject(error);
       });
   });
@@ -185,7 +186,7 @@ const getRoleInformationById = (
  * @param {Boolean} returnDefaultIfVersionNotAvailable Return the default version if published not available
  * @param {Boolean} namesOnly Return only the names of the roles
  * @param {String} token Authorization token
- * @returns {Promise<Object>}
+ * @returns {Promise<object>}
  */
 const getRolesList = (
   filter: object,
@@ -216,10 +217,10 @@ const getRolesList = (
       headers: { authorization: token },
     });
     confirmationRequest
-      .then((response) => {
+      .then((response : AxiosResponse) => {
         resolve(response.data);
       })
-      .catch((error) => {
+      .catch((error : Error) => {
         reject(error);
       });
   });
@@ -229,7 +230,7 @@ const getRolesList = (
  * Get role template updates
  * @param {String} id The role id
  * @param {String} token
- * @returns {Promise<Object>}
+ * @returns {Promise<object>}
  */
 const getRoleTemplateUpdates = (id: string, token: string): Promise<object> => {
   return new Promise((resolve, reject) => {
@@ -240,10 +241,10 @@ const getRoleTemplateUpdates = (id: string, token: string): Promise<object> => {
       }
     );
     confirmationRequest
-      .then((response) => {
+      .then((response : AxiosResponse) => {
         resolve(response.data);
       })
-      .catch((error) => {
+      .catch((error : Error) => {
         reject(error);
       });
   });
@@ -253,7 +254,7 @@ const getRoleTemplateUpdates = (id: string, token: string): Promise<object> => {
  * Import role templates
  * @param {Array<Object>} data The list of role templates to be imported
  * @param {String} token
- * @returns {Promise<Object>}
+ * @returns {Promise<object>}
  */
 const importRoleTemplates = (
   data: object[],
@@ -272,10 +273,10 @@ const importRoleTemplates = (
       }
     );
     confirmationRequest
-      .then((response) => {
+      .then((response : AxiosResponse) => {
         resolve(response.data);
       })
-      .catch((error) => {
+      .catch((error : Error) => {
         reject(error);
       });
   });
@@ -286,7 +287,7 @@ const importRoleTemplates = (
  * @param {number} id The id of the role to be published
  * @param {String} comments The comments to be include with the request
  * @param {String} token Authorization token
- * @returns {Promise<Object>}
+ * @returns {Promise<object>}
  */
 const publishRole = (
   id: number,
@@ -300,10 +301,10 @@ const publishRole = (
       headers: { authorization: token },
     });
     confirmationRequest
-      .then((response) => {
+      .then((response : AxiosResponse) => {
         resolve(response.data);
       })
-      .catch((error) => {
+      .catch((error : Error) => {
         reject(error);
       });
   });
@@ -314,7 +315,7 @@ const publishRole = (
  * @param {String} id The id of the role to be updated
  * @param {Object} data Data used to update the role
  * @param {String} token Authorization token
- * @returns {Promise<Object>}
+ * @returns {Promise<object>}
  */
 const setRoleInformation = (
   id: string,
@@ -330,10 +331,10 @@ const setRoleInformation = (
       headers: { authorization: token },
     });
     confirmationRequest
-      .then((response) => {
+      .then((response : AxiosResponse) => {
         resolve(response.data);
       })
-      .catch((error) => {
+      .catch((error : Error) => {
         reject(error);
       });
   });
@@ -344,7 +345,7 @@ const setRoleInformation = (
  * @param {String} id The id of the role to be updated
  * @param {Object} data Data used to update the role
  * @param {String} token Authorization token
- * @returns {Promise<Object>}
+ * @returns {Promise<object>}
  */
 const setRoleInformationFromTemplate = (
   id: string,
@@ -364,10 +365,10 @@ const setRoleInformationFromTemplate = (
       }
     );
     confirmationRequest
-      .then((response) => {
+      .then((response : AxiosResponse) => {
         resolve(response.data);
       })
-      .catch((error) => {
+      .catch((error : Error) => {
         reject(error);
       });
   });
@@ -379,7 +380,7 @@ const setRoleInformationFromTemplate = (
  * @param {Array<Object>} roles The list of roles to be assigned to the user
  * @param {String} jobDescription The job description to be assigned to the user
  * @param {String} token Authorization token
- * @returns {Promise<Object>}
+ * @returns {Promise<object>}
  */
 const setUserRoles = (
   id: string,
@@ -397,10 +398,10 @@ const setUserRoles = (
       headers: { authorization: token },
     });
     request
-      .then((response) => {
+      .then((response : AxiosResponse) => {
         resolve(response.data);
       })
-      .catch((error) => {
+      .catch((error : Error) => {
         reject(error);
       });
   });
@@ -411,7 +412,7 @@ const setUserRoles = (
  * @param {String} id The id of the role to be updated
  * @param {Boolean} watch Set to true or false
  * @param {String} token Authorization token
- * @returns {Promise<Object>}
+ * @returns {Promise<object>}
  */
 const watchRole = (
   id: string,
@@ -427,10 +428,10 @@ const watchRole = (
       headers: { authorization: token },
     });
     confirmationRequest
-      .then((response) => {
+      .then((response : AxiosResponse) => {
         resolve(response.data);
       })
-      .catch((error) => {
+      .catch((error : Error) => {
         reject(error);
       });
   });

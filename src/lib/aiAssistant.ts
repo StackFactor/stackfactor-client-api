@@ -1,3 +1,4 @@
+import { AxiosResponse } from "axios";
 import { client } from "./axiosClient";
 
 interface AskQuestionData {
@@ -25,7 +26,7 @@ interface StartConversationData {
  * @param {String} question
  * @param {String} updatedContext
  * @param {String} token Authorization token
- * @returns {Promise<Object>}
+ * @returns {Promise<object>}
  */
 const askQuestion = (
   conversationId: string,
@@ -47,10 +48,10 @@ const askQuestion = (
       }
     );
     confirmationRequest
-      .then((response) => {
+      .then((response : AxiosResponse) => {
         resolve(response.data);
       })
-      .catch((error) => {
+      .catch((error : Error) => {
         reject(error);
       });
   });
@@ -60,7 +61,7 @@ const askQuestion = (
  * End conversation with the AI
  * @param {String} conversationId
  * @param {String} token Authorization token
- * @returns {Promise<Object>}
+ * @returns {Promise<object>}
  */
 const endConversation = (
   conversationId: string,
@@ -78,10 +79,10 @@ const endConversation = (
       }
     );
     confirmationRequest
-      .then((response) => {
+      .then((response : AxiosResponse) => {
         resolve(response.data);
       })
-      .catch((error) => {
+      .catch((error : Error) => {
         reject(error);
       });
   });
@@ -91,7 +92,7 @@ const endConversation = (
  * Get conversation by elementId
  * @param {String} elementId
  * @param {String} token
- * @returns {Promise<Object>}
+ * @returns {Promise<object>}
  */
 const getConversationByElementId = (
   elementId: string,
@@ -105,10 +106,10 @@ const getConversationByElementId = (
       }
     );
     confirmationRequest
-      .then((response) => {
+      .then((response : AxiosResponse) => {
         resolve(response.data);
       })
-      .catch((error) => {
+      .catch((error : Error) => {
         reject(error);
       });
   });
@@ -118,7 +119,7 @@ const getConversationByElementId = (
  * Get the voice assistant URL
  * @param {String} language
  * @param {String} token
- * @returns {Promise<Object>}
+ * @returns {Promise<object>}
  */
 const getVoiceAssistantUrl = (
   language: string,
@@ -132,10 +133,10 @@ const getVoiceAssistantUrl = (
       }
     );
     confirmationRequest
-      .then((response) => {
+      .then((response : AxiosResponse) => {
         resolve(response.data);
       })
-      .catch((error) => {
+      .catch((error : Error) => {
         reject(error);
       });
   });
@@ -149,7 +150,7 @@ const getVoiceAssistantUrl = (
  * @param {Boolean} autoContextRefresh
  * @param {String} token
  * @param {String} conversationId Optional
- * @returns {Promise<Object>}
+ * @returns {Promise<object>}
  */
 const startConversation = (
   elementId: string,
@@ -179,10 +180,10 @@ const startConversation = (
       }
     );
     confirmationRequest
-      .then((response) => {
+      .then((response : AxiosResponse) => {
         resolve(response.data);
       })
-      .catch((error) => {
+      .catch((error : Error) => {
         reject(error);
       });
   });

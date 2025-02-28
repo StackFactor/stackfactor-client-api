@@ -1,3 +1,4 @@
+import { AxiosResponse } from "axios";
 import { client } from "./axiosClient";
 
 /**
@@ -5,7 +6,7 @@ import { client } from "./axiosClient";
  * @param {String} learningContentId
  * @param {String} microSkillId
  * @param {String} token
- * @returns {Promise<Object>}
+ * @returns {Promise<object>}
  */
 const getResponses = (
   learningContentId: string,
@@ -20,10 +21,10 @@ const getResponses = (
       }
     );
     confirmationRequest
-      .then((response) => {
+      .then((response : AxiosResponse) => {
         resolve(response.data);
       })
-      .catch((error) => {
+      .catch((error : Error) => {
         reject(error);
       });
   });
@@ -35,7 +36,7 @@ const getResponses = (
  * @param {String} microSkillId
  * @param {Array<Object>} responses
  * @param {String} token Authorization token
- * @returns {Promise<Object>}
+ * @returns {Promise<object>}
  */
 const saveResponses = (
   learningContentId: string,
@@ -55,10 +56,10 @@ const saveResponses = (
       }
     );
     confirmationRequest
-      .then((response) => {
+      .then((response : AxiosResponse) => {
         resolve(response.data);
       })
-      .catch((error) => {
+      .catch((error : Error) => {
         reject(error);
       });
   });

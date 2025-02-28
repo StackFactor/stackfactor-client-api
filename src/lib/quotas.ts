@@ -1,9 +1,10 @@
+import { AxiosResponse } from "axios";
 import { client } from "./axiosClient";
 
 /**
  * Get the current quota for the user and tenant
  * @param {String} token
- * @returns {Promise<Object>}
+ * @returns {Promise<object>}
  */
 const getAllQuota = (token: string): Promise<object> => {
   return new Promise((resolve, reject) => {
@@ -11,10 +12,10 @@ const getAllQuota = (token: string): Promise<object> => {
       headers: { authorization: token },
     });
     confirmationRequest
-      .then((response) => {
+      .then((response : AxiosResponse) => {
         resolve(response.data);
       })
-      .catch((error) => {
+      .catch((error : Error) => {
         reject(error);
       });
   });
@@ -25,7 +26,7 @@ const getAllQuota = (token: string): Promise<object> => {
  * @param {String} quotaId
  * @param {Number} value
  * @param {String} token
- * @returns {Promise<Object>}
+ * @returns {Promise<object>}
  */
 const increaseQuotaUtilization = (
   quotaId: string,
@@ -44,10 +45,10 @@ const increaseQuotaUtilization = (
       }
     );
     confirmationRequest
-      .then((response) => {
+      .then((response : AxiosResponse) => {
         resolve(response.data);
       })
-      .catch((error) => {
+      .catch((error : Error) => {
         reject(error);
       });
   });

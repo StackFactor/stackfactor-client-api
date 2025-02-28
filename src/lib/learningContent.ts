@@ -1,3 +1,4 @@
+import { AxiosResponse } from "axios";
 import { client } from "./axiosClient";
 
 interface LearningContentData {
@@ -22,7 +23,7 @@ interface GenerateLearningActivityContentData {
  * Create learning content and set information
  * @param {Object} data Learning content data
  * @param {String} token Authorization token
- * @returns {Promise<Object>} The created learning content
+ * @returns {Promise<object>} The created learning content
  */
 const createLearningContent = (
   data: object,
@@ -40,10 +41,10 @@ const createLearningContent = (
       }
     );
     confirmationRequest
-      .then((response) => {
+      .then((response : AxiosResponse) => {
         resolve(response.data);
       })
-      .catch((error) => {
+      .catch((error : Error) => {
         reject(error);
       });
   });
@@ -54,7 +55,7 @@ const createLearningContent = (
  * @param {String} id The id of the learning content to be deleted
  * @param {String} comments The comments included with the deletion
  * @param {String} token Authorization token
- * @returns {Promise<Object>} The response from the server
+ * @returns {Promise<object>} The response from the server
  */
 const deleteLearningContent = (
   id: string,
@@ -71,10 +72,10 @@ const deleteLearningContent = (
       data: data,
     });
     request
-      .then((response) => {
+      .then((response : AxiosResponse) => {
         resolve(response.data);
       })
-      .catch((error) => {
+      .catch((error : Error) => {
         reject(error);
       });
   });
@@ -84,7 +85,7 @@ const deleteLearningContent = (
  * Discard the learning content draft changes
  * @param {String} id The id of the learning content to be deleted
  * @param {String} token Authorization token
- * @returns {Promise<Object>} The response from the server
+ * @returns {Promise<object>} The response from the server
  */
 const discardLearningContentChanges = (
   id: string,
@@ -97,10 +98,10 @@ const discardLearningContentChanges = (
       data: data,
     });
     request
-      .then((response) => {
+      .then((response : AxiosResponse) => {
         resolve(response.data);
       })
-      .catch((error) => {
+      .catch((error : Error) => {
         reject(error);
       });
   });
@@ -143,10 +144,10 @@ const generateLearningActivityContent = (
       }
     );
     request
-      .then((response) => {
+      .then((response : AxiosResponse) => {
         resolve(response.data);
       })
-      .catch((error) => {
+      .catch((error : Error) => {
         reject(error);
       });
   });
@@ -156,7 +157,7 @@ const generateLearningActivityContent = (
  * Generate micro skill test knowledge
  * @param {String} microSkill
  * @param {String} token
- * @returns {Promise<Object>}
+ * @returns {Promise<object>}
  */
 const generateMicroSkillTestKnowledge = (
   microSkill: string,
@@ -174,10 +175,10 @@ const generateMicroSkillTestKnowledge = (
       }
     );
     confirmationRequest
-      .then((response) => {
+      .then((response : AxiosResponse) => {
         resolve(response.data);
       })
-      .catch((error) => {
+      .catch((error : Error) => {
         reject(error);
       });
   });
@@ -188,7 +189,7 @@ const generateMicroSkillTestKnowledge = (
  * @param {String} id The id of the learning content
  * @param {String} version The version of the learning content
  * @param {String} token Authorization token
- * @returns {Promise<Object>} The response from the server
+ * @returns {Promise<object>} The response from the server
  */
 const getLearningContentInformationById = (
   id: string,
@@ -203,10 +204,10 @@ const getLearningContentInformationById = (
       }
     );
     confirmationRequest
-      .then((response) => {
+      .then((response : AxiosResponse) => {
         resolve(response.data);
       })
-      .catch((error) => {
+      .catch((error : Error) => {
         reject(error);
       });
   });
@@ -240,10 +241,10 @@ const getLearningContentList = (
       }
     );
     confirmationRequest
-      .then((response) => {
+      .then((response : AxiosResponse) => {
         resolve(response.data);
       })
-      .catch((error) => {
+      .catch((error : Error) => {
         reject(error);
       });
   });
@@ -253,7 +254,7 @@ const getLearningContentList = (
  * Migrate learning content storage
  * @param {String} id The id of the content to be migrated
  * @param {String} token Authorization token
- * @returns {Promise<Object>} The response from the server
+ * @returns {Promise<object>} The response from the server
  */
 const migrateLearningContentStorageType = (
   id: string,
@@ -269,10 +270,10 @@ const migrateLearningContentStorageType = (
       }
     );
     confirmationRequest
-      .then((response) => {
+      .then((response : AxiosResponse) => {
         resolve(response.data);
       })
-      .catch((error) => {
+      .catch((error : Error) => {
         reject(error);
       });
   });
@@ -283,7 +284,7 @@ const migrateLearningContentStorageType = (
  * @param {String} id The id of the content to be published
  * @param {String} comments The comments to be include with the request
  * @param {String} token Authorization token
- * @returns {Promise<Object>} The response from the server
+ * @returns {Promise<object>} The response from the server
  */
 const publishLearningContent = (
   id: string,
@@ -302,10 +303,10 @@ const publishLearningContent = (
       }
     );
     confirmationRequest
-      .then((response) => {
+      .then((response : AxiosResponse) => {
         resolve(response.data);
       })
-      .catch((error) => {
+      .catch((error : Error) => {
         reject(error);
       });
   });
@@ -316,7 +317,7 @@ const publishLearningContent = (
  * @param {String} id The id of the learning content to be updated
  * @param {Object} data Data used to update the learning content
  * @param {String} token Authorization token
- * @returns {Promise<Object>} The updated learning content
+ * @returns {Promise<object>} The updated learning content
  */
 const setLearningContentInformation = (
   id: string,
@@ -336,10 +337,10 @@ const setLearningContentInformation = (
       }
     );
     confirmationRequest
-      .then((response) => {
+      .then((response : AxiosResponse) => {
         resolve(response.data);
       })
-      .catch((error) => {
+      .catch((error : Error) => {
         reject(error);
       });
   });
@@ -350,7 +351,7 @@ const setLearningContentInformation = (
  * @param {String} id
  * @param {Object} data
  * @param {String} token
- * @returns {Promise<Object>}
+ * @returns {Promise<object>}
  */
 const setLearningContentPartialContentInformation = (
   id: string,
@@ -370,10 +371,10 @@ const setLearningContentPartialContentInformation = (
       }
     );
     confirmationRequest
-      .then((response) => {
+      .then((response : AxiosResponse) => {
         resolve(response.data);
       })
-      .catch((error) => {
+      .catch((error : Error) => {
         reject(error);
       });
   });
@@ -410,10 +411,10 @@ const setLearningContentLearningContentInformation = (
       }
     );
     confirmationRequest
-      .then((response) => {
+      .then((response : AxiosResponse) => {
         resolve(response.data);
       })
-      .catch((error) => {
+      .catch((error : Error) => {
         reject(error);
       });
   });
@@ -445,10 +446,10 @@ const setLearningContentLearningMicroSkillContentInformation = (
       }
     );
     confirmationRequest
-      .then((response) => {
+      .then((response : AxiosResponse) => {
         resolve(response.data);
       })
-      .catch((error) => {
+      .catch((error : Error) => {
         reject(error);
       });
   });
@@ -478,10 +479,10 @@ const setLearningContentTags = (
       }
     );
     confirmationRequest
-      .then((response) => {
+      .then((response : AxiosResponse) => {
         resolve(response.data);
       })
-      .catch((error) => {
+      .catch((error : Error) => {
         reject(error);
       });
   });
@@ -511,10 +512,10 @@ const watchLearningContent = (
       }
     );
     confirmationRequest
-      .then((response) => {
+      .then((response : AxiosResponse) => {
         resolve(response.data);
       })
-      .catch((error) => {
+      .catch((error : Error) => {
         reject(error);
       });
   });

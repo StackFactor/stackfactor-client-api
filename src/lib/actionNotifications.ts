@@ -1,9 +1,10 @@
+import { AxiosResponse } from "axios";
 import { client } from "./axiosClient";
 
 /**
  * Get all permissions
  * @param {String} token The authentication token
- * @returns {Promise<Object>}
+ * @returns {Promise<object>}
  */
 const getAllUserNotifications = (token: string): Promise<object> => {
   return new Promise((resolve, reject) => {
@@ -11,10 +12,10 @@ const getAllUserNotifications = (token: string): Promise<object> => {
       headers: { authorization: token },
     });
     request
-      .then((response) => {
+      .then((response : AxiosResponse) => {
         resolve(response.data);
       })
-      .catch((error) => {
+      .catch((error : Error) => {
         reject(error);
       });
   });
@@ -25,7 +26,7 @@ const getAllUserNotifications = (token: string): Promise<object> => {
  * @param {Array<String>} ids The id of the notifications to be marked
  * @param {String} status The new status
  * @param {String} authToken The authentication token
- * @returns {Promise<Object>}
+ * @returns {Promise<object>}
  */
 const markNotifications = (
   ids: string[],
@@ -42,10 +43,10 @@ const markNotifications = (
       { headers: { authorization: authToken } }
     );
     request
-      .then((response) => {
+      .then((response : AxiosResponse) => {
         resolve(response.data);
       })
-      .catch((error) => {
+      .catch((error : Error) => {
         reject(error);
       });
   });
@@ -57,7 +58,7 @@ const markNotifications = (
  * @param {String} action The action to be executed
  * @param {String} comments The comments to be saved in the notification
  * @param {String} authToken The authentication token
- * @returns {Promise<Object>}
+ * @returns {Promise<object>}
  */
 const processNotification = (
   id: string,
@@ -76,10 +77,10 @@ const processNotification = (
       { headers: { authorization: authToken } }
     );
     request
-      .then((response) => {
+      .then((response : AxiosResponse) => {
         resolve(response.data);
       })
-      .catch((error) => {
+      .catch((error : Error) => {
         reject(error);
       });
   });

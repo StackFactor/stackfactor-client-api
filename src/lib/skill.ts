@@ -1,10 +1,11 @@
+import { AxiosResponse } from "axios";
 import { client } from "./axiosClient";
 
 /**
  * Create skill and set information
  * @param {Object} data
  * @param {String} token Authorization token
- * @returns {Promise<Object>}
+ * @returns {Promise<object>}
  */
 const createSkill = (data: object, token: string): Promise<object> => {
   return new Promise((resolve, reject) => {
@@ -16,10 +17,10 @@ const createSkill = (data: object, token: string): Promise<object> => {
       }
     );
     confirmationRequest
-      .then((response) => {
+      .then((response : AxiosResponse) => {
         resolve(response.data);
       })
-      .catch((error) => {
+      .catch((error : Error) => {
         reject(error);
       });
   });
@@ -29,7 +30,7 @@ const createSkill = (data: object, token: string): Promise<object> => {
  * Create skills from templates
  * @param {Array<String>} templateIds
  * @param {String} token Authorization token
- * @returns {Promise<Object>}
+ * @returns {Promise<object>}
  */
 const createSkillsFromTemplates = (
   templateIds: string[],
@@ -47,10 +48,10 @@ const createSkillsFromTemplates = (
       }
     );
     confirmationRequest
-      .then((response) => {
+      .then((response : AxiosResponse) => {
         resolve(response.data);
       })
-      .catch((error) => {
+      .catch((error : Error) => {
         reject(error);
       });
   });
@@ -61,7 +62,7 @@ const createSkillsFromTemplates = (
  * @param {String} id The id of the skill to be deleted
  * @param {String} comments The comments included with the deletion
  * @param {String} token Authorization token
- * @returns {Promise<Object>}
+ * @returns {Promise<object>}
  */
 const deleteSkill = (
   id: string,
@@ -78,10 +79,10 @@ const deleteSkill = (
       data: data,
     });
     request
-      .then((response) => {
+      .then((response : AxiosResponse) => {
         resolve(response.data);
       })
-      .catch((error) => {
+      .catch((error : Error) => {
         reject(error);
       });
   });
@@ -91,7 +92,7 @@ const deleteSkill = (
  * Discard the skill draft changes
  * @param {String} id The id of the skill to be discarded
  * @param {String} token Authorization token
- * @returns {Promise<Object>}
+ * @returns {Promise<object>}
  */
 const discardSkillChanges = (id: string, token: string): Promise<object> => {
   return new Promise((resolve, reject) => {
@@ -101,10 +102,10 @@ const discardSkillChanges = (id: string, token: string): Promise<object> => {
       data: data,
     });
     request
-      .then((response) => {
+      .then((response : AxiosResponse) => {
         resolve(response.data);
       })
-      .catch((error) => {
+      .catch((error : Error) => {
         reject(error);
       });
   });
@@ -113,7 +114,7 @@ const discardSkillChanges = (id: string, token: string): Promise<object> => {
 /**
  * Get the list of imported skill templates
  * @param {String} token Authorization token
- * @returns {Promise<Object>}
+ * @returns {Promise<object>}
  */
 const getImportedSkillTemplates = (token: string): Promise<object> => {
   return new Promise((resolve, reject) => {
@@ -121,10 +122,10 @@ const getImportedSkillTemplates = (token: string): Promise<object> => {
       headers: { authorization: token },
     });
     request
-      .then((response) => {
+      .then((response : AxiosResponse) => {
         resolve(response.data);
       })
-      .catch((error) => {
+      .catch((error : Error) => {
         reject(error);
       });
   });
@@ -135,7 +136,7 @@ const getImportedSkillTemplates = (token: string): Promise<object> => {
  * @param {String} id
  * @param {String} token Authorization token
  * @param {Boolean} includeRoleInformation
- * @returns {Promise<Object>}
+ * @returns {Promise<object>}
  */
 const getSkillRelatedRoles = (
   id: string,
@@ -150,10 +151,10 @@ const getSkillRelatedRoles = (
       }
     );
     confirmationRequest
-      .then((response) => {
+      .then((response : AxiosResponse) => {
         resolve(response.data);
       })
-      .catch((error) => {
+      .catch((error : Error) => {
         reject(error);
       });
   });
@@ -163,7 +164,7 @@ const getSkillRelatedRoles = (
  * Get skill required assessment type
  * @param {String} id
  * @param {String} token Authorization token
- * @returns {Promise<Object>}
+ * @returns {Promise<object>}
  */
 const getSkillRequiredAssessmentType = (
   id: string,
@@ -177,10 +178,10 @@ const getSkillRequiredAssessmentType = (
       }
     );
     confirmationRequest
-      .then((response) => {
+      .then((response : AxiosResponse) => {
         resolve(response.data);
       })
-      .catch((error) => {
+      .catch((error : Error) => {
         reject(error);
       });
   });
@@ -192,7 +193,7 @@ const getSkillRequiredAssessmentType = (
  * @param {String} version The version of the skill
  * @param {Boolean} returnNullIfVersionNotFound When true it will return null if the version is not found
  * @param {String} token Authorization token
- * @returns {Promise<Object>}
+ * @returns {Promise<object>}
  */
 const getSkillInformationById = (
   id: string,
@@ -208,10 +209,10 @@ const getSkillInformationById = (
       }
     );
     confirmationRequest
-      .then((response) => {
+      .then((response : AxiosResponse) => {
         resolve(response.data);
       })
-      .catch((error) => {
+      .catch((error : Error) => {
         reject(error);
       });
   });
@@ -225,7 +226,7 @@ const getSkillInformationById = (
  * @param {Boolean} returnDefaultIfVersionNotAvailable Return the default version if published not available
  * @param {Boolean} namesOnly Return only the names of the skills
  * @param {String} token Authorization token
- * @returns {Promise<Object>}
+ * @returns {Promise<object>}
  */
 const getSkillList = (
   filter: string[],
@@ -248,10 +249,10 @@ const getSkillList = (
       headers: { authorization: token },
     });
     confirmationRequest
-      .then((response) => {
+      .then((response : AxiosResponse) => {
         resolve(response.data);
       })
-      .catch((error) => {
+      .catch((error : Error) => {
         reject(error);
       });
   });
@@ -263,7 +264,7 @@ const getSkillList = (
  * @param {Number} maxDepth How many levels down in the organization the skills will be loaded
  * @param {Boolean} returnNullIfVersionNotFound Return null if the version is not found
  * @param {String} token Authorization token
- * @returns {Promise<Object>}
+ * @returns {Promise<object>}
  */
 const getTeamSkillsById = (
   teamId: string,
@@ -279,10 +280,10 @@ const getTeamSkillsById = (
       }
     );
     confirmationRequest
-      .then((response) => {
+      .then((response : AxiosResponse) => {
         resolve(response.data);
       })
-      .catch((error) => {
+      .catch((error : Error) => {
         reject(error);
       });
   });
@@ -292,7 +293,7 @@ const getTeamSkillsById = (
  * Get current user team skills
  * @param {Number} maxDepth How many levels down in the organization the skills will be loaded
  * @param {String} token Authorization token
- * @returns {Promise<Object>}
+ * @returns {Promise<object>}
  */
 const getCurrentUserTeamSkills = (
   maxDepth: number,
@@ -306,10 +307,10 @@ const getCurrentUserTeamSkills = (
       }
     );
     confirmationRequest
-      .then((response) => {
+      .then((response : AxiosResponse) => {
         resolve(response.data);
       })
-      .catch((error) => {
+      .catch((error : Error) => {
         reject(error);
       });
   });
@@ -319,7 +320,7 @@ const getCurrentUserTeamSkills = (
  * Get skill template updates
  * @param {String} id The skill id
  * @param {String} token Authorization token
- * @returns {Promise<Object>}
+ * @returns {Promise<object>}
  */
 const getSkillTemplateUpdates = (
   id: string,
@@ -333,10 +334,10 @@ const getSkillTemplateUpdates = (
       }
     );
     confirmationRequest
-      .then((response) => {
+      .then((response : AxiosResponse) => {
         resolve(response.data);
       })
-      .catch((error) => {
+      .catch((error : Error) => {
         reject(error);
       });
   });
@@ -347,7 +348,7 @@ const getSkillTemplateUpdates = (
  * @param {Array<String>} data The list of role templates to be imported
  * @param {Boolean} publish If true the imported templates will be published
  * @param {String} token Authorization token
- * @returns {Promise<Object>}
+ * @returns {Promise<object>}
  */
 const importSkillTemplates = (
   data: string[],
@@ -367,10 +368,10 @@ const importSkillTemplates = (
       }
     );
     confirmationRequest
-      .then((response) => {
+      .then((response : AxiosResponse) => {
         resolve(response.data);
       })
-      .catch((error) => {
+      .catch((error : Error) => {
         reject(error);
       });
   });
@@ -381,7 +382,7 @@ const importSkillTemplates = (
  * @param {String} id The id of the skill to be published
  * @param {String} comments The comments to be include with the request
  * @param {String} token Authorization token
- * @returns {Promise<Object>}
+ * @returns {Promise<object>}
  */
 const publishSkill = (
   id: string,
@@ -395,10 +396,10 @@ const publishSkill = (
       headers: { authorization: token },
     });
     confirmationRequest
-      .then((response) => {
+      .then((response : AxiosResponse) => {
         resolve(response.data);
       })
-      .catch((error) => {
+      .catch((error : Error) => {
         reject(error);
       });
   });
@@ -409,7 +410,7 @@ const publishSkill = (
  * @param {String} id The id of the skill to be updated
  * @param {Object} data Data used to update the skill
  * @param {String} token Authorization token
- * @returns {Promise<Object>}
+ * @returns {Promise<object>}
  */
 const setSkillInformation = (
   id: string,
@@ -429,10 +430,10 @@ const setSkillInformation = (
       }
     );
     confirmationRequest
-      .then((response) => {
+      .then((response : AxiosResponse) => {
         resolve(response.data);
       })
-      .catch((error) => {
+      .catch((error : Error) => {
         reject(error);
       });
   });
@@ -443,7 +444,7 @@ const setSkillInformation = (
  * @param {String} id The id of the skill to be updated
  * @param {Object} data Data used to update the skill
  * @param {String} token Authorization token
- * @returns {Promise<Object>}
+ * @returns {Promise<object>}
  */
 const setSkillInformationFromTemplate = (
   id: string,
@@ -463,10 +464,10 @@ const setSkillInformationFromTemplate = (
       }
     );
     confirmationRequest
-      .then((response) => {
+      .then((response : AxiosResponse) => {
         resolve(response.data);
       })
-      .catch((error) => {
+      .catch((error : Error) => {
         reject(error);
       });
   });
@@ -476,7 +477,7 @@ const setSkillInformationFromTemplate = (
  * Validate skill information
  * @param {String} id The id of the skill to be updated
  * @param {String} token Authorization token
- * @returns {Promise<Object>}
+ * @returns {Promise<object>}
  */
 const validateSkill = (id: string, token: string): Promise<object> => {
   return new Promise((resolve, reject) => {
@@ -491,10 +492,10 @@ const validateSkill = (id: string, token: string): Promise<object> => {
       }
     );
     confirmationRequest
-      .then((response) => {
+      .then((response : AxiosResponse) => {
         resolve(response.data);
       })
-      .catch((error) => {
+      .catch((error : Error) => {
         reject(error);
       });
   });
@@ -505,7 +506,7 @@ const validateSkill = (id: string, token: string): Promise<object> => {
  * @param {String} id The id of the skill to be updated
  * @param {Boolean} watch Set to true or false
  * @param {String} token Authorization token
- * @returns {Promise<Object>}
+ * @returns {Promise<object>}
  */
 const watchSkill = (
   id: string,
@@ -521,10 +522,10 @@ const watchSkill = (
       headers: { authorization: token },
     });
     confirmationRequest
-      .then((response) => {
+      .then((response : AxiosResponse) => {
         resolve(response.data);
       })
-      .catch((error) => {
+      .catch((error : Error) => {
         reject(error);
       });
   });

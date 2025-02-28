@@ -1,10 +1,11 @@
+import { AxiosResponse } from "axios";
 import { client } from "./axiosClient";
 
 /**
  * Get the specified configuration by Id. It returns a promise
  * @param {String} id - the id of the configuration element
  * @param {String} authToken - Authorization token
- * @returns {Promise<Object>}
+ * @returns {Promise<object>}
  */
 const getConfigurationById = (
   id: string,
@@ -16,10 +17,10 @@ const getConfigurationById = (
       { headers: { authorization: authToken } }
     );
     getConfigInformationRequest
-      .then((response) => {
+      .then((response : AxiosResponse) => {
         resolve(response.data);
       })
-      .catch((error) => {
+      .catch((error : Error) => {
         reject(error);
       });
   });
@@ -29,7 +30,7 @@ const getConfigurationById = (
  * Get the specified configuration by type. It returns a promise
  * @param {String} type - the id of the configuration element
  * @param {String} authToken - Authorization token
- * @returns {Promise<Object>}
+ * @returns {Promise<object>}
  */
 const getConfigurationByType = (
   type: string,
@@ -41,10 +42,10 @@ const getConfigurationByType = (
       { headers: { authorization: authToken } }
     );
     getConfigInformationRequest
-      .then((response) => {
+      .then((response : AxiosResponse) => {
         resolve(response.data);
       })
-      .catch((error) => {
+      .catch((error : Error) => {
         reject(error);
       });
   });
@@ -55,7 +56,7 @@ const getConfigurationByType = (
  * @param {String} id - the id of the configuration element
  * @param {Object} data - the object containing the updated configuration element
  * @param {String} authToken - Authorization token
- * @returns {Promise<Object>}
+ * @returns {Promise<object>}
  */
 const setConfigurationById = (
   id: string,
@@ -69,10 +70,10 @@ const setConfigurationById = (
       { headers: { authorization: authToken } }
     );
     getConfigInformationRequest
-      .then((response) => {
+      .then((response : AxiosResponse) => {
         resolve(response.data);
       })
-      .catch((error) => {
+      .catch((error : Error) => {
         reject(error);
       });
   });

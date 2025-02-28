@@ -1,9 +1,10 @@
+import { AxiosResponse } from "axios";
 import { client } from "./axiosClient";
 
 /**
  * Get talent transformation steps for the current user
  * @param {String} authToken The authentication token
- * @returns {Promise<Object>}
+ * @returns {Promise<object>}
  */
 const getTalentTransformationStepsForCurrentUser = (
   authToken: string
@@ -18,10 +19,10 @@ const getTalentTransformationStepsForCurrentUser = (
         : {}
     );
     request
-      .then((response) => {
+      .then((response : AxiosResponse) => {
         resolve(response.data);
       })
-      .catch((error) => {
+      .catch((error : Error) => {
         reject(error);
       });
   });
@@ -30,7 +31,7 @@ const getTalentTransformationStepsForCurrentUser = (
 /**
  * Get the talent transformation summary for the whole organization
  * @param {String} authToken
- * @returns {Promise<Object>} The talent transformation summary
+ * @returns {Promise<object>} The talent transformation summary
  */
 const getTalentTransformationSummary = (authToken: string): Promise<object> => {
   return new Promise((resolve, reject) => {
@@ -43,10 +44,10 @@ const getTalentTransformationSummary = (authToken: string): Promise<object> => {
         : {}
     );
     request
-      .then((response) => {
+      .then((response : AxiosResponse) => {
         resolve(response.data);
       })
-      .catch((error) => {
+      .catch((error : Error) => {
         reject(error);
       });
   });
@@ -56,7 +57,7 @@ const getTalentTransformationSummary = (authToken: string): Promise<object> => {
  * Get the talent transformation summary for the team
  * @param {String} teamId
  * @param {String} authToken
- * @returns {Promise<Object>} The talent transformation summary
+ * @returns {Promise<object>} The talent transformation summary
  */
 const getTalentTransformationSummaryForTeam = (
   teamId: string,
@@ -72,10 +73,10 @@ const getTalentTransformationSummaryForTeam = (
         : {}
     );
     request
-      .then((response) => {
+      .then((response : AxiosResponse) => {
         resolve(response.data);
       })
-      .catch((error) => {
+      .catch((error : Error) => {
         reject(error);
       });
   });
@@ -87,7 +88,7 @@ const getTalentTransformationSummaryForTeam = (
  * @param {Object} data Data used to update the talent transformation step
  * @param {Boolean} returnAllStepsStatuses If true, return all steps statuses
  * @param {String} token Authorization token
- * @returns {Promise<Object>}
+ * @returns {Promise<object>}
  */
 const setTalentTransformationStepData = (
   id: string,
@@ -109,10 +110,10 @@ const setTalentTransformationStepData = (
       }
     );
     confirmationRequest
-      .then((response) => {
+      .then((response : AxiosResponse) => {
         resolve(response.data);
       })
-      .catch((error) => {
+      .catch((error : Error) => {
         reject(error);
       });
   });

@@ -1,3 +1,4 @@
+import { AxiosResponse } from "axios";
 import { client } from "./axiosClient";
 
 interface Activity {
@@ -11,7 +12,7 @@ interface Activity {
  * @param {String} skill
  * @param {Array<Activity>} activities
  * @param {String} token Authorization token
- * @returns {Promise<Object>}
+ * @returns {Promise<object>}
  */
 const createDepartmentTrainingPlan = (
   name: string,
@@ -35,10 +36,10 @@ const createDepartmentTrainingPlan = (
       }
     );
     confirmationRequest
-      .then((response) => {
+      .then((response : AxiosResponse) => {
         resolve(response.data);
       })
-      .catch((error) => {
+      .catch((error : Error) => {
         reject(error);
       });
   });
@@ -48,7 +49,7 @@ const createDepartmentTrainingPlan = (
  * Delete department training plan
  * @param {String} id The id of the template to be deleted
  * @param {String} token Authorization token
- * @returns {Promise<Object>}
+ * @returns {Promise<object>}
  */
 const deleteDepartmentTrainingPlan = (
   id: string,
@@ -62,10 +63,10 @@ const deleteDepartmentTrainingPlan = (
       },
     });
     request
-      .then((response) => {
+      .then((response : AxiosResponse) => {
         resolve(response.data);
       })
-      .catch((error) => {
+      .catch((error : Error) => {
         reject(error);
       });
   });
@@ -76,7 +77,7 @@ const deleteDepartmentTrainingPlan = (
  * @param {Number} id The id of the plan
  * @param {String} version The version of the plan
  * @param {String} token Authorization token
- * @returns {Promise<Object>}
+ * @returns {Promise<object>}
  */
 const getDepartmentTrainingPlanInformationById = (
   id: number,
@@ -91,10 +92,10 @@ const getDepartmentTrainingPlanInformationById = (
       }
     );
     confirmationRequest
-      .then((response) => {
+      .then((response : AxiosResponse) => {
         resolve(response.data);
       })
-      .catch((error) => {
+      .catch((error : Error) => {
         reject(error);
       });
   });
@@ -105,7 +106,7 @@ const getDepartmentTrainingPlanInformationById = (
  * @param {String} filter The filter used to select the plan
  * @param {String} version The version of the plan
  * @param {String} token Authorization token
- * @returns {Promise<Object>}
+ * @returns {Promise<object>}
  */
 const getDepartmentTrainingPlanList = (
   filter: string,
@@ -125,10 +126,10 @@ const getDepartmentTrainingPlanList = (
       }
     );
     confirmationRequest
-      .then((response) => {
+      .then((response : AxiosResponse) => {
         resolve(response.data);
       })
-      .catch((error) => {
+      .catch((error : Error) => {
         reject(error);
       });
   });
@@ -138,7 +139,7 @@ const getDepartmentTrainingPlanList = (
  * Publish department training plan
  * @param {number} id The id of the plan to be published
  * @param {String} token Authorization token
- * @returns {Promise<Object>}
+ * @returns {Promise<object>}
  */
 const publishDepartmentTrainingPlan = (
   id: number,
@@ -153,10 +154,10 @@ const publishDepartmentTrainingPlan = (
       }
     );
     confirmationRequest
-      .then((response) => {
+      .then((response : AxiosResponse) => {
         resolve(response.data);
       })
-      .catch((error) => {
+      .catch((error : Error) => {
         reject(error);
       });
   });
@@ -167,7 +168,7 @@ const publishDepartmentTrainingPlan = (
  * @param {String} id The id of the plan to be updated
  * @param {Object} data Data used to update the plan
  * @param {String} token Authorization token
- * @returns {Promise<Object>}
+ * @returns {Promise<object>}
  */
 const setDepartmentTrainingPlanInformation = (
   id: string,
@@ -186,10 +187,10 @@ const setDepartmentTrainingPlanInformation = (
       }
     );
     confirmationRequest
-      .then((response) => {
+      .then((response : AxiosResponse) => {
         resolve(response.data);
       })
-      .catch((error) => {
+      .catch((error : Error) => {
         reject(error);
       });
   });

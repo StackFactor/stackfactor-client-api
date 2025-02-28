@@ -1,10 +1,11 @@
+import { AxiosResponse } from "axios";
 import { client } from "./axiosClient";
 
 /**
  * Get tenant information
  * @param {String} category Tenant information category
  * @param {String} token Authorization token
- * @returns {Promise<Object>}
+ * @returns {Promise<object>}
  */
 const getTenantInformation = (
   category: string,
@@ -18,10 +19,10 @@ const getTenantInformation = (
       headers: { authorization: token },
     });
     request
-      .then((response) => {
+      .then((response : AxiosResponse) => {
         resolve(response.data ? response.data : null);
       })
-      .catch((error) => {
+      .catch((error : Error) => {
         reject(error);
       });
   });
@@ -32,7 +33,7 @@ const getTenantInformation = (
  * @param {String} category Tenant information category
  * @param {Object} data New or updated tenant data information
  * @param {String} token Authorization token
- * @returns {Promise<Object>}
+ * @returns {Promise<object>}
  */
 const setTenantInformation = (
   category: string,
@@ -52,10 +53,10 @@ const setTenantInformation = (
       }
     );
     confirmationRequest
-      .then((response) => {
+      .then((response : AxiosResponse) => {
         resolve(response.data);
       })
-      .catch((error) => {
+      .catch((error : Error) => {
         reject(error);
       });
   });

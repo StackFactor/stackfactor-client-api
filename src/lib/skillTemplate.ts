@@ -1,10 +1,11 @@
+import { AxiosResponse } from "axios";
 import { client } from "./axiosClient";
 
 /**
  * Create skill template and set information
  * @param {Object} data
  * @param {String} token Authorization token
- * @returns {Promise<Object>}
+ * @returns {Promise<object>}
  */
 const createSkillTemplate = (data: object, token: string): Promise<object> => {
   return new Promise((resolve, reject) => {
@@ -15,10 +16,10 @@ const createSkillTemplate = (data: object, token: string): Promise<object> => {
       headers: { authorization: token },
     });
     confirmationRequest
-      .then((response) => {
+      .then((response : AxiosResponse) => {
         resolve(response.data);
       })
-      .catch((error) => {
+      .catch((error : Error) => {
         reject(error);
       });
   });
@@ -29,7 +30,7 @@ const createSkillTemplate = (data: object, token: string): Promise<object> => {
  * @param {number} id The id of the template to be deleted
  * @param {String} comments The comments included with the deletion
  * @param {String} token Authorization token
- * @returns {Promise<Object>}
+ * @returns {Promise<object>}
  */
 const deleteSkillTemplate = (
   id: number,
@@ -46,10 +47,10 @@ const deleteSkillTemplate = (
       data: data,
     });
     request
-      .then((response) => {
+      .then((response : AxiosResponse) => {
         resolve(response.data);
       })
-      .catch((error) => {
+      .catch((error : Error) => {
         reject(error);
       });
   });
@@ -59,7 +60,7 @@ const deleteSkillTemplate = (
  * Discard the skill template draft changes
  * @param {String} id The id of the skill template to be deleted
  * @param {String} token Authorization token
- * @returns {Promise<Object>}
+ * @returns {Promise<object>}
  */
 const discardSkillTemplateChanges = (
   id: string,
@@ -72,10 +73,10 @@ const discardSkillTemplateChanges = (
       data: data,
     });
     request
-      .then((response) => {
+      .then((response : AxiosResponse) => {
         resolve(response.data);
       })
-      .catch((error) => {
+      .catch((error : Error) => {
         reject(error);
       });
   });
@@ -87,7 +88,7 @@ const discardSkillTemplateChanges = (
  * @param {String} version The version of the template
  * @param {Boolean} returnNullIfVersionNotFound When true it will return null if the version is not found
  * @param {String} token Authorization token
- * @returns {Promise<Object>}
+ * @returns {Promise<object>}
  */
 const getSkillTemplateInformationById = (
   id: string,
@@ -103,10 +104,10 @@ const getSkillTemplateInformationById = (
       }
     );
     confirmationRequest
-      .then((response) => {
+      .then((response : AxiosResponse) => {
         resolve(response.data);
       })
-      .catch((error) => {
+      .catch((error : Error) => {
         reject(error);
       });
   });
@@ -119,7 +120,7 @@ const getSkillTemplateInformationById = (
  * @param {Boolean} includeDeleted When true it will return the deleted records as well
  * @param {Boolean} namesOnly When true it will return only the names of the templates
  * @param {String} token Authorization token
- * @returns {Promise<Object>}
+ * @returns {Promise<object>}
  */
 const getSkillTemplateList = (
   filter: string[],
@@ -143,10 +144,10 @@ const getSkillTemplateList = (
       }
     );
     confirmationRequest
-      .then((response) => {
+      .then((response : AxiosResponse) => {
         resolve(response.data);
       })
-      .catch((error) => {
+      .catch((error : Error) => {
         reject(error);
       });
   });
@@ -155,7 +156,7 @@ const getSkillTemplateList = (
 /**
  * Get skill technology stacks template list
  * @param {String} token Authorization token
- * @returns {Promise<Object>}
+ * @returns {Promise<object>}
  */
 const getTechnologyStacks = (token: string): Promise<object> => {
   return new Promise((resolve, reject) => {
@@ -163,10 +164,10 @@ const getTechnologyStacks = (token: string): Promise<object> => {
       headers: { authorization: token },
     });
     confirmationRequest
-      .then((response) => {
+      .then((response : AxiosResponse) => {
         resolve(response.data);
       })
-      .catch((error) => {
+      .catch((error : Error) => {
         reject(error);
       });
   });
@@ -177,7 +178,7 @@ const getTechnologyStacks = (token: string): Promise<object> => {
  * @param {number} id The id of the template to be published
  * @param {String} comments The comments to be include with the request
  * @param {String} token Authorization token
- * @returns {Promise<Object>}
+ * @returns {Promise<object>}
  */
 const publishTemplate = (
   id: number,
@@ -195,10 +196,10 @@ const publishTemplate = (
       }
     );
     confirmationRequest
-      .then((response) => {
+      .then((response : AxiosResponse) => {
         resolve(response.data);
       })
-      .catch((error) => {
+      .catch((error : Error) => {
         reject(error);
       });
   });
@@ -209,7 +210,7 @@ const publishTemplate = (
  * @param {String} id The id of the template to be updated
  * @param {Object} data Data used to update the template
  * @param {String} token Authorization token
- * @returns {Promise<Object>}
+ * @returns {Promise<object>}
  */
 const setTemplateInformation = (
   id: string,
@@ -229,10 +230,10 @@ const setTemplateInformation = (
       }
     );
     confirmationRequest
-      .then((response) => {
+      .then((response : AxiosResponse) => {
         resolve(response.data);
       })
-      .catch((error) => {
+      .catch((error : Error) => {
         reject(error);
       });
   });
@@ -243,7 +244,7 @@ const setTemplateInformation = (
  * @param {String} id The id of the template to be updated
  * @param {Object} tags Updated template tags
  * @param {String} token Authorization token
- * @returns {Promise<Object>}
+ * @returns {Promise<object>}
  */
 const setTemplateTags = (
   id: string,
@@ -263,10 +264,10 @@ const setTemplateTags = (
       }
     );
     confirmationRequest
-      .then((response) => {
+      .then((response : AxiosResponse) => {
         resolve(response.data);
       })
-      .catch((error) => {
+      .catch((error : Error) => {
         reject(error);
       });
   });
@@ -276,7 +277,7 @@ const setTemplateTags = (
  * Validate skill template information
  * @param {String} id The id of the skill to be updated
  * @param {String} token Authorization token
- * @returns {Promise<Object>}
+ * @returns {Promise<object>}
  */
 const validateTemplate = (id: string, token: string): Promise<object> => {
   return new Promise((resolve, reject) => {
@@ -291,10 +292,10 @@ const validateTemplate = (id: string, token: string): Promise<object> => {
       }
     );
     confirmationRequest
-      .then((response) => {
+      .then((response : AxiosResponse) => {
         resolve(response.data);
       })
-      .catch((error) => {
+      .catch((error : Error) => {
         reject(error);
       });
   });
@@ -305,7 +306,7 @@ const validateTemplate = (id: string, token: string): Promise<object> => {
  * @param {String} id The id of the skill template to be updated
  * @param {Boolean} watch Set to true or false
  * @param {String} token Authorization token
- * @returns {Promise<Object>}
+ * @returns {Promise<object>}
  */
 const watchSkillTemplate = (
   id: string,
@@ -325,10 +326,10 @@ const watchSkillTemplate = (
       }
     );
     confirmationRequest
-      .then((response) => {
+      .then((response : AxiosResponse) => {
         resolve(response.data);
       })
-      .catch((error) => {
+      .catch((error : Error) => {
         reject(error);
       });
   });

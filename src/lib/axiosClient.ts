@@ -1,4 +1,4 @@
-import axios, { AxiosError } from "axios";
+import axios, { AxiosError, AxiosResponse } from "axios";
 import { RESPONSE_TYPE } from "./constants";
 import utils from "./utils";
 
@@ -8,13 +8,6 @@ interface ErrorResponse {
   value: string;
   errors: Array<object>;
 }
-
-interface responseData {
-  data: object;
-  id: string;
-  errors: Array<ErrorResponse>;
-}
-
 
 const baseUrl = utils.getBaseUrl();
 
@@ -32,8 +25,8 @@ const errorToString = (error: AxiosError): string => {
   if (error != null) {
     if (error.response?.data) {
       let asString = "";
-      if (Array.isArray((error.response.data as responseData).errors)) {
-        (error.response.data as responseData).errors.forEach(
+      if (Array.isArray((error.response.data as AxiosResponse).errors)) {
+        (error.response.data as AxiosResponse).errors.forEach(
           (item: ErrorResponse, index: number) => {
             asString += `${index > 0 ? ", " : ""} ${item.msg} param ${
               item.param
@@ -41,12 +34,12 @@ const errorToString = (error: AxiosError): string => {
           }
         );
         return asString;
-      } else if ((error.response.data as responseData).errors) {
-        return (error.response.data as responseData).errors.toString();
+      } else if ((error.response.data as AxiosResponse).errors) {
+        return (error.response.data as AxiosResponse).errors.toString();
       } else if (error.response.statusText) {
         return error.response.statusText.toString();
       } else {
-        return (error.response.data as responseData).toString();
+        return (error.response.data as AxiosResponse).toString();
       }
     } else {
       return error.message ? error.message : "Unknown error";

@@ -1,3 +1,4 @@
+import { AxiosResponse } from "axios";
 import { client } from "../axiosClient";
 
 interface GenerateContentData {
@@ -21,7 +22,7 @@ interface GenerateContentAsyncData {
  * @param {String} contentType
  * @param {String} integrationId
  * @param {String} token
- * @returns {Promise<Object>}
+ * @returns {Promise<object>}
  */
 export const generateContent = (
   data: string[],
@@ -39,10 +40,10 @@ export const generateContent = (
       headers: { authorization: token },
     });
     request
-      .then((response) => {
+      .then((response : AxiosResponse) => {
         resolve(response.data);
       })
-      .catch((error) => {
+      .catch((error : Error) => {
         reject(error);
       });
   });
@@ -57,7 +58,7 @@ export const generateContent = (
  * @param {String} integrationId
  * @param {String} comments
  * @param {String} token
- * @returns {Promise<Object>}
+ * @returns {Promise<object>}
  */
 export const generateContentAsync = (
   id: string,
@@ -85,10 +86,10 @@ export const generateContentAsync = (
       }
     );
     request
-      .then((response) => {
+      .then((response : AxiosResponse) => {
         resolve(response.data);
       })
-      .catch((error) => {
+      .catch((error : Error) => {
         reject(error);
       });
   });

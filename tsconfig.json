@@ -12,7 +12,11 @@
     "esModuleInterop": true,
     "skipLibCheck": true,
     "resolveJsonModule": true,
-    "typeRoots": ["./node_modules/@types", "./declarations"]
+    "typeRoots": [
+      "./node_modules/@types/axios",
+      "./node_modules/@types/node",
+      "./declarations"
+    ]
   },
   "include": ["src", "index.d.ts"],
   "exclude": ["node_modules", "dist", "**/*.test.ts"]

@@ -1,3 +1,4 @@
+import { AxiosResponse } from "axios";
 import { client } from "./axiosClient";
 
 interface LearningPathData {
@@ -14,7 +15,7 @@ interface LearningPathData {
  * Create learning path and set information
  * @param {Object} data
  * @param {String} token Authorization token
- * @returns {Promise<Object>}
+ * @returns {Promise<object>}
  */
 const createLearningPath = (data: object, token: string): Promise<object> => {
   return new Promise((resolve, reject) => {
@@ -26,10 +27,10 @@ const createLearningPath = (data: object, token: string): Promise<object> => {
       }
     );
     confirmationRequest
-      .then((response) => {
+      .then((response : AxiosResponse) => {
         resolve(response.data);
       })
-      .catch((error) => {
+      .catch((error : Error) => {
         reject(error);
       });
   });
@@ -40,7 +41,7 @@ const createLearningPath = (data: object, token: string): Promise<object> => {
  * @param {String} id The id of the template to be deleted
  * @param {String} comments The comments for approver
  * @param {String} token Authorization token
- * @returns {Promise<Object>}
+ * @returns {Promise<object>}
  */
 const deleteLearningPath = (id: string, comments: string, token: string): Promise<object> => {
   return new Promise((resolve, reject) => {
@@ -53,10 +54,10 @@ const deleteLearningPath = (id: string, comments: string, token: string): Promis
       data: data,
     });
     request
-      .then((response) => {
+      .then((response : AxiosResponse) => {
         resolve(response.data);
       })
-      .catch((error) => {
+      .catch((error : Error) => {
         reject(error);
       });
   });
@@ -66,7 +67,7 @@ const deleteLearningPath = (id: string, comments: string, token: string): Promis
  * Discard the training plan draft changes
  * @param {String} id The id of the training plan to be deleted
  * @param {String} token Authorization token
- * @returns {Promise<Object>}
+ * @returns {Promise<object>}
  */
 const discardLearningPathChanges = (id: string, token: string): Promise<object> => {
   return new Promise((resolve, reject) => {
@@ -76,10 +77,10 @@ const discardLearningPathChanges = (id: string, token: string): Promise<object> 
       data: data,
     });
     request
-      .then((response) => {
+      .then((response : AxiosResponse) => {
         resolve(response.data);
       })
-      .catch((error) => {
+      .catch((error : Error) => {
         reject(error);
       });
   });
@@ -90,7 +91,7 @@ const discardLearningPathChanges = (id: string, token: string): Promise<object> 
  * @param {String} id The id of the template
  * @param {String} version The version of the template
  * @param {String} token Authorization token
- * @returns {Promise<Object>}
+ * @returns {Promise<object>}
  */
 const getLearningPathInformationById = (id: string, version: string, token: string): Promise<object> => {
   return new Promise((resolve, reject) => {
@@ -101,10 +102,10 @@ const getLearningPathInformationById = (id: string, version: string, token: stri
       }
     );
     confirmationRequest
-      .then((response) => {
+      .then((response : AxiosResponse) => {
         resolve(response.data);
       })
-      .catch((error) => {
+      .catch((error : Error) => {
         reject(error);
       });
   });
@@ -138,10 +139,10 @@ const getLearningPathsList = (
       }
     );
     confirmationRequest
-      .then((response) => {
+      .then((response : AxiosResponse) => {
         resolve(response.data);
       })
-      .catch((error) => {
+      .catch((error : Error) => {
         reject(error);
       });
   });
@@ -152,7 +153,7 @@ const getLearningPathsList = (
  * @param {String} id The id of the template to be published
  * @param {String} comments The comments to be include with the request
  * @param {String} token Authorization token
- * @returns {Promise<Object>}
+ * @returns {Promise<object>}
  */
 const publishLearningPath = (id: string, comments: string, token: string): Promise<object> => {
   return new Promise((resolve, reject) => {
@@ -166,10 +167,10 @@ const publishLearningPath = (id: string, comments: string, token: string): Promi
       }
     );
     confirmationRequest
-      .then((response) => {
+      .then((response : AxiosResponse) => {
         resolve(response.data);
       })
-      .catch((error) => {
+      .catch((error : Error) => {
         reject(error);
       });
   });
@@ -180,7 +181,7 @@ const publishLearningPath = (id: string, comments: string, token: string): Promi
  * @param {String} id The id of the template to be updated
  * @param {Object} data Data used to update the template
  * @param {String} token Authorization token
- * @returns {Promise<Object>}
+ * @returns {Promise<object>}
  */
 const setLearningPathInformation = (id: string, data: object, token: string): Promise<object> => {
   return new Promise((resolve, reject) => {
@@ -196,10 +197,10 @@ const setLearningPathInformation = (id: string, data: object, token: string): Pr
       }
     );
     confirmationRequest
-      .then((response) => {
+      .then((response : AxiosResponse) => {
         resolve(response.data);
       })
-      .catch((error) => {
+      .catch((error : Error) => {
         reject(error);
       });
   });
@@ -210,7 +211,7 @@ const setLearningPathInformation = (id: string, data: object, token: string): Pr
  * @param {String} id The id of the template to be updated
  * @param {Object} tags The updated tags
  * @param {String} token Authorization token
- * @returns {Promise<Object>}
+ * @returns {Promise<object>}
  */
 const setLearningPathTags = (id: string, tags: object, token: string): Promise<object> => {
   return new Promise((resolve, reject) => {
@@ -226,10 +227,10 @@ const setLearningPathTags = (id: string, tags: object, token: string): Promise<o
       }
     );
     confirmationRequest
-      .then((response) => {
+      .then((response : AxiosResponse) => {
         resolve(response.data);
       })
-      .catch((error) => {
+      .catch((error : Error) => {
         reject(error);
       });
   });
