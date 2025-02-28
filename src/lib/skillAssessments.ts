@@ -1,4 +1,4 @@
-import { AxiosResponse } from "axios";
+import { AxiosError, AxiosResponse } from "axios";
 import { client } from "./axiosClient";
 
 /**
@@ -32,7 +32,7 @@ const addEntry = (
       .then((response : AxiosResponse) => {
         resolve(response.data);
       })
-      .catch((error : Error) => {
+      .catch((error : AxiosError) => {
         reject(error);
       });
   });
@@ -69,7 +69,7 @@ const create = (
       .then((response : AxiosResponse) => {
         resolve(response.data);
       })
-      .catch((error : Error) => {
+      .catch((error : AxiosError) => {
         reject(error);
       });
   });
@@ -100,7 +100,7 @@ const deleteSkillAssessment = (
       .then((response : AxiosResponse) => {
         resolve(response.data);
       })
-      .catch((error : Error) => {
+      .catch((error : AxiosError) => {
         reject(error);
       });
   });
@@ -121,7 +121,7 @@ const getById = (id: string, token: string): Promise<object> => {
       .then((response : AxiosResponse) => {
         resolve(response.data);
       })
-      .catch((error : Error) => {
+      .catch((error : AxiosError) => {
         reject(error);
       });
   });
@@ -150,7 +150,7 @@ const getByUserAndSkill = (
       .then((response : AxiosResponse) => {
         resolve(response.data);
       })
-      .catch((error : Error) => {
+      .catch((error : AxiosError) => {
         reject(error);
       });
   });
@@ -177,7 +177,7 @@ const getList = (userId: string, token: string): Promise<object> => {
       .then((response : AxiosResponse) => {
         resolve(response.data);
       })
-      .catch((error : Error) => {
+      .catch((error : AxiosError) => {
         reject(error);
       });
   });

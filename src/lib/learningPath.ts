@@ -1,4 +1,4 @@
-import { AxiosResponse } from "axios";
+import { AxiosError, AxiosResponse } from "axios";
 import { client } from "./axiosClient";
 
 interface LearningPathData {
@@ -30,7 +30,7 @@ const createLearningPath = (data: object, token: string): Promise<object> => {
       .then((response : AxiosResponse) => {
         resolve(response.data);
       })
-      .catch((error : Error) => {
+      .catch((error : AxiosError) => {
         reject(error);
       });
   });
@@ -57,7 +57,7 @@ const deleteLearningPath = (id: string, comments: string, token: string): Promis
       .then((response : AxiosResponse) => {
         resolve(response.data);
       })
-      .catch((error : Error) => {
+      .catch((error : AxiosError) => {
         reject(error);
       });
   });
@@ -80,7 +80,7 @@ const discardLearningPathChanges = (id: string, token: string): Promise<object> 
       .then((response : AxiosResponse) => {
         resolve(response.data);
       })
-      .catch((error : Error) => {
+      .catch((error : AxiosError) => {
         reject(error);
       });
   });
@@ -105,7 +105,7 @@ const getLearningPathInformationById = (id: string, version: string, token: stri
       .then((response : AxiosResponse) => {
         resolve(response.data);
       })
-      .catch((error : Error) => {
+      .catch((error : AxiosError) => {
         reject(error);
       });
   });
@@ -142,7 +142,7 @@ const getLearningPathsList = (
       .then((response : AxiosResponse) => {
         resolve(response.data);
       })
-      .catch((error : Error) => {
+      .catch((error : AxiosError) => {
         reject(error);
       });
   });
@@ -170,7 +170,7 @@ const publishLearningPath = (id: string, comments: string, token: string): Promi
       .then((response : AxiosResponse) => {
         resolve(response.data);
       })
-      .catch((error : Error) => {
+      .catch((error : AxiosError) => {
         reject(error);
       });
   });
@@ -200,7 +200,7 @@ const setLearningPathInformation = (id: string, data: object, token: string): Pr
       .then((response : AxiosResponse) => {
         resolve(response.data);
       })
-      .catch((error : Error) => {
+      .catch((error : AxiosError) => {
         reject(error);
       });
   });
@@ -230,7 +230,7 @@ const setLearningPathTags = (id: string, tags: object, token: string): Promise<o
       .then((response : AxiosResponse) => {
         resolve(response.data);
       })
-      .catch((error : Error) => {
+      .catch((error : AxiosError) => {
         reject(error);
       });
   });

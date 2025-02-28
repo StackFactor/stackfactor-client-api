@@ -25,6 +25,7 @@ const errorToString = (error: AxiosError): string => {
   if (error != null) {
     if (error.response?.data) {
       let asString = "";
+      
       if (Array.isArray((error.response.data as AxiosResponse).errors)) {
         (error.response.data as AxiosResponse).errors.forEach(
           (item: ErrorResponse, index: number) => {

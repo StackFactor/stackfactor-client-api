@@ -1,4 +1,4 @@
-import { AxiosResponse } from "axios";
+import { AxiosError, AxiosResponse } from "axios";
 import { client } from "./axiosClient";
 
 interface AskQuestionData {
@@ -51,7 +51,7 @@ const askQuestion = (
       .then((response : AxiosResponse) => {
         resolve(response.data);
       })
-      .catch((error : Error) => {
+      .catch((error : AxiosError) => {
         reject(error);
       });
   });
@@ -82,7 +82,7 @@ const endConversation = (
       .then((response : AxiosResponse) => {
         resolve(response.data);
       })
-      .catch((error : Error) => {
+      .catch((error : AxiosError) => {
         reject(error);
       });
   });
@@ -109,7 +109,7 @@ const getConversationByElementId = (
       .then((response : AxiosResponse) => {
         resolve(response.data);
       })
-      .catch((error : Error) => {
+      .catch((error : AxiosError) => {
         reject(error);
       });
   });
@@ -136,7 +136,7 @@ const getVoiceAssistantUrl = (
       .then((response : AxiosResponse) => {
         resolve(response.data);
       })
-      .catch((error : Error) => {
+      .catch((error : AxiosError) => {
         reject(error);
       });
   });
@@ -183,7 +183,7 @@ const startConversation = (
       .then((response : AxiosResponse) => {
         resolve(response.data);
       })
-      .catch((error : Error) => {
+      .catch((error : AxiosError) => {
         reject(error);
       });
   });

@@ -1,4 +1,4 @@
-import { AxiosResponse } from "axios";
+import { AxiosError, AxiosResponse } from "axios";
 import { client } from "./axiosClient";
 
 /**
@@ -20,7 +20,7 @@ const createSkill = (data: object, token: string): Promise<object> => {
       .then((response : AxiosResponse) => {
         resolve(response.data);
       })
-      .catch((error : Error) => {
+      .catch((error : AxiosError) => {
         reject(error);
       });
   });
@@ -51,7 +51,7 @@ const createSkillsFromTemplates = (
       .then((response : AxiosResponse) => {
         resolve(response.data);
       })
-      .catch((error : Error) => {
+      .catch((error : AxiosError) => {
         reject(error);
       });
   });
@@ -82,7 +82,7 @@ const deleteSkill = (
       .then((response : AxiosResponse) => {
         resolve(response.data);
       })
-      .catch((error : Error) => {
+      .catch((error : AxiosError) => {
         reject(error);
       });
   });
@@ -105,7 +105,7 @@ const discardSkillChanges = (id: string, token: string): Promise<object> => {
       .then((response : AxiosResponse) => {
         resolve(response.data);
       })
-      .catch((error : Error) => {
+      .catch((error : AxiosError) => {
         reject(error);
       });
   });
@@ -125,7 +125,7 @@ const getImportedSkillTemplates = (token: string): Promise<object> => {
       .then((response : AxiosResponse) => {
         resolve(response.data);
       })
-      .catch((error : Error) => {
+      .catch((error : AxiosError) => {
         reject(error);
       });
   });
@@ -154,7 +154,7 @@ const getSkillRelatedRoles = (
       .then((response : AxiosResponse) => {
         resolve(response.data);
       })
-      .catch((error : Error) => {
+      .catch((error : AxiosError) => {
         reject(error);
       });
   });
@@ -181,7 +181,7 @@ const getSkillRequiredAssessmentType = (
       .then((response : AxiosResponse) => {
         resolve(response.data);
       })
-      .catch((error : Error) => {
+      .catch((error : AxiosError) => {
         reject(error);
       });
   });
@@ -212,7 +212,7 @@ const getSkillInformationById = (
       .then((response : AxiosResponse) => {
         resolve(response.data);
       })
-      .catch((error : Error) => {
+      .catch((error : AxiosError) => {
         reject(error);
       });
   });
@@ -252,7 +252,7 @@ const getSkillList = (
       .then((response : AxiosResponse) => {
         resolve(response.data);
       })
-      .catch((error : Error) => {
+      .catch((error : AxiosError) => {
         reject(error);
       });
   });
@@ -283,7 +283,7 @@ const getTeamSkillsById = (
       .then((response : AxiosResponse) => {
         resolve(response.data);
       })
-      .catch((error : Error) => {
+      .catch((error : AxiosError) => {
         reject(error);
       });
   });
@@ -310,7 +310,7 @@ const getCurrentUserTeamSkills = (
       .then((response : AxiosResponse) => {
         resolve(response.data);
       })
-      .catch((error : Error) => {
+      .catch((error : AxiosError) => {
         reject(error);
       });
   });
@@ -337,7 +337,7 @@ const getSkillTemplateUpdates = (
       .then((response : AxiosResponse) => {
         resolve(response.data);
       })
-      .catch((error : Error) => {
+      .catch((error : AxiosError) => {
         reject(error);
       });
   });
@@ -371,7 +371,7 @@ const importSkillTemplates = (
       .then((response : AxiosResponse) => {
         resolve(response.data);
       })
-      .catch((error : Error) => {
+      .catch((error : AxiosError) => {
         reject(error);
       });
   });
@@ -399,7 +399,7 @@ const publishSkill = (
       .then((response : AxiosResponse) => {
         resolve(response.data);
       })
-      .catch((error : Error) => {
+      .catch((error : AxiosError) => {
         reject(error);
       });
   });
@@ -433,7 +433,7 @@ const setSkillInformation = (
       .then((response : AxiosResponse) => {
         resolve(response.data);
       })
-      .catch((error : Error) => {
+      .catch((error : AxiosError) => {
         reject(error);
       });
   });
@@ -467,7 +467,7 @@ const setSkillInformationFromTemplate = (
       .then((response : AxiosResponse) => {
         resolve(response.data);
       })
-      .catch((error : Error) => {
+      .catch((error : AxiosError) => {
         reject(error);
       });
   });
@@ -495,7 +495,7 @@ const validateSkill = (id: string, token: string): Promise<object> => {
       .then((response : AxiosResponse) => {
         resolve(response.data);
       })
-      .catch((error : Error) => {
+      .catch((error : AxiosError) => {
         reject(error);
       });
   });
@@ -525,7 +525,7 @@ const watchSkill = (
       .then((response : AxiosResponse) => {
         resolve(response.data);
       })
-      .catch((error : Error) => {
+      .catch((error : AxiosError) => {
         reject(error);
       });
   });

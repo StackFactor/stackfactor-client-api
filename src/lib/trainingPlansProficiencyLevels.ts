@@ -1,4 +1,4 @@
-import { AxiosResponse } from "axios";
+import { AxiosError, AxiosResponse } from "axios";
 import { client } from "./axiosClient";
 
 /**
@@ -22,7 +22,7 @@ const getTrainingPlanProficiencyLevel = (
       .then((response : AxiosResponse) => {
         resolve(response.data);
       })
-      .catch((error : Error) => {
+      .catch((error : AxiosError) => {
         reject(error);
       });
   });
@@ -59,7 +59,7 @@ const getTrainingPlanProficiencyLevelList = (
       .then((response : AxiosResponse) => {
         resolve(response.data);
       })
-      .catch((error : Error) => {
+      .catch((error : AxiosError) => {
         reject(error);
       });
   });
@@ -87,7 +87,7 @@ const reorderTrainingPlansProficiencyLevels = (
       .then(() => {
         resolve();
       })
-      .catch((error : Error) => {
+      .catch((error : AxiosError) => {
         reject(error);
       });
   });
@@ -117,7 +117,7 @@ const updateTrainingPlanProficiencyLevel = (
       .then(() => {
         resolve();
       })
-      .catch((error : Error) => {
+      .catch((error : AxiosError) => {
         reject(error);
       });
   });

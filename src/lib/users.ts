@@ -1,4 +1,4 @@
-import { AxiosResponse } from "axios";
+import { AxiosResponse, AxiosError } from "axios";
 import { client } from "./axiosClient";
 
 /**
@@ -29,7 +29,7 @@ const addAPIToken = (name: string, expiration: Date, token: string): Promise<obj
           reject(process.env.ERROR_INVALID_INFORMATION);
         }
       })
-      .catch((error : Error) => {
+      .catch((error : AxiosError) => {
         reject(error);
       });
   });
@@ -53,7 +53,7 @@ const confirmEmailAddress = (validationCode: string): Promise<void> => {
       .then(() => {
         resolve();
       })
-      .catch((error : Error) => {
+      .catch((error : AxiosError) => {
         reject(error);
       });
   });
@@ -81,7 +81,7 @@ const confirmPhone = (validationCode: string, token: string): Promise<object> =>
       .then((response : AxiosResponse) => {
         resolve(response.data);
       })
-      .catch((error : Error) => {
+      .catch((error : AxiosError) => {
         reject(error);
       });
   });
@@ -109,7 +109,7 @@ const confirmPhoneGenerateCode = (phoneNumber: string, token: string): Promise<o
       .then((response : AxiosResponse) => {
         resolve(response.data);
       })
-      .catch((error : Error) => {
+      .catch((error : AxiosError) => {
         reject(error);
       });
   });
@@ -157,7 +157,7 @@ const createAccount = (
         .then((result) => {
           resolve(result.data.user);
         })
-        .catch((error : Error) => {
+        .catch((error : AxiosError) => {
           reject(error);
         });
     }
@@ -202,7 +202,7 @@ const createUserAccount = (
         .then((result) => {
           resolve(result.data.user);
         })
-        .catch((error : Error) => {
+        .catch((error : AxiosError) => {
           reject(error);
         });
     }
@@ -227,7 +227,7 @@ const deleteAPIToken = (token: string, authToken: string): Promise<string> => {
       .then(() => {
         resolve(token);
       })
-      .catch((error : Error) => {
+      .catch((error : AxiosError) => {
         reject(error);
       });
   });
@@ -251,7 +251,7 @@ const deleteUsers = (userIds: string[], token: string): Promise<object> => {
       .then((response : AxiosResponse) => {
         resolve(response.data);
       })
-      .catch((error : Error) => {
+      .catch((error : AxiosError) => {
         reject(error);
       });
   });
@@ -271,7 +271,7 @@ const getAPITokens = (token: string): Promise<object> => {
       .then((result) => {
         resolve(result.data);
       })
-      .catch((error : Error) => {
+      .catch((error : AxiosError) => {
         reject(error);
       });
   });
@@ -296,7 +296,7 @@ const getUserById = (id: string, token: string): Promise<object> => {
           reject(process.env.ERROR_INVALID_INFORMATION);
         }
       })
-      .catch((error : Error) => {
+      .catch((error : AxiosError) => {
         reject(error);
       });
   });
@@ -321,7 +321,7 @@ const getUserInformation = (userId: string, category: string, token: string): Pr
       .then((response : AxiosResponse) => {
         resolve(response.data);
       })
-      .catch((error : Error) => {
+      .catch((error : AxiosError) => {
         reject(error);
       });
   });
@@ -347,7 +347,7 @@ const getUsers = (filter: object, fields: string[], token: string): Promise<obje
       .then((response : AxiosResponse) => {
         resolve(response.data);
       })
-      .catch((error : Error) => {
+      .catch((error : AxiosError) => {
         reject(error);
       });
   });
@@ -376,7 +376,7 @@ const inviteUsers = (invitees: string[], groupId: string, teamId: string, authTo
       .then((response : AxiosResponse) => {
         resolve(response.data);
       })
-      .catch((error : Error) => {
+      .catch((error : AxiosError) => {
         reject(error);
       });
   });
@@ -399,7 +399,7 @@ const login = (email: string, password: string): Promise<object> => {
       .then((response : AxiosResponse) => {
         resolve(response.data);
       })
-      .catch((error : Error) => {
+      .catch((error : AxiosError) => {
         reject(error);
       });
   });
@@ -424,7 +424,7 @@ const loginExchangeKeys = (code: string, codeVerifier: string, redirectUri: stri
       .then((response : AxiosResponse) => {
         resolve(response.data);
       })
-      .catch((error : Error) => {
+      .catch((error : AxiosError) => {
         reject(error);
       });
   });
@@ -448,7 +448,7 @@ const logout = (token: string): Promise<object> => {
       .then((response : AxiosResponse) => {
         resolve(response.data);
       })
-      .catch((error : Error) => {
+      .catch((error : AxiosError) => {
         reject(error);
       });
   });
@@ -469,7 +469,7 @@ const refreshToken = (refreshToken: string): Promise<object> => {
       .then((response : AxiosResponse) => {
         resolve(response.data);
       })
-      .catch((error : Error) => {
+      .catch((error : AxiosError) => {
         reject(error);
       });
   });
@@ -497,7 +497,7 @@ const removeAPIToken = (id: string, authToken: string): Promise<string> => {
       .then(() => {
         resolve(id);
       })
-      .catch((error : Error) => {
+      .catch((error : AxiosError) => {
         reject(error);
       });
   });
@@ -522,7 +522,7 @@ const resendInvitationEmails = (invitees: string[], authToken: string): Promise<
       .then((response : AxiosResponse) => {
         resolve(response.data);
       })
-      .catch((error : Error) => {
+      .catch((error : AxiosError) => {
         reject(error);
       });
   });
@@ -547,7 +547,7 @@ const resetPassword = (email: string, code: string, password: string): Promise<o
       .then((response : AxiosResponse) => {
         resolve(response.data);
       })
-      .catch((error : Error) => {
+      .catch((error : AxiosError) => {
         reject(error);
       });
   });
@@ -575,7 +575,7 @@ const sendEmailConfirmationCode = (email: string, token: string): Promise<object
       .then((response : AxiosResponse) => {
         resolve(response.data);
       })
-      .catch((error : Error) => {
+      .catch((error : AxiosError) => {
         reject(error);
       });
   });
@@ -599,7 +599,7 @@ const sendPasswordResetNotification = (email: string): Promise<object> => {
       .then((response : AxiosResponse) => {
         resolve(response.data);
       })
-      .catch((error : Error) => {
+      .catch((error : AxiosError) => {
         reject(error);
       });
   });
@@ -663,7 +663,7 @@ const updateUserEmail = (
       .then((response : AxiosResponse) => {
         resolve(response.data);
       })
-      .catch((error : Error) => {
+      .catch((error : AxiosError) => {
         reject(error);
       });
   });
@@ -697,7 +697,7 @@ const updateUserGroups = (
       .then(() => {
         resolve(requestData);
       })
-      .catch((error : Error) => {
+      .catch((error : AxiosError) => {
         reject(error);
       });
   });
@@ -731,7 +731,7 @@ const updateUserPassword = (
       .then((response : AxiosResponse) => {
         resolve(response.data);
       })
-      .catch((error : Error) => {
+      .catch((error : AxiosError) => {
         reject(error);
       });
   });
@@ -757,7 +757,7 @@ const validateResetPasswordCode = (
       .then((response : AxiosResponse) => {
         resolve(response.data);
       })
-      .catch((error : Error) => {
+      .catch((error : AxiosError) => {
         reject(error);
       });
   });
