@@ -30,7 +30,7 @@ export const generateContent = (
   token: string
 ): Promise<object> => {
   return new Promise((resolve, reject) => {
-    let data_: GenerateContentData = {
+    const data_: GenerateContentData = {
       data: data,
       contentType: contentType,
     };
