@@ -34,12 +34,12 @@ const askQuestion = (
   token: string
 ): Promise<object> => {
   return new Promise((resolve, reject) => {
-    let data: AskQuestionData = {
+    const data: AskQuestionData = {
       conversationId: conversationId,
       question: question,
       updatedContext: updatedContext,
     };
-    let confirmationRequest = client.post(
+    const confirmationRequest = client.post(
       "/api/v1/aiassistant/askquestion",
       data,
       {
@@ -67,10 +67,10 @@ const endConversation = (
   token: string
 ): Promise<object> => {
   return new Promise((resolve, reject) => {
-    let data: EndConversationData = {
+    const data: EndConversationData = {
       conversationId: conversationId,
     };
-    let confirmationRequest = client.post(
+    const confirmationRequest = client.post(
       "/api/v1/aiassistant/endconversation",
       data,
       {
@@ -98,7 +98,7 @@ const getConversationByElementId = (
   token: string
 ): Promise<object> => {
   return new Promise((resolve, reject) => {
-    let confirmationRequest = client.get(
+    const confirmationRequest = client.get(
       `/api/v1/aiassistant/getconversation/${elementId}`,
       {
         headers: { authorization: token },
@@ -125,7 +125,7 @@ const getVoiceAssistantUrl = (
   token: string
 ): Promise<object> => {
   return new Promise((resolve, reject) => {
-    let confirmationRequest = client.get(
+    const confirmationRequest = client.get(
       `/api/v1/aiassistant/getvoiceassistanturl/${language}`,
       {
         headers: { authorization: token },
@@ -161,7 +161,7 @@ const startConversation = (
   conversationId: string | null = null
 ): Promise<object> => {
   return new Promise((resolve, reject) => {
-    let data: StartConversationData = {
+    const data: StartConversationData = {
       autoContextRefresh: autoContextRefresh,
       context: context,
       question: question,
@@ -171,7 +171,7 @@ const startConversation = (
     if (conversationId) {
       data.conversationId = conversationId;
     }
-    let confirmationRequest = client.post(
+    const confirmationRequest = client.post(
       "/api/v1/aiassistant/startconversation",
       data,
       {

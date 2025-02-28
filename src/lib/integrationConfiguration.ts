@@ -13,9 +13,9 @@ const getIntegrationsConfiguration = (
   token: string
 ): Promise<object> => {
   return new Promise((resolve, reject) => {
-    let requestData: { type: number; ids?: string[] } = { type: type };
+    const requestData: { type: number; ids?: string[] } = { type: type };
     if (ids) requestData.ids = ids;
-    let confirmationRequest = client.post(
+    const confirmationRequest = client.post(
       "api/v1/integrationsconfiguration",
       requestData,
       {
@@ -52,7 +52,7 @@ const saveIntegrationConfiguration = (
       configuration: configuration,
       type: type,
     };
-    let confirmationRequest = client.put(
+    const confirmationRequest = client.put(
       `api/v1/integrationsconfiguration`,
       requestData,
       {
@@ -89,7 +89,7 @@ const testIntegrationConfiguration = (
       configuration: configuration,
       type: type,
     };
-    let confirmationRequest = client.post(
+    const confirmationRequest = client.post(
       `api/v1/integrationsconfiguration/testConfiguration`,
       requestData,
       {

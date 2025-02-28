@@ -2,21 +2,21 @@
   "name": "@stackfactor/client-api",
   "version": "1.1.134",
   "description": "Node.js library for the StackFactor API",
-  "main": "dist/index.js",
-  "types": "dist/index.d.ts",
+  "main": "dist/cjs/index.js",
+  "module": "dist/esm/index.js",
+  "types": "dist/esm/index.d.ts",
   "exports": {
     ".": {
-      "require": "./dist/index.js",
-      "import": "./dist/index.js",
-      "default": "./dist/index.js"
+      "import": "./dist/esm/index.js",
+      "require": "./dist/cjs/index.js"
     }
   },
   "type": "module",
   "scripts": {
-    "lint": "eslint lib/**/*.ts",
-    "test": "echo \"Error: no test specified\" && exit 1",
     "build": "tsc",
-    "prepublishOnly": "npm run build"
+    "build:watch": "tsc --watch",
+    "test": "jest",
+    "lint": "eslint 'src/**/*.{ts,tsx}'"
   },
   "repository": {
     "type": "git",
@@ -38,7 +38,9 @@
   "devDependencies": {
     "@types/axios": "^0.14.4",
     "@types/node": "^22.13.5",
-    "eslint": "^8.57.0",
+    "@typescript-eslint/eslint-plugin": "^8.25.0",
+    "@typescript-eslint/parser": "^8.25.0",
+    "eslint": "^8.57.1",
     "eslint-plugin-react": "^7.34.0",
     "typescript": "^5.7.3"
   }

@@ -11,7 +11,7 @@ const getTrainingPlanProficiencyLevel = (
   token: string
 ): Promise<object> => {
   return new Promise((resolve, reject) => {
-    let confirmationRequest = client.get(
+    const confirmationRequest = client.get(
       `api/v1/trainingplans/proficiencylevels/${proficiencyLevelId}`,
       {
         headers: { authorization: token },
@@ -47,7 +47,7 @@ const getTrainingPlanProficiencyLevelList = (
       includeDeleted: includeDeleted,
       includeDetailedInformation: includeDetailedInformation,
     };
-    let confirmationRequest = client.post(
+    const confirmationRequest = client.post(
       `api/v1/trainingplans/proficiencylevels`,
       requestData,
       {
@@ -75,7 +75,7 @@ const reorderTrainingPlansProficiencyLevels = (
   token: string
 ): Promise<void> => {
   return new Promise((resolve, reject) => {
-    let confirmationRequest = client.post(
+    const confirmationRequest = client.post(
       `api/v1/trainingplans/proficiencylevels/reorder`,
       { order: order },
       {
@@ -105,7 +105,7 @@ const updateTrainingPlanProficiencyLevel = (
   token: string
 ): Promise<void> => {
   return new Promise((resolve, reject) => {
-    let confirmationRequest = client.post(
+    const confirmationRequest = client.post(
       `api/v1/trainingplans/proficiencylevel/${proficiencyLevelId}`,
       data,
       {

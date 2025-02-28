@@ -17,7 +17,7 @@ const getAvatar = (
   token: string
 ): Promise<Blob> => {
   return new Promise((resolve, reject) => {
-    let confirmationRequest = client.get(
+    const confirmationRequest = client.get(
       `/api/v1/avatar/getavatar/${elementId}/${type}/${width}/${height}`,
       {
         headers: {

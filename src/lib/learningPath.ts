@@ -18,7 +18,7 @@ interface LearningPathData {
  */
 const createLearningPath = (data: object, token: string): Promise<object> => {
   return new Promise((resolve, reject) => {
-    let confirmationRequest = client.put(
+    const confirmationRequest = client.put(
       "api/v1/learningpaths",
       { data: data },
       {
@@ -94,7 +94,7 @@ const discardLearningPathChanges = (id: string, token: string): Promise<object> 
  */
 const getLearningPathInformationById = (id: string, version: string, token: string): Promise<object> => {
   return new Promise((resolve, reject) => {
-    let confirmationRequest = client.get(
+    const confirmationRequest = client.get(
       `api/v1/learningpaths/${id}/${version}`,
       {
         headers: { authorization: token },
@@ -130,7 +130,7 @@ const getLearningPathsList = (
       includeDeleted: includeDeleted,
     };
     if (list) requestData.list = list;
-    let confirmationRequest = client.post(
+    const confirmationRequest = client.post(
       `api/v1/learningpaths`,
       requestData,
       {
@@ -156,9 +156,9 @@ const getLearningPathsList = (
  */
 const publishLearningPath = (id: string, comments: string, token: string): Promise<object> => {
   return new Promise((resolve, reject) => {
-    let data: LearningPathData = {};
+    const data: LearningPathData = {};
     if (comments) data.comments = comments;
-    let confirmationRequest = client.post(
+    const confirmationRequest = client.post(
       `api/v1/learningpaths/publish/${id}`,
       data,
       {
@@ -188,7 +188,7 @@ const setLearningPathInformation = (id: string, data: object, token: string): Pr
       data: data,
       id: id,
     };
-    let confirmationRequest = client.post(
+    const confirmationRequest = client.post(
       `api/v1/learningpaths/update/`,
       requestData,
       {
@@ -218,7 +218,7 @@ const setLearningPathTags = (id: string, tags: object, token: string): Promise<o
       tags: tags,
       id: id,
     };
-    let confirmationRequest = client.post(
+    const confirmationRequest = client.post(
       `api/v1/learningpaths/updatetags/`,
       requestData,
       {

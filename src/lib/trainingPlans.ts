@@ -41,7 +41,7 @@ const createTrainingPlan = (
       returnDefaultIfVersionNotAvailable: true,
       types: [type],
     };
-    let confirmationRequest = client.put("api/v1/trainingplans", requestData, {
+    const confirmationRequest = client.put("api/v1/trainingplans", requestData, {
       headers: { authorization: token },
     });
     confirmationRequest
@@ -129,7 +129,7 @@ const generateNewBaseline = (
       saveBaseline: saveBaseline,
     };
     if (id) requestData.id = id;
-    let confirmationRequest = client.post(
+    const confirmationRequest = client.post(
       "api/v1/trainingplans/generatenewbaseline",
       requestData,
       {
@@ -158,7 +158,7 @@ const getTrainingPlanById = (
   token: string
 ): Promise<object> => {
   return new Promise((resolve, reject) => {
-    let confirmationRequest = client.get(
+    const confirmationRequest = client.get(
       `api/v1/trainingplans/${id}/${version}`,
       {
         headers: { authorization: token },
@@ -182,7 +182,7 @@ const getAllTrainingPlansTasksSummary = (
   token: string | null = null
 ): Promise<object> => {
   return new Promise((resolve, reject) => {
-    let confirmationRequest = client.get(`api/v1/trainingplans/taskssummary`, {
+    const confirmationRequest = client.get(`api/v1/trainingplans/taskssummary`, {
       headers: token ? { authorization: token } : {},
     });
     confirmationRequest
@@ -226,7 +226,7 @@ const getListOfTrainingPlans = (
     if (fields) requestData.fields = fields;
     if (types) requestData.types = types;
     if (users) requestData.users = users;
-    let confirmationRequest = client.post(`api/v1/trainingplans`, requestData, {
+    const confirmationRequest = client.post(`api/v1/trainingplans`, requestData, {
       headers: { authorization: token },
     });
     confirmationRequest
@@ -251,9 +251,9 @@ const publishTrainingPlan = (
   token: string
 ): Promise<object> => {
   return new Promise((resolve, reject) => {
-    let data: { comments?: string } = {};
+    const data: { comments?: string } = {};
     if (comments) data.comments = comments;
-    let confirmationRequest = client.post(
+    const confirmationRequest = client.post(
       `api/v1/trainingplans/publish/${id}`,
       data,
       {
@@ -289,7 +289,7 @@ const updateTrainingPlan = (
       id: planId,
       saveAsDraft,
     };
-    let confirmationRequest = client.put(
+    const confirmationRequest = client.put(
       `api/v1/trainingplans/update/${planId}`,
       requestData,
       {
@@ -319,11 +319,11 @@ const updateTrainingPlanTaskStatus = (
   token: string
 ): Promise<object> => {
   return new Promise((resolve, reject) => {
-    let data = {
+    const data = {
       id: id,
       status: status,
     };
-    let confirmationRequest = client.post(`api/v1/trainingplans/task`, data, {
+    const confirmationRequest = client.post(`api/v1/trainingplans/task`, data, {
       headers: { authorization: token },
     });
     confirmationRequest
@@ -349,7 +349,7 @@ const updateActivities = (
   token: string
 ): Promise<object> => {
   return new Promise((resolve, reject) => {
-    let confirmationRequest = client.post(
+    const confirmationRequest = client.post(
       `api/v1/trainingplans/${planId}/activities`,
       data,
       {

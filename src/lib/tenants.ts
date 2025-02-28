@@ -14,7 +14,7 @@ const getTenantInformation = (
     const requestData = {
       categories: category,
     };
-    let request = client.post("api/v1/tenants/tenant/get", requestData, {
+    const request = client.post("api/v1/tenants/tenant/get", requestData, {
       headers: { authorization: token },
     });
     request
@@ -44,7 +44,7 @@ const setTenantInformation = (
       category: category,
       data: data,
     };
-    let confirmationRequest = client.post(
+    const confirmationRequest = client.post(
       "api/v1/tenants/tenant/set",
       requestData,
       {

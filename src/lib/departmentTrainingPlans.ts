@@ -31,7 +31,7 @@ const createDepartmentTrainingPlan = (
       skill: skill || "",
       activities: activities || [],
     };
-    let confirmationRequest = client.put(
+    const confirmationRequest = client.put(
       "api/v1/departmentTrainingPlans",
       requestData,
       {
@@ -88,7 +88,7 @@ const getDepartmentTrainingPlanInformationById = (
   token: string
 ): Promise<object> => {
   return new Promise((resolve, reject) => {
-    let confirmationRequest = client.get(
+    const confirmationRequest = client.get(
       `api/v1/departmenttrainingplans/${id}/${version}`,
       {
         headers: { authorization: token },
@@ -121,7 +121,7 @@ const getDepartmentTrainingPlanList = (
       filter: filter || "",
       version: version,
     };
-    let confirmationRequest = client.post(
+    const confirmationRequest = client.post(
       `api/v1/departmenttrainingplans`,
       requestData,
       {
@@ -149,7 +149,7 @@ const publishDepartmentTrainingPlan = (
   token: string
 ): Promise<object> => {
   return new Promise((resolve, reject) => {
-    let confirmationRequest = client.post(
+    const confirmationRequest = client.post(
       `api/v1/departmenttrainingplans/publish/${id}`,
       {},
       {
@@ -182,7 +182,7 @@ const setDepartmentTrainingPlanInformation = (
     const requestData = {
       data: data,
     };
-    let confirmationRequest = client.post(
+    const confirmationRequest = client.post(
       `api/v1/departmenttrainingplans/${id}`,
       requestData,
       {

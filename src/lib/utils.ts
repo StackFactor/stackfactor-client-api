@@ -48,8 +48,8 @@ const getBaseUrl = (): string => {
  */
 const removeNullProperties = (object: { [key: string]: any }): object => {
   Object.keys(object).forEach((key) => {
-    let value = object[key];
-    let hasProperties = value && Object.keys(value).length > 0;
+    const value = object[key];
+    const hasProperties = value && Object.keys(value).length > 0;
     if (value === null) {
       delete object[key];
     } else if (typeof value !== "string" && hasProperties) {

@@ -8,7 +8,7 @@ import { client } from "./axiosClient";
  */
 const createRole = (data: object, token: string): Promise<object> => {
   return new Promise((resolve, reject) => {
-    let confirmationRequest = client.put(
+    const confirmationRequest = client.put(
       "api/v1/roles",
       { data: data },
       {
@@ -54,7 +54,7 @@ const createRoleFromTemplate = (
       returnDefaultIfVersionNotAvailable: false,
       version: "1.0",
     };
-    let confirmationRequest = client.put(
+    const confirmationRequest = client.put(
       "api/v1/roles/createfromtemplate/",
       requestData,
       {
@@ -160,7 +160,7 @@ const getRoleInformationById = (
   token: string
 ): Promise<object> => {
   return new Promise((resolve, reject) => {
-    let confirmationRequest = client.get(
+    const confirmationRequest = client.get(
       `api/v1/roles/role/${id}/${version}/${returnNullIfVersionNotFound}`,
       {
         headers: { authorization: token },
@@ -212,7 +212,7 @@ const getRolesList = (
       version: version,
     };
     if (filter) requestData.filter = filter;
-    let confirmationRequest = client.post(`api/v1/roles`, requestData, {
+    const confirmationRequest = client.post(`api/v1/roles`, requestData, {
       headers: { authorization: token },
     });
     confirmationRequest
@@ -233,7 +233,7 @@ const getRolesList = (
  */
 const getRoleTemplateUpdates = (id: string, token: string): Promise<object> => {
   return new Promise((resolve, reject) => {
-    let confirmationRequest = client.get(
+    const confirmationRequest = client.get(
       `api/v1/roles/getroletemplateupdates/${id}`,
       {
         headers: { authorization: token },
@@ -264,7 +264,7 @@ const importRoleTemplates = (
       roles: data,
       jobDescription: "default job description", // Add a default job description or pass it as a parameter
     };
-    let confirmationRequest = client.post(
+    const confirmationRequest = client.post(
       `api/v1/roles/importRoleTemplates`,
       requestData,
       {
@@ -294,9 +294,9 @@ const publishRole = (
   token: string
 ): Promise<object> => {
   return new Promise((resolve, reject) => {
-    let data: { comments?: string } = {};
+    const data: { comments?: string } = {};
     if (comments) data.comments = comments;
-    let confirmationRequest = client.post(`api/v1/roles/publish/${id}`, data, {
+    const confirmationRequest = client.post(`api/v1/roles/publish/${id}`, data, {
       headers: { authorization: token },
     });
     confirmationRequest
@@ -326,7 +326,7 @@ const setRoleInformation = (
       data: data,
       id: id,
     };
-    let confirmationRequest = client.post(`api/v1/roles/update`, requestData, {
+    const confirmationRequest = client.post(`api/v1/roles/update`, requestData, {
       headers: { authorization: token },
     });
     confirmationRequest
@@ -356,7 +356,7 @@ const setRoleInformationFromTemplate = (
       data: data,
       id: id,
     };
-    let confirmationRequest = client.post(
+    const confirmationRequest = client.post(
       `api/v1/roles/updatefromtemplate/`,
       requestData,
       {
@@ -393,7 +393,7 @@ const setUserRoles = (
       jobDescription: jobDescription,
     };
     if (id) requestData.userid = id;
-    let request = client.post(`api/v1/roles/settouser/`, requestData, {
+    const request = client.post(`api/v1/roles/settouser/`, requestData, {
       headers: { authorization: token },
     });
     request
@@ -423,7 +423,7 @@ const watchRole = (
       id: id,
       watch: watch,
     };
-    let confirmationRequest = client.post(`api/v1/roles/watch`, requestData, {
+    const confirmationRequest = client.post(`api/v1/roles/watch`, requestData, {
       headers: { authorization: token },
     });
     confirmationRequest

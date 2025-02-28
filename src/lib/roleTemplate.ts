@@ -11,7 +11,7 @@ const createRoleTemplate = (data: object, token: string): Promise<object> => {
     const requestData = {
       data: data,
     };
-    let confirmationRequest = client.put("api/v1/roletemplates", requestData, {
+    const confirmationRequest = client.put("api/v1/roletemplates", requestData, {
       headers: { authorization: token },
     });
     confirmationRequest
@@ -94,7 +94,7 @@ const getRoleTemplateInformationById = (
   token: string
 ): Promise<object> => {
   return new Promise((resolve, reject) => {
-    let confirmationRequest = client.get(
+    const confirmationRequest = client.get(
       `api/v1/roletemplates/${id}/${version}`,
       {
         headers: { authorization: token },
@@ -133,7 +133,7 @@ const getRoleTemplateList = (
       version: version,
     };
     if (filter) requestData.filter = filter;
-    let confirmationRequest = client.post(`api/v1/roletemplates`, requestData, {
+    const confirmationRequest = client.post(`api/v1/roletemplates`, requestData, {
       headers: { authorization: token },
     });
     confirmationRequest
@@ -159,9 +159,9 @@ const publishTemplate = (
   token: string
 ): Promise<object> => {
   return new Promise((resolve, reject) => {
-    let data: { comments?: string } = {};
+    const data: { comments?: string } = {};
     if (comments) data.comments = comments;
-    let confirmationRequest = client.post(
+    const confirmationRequest = client.post(
       `api/v1/roletemplates/publish/${id}`,
       data,
       {
@@ -195,7 +195,7 @@ const setTemplateInformation = (
       data: data,
       id: id,
     };
-    let confirmationRequest = client.post(
+    const confirmationRequest = client.post(
       `api/v1/roletemplates/update`,
       requestData,
       {
@@ -229,7 +229,7 @@ const setTemplateTags = (
       tags: tags,
       id: id,
     };
-    let confirmationRequest = client.post(
+    const confirmationRequest = client.post(
       `api/v1/roletemplates/updatetags/`,
       requestData,
       {
@@ -263,7 +263,7 @@ const watchRoleTemplate = (
       id: id,
       watch: watch,
     };
-    let confirmationRequest = client.post(
+    const confirmationRequest = client.post(
       `api/v1/roletemplates/watch`,
       requestData,
       {

@@ -152,7 +152,7 @@ const createAccount = (
         password: password,
         subSite: subSite,
       };
-      let request = client.post("api/v1/users/createAccount", signupData);
+      const request = client.post("api/v1/users/createAccount", signupData);
       request
         .then((result) => {
           resolve(result.data.user);
@@ -197,7 +197,7 @@ const createUserAccount = (
         password: password,
         token: token,
       };
-      let request = client.post("api/v1/users/createUser", signupData);
+      const request = client.post("api/v1/users/createUser", signupData);
       request
         .then((result) => {
           resolve(result.data.user);
@@ -311,7 +311,7 @@ const getUserById = (id: string, token: string): Promise<object> => {
  */
 const getUserInformation = (userId: string, category: string, token: string): Promise<object> => {
   return new Promise((resolve, reject) => {
-    let confirmationRequest = client.get(
+    const confirmationRequest = client.get(
       `api/v1/users/user/${userId || 0}/${category || "*"}`,
       {
         headers: { authorization: token },
@@ -340,7 +340,7 @@ const getUsers = (filter: object, fields: string[], token: string): Promise<obje
       filter: filter,
       fields: fields,
     };
-    let confirmationRequest = client.post(`api/v1/users/`, requestData, {
+    const confirmationRequest = client.post(`api/v1/users/`, requestData, {
       headers: { authorization: token },
     });
     confirmationRequest
@@ -369,7 +369,7 @@ const inviteUsers = (invitees: string[], groupId: string, teamId: string, authTo
       teamId: teamId,
       token: authToken,
     };
-    let request = client.post("api/v1/users/invite", requestData, {
+    const request = client.post("api/v1/users/invite", requestData, {
       headers: { authorization: authToken },
     });
     request
@@ -394,7 +394,7 @@ const login = (email: string, password: string): Promise<object> => {
       email: email,
       password: password,
     };
-    let request = client.post("api/v1/auth/login", requestData);
+    const request = client.post("api/v1/auth/login", requestData);
     request
       .then((response) => {
         resolve(response.data);
@@ -419,7 +419,7 @@ const loginExchangeKeys = (code: string, codeVerifier: string, redirectUri: stri
       codeVerifier: codeVerifier,
       redirectUri: redirectUri,
     };
-    let request = client.post("api/v1/auth/loginexchangekeys", requestData);
+    const request = client.post("api/v1/auth/loginexchangekeys", requestData);
     request
       .then((response) => {
         resolve(response.data);
@@ -437,7 +437,7 @@ const loginExchangeKeys = (code: string, codeVerifier: string, redirectUri: stri
  */
 const logout = (token: string): Promise<object> => {
   return new Promise((resolve, reject) => {
-    let request = client.post(
+    const request = client.post(
       "api/v1/auth/logout",
       {},
       {
@@ -462,7 +462,7 @@ const logout = (token: string): Promise<object> => {
  */
 const refreshToken = (refreshToken: string): Promise<object> => {
   return new Promise((resolve, reject) => {
-    let request = client.post("api/v1/auth/refreshToken", {
+    const request = client.post("api/v1/auth/refreshToken", {
       refreshToken: refreshToken,
     });
     request
@@ -515,7 +515,7 @@ const resendInvitationEmails = (invitees: string[], authToken: string): Promise<
       invitees: invitees,
       token: authToken,
     };
-    let request = client.post("api/v1/users/resendinvite", requestData, {
+    const request = client.post("api/v1/users/resendinvite", requestData, {
       headers: { authorization: authToken },
     });
     request
@@ -537,12 +537,12 @@ const resendInvitationEmails = (invitees: string[], authToken: string): Promise<
  */
 const resetPassword = (email: string, code: string, password: string): Promise<object> => {
   return new Promise((resolve, reject) => {
-    let postData = {
+    const postData = {
       email: email,
       code: code,
       password: password,
     };
-    let request = client.post("api/v1/users/resetpassword", postData);
+    const request = client.post("api/v1/users/resetpassword", postData);
     request
       .then((response) => {
         resolve(response.data);
@@ -561,10 +561,10 @@ const resetPassword = (email: string, code: string, password: string): Promise<o
  */
 const sendEmailConfirmationCode = (email: string, token: string): Promise<object> => {
   return new Promise((resolve, reject) => {
-    let postData = {
+    const postData = {
       email: email,
     };
-    let request = client.post(
+    const request = client.post(
       "api/v1/users/sendemailconfirmationcode",
       postData,
       {
@@ -588,10 +588,10 @@ const sendEmailConfirmationCode = (email: string, token: string): Promise<object
  */
 const sendPasswordResetNotification = (email: string): Promise<object> => {
   return new Promise((resolve, reject) => {
-    let postData = {
+    const postData = {
       email: email,
     };
-    let request = client.post(
+    const request = client.post(
       "api/v1/users/sendpasswordresetnotification",
       postData
     );
@@ -619,7 +619,7 @@ const setUserInformation = (userId: string, category: string, data: object, toke
       data: category ? { [category]: data } : data,
       userId: userId,
     };
-    let confirmationRequest = client.post("api/v1/users/user", requestData, {
+    const confirmationRequest = client.post("api/v1/users/user", requestData, {
       headers: { authorization: token },
     });
     confirmationRequest
@@ -652,7 +652,7 @@ const updateUserEmail = (
       verificationCode: verificationCode,
       password: password,
     };
-    let confirmationRequest = client.post(
+    const confirmationRequest = client.post(
       "api/v1/users/updateemail",
       requestData,
       {
@@ -686,7 +686,7 @@ const updateUserGroups = (
       userId: userId,
       groups: groups || [],
     };
-    let confirmationRequest = client.post(
+    const confirmationRequest = client.post(
       "api/v1/users/user/updategroups",
       requestData,
       {
@@ -720,7 +720,7 @@ const updateUserPassword = (
       password: password,
       newPassword: newPassword,
     };
-    let confirmationRequest = client.post(
+    const confirmationRequest = client.post(
       "api/v1/users/updatepassword",
       requestData,
       {
@@ -748,11 +748,11 @@ const validateResetPasswordCode = (
   code: string
 ): Promise<object> => {
   return new Promise((resolve, reject) => {
-    let postData = {
+    const postData = {
       email: email,
       code: code,
     };
-    let request = client.post("api/v1/users/validateresetpasswordcode", postData);
+    const request = client.post("api/v1/users/validateresetpasswordcode", postData);
     request
       .then((response) => {
         resolve(response.data);

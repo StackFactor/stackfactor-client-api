@@ -18,7 +18,7 @@ const addEntryToArrayBusinessProperty = (
     const requestData = {
       data: data,
     };
-    let confirmationRequest = client.post(
+    const confirmationRequest = client.post(
       `api/v1/user/arrayproperty/${userId}/${property}`,
       requestData,
       {
@@ -86,7 +86,7 @@ const updateEntryfromArrayBusinessProperty = (
     const requestData = {
       data: data,
     };
-    let confirmationRequest = client.patch(
+    const confirmationRequest = client.patch(
       `api/v1/user/arrayproperty/${userId}/${property}/${id}`,
       requestData,
       {

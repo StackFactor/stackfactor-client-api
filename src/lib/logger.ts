@@ -15,7 +15,7 @@ const comments = (
   token: string
 ): Promise<object> => {
   return new Promise((resolve, reject) => {
-    let confirmationRequest = client.post(
+    const confirmationRequest = client.post(
       "api/v1/logger/comments/",
       {
         data: data,
@@ -51,7 +51,7 @@ const getListByElementId = (
   token: string
 ): Promise<object> => {
   return new Promise((resolve, reject) => {
-    let data: { elementsPerPage?: number, page?: number } = {};
+    const data: { elementsPerPage?: number, page?: number } = {};
     if (elementsPerPage !== null) data.elementsPerPage = elementsPerPage;
     if (page !== null) data.page = page;
     const getTokensRequest = client.post(`api/v1/logger/${elementId}`, data, {

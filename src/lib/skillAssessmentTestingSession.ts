@@ -20,7 +20,7 @@ const addEntry = (
       data: data,
       id: id,
     };
-    let confirmationRequest = client.put(
+    const confirmationRequest = client.put(
       "api/v1/skillassessments/addentry",
       requestData,
       {
@@ -57,7 +57,7 @@ const create = (
       data: data,
       userId: userId,
     };
-    let confirmationRequest = client.put(
+    const confirmationRequest = client.put(
       "api/v1/skillassessments/",
       requestData,
       {
@@ -113,7 +113,7 @@ const deleteSkillAssessment = (
  */
 const getById = (id: string, token: string): Promise<object> => {
   return new Promise((resolve, reject) => {
-    let confirmationRequest = client.get(`api/v1/skillassessments/${id}`, {
+    const confirmationRequest = client.get(`api/v1/skillassessments/${id}`, {
       headers: { authorization: token },
     });
     confirmationRequest
@@ -139,7 +139,7 @@ const getByUserAndSkill = (
   token: string
 ): Promise<object> => {
   return new Promise((resolve, reject) => {
-    let confirmationRequest = client.get(
+    const confirmationRequest = client.get(
       `api/v1/skillassessments/getbyuserandskill/${userId}/${skillId}`,
       {
         headers: { authorization: token },
@@ -165,7 +165,7 @@ const getList = (userId: string, token: string): Promise<object> => {
   return new Promise((resolve, reject) => {
     const requestData: { userId?: string } = {};
     if (userId) requestData.userId = userId;
-    let confirmationRequest = client.post(
+    const confirmationRequest = client.post(
       `api/v1/skillassessments`,
       requestData,
       {

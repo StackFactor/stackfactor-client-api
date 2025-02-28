@@ -13,7 +13,7 @@ const getResponses = (
   token: string
 ): Promise<object> => {
   return new Promise((resolve, reject) => {
-    let confirmationRequest = client.get(
+    const confirmationRequest = client.get(
       `api/v1/microskillsresponses/${learningContentId}/${microSkillId}`,
       {
         headers: { authorization: token },
@@ -44,10 +44,10 @@ const saveResponses = (
   token: string
 ): Promise<object> => {
   return new Promise((resolve, reject) => {
-    let data = {
+    const data = {
       responses: responses,
     };
-    let confirmationRequest = client.post(
+    const confirmationRequest = client.post(
       `api/v1/microskillsresponses/${learningContentId}/${microSkillId}`,
       data,
       {

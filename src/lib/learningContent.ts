@@ -32,7 +32,7 @@ const createLearningContent = (
     const requestData: LearningContentData = {
       data: data,
     };
-    let confirmationRequest = client.put(
+    const confirmationRequest = client.put(
       "api/v1/learningcontent",
       requestData,
       {
@@ -163,10 +163,10 @@ const generateMicroSkillTestKnowledge = (
   token: string
 ): Promise<object> => {
   return new Promise((resolve, reject) => {
-    let data = {
+    const data = {
       microSkill: microSkill,
     };
-    let confirmationRequest = client.post(
+    const confirmationRequest = client.post(
       `api/v1/learningcontent/generatemicroskilltestknowledge`,
       data,
       {
@@ -196,7 +196,7 @@ const getLearningContentInformationById = (
   token: string
 ): Promise<object> => {
   return new Promise((resolve, reject) => {
-    let confirmationRequest = client.get(
+    const confirmationRequest = client.get(
       `api/v1/learningcontent/${id}/${version}`,
       {
         headers: { authorization: token },
@@ -232,7 +232,7 @@ const getLearningContentList = (
       includeDeleted: includeDeleted,
     };
     if (filter) requestData.filter = filter;
-    let confirmationRequest = client.post(
+    const confirmationRequest = client.post(
       `api/v1/learningcontent`,
       requestData,
       {
@@ -260,8 +260,8 @@ const migrateLearningContentStorageType = (
   token: string
 ): Promise<object> => {
   return new Promise((resolve, reject) => {
-    let data = {};
-    let confirmationRequest = client.post(
+    const data = {};
+    const confirmationRequest = client.post(
       `api/v1/learningcontent/migratestorage/${id}`,
       data,
       {
@@ -291,10 +291,10 @@ const publishLearningContent = (
   token: string
 ): Promise<object> => {
   return new Promise((resolve, reject) => {
-    let data: LearningContentData = {};
+    const data: LearningContentData = {};
     if (comments) data.comments = comments;
 
-    let confirmationRequest = client.post(
+    const confirmationRequest = client.post(
       `api/v1/learningcontent/publish/${id}`,
       data,
       {
@@ -328,7 +328,7 @@ const setLearningContentInformation = (
       data: data,
       id: id,
     };
-    let confirmationRequest = client.post(
+    const confirmationRequest = client.post(
       `api/v1/learningcontent/update`,
       requestData,
       {
@@ -362,7 +362,7 @@ const setLearningContentPartialContentInformation = (
       data: data,
       id: id,
     };
-    let confirmationRequest = client.post(
+    const confirmationRequest = client.post(
       `api/v1/learningcontent/updatepartialcontent/${id}`,
       requestData,
       {
@@ -402,7 +402,7 @@ const setLearningContentLearningContentInformation = (
       learningcontentid: learningcontentid,
       microSkillId: microSkillId,
     };
-    let confirmationRequest = client.post(
+    const confirmationRequest = client.post(
       `api/v1/learningcontent/updatelearningcontent/`,
       requestData,
       {
@@ -437,7 +437,7 @@ const setLearningContentLearningMicroSkillContentInformation = (
     const requestData: LearningContentData = {
       data: data,
     };
-    let confirmationRequest = client.post(
+    const confirmationRequest = client.post(
       `api/v1/learningcontent/updatemicroskilllearningcontent/${id}/${microskillid}`,
       requestData,
       {
@@ -470,7 +470,7 @@ const setLearningContentTags = (
       tags: tags,
       id: id,
     };
-    let confirmationRequest = client.post(
+    const confirmationRequest = client.post(
       `api/v1/learningcontent/updatetags/`,
       requestData,
       {
@@ -503,7 +503,7 @@ const watchLearningContent = (
       id: id,
       watch: watch,
     };
-    let confirmationRequest = client.post(
+    const confirmationRequest = client.post(
       `api/v1/learningcontent/watch`,
       requestData,
       {

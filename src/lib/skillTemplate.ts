@@ -11,7 +11,7 @@ const createSkillTemplate = (data: object, token: string): Promise<object> => {
     const requestData = {
       data: data,
     };
-    let confirmationRequest = client.put("api/v1/skilltemplates", requestData, {
+    const confirmationRequest = client.put("api/v1/skilltemplates", requestData, {
       headers: { authorization: token },
     });
     confirmationRequest
@@ -96,7 +96,7 @@ const getSkillTemplateInformationById = (
   token: string
 ): Promise<object> => {
   return new Promise((resolve, reject) => {
-    let confirmationRequest = client.get(
+    const confirmationRequest = client.get(
       `api/v1/skilltemplates/${id}/${version}/${returnNullIfVersionNotFound}`,
       {
         headers: { authorization: token },
@@ -135,7 +135,7 @@ const getSkillTemplateList = (
       version: version,
     };
     if (filter) requestData.filter = filter;
-    let confirmationRequest = client.post(
+    const confirmationRequest = client.post(
       `api/v1/skilltemplates`,
       requestData,
       {
@@ -159,7 +159,7 @@ const getSkillTemplateList = (
  */
 const getTechnologyStacks = (token: string): Promise<object> => {
   return new Promise((resolve, reject) => {
-    let confirmationRequest = client.get(`api/v1/skilltemplates/stacks`, {
+    const confirmationRequest = client.get(`api/v1/skilltemplates/stacks`, {
       headers: { authorization: token },
     });
     confirmationRequest
@@ -185,9 +185,9 @@ const publishTemplate = (
   token: string
 ): Promise<object> => {
   return new Promise((resolve, reject) => {
-    let data: { comments?: string } = {};
+    const data: { comments?: string } = {};
     if (comments) data.comments = comments;
-    let confirmationRequest = client.post(
+    const confirmationRequest = client.post(
       `api/v1/skilltemplates/publish/${id}`,
       data,
       {
@@ -221,7 +221,7 @@ const setTemplateInformation = (
       data: data,
       id: id,
     };
-    let confirmationRequest = client.post(
+    const confirmationRequest = client.post(
       `api/v1/skilltemplates/update`,
       requestData,
       {
@@ -255,7 +255,7 @@ const setTemplateTags = (
       tags: tags,
       id: id,
     };
-    let confirmationRequest = client.post(
+    const confirmationRequest = client.post(
       `api/v1/skilltemplates/updatetags/`,
       requestData,
       {
@@ -283,7 +283,7 @@ const validateTemplate = (id: string, token: string): Promise<object> => {
     const requestData = {
       id: id,
     };
-    let confirmationRequest = client.post(
+    const confirmationRequest = client.post(
       `api/v1/skilltemplates/validate/`,
       requestData,
       {
@@ -317,7 +317,7 @@ const watchSkillTemplate = (
       id: id,
       watch: watch,
     };
-    let confirmationRequest = client.post(
+    const confirmationRequest = client.post(
       `api/v1/skilltemplates/watch`,
       requestData,
       {

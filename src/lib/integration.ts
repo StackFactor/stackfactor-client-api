@@ -41,7 +41,7 @@ export const createIntegration = (
     const requestData: IntegrationData = {
       data: data,
     };
-    let confirmationRequest = client.put("api/v1/integrations/", requestData, {
+    const confirmationRequest = client.put("api/v1/integrations/", requestData, {
       headers: { authorization: token },
     });
     confirmationRequest
@@ -117,7 +117,7 @@ export const getIntegrationInformationById = (
   token: string
 ): Promise<object> => {
   return new Promise((resolve, reject) => {
-    let confirmationRequest = client.get(
+    const confirmationRequest = client.get(
       `api/v1/integrations/${id}/${version}`,
       {
         headers: { authorization: token },
@@ -155,7 +155,7 @@ export const getIntegrationsList = (
     };
     if (filter) requestData.filter = filter;
     if (type) requestData.type = type;
-    let confirmationRequest = client.post(`api/v1/integrations`, requestData, {
+    const confirmationRequest = client.post(`api/v1/integrations`, requestData, {
       headers: { authorization: token },
     });
     confirmationRequest
@@ -184,7 +184,7 @@ export const getContentInformationByUrl = (
       url: url,
       verb: verb,
     };
-    let confirmationRequest = client.post(
+    const confirmationRequest = client.post(
       `api/v1/contentproviders/getcontentinformationbyurl`,
       requestData,
       {
@@ -210,11 +210,11 @@ export const getContentInformationByUrlFromBrowser = (
   url: string
 ): Promise<ContentInformationResponse> => {
   return new Promise((resolve, reject) => {
-    let domain = new URL(url);
-    let instance = axiosLib.create({
+    const domain = new URL(url);
+    const instance = axiosLib.create({
       baseURL: domain.origin,
     });
-    let confirmationRequest = instance.get(domain.pathname, {
+    const confirmationRequest = instance.get(domain.pathname, {
       headers: {
         "Access-Control-Allow-Origin": "*",
         "Access-Control-Allow-Headers":
@@ -235,10 +235,10 @@ export const getContentInformationByUrlFromBrowser = (
           return Math.ceil(words / wpm);
         };
 
-        let document = htmlParser.parse(response.data);
-        let duration = getReadingTime(htmlToText(response.data));
-        let titleTag = document.querySelector("title");
-        let title = titleTag ? titleTag.rawText : "";
+        const document = htmlParser.parse(response.data);
+        const duration = getReadingTime(htmlToText(response.data));
+        const titleTag = document.querySelector("title");
+        const title = titleTag ? titleTag.rawText : "";
         let description = "";
         const descriptionEl = document.querySelector("meta");
         try {
@@ -291,7 +291,7 @@ export const getEnabledContentProviders = (
   token: string
 ): Promise<object> => {
   return new Promise((resolve, reject) => {
-    let confirmationRequest = client.get(
+    const confirmationRequest = client.get(
       `api/v1/contentproviders/getenabledcontentproviders/${userId}`,
       {
         headers: { authorization: token },
@@ -317,7 +317,7 @@ export const publishIntegration = (
   token: string
 ): Promise<object> => {
   return new Promise((resolve, reject) => {
-    let confirmationRequest = client.post(
+    const confirmationRequest = client.post(
       `api/v1/integrations/publish/${id}`,
       {},
       {
@@ -349,7 +349,7 @@ export const setIntegrationInformation = (
     const requestData: IntegrationData = {
       data: data,
     };
-    let confirmationRequest = client.post(
+    const confirmationRequest = client.post(
       `api/v1/integrations/${id}`,
       requestData,
       {
@@ -376,7 +376,7 @@ export const setDefaultIntegration = (
   token: string
 ): Promise<object> => {
   return new Promise((resolve, reject) => {
-    let confirmationRequest = client.post(
+    const confirmationRequest = client.post(
       `api/v1/integrations/${id}/default`,
       "",
       {

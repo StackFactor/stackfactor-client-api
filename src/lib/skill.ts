@@ -8,7 +8,7 @@ import { client } from "./axiosClient";
  */
 const createSkill = (data: object, token: string): Promise<object> => {
   return new Promise((resolve, reject) => {
-    let confirmationRequest = client.put(
+    const confirmationRequest = client.put(
       "api/v1/skills",
       { data: data },
       {
@@ -39,7 +39,7 @@ const createSkillsFromTemplates = (
     const requestData = {
       templateIds: templateIds,
     };
-    let confirmationRequest = client.put(
+    const confirmationRequest = client.put(
       "api/v1/skills/createfromtemplate/",
       requestData,
       {
@@ -143,7 +143,7 @@ const getSkillRelatedRoles = (
   includeRoleInformation = false
 ): Promise<object> => {
   return new Promise((resolve, reject) => {
-    let confirmationRequest = client.get(
+    const confirmationRequest = client.get(
       `api/v1/skills/getskillrelatedroles/${id}/${includeRoleInformation}`,
       {
         headers: { authorization: token },
@@ -170,7 +170,7 @@ const getSkillRequiredAssessmentType = (
   token: string
 ): Promise<object> => {
   return new Promise((resolve, reject) => {
-    let confirmationRequest = client.get(
+    const confirmationRequest = client.get(
       `api/v1/skills/getrequiredassessmenttype/${id}`,
       {
         headers: { authorization: token },
@@ -201,7 +201,7 @@ const getSkillInformationById = (
   token: string
 ): Promise<object> => {
   return new Promise((resolve, reject) => {
-    let confirmationRequest = client.get(
+    const confirmationRequest = client.get(
       `api/v1/skills/skill/${id}/${version}/${returnNullIfVersionNotFound}`,
       {
         headers: { authorization: token },
@@ -244,7 +244,7 @@ const getSkillList = (
       filter: filter,
     };
     if (filter) requestData.filter = filter;
-    let confirmationRequest = client.post(`api/v1/skills`, requestData, {
+    const confirmationRequest = client.post(`api/v1/skills`, requestData, {
       headers: { authorization: token },
     });
     confirmationRequest
@@ -272,7 +272,7 @@ const getTeamSkillsById = (
   token: string
 ): Promise<object> => {
   return new Promise((resolve, reject) => {
-    let confirmationRequest = client.get(
+    const confirmationRequest = client.get(
       `api/v1/skills/getteambyid/${teamId}/${maxDepth}/${returnNullIfVersionNotFound}`,
       {
         headers: { authorization: token },
@@ -299,7 +299,7 @@ const getCurrentUserTeamSkills = (
   token: string
 ): Promise<object> => {
   return new Promise((resolve, reject) => {
-    let confirmationRequest = client.get(
+    const confirmationRequest = client.get(
       `api/v1/skills/getcurrentuserteam/${maxDepth}`,
       {
         headers: { authorization: token },
@@ -326,7 +326,7 @@ const getSkillTemplateUpdates = (
   token: string
 ): Promise<object> => {
   return new Promise((resolve, reject) => {
-    let confirmationRequest = client.get(
+    const confirmationRequest = client.get(
       `api/v1/skills/getskilltemplateupdates/${id}`,
       {
         headers: { authorization: token },
@@ -359,7 +359,7 @@ const importSkillTemplates = (
       data: data,
       publish: publish,
     };
-    let confirmationRequest = client.post(
+    const confirmationRequest = client.post(
       `api/v1/skills/importtemplates`,
       requestData,
       {
@@ -389,9 +389,9 @@ const publishSkill = (
   token: string
 ): Promise<object> => {
   return new Promise((resolve, reject) => {
-    let data: { comments?: string } = {};
+    const data: { comments?: string } = {};
     if (comments) data.comments = comments;
-    let confirmationRequest = client.post(`api/v1/skills/publish/${id}`, data, {
+    const confirmationRequest = client.post(`api/v1/skills/publish/${id}`, data, {
       headers: { authorization: token },
     });
     confirmationRequest
@@ -421,7 +421,7 @@ const setSkillInformation = (
       data: data,
       id: id,
     };
-    let confirmationRequest = client.post(
+    const confirmationRequest = client.post(
       `api/v1/skills/update/`,
       requestData,
       {
@@ -455,7 +455,7 @@ const setSkillInformationFromTemplate = (
       data: data,
       id: id,
     };
-    let confirmationRequest = client.post(
+    const confirmationRequest = client.post(
       `api/v1/skills/updatefromtemplate/`,
       requestData,
       {
@@ -483,7 +483,7 @@ const validateSkill = (id: string, token: string): Promise<object> => {
     const requestData = {
       id: id,
     };
-    let confirmationRequest = client.post(
+    const confirmationRequest = client.post(
       `api/v1/skills/validate/`,
       requestData,
       {
@@ -517,7 +517,7 @@ const watchSkill = (
       id: id,
       watch: watch,
     };
-    let confirmationRequest = client.post(`api/v1/skills/watch`, requestData, {
+    const confirmationRequest = client.post(`api/v1/skills/watch`, requestData, {
       headers: { authorization: token },
     });
     confirmationRequest

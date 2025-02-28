@@ -101,7 +101,7 @@ const setTalentTransformationStepData = (
       id: id,
       returnAllStepsStatuses: returnAllStepsStatuses,
     };
-    let confirmationRequest = client.post(
+    const confirmationRequest = client.post(
       `api/v1/talenttransformation/setdata/`,
       requestData,
       {
