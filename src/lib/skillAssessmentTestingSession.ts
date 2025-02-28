@@ -1,6 +1,11 @@
 import { AxiosError, AxiosResponse } from "axios";
 import { client } from "./axiosClient.js";
 
+interface GetNextStepPayload {
+  id: string;
+  selectedAnswers?: Array<string>;
+}
+
 /**
  * Add new entry skill assessment
  * @param {String} id
@@ -107,6 +112,31 @@ export const deleteSkillAssessment = (
 };
 
 /**
+ * End an existing testing session
+ * @param {String} testingSessionId
+ * @param {String} token Authorization token
+ * @param {Boolean} deletePartial
+ */
+export const endSession = (testingSessionId: string, token: string, keepPartial = false) => {
+  return new Promise(function (resolve, reject) {
+    const confirmationRequest = client.post(
+      "api/v1/skillassessmenttestingsession/endsession",
+      { id: testingSessionId, keepPartial: keepPartial },
+      {
+        headers: { authorization: token },
+      }
+    );
+    confirmationRequest
+      .then((response) => {
+        resolve(response.data);
+      })
+      .catch((error) => {
+        reject(error);
+      });
+  });
+};
+
+/**
  * Get skill assessment by id
  * @param {String} id
  * @param {String} token
@@ -178,6 +208,91 @@ export const getList = (userId: string, token: string): Promise<object> => {
         resolve(response.data);
       })
       .catch((error : AxiosError) => {
+        reject(error);
+      });
+  });
+};
+
+/**
+ * End an existing testing session
+ * @param {String} testingSessionId
+ * @param {Array<String>} selectedAnswers
+ * @param {String} token Authorization token
+ */
+export const getNextStep = (testingSessionId: string, selectedAnswers: Array<string>, token: string) => {
+  return new Promise(function (resolve, reject) {
+    const data : GetNextStepPayload = {
+      id: testingSessionId,
+    };
+    if (selectedAnswers) data.selectedAnswers = selectedAnswers;
+    const confirmationRequest = client.post(
+      `api/v1/skillassessmenttestingsession/getnextstep`,
+      data,
+      {
+        headers: { authorization: token },
+      }
+    );
+    confirmationRequest
+      .then((response) => {
+        resolve(response.data);
+      })
+      .catch((error) => {
+        reject(error);
+      });
+  });
+};
+
+
+/**
+ * Pause skill assessment
+ * @param {String} testingSessionId
+ * @param {String} token
+ * @returns
+ */
+export const pause = (testingSessionId: string, token: string) => {
+  return new Promise(function (resolve, reject) {
+    const confirmationRequest = client.post(
+      `api/v1/skillassessmenttestingsession/pausesession`,
+      {
+        id: testingSessionId,
+      },
+      {
+        headers: { authorization: token },
+      }
+    );
+    confirmationRequest
+      .then((response) => {
+        resolve(response.data);
+      })
+      .catch((error) => {
+        reject(error);
+      });
+  });
+};
+
+/**
+ * Start a new test skill test assessment session
+ * @param {String} skillId
+ * @param {Boolean} saveSession
+ * @param {String} token
+ */
+export const startSession = (skillId: string, saveSession: boolean, token: string) => {
+  return new Promise(function (resolve, reject) {
+    const confirmationRequest = client.post(
+      "api/v1/skillassessmenttestingsession/startsession",
+      {
+        saveSession: saveSession,
+        skillId: skillId,
+      },
+      {
+        headers: { authorization: token },
+      }
+    );
+    confirmationRequest
+      .then((response) => {
+        resolve(response.data);
+      })
+      .catch((error) => {
         reject(error);
       });
   });
