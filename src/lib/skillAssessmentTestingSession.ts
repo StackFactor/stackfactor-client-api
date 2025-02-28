@@ -242,6 +242,34 @@ export const getNextStep = (testingSessionId: string, selectedAnswers: Array<str
   });
 };
 
+/**
+ * Get skill assessment by user and skill
+ * @param {String} userId
+ * @param {String} skillId
+ * @param {String} token
+ * @returns
+ */
+export const getSkillTestAssessment = (userId: string, skillId: string, token: string) => {
+  return new Promise(function (resolve, reject) {
+    const confirmationRequest = client.post(
+      `api/v1/skillassessmenttestingsession/getbyuserandskill`,
+      {
+        userId: userId,
+        skillId: skillId,
+      },
+      {
+        headers: { authorization: token },
+      }
+    );
+    confirmationRequest
+      .then((response) => {
+        resolve(response.data);
+      })
+      .catch((error) => {
+        reject(error);
+      });
+  });
+};
 
 /**
  * Pause skill assessment
