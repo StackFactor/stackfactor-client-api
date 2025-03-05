@@ -29,10 +29,10 @@ export const addEntry = (
       }
     );
     confirmationRequest
-      .then((response : AxiosResponse) => {
+      .then((response: AxiosResponse) => {
         resolve(response.data);
       })
-      .catch((error : AxiosError) => {
+      .catch((error: AxiosError) => {
         reject(error);
       });
   });
@@ -66,10 +66,10 @@ export const create = (
       }
     );
     confirmationRequest
-      .then((response : AxiosResponse) => {
+      .then((response: AxiosResponse) => {
         resolve(response.data);
       })
-      .catch((error : AxiosError) => {
+      .catch((error: AxiosError) => {
         reject(error);
       });
   });
@@ -77,18 +77,18 @@ export const create = (
 
 /**
  * Delete skill assessment
- * @param {number} id The id of the skill to be deleted
+ * @param {String} id The id of the skill to be deleted
  * @param {String} comments The comments included with the deletion
  * @param {String} token Authorization token
  * @returns {Promise<object>}
  */
 export const deleteSkillAssessment = (
-  id: number,
+  id: string,
   comments: string,
   token: string
 ): Promise<object> => {
   return new Promise((resolve, reject) => {
-    const data: { id: number, comments?: string } = {
+    const data: { id: string; comments?: string } = {
       id: id,
     };
     if (comments) data.comments = comments;
@@ -97,10 +97,10 @@ export const deleteSkillAssessment = (
       data: data,
     });
     request
-      .then((response : AxiosResponse) => {
+      .then((response: AxiosResponse) => {
         resolve(response.data);
       })
-      .catch((error : AxiosError) => {
+      .catch((error: AxiosError) => {
         reject(error);
       });
   });
@@ -118,10 +118,10 @@ export const getById = (id: string, token: string): Promise<object> => {
       headers: { authorization: token },
     });
     confirmationRequest
-      .then((response : AxiosResponse) => {
+      .then((response: AxiosResponse) => {
         resolve(response.data);
       })
-      .catch((error : AxiosError) => {
+      .catch((error: AxiosError) => {
         reject(error);
       });
   });
@@ -147,10 +147,10 @@ export const getByUserAndSkill = (
       }
     );
     confirmationRequest
-      .then((response : AxiosResponse) => {
+      .then((response: AxiosResponse) => {
         resolve(response.data);
       })
-      .catch((error : AxiosError) => {
+      .catch((error: AxiosError) => {
         reject(error);
       });
   });
@@ -174,10 +174,10 @@ export const getList = (userId: string, token: string): Promise<object> => {
       }
     );
     confirmationRequest
-      .then((response : AxiosResponse) => {
+      .then((response: AxiosResponse) => {
         resolve(response.data);
       })
-      .catch((error : AxiosError) => {
+      .catch((error: AxiosError) => {
         reject(error);
       });
   });

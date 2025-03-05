@@ -3,12 +3,12 @@ import { client } from "./axiosClient.js";
 
 /**
  * Get tenant information
- * @param {String} category Tenant information category
+ * @param {Array<String>} category Tenant information category
  * @param {String} token Authorization token
  * @returns {Promise<object>}
  */
 export const getTenantInformation = (
-  category: string,
+  category: string[],
   token: string
 ): Promise<object> => {
   return new Promise((resolve, reject) => {
@@ -19,10 +19,10 @@ export const getTenantInformation = (
       headers: { authorization: token },
     });
     request
-      .then((response : AxiosResponse) => {
+      .then((response: AxiosResponse) => {
         resolve(response.data ? response.data : null);
       })
-      .catch((error : AxiosError) => {
+      .catch((error: AxiosError) => {
         reject(error);
       });
   });
@@ -53,10 +53,10 @@ export const setTenantInformation = (
       }
     );
     confirmationRequest
-      .then((response : AxiosResponse) => {
+      .then((response: AxiosResponse) => {
         resolve(response.data);
       })
-      .catch((error : AxiosError) => {
+      .catch((error: AxiosError) => {
         reject(error);
       });
   });

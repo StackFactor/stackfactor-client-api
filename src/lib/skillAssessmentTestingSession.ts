@@ -34,10 +34,10 @@ export const addEntry = (
       }
     );
     confirmationRequest
-      .then((response : AxiosResponse) => {
+      .then((response: AxiosResponse) => {
         resolve(response.data);
       })
-      .catch((error : AxiosError) => {
+      .catch((error: AxiosError) => {
         reject(error);
       });
   });
@@ -71,10 +71,10 @@ export const create = (
       }
     );
     confirmationRequest
-      .then((response : AxiosResponse) => {
+      .then((response: AxiosResponse) => {
         resolve(response.data);
       })
-      .catch((error : AxiosError) => {
+      .catch((error: AxiosError) => {
         reject(error);
       });
   });
@@ -82,18 +82,18 @@ export const create = (
 
 /**
  * Delete skill assessment
- * @param {number} id The id of the skill to be deleted
+ * @param {String} id The id of the skill to be deleted
  * @param {String} comments The comments included with the deletion
  * @param {String} token Authorization token
  * @returns {Promise<object>}
  */
 export const deleteSkillAssessment = (
-  id: number,
+  id: string,
   comments: string,
   token: string
 ): Promise<object> => {
   return new Promise((resolve, reject) => {
-    const data: { id: number, comments?: string } = {
+    const data: { id: string; comments?: string } = {
       id: id,
     };
     if (comments) data.comments = comments;
@@ -102,10 +102,10 @@ export const deleteSkillAssessment = (
       data: data,
     });
     request
-      .then((response : AxiosResponse) => {
+      .then((response: AxiosResponse) => {
         resolve(response.data);
       })
-      .catch((error : AxiosError) => {
+      .catch((error: AxiosError) => {
         reject(error);
       });
   });
@@ -117,7 +117,11 @@ export const deleteSkillAssessment = (
  * @param {String} token Authorization token
  * @param {Boolean} deletePartial
  */
-export const endSession = (testingSessionId: string, token: string, keepPartial = false) => {
+export const endSession = (
+  testingSessionId: string,
+  token: string,
+  keepPartial = false
+) => {
   return new Promise(function (resolve, reject) {
     const confirmationRequest = client.post(
       "api/v1/skillassessmenttestingsession/endsession",
@@ -148,10 +152,10 @@ export const getById = (id: string, token: string): Promise<object> => {
       headers: { authorization: token },
     });
     confirmationRequest
-      .then((response : AxiosResponse) => {
+      .then((response: AxiosResponse) => {
         resolve(response.data);
       })
-      .catch((error : AxiosError) => {
+      .catch((error: AxiosError) => {
         reject(error);
       });
   });
@@ -177,10 +181,10 @@ export const getByUserAndSkill = (
       }
     );
     confirmationRequest
-      .then((response : AxiosResponse) => {
+      .then((response: AxiosResponse) => {
         resolve(response.data);
       })
-      .catch((error : AxiosError) => {
+      .catch((error: AxiosError) => {
         reject(error);
       });
   });
@@ -204,10 +208,10 @@ export const getList = (userId: string, token: string): Promise<object> => {
       }
     );
     confirmationRequest
-      .then((response : AxiosResponse) => {
+      .then((response: AxiosResponse) => {
         resolve(response.data);
       })
-      .catch((error : AxiosError) => {
+      .catch((error: AxiosError) => {
         reject(error);
       });
   });
@@ -219,9 +223,13 @@ export const getList = (userId: string, token: string): Promise<object> => {
  * @param {Array<String>} selectedAnswers
  * @param {String} token Authorization token
  */
-export const getNextStep = (testingSessionId: string, selectedAnswers: Array<string>, token: string) => {
+export const getNextStep = (
+  testingSessionId: string,
+  selectedAnswers: Array<string>,
+  token: string
+) => {
   return new Promise(function (resolve, reject) {
-    const data : GetNextStepPayload = {
+    const data: GetNextStepPayload = {
       id: testingSessionId,
     };
     if (selectedAnswers) data.selectedAnswers = selectedAnswers;
@@ -249,7 +257,11 @@ export const getNextStep = (testingSessionId: string, selectedAnswers: Array<str
  * @param {String} token
  * @returns
  */
-export const getSkillTestAssessment = (userId: string, skillId: string, token: string) => {
+export const getSkillTestAssessment = (
+  userId: string,
+  skillId: string,
+  token: string
+) => {
   return new Promise(function (resolve, reject) {
     const confirmationRequest = client.post(
       `api/v1/skillassessmenttestingsession/getbyuserandskill`,
@@ -304,7 +316,11 @@ export const pause = (testingSessionId: string, token: string) => {
  * @param {Boolean} saveSession
  * @param {String} token
  */
-export const startSession = (skillId: string, saveSession: boolean, token: string) => {
+export const startSession = (
+  skillId: string,
+  saveSession: boolean,
+  token: string
+) => {
   return new Promise(function (resolve, reject) {
     const confirmationRequest = client.post(
       "api/v1/skillassessmenttestingsession/startsession",
