@@ -460,7 +460,7 @@ export const logout = (token: string): Promise<object> => {
  * @param {string} refreshToken User's auth token to be refreshed
  * @returns {Promise<object>}
  */
-export const refreshToken = (refreshToken: string): Promise<object> => {
+export const refreshToken = (refreshToken ?: string): Promise<object> => {
   return new Promise((resolve, reject) => {
     const request = client.post("api/v1/auth/refreshToken", {
       refreshToken: refreshToken,
