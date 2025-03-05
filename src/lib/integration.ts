@@ -10,7 +10,7 @@ interface IntegrationData {
 
 interface IntegrationFilter {
   filter?: string[];
-  type?: string;
+  type?: number;
   version: string;
   includeSupportedCapabilities: boolean;
 }
@@ -42,14 +42,18 @@ export const createIntegration = (
     const requestData: IntegrationData = {
       data: data,
     };
-    const confirmationRequest = client.put("api/v1/integrations/", requestData, {
-      headers: { authorization: token },
-    });
+    const confirmationRequest = client.put(
+      "api/v1/integrations/",
+      requestData,
+      {
+        headers: { authorization: token },
+      }
+    );
     confirmationRequest
-      .then((response : AxiosResponse) => {
+      .then((response: AxiosResponse) => {
         resolve(response.data);
       })
-      .catch((error : AxiosError) => {
+      .catch((error: AxiosError) => {
         reject(error);
       });
   });
@@ -72,10 +76,10 @@ export const deleteIntegration = (
       },
     });
     request
-      .then((response : AxiosResponse) => {
+      .then((response: AxiosResponse) => {
         resolve(response.data);
       })
-      .catch((error : AxiosError) => {
+      .catch((error: AxiosError) => {
         reject(error);
       });
   });
@@ -97,10 +101,10 @@ export const discardIntegrationChanges = (
       data: data,
     });
     request
-      .then((response : AxiosResponse) => {
+      .then((response: AxiosResponse) => {
         resolve(response.data);
       })
-      .catch((error : AxiosError) => {
+      .catch((error: AxiosError) => {
         reject(error);
       });
   });
@@ -125,10 +129,10 @@ export const getIntegrationInformationById = (
       }
     );
     confirmationRequest
-      .then((response : AxiosResponse) => {
+      .then((response: AxiosResponse) => {
         resolve(response.data);
       })
-      .catch((error : AxiosError) => {
+      .catch((error: AxiosError) => {
         reject(error);
       });
   });
@@ -137,14 +141,14 @@ export const getIntegrationInformationById = (
 /**
  * Get integrations list
  * @param {Array<String>} filter The filter used to select the integration
- * @param {String} type The type of the integration
+ * @param {Number} type The type of the integration
  * @param {String} version The version to be retrieved
  * @param {Boolean} includeSupportedCapabilities If true, the supported capabilities will be included in the response
  * @param {String} token Authorization token
  */
 export const getIntegrationsList = (
   filter: string[],
-  type: string,
+  type: number,
   version: string,
   includeSupportedCapabilities: boolean,
   token: string
@@ -156,14 +160,18 @@ export const getIntegrationsList = (
     };
     if (filter) requestData.filter = filter;
     if (type) requestData.type = type;
-    const confirmationRequest = client.post(`api/v1/integrations`, requestData, {
-      headers: { authorization: token },
-    });
+    const confirmationRequest = client.post(
+      `api/v1/integrations`,
+      requestData,
+      {
+        headers: { authorization: token },
+      }
+    );
     confirmationRequest
-      .then((response : AxiosResponse) => {
+      .then((response: AxiosResponse) => {
         resolve(response.data);
       })
-      .catch((error : AxiosError) => {
+      .catch((error: AxiosError) => {
         reject(error);
       });
   });
@@ -193,10 +201,10 @@ export const getContentInformationByUrl = (
       }
     );
     confirmationRequest
-      .then((response : AxiosResponse) => {
+      .then((response: AxiosResponse) => {
         resolve(response.data);
       })
-      .catch((error : AxiosError) => {
+      .catch((error: AxiosError) => {
         reject(error);
       });
   });
@@ -228,7 +236,7 @@ export const getContentInformationByUrlFromBrowser = (
       },
     });
     confirmationRequest
-      .then((response : AxiosResponse) => {
+      .then((response: AxiosResponse) => {
         //get the reading time
         const getReadingTime = (text: string): number => {
           const wpm = 225;
@@ -244,7 +252,7 @@ export const getContentInformationByUrlFromBrowser = (
         const descriptionEl = document.querySelector("meta");
         try {
           if (descriptionEl) {
-          const descriptionParentNode = descriptionEl.parentNode;
+            const descriptionParentNode = descriptionEl.parentNode;
             if (descriptionEl) {
               const descriptionChildNodes = descriptionParentNode.childNodes;
               if (descriptionChildNodes) {
@@ -276,7 +284,7 @@ export const getContentInformationByUrlFromBrowser = (
           });
         }
       })
-      .catch((error : AxiosError) => {
+      .catch((error: AxiosError) => {
         reject(new Error(errorToString(error)));
       });
   });
@@ -299,10 +307,10 @@ export const getEnabledContentProviders = (
       }
     );
     confirmationRequest
-      .then((response : AxiosResponse) => {
+      .then((response: AxiosResponse) => {
         resolve(response.data);
       })
-      .catch((error : AxiosError) => {
+      .catch((error: AxiosError) => {
         reject(error);
       });
   });
@@ -326,10 +334,10 @@ export const publishIntegration = (
       }
     );
     confirmationRequest
-      .then((response : AxiosResponse) => {
+      .then((response: AxiosResponse) => {
         resolve(response.data);
       })
-      .catch((error : AxiosError) => {
+      .catch((error: AxiosError) => {
         reject(error);
       });
   });
@@ -358,10 +366,10 @@ export const setIntegrationInformation = (
       }
     );
     confirmationRequest
-      .then((response : AxiosResponse) => {
+      .then((response: AxiosResponse) => {
         resolve(response.data);
       })
-      .catch((error : AxiosError) => {
+      .catch((error: AxiosError) => {
         reject(error);
       });
   });
@@ -385,10 +393,10 @@ export const setDefaultIntegration = (
       }
     );
     confirmationRequest
-      .then((response : AxiosResponse) => {
+      .then((response: AxiosResponse) => {
         resolve(response.data);
       })
-      .catch((error : AxiosError) => {
+      .catch((error: AxiosError) => {
         reject(error);
       });
   });

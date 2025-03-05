@@ -73,14 +73,14 @@ export const saveIntegrationConfiguration = (
 /**
  * Test integration configuration
  * @param {String} id The id of the integration to be updated
- * @param {String} type The type of configuration
+ * @param {Number} type The type of configuration
  * @param {Object} configuration Configuration to be tested
  * @param {String} token Authorization token
  * @returns {Promise<object>}
  */
 export const testIntegrationConfiguration = (
   id: string,
-  type: string,
+  type: number,
   configuration: object,
   token: string
 ): Promise<object> => {

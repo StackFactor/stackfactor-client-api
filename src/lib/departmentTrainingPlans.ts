@@ -36,10 +36,10 @@ export const createDepartmentTrainingPlan = (
       }
     );
     confirmationRequest
-      .then((response : AxiosResponse) => {
+      .then((response: AxiosResponse) => {
         resolve(response.data);
       })
-      .catch((error : AxiosError) => {
+      .catch((error: AxiosError) => {
         reject(error);
       });
   });
@@ -63,10 +63,10 @@ export const deleteDepartmentTrainingPlan = (
       },
     });
     request
-      .then((response : AxiosResponse) => {
+      .then((response: AxiosResponse) => {
         resolve(response.data);
       })
-      .catch((error : AxiosError) => {
+      .catch((error: AxiosError) => {
         reject(error);
       });
   });
@@ -74,13 +74,13 @@ export const deleteDepartmentTrainingPlan = (
 
 /**
  * Get department training plan information
- * @param {Number} id The id of the plan
+ * @param {String} id The id of the plan
  * @param {String} version The version of the plan
  * @param {String} token Authorization token
  * @returns {Promise<object>}
  */
 export const getDepartmentTrainingPlanInformationById = (
-  id: number,
+  id: string,
   version: string,
   token: string
 ): Promise<object> => {
@@ -92,10 +92,10 @@ export const getDepartmentTrainingPlanInformationById = (
       }
     );
     confirmationRequest
-      .then((response : AxiosResponse) => {
+      .then((response: AxiosResponse) => {
         resolve(response.data);
       })
-      .catch((error : AxiosError) => {
+      .catch((error: AxiosError) => {
         reject(error);
       });
   });
@@ -126,10 +126,10 @@ export const getDepartmentTrainingPlanList = (
       }
     );
     confirmationRequest
-      .then((response : AxiosResponse) => {
+      .then((response: AxiosResponse) => {
         resolve(response.data);
       })
-      .catch((error : AxiosError) => {
+      .catch((error: AxiosError) => {
         reject(error);
       });
   });
@@ -137,12 +137,12 @@ export const getDepartmentTrainingPlanList = (
 
 /**
  * Publish department training plan
- * @param {number} id The id of the plan to be published
+ * @param {String} id The id of the plan to be published
  * @param {String} token Authorization token
  * @returns {Promise<object>}
  */
 export const publishDepartmentTrainingPlan = (
-  id: number,
+  id: string,
   token: string
 ): Promise<object> => {
   return new Promise((resolve, reject) => {
@@ -154,10 +154,10 @@ export const publishDepartmentTrainingPlan = (
       }
     );
     confirmationRequest
-      .then((response : AxiosResponse) => {
+      .then((response: AxiosResponse) => {
         resolve(response.data);
       })
-      .catch((error : AxiosError) => {
+      .catch((error: AxiosError) => {
         reject(error);
       });
   });
@@ -187,10 +187,10 @@ export const setDepartmentTrainingPlanInformation = (
       }
     );
     confirmationRequest
-      .then((response : AxiosResponse) => {
+      .then((response: AxiosResponse) => {
         resolve(response.data);
       })
-      .catch((error : AxiosError) => {
+      .catch((error: AxiosError) => {
         reject(error);
       });
   });
