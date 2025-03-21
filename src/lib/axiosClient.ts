@@ -11,6 +11,7 @@ interface ErrorResponse {
 
 interface CustomAxiosResponse extends AxiosResponse {
   errors?: ErrorResponse[];
+  error: string;
   toString: () => string;
 }
 
@@ -40,6 +41,8 @@ export const errorToString = (error: AxiosError): string => {
           }
         );
         return asString;
+      } else if (responseData.error) {
+        return responseData.error;
       } else if (responseData.errors) {
         return JSON.stringify(responseData.errors);
       } else if (error.response.statusText) {
