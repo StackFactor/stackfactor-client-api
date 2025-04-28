@@ -41,10 +41,10 @@ export const createLearningContent = (
       }
     );
     confirmationRequest
-      .then((response : AxiosResponse) => {
+      .then((response: AxiosResponse) => {
         resolve(response.data);
       })
-      .catch((error : AxiosError) => {
+      .catch((error: AxiosError) => {
         reject(error);
       });
   });
@@ -72,10 +72,43 @@ export const deleteLearningContent = (
       data: data,
     });
     request
-      .then((response : AxiosResponse) => {
+      .then((response: AxiosResponse) => {
         resolve(response.data);
       })
-      .catch((error : AxiosError) => {
+      .catch((error: AxiosError) => {
+        reject(error);
+      });
+  });
+};
+
+/**
+ * Delete media for a specific micro skill learning content activity
+ * @param {String} id
+ * @param {String} microskillid
+ * @param {String} activityId
+ * @param {String} mediaId
+ * @param {String} token
+ * @returns {Promise<object>} The response from the server
+ * */
+export const deleteLearningContentMicroSkillLearningContentActivityMedia = (
+  id: string,
+  microskillid: string,
+  activityId: string,
+  mediaId: string,
+  token: string
+): Promise<object> => {
+  return new Promise((resolve, reject) => {
+    const confirmationRequest = client.delete(
+      `api/v1/learningcontent/media/${id}/${microskillid}/${activityId}/${mediaId}`,
+      {
+        headers: { authorization: token },
+      }
+    );
+    confirmationRequest
+      .then((response: AxiosResponse) => {
+        resolve(response.data);
+      })
+      .catch((error: AxiosError) => {
         reject(error);
       });
   });
@@ -98,10 +131,10 @@ export const discardLearningContentChanges = (
       data: data,
     });
     request
-      .then((response : AxiosResponse) => {
+      .then((response: AxiosResponse) => {
         resolve(response.data);
       })
-      .catch((error : AxiosError) => {
+      .catch((error: AxiosError) => {
         reject(error);
       });
   });
@@ -144,10 +177,10 @@ export const generateLearningActivityContent = (
       }
     );
     request
-      .then((response : AxiosResponse) => {
+      .then((response: AxiosResponse) => {
         resolve(response.data);
       })
-      .catch((error : AxiosError) => {
+      .catch((error: AxiosError) => {
         reject(error);
       });
   });
@@ -175,10 +208,10 @@ export const generateMicroSkillTestKnowledge = (
       }
     );
     confirmationRequest
-      .then((response : AxiosResponse) => {
+      .then((response: AxiosResponse) => {
         resolve(response.data);
       })
-      .catch((error : AxiosError) => {
+      .catch((error: AxiosError) => {
         reject(error);
       });
   });
@@ -204,10 +237,10 @@ export const getLearningContentInformationById = (
       }
     );
     confirmationRequest
-      .then((response : AxiosResponse) => {
+      .then((response: AxiosResponse) => {
         resolve(response.data);
       })
-      .catch((error : AxiosError) => {
+      .catch((error: AxiosError) => {
         reject(error);
       });
   });
@@ -228,7 +261,11 @@ export const getLearningContentList = (
   token: string
 ): Promise<object[]> => {
   return new Promise((resolve, reject) => {
-    const requestData: { version: string; includeDeleted: boolean; filter?: string[] } = {
+    const requestData: {
+      version: string;
+      includeDeleted: boolean;
+      filter?: string[];
+    } = {
       version: version,
       includeDeleted: includeDeleted,
     };
@@ -241,10 +278,45 @@ export const getLearningContentList = (
       }
     );
     confirmationRequest
-      .then((response : AxiosResponse) => {
+      .then((response: AxiosResponse) => {
         resolve(response.data);
       })
-      .catch((error : AxiosError) => {
+      .catch((error: AxiosError) => {
+        reject(error);
+      });
+  });
+};
+
+/**
+ * Upload media for a specific micro skill learning content activity
+ * @param {String} id
+ * @param {String} microskillid
+ * @param {String} activityId
+ * @param {String} mediaId
+ * @param {String} token
+ * @returns {Promise<object>} The response from the server
+ */
+export const getLearningContentMicroSkillLearningContentActivityMedia = (
+  id: string,
+  microskillid: string,
+  activityId: string,
+  mediaId: string,
+  token: string
+): Promise<object> => {
+  return new Promise((resolve, reject) => {
+    const confirmationRequest = client.get(
+      `api/v1/learningcontent/media/${id}/${microskillid}/${activityId}/${mediaId}`,
+      {
+        headers: {
+          authorization: token,
+        },
+      }
+    );
+    confirmationRequest
+      .then((response: AxiosResponse) => {
+        resolve(response.data);
+      })
+      .catch((error: AxiosError) => {
         reject(error);
       });
   });
@@ -270,10 +342,10 @@ export const migrateLearningContentStorageType = (
       }
     );
     confirmationRequest
-      .then((response : AxiosResponse) => {
+      .then((response: AxiosResponse) => {
         resolve(response.data);
       })
-      .catch((error : AxiosError) => {
+      .catch((error: AxiosError) => {
         reject(error);
       });
   });
@@ -303,10 +375,10 @@ export const publishLearningContent = (
       }
     );
     confirmationRequest
-      .then((response : AxiosResponse) => {
+      .then((response: AxiosResponse) => {
         resolve(response.data);
       })
-      .catch((error : AxiosError) => {
+      .catch((error: AxiosError) => {
         reject(error);
       });
   });
@@ -337,10 +409,10 @@ export const setLearningContentInformation = (
       }
     );
     confirmationRequest
-      .then((response : AxiosResponse) => {
+      .then((response: AxiosResponse) => {
         resolve(response.data);
       })
-      .catch((error : AxiosError) => {
+      .catch((error: AxiosError) => {
         reject(error);
       });
   });
@@ -371,10 +443,10 @@ export const setLearningContentPartialContentInformation = (
       }
     );
     confirmationRequest
-      .then((response : AxiosResponse) => {
+      .then((response: AxiosResponse) => {
         resolve(response.data);
       })
-      .catch((error : AxiosError) => {
+      .catch((error: AxiosError) => {
         reject(error);
       });
   });
@@ -411,10 +483,10 @@ export const setLearningContentLearningContentInformation = (
       }
     );
     confirmationRequest
-      .then((response : AxiosResponse) => {
+      .then((response: AxiosResponse) => {
         resolve(response.data);
       })
-      .catch((error : AxiosError) => {
+      .catch((error: AxiosError) => {
         reject(error);
       });
   });
@@ -446,10 +518,10 @@ export const setLearningContentLearningMicroSkillContentInformation = (
       }
     );
     confirmationRequest
-      .then((response : AxiosResponse) => {
+      .then((response: AxiosResponse) => {
         resolve(response.data);
       })
-      .catch((error : AxiosError) => {
+      .catch((error: AxiosError) => {
         reject(error);
       });
   });
@@ -479,10 +551,51 @@ export const setLearningContentTags = (
       }
     );
     confirmationRequest
-      .then((response : AxiosResponse) => {
+      .then((response: AxiosResponse) => {
         resolve(response.data);
       })
-      .catch((error : AxiosError) => {
+      .catch((error: AxiosError) => {
+        reject(error);
+      });
+  });
+};
+
+/**
+ * Upload media for a specific micro skill learning content activity
+ * @param {String} id
+ * @param {String} microskillid
+ * @param {String} activityId
+ * @param {String} mediaId
+ * @param {File} file
+ * @param {String} token
+ * @returns {Promise<object>} The response from the server
+ */
+export const uploadLearningContentMicroSkillLearningContentActivityMedia = (
+  id: string,
+  microskillid: string,
+  activityId: string,
+  mediaId: string,
+  file: File,
+  token: string
+): Promise<object> => {
+  const formData = new FormData();
+  formData.append("file", file);
+  return new Promise((resolve, reject) => {
+    const confirmationRequest = client.post(
+      `api/v1/learningcontent/media/${id}/${microskillid}/${activityId}/${mediaId}`,
+      formData,
+      {
+        headers: {
+          authorization: token,
+          "Content-Type": "multipart/form-data",
+        },
+      }
+    );
+    confirmationRequest
+      .then((response: AxiosResponse) => {
+        resolve(response.data);
+      })
+      .catch((error: AxiosError) => {
         reject(error);
       });
   });
@@ -512,10 +625,10 @@ export const watchLearningContent = (
       }
     );
     confirmationRequest
-      .then((response : AxiosResponse) => {
+      .then((response: AxiosResponse) => {
         resolve(response.data);
       })
-      .catch((error : AxiosError) => {
+      .catch((error: AxiosError) => {
         reject(error);
       });
   });

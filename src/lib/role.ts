@@ -40,6 +40,7 @@ export const createRoleFromTemplate = (
 ): Promise<object> => {
   return new Promise((resolve, reject) => {
     const requestData: { 
+      data: object;
       includeDeleted: boolean; 
       includeDetailedInformation: boolean; 
       namesOnly: boolean; 
@@ -48,6 +49,7 @@ export const createRoleFromTemplate = (
       filter?: object;
       templateId: string;
     } = {
+      data: data,
       templateId: templateId,
       includeDeleted: false,
       includeDetailedInformation: false,
