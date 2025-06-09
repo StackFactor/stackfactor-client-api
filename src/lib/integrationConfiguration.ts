@@ -4,17 +4,17 @@ import { client } from "./axiosClient.js";
 /**
  * Get the integration configuration
  * @param {Array<String>} ids
- * @param {Number} type
+ * @param {Array<Number>} types
  * @param {String} token Authorization token
  * @returns {Promise<object>}
  */
 export const getIntegrationsConfiguration = (
   ids: string[],
-  type: number,
+  types: number[],
   token: string
 ): Promise<object> => {
   return new Promise((resolve, reject) => {
-    const requestData: { type: number; ids?: string[] } = { type: type };
+    const requestData: { types: number[]; ids?: string[] } = { types: types };
     if (ids) requestData.ids = ids;
     const confirmationRequest = client.post(
       "api/v1/integrationsconfiguration",
@@ -24,10 +24,10 @@ export const getIntegrationsConfiguration = (
       }
     );
     confirmationRequest
-      .then((response : AxiosResponse) => {
+      .then((response: AxiosResponse) => {
         resolve(response.data);
       })
-      .catch((error : AxiosError) => {
+      .catch((error: AxiosError) => {
         reject(error);
       });
   });
@@ -61,10 +61,10 @@ export const saveIntegrationConfiguration = (
       }
     );
     confirmationRequest
-      .then((response : AxiosResponse) => {
+      .then((response: AxiosResponse) => {
         resolve(response.data);
       })
-      .catch((error : AxiosError) => {
+      .catch((error: AxiosError) => {
         reject(error);
       });
   });
@@ -98,10 +98,10 @@ export const testIntegrationConfiguration = (
       }
     );
     confirmationRequest
-      .then((response : AxiosResponse) => {
+      .then((response: AxiosResponse) => {
         resolve(response.data);
       })
-      .catch((error : AxiosError) => {
+      .catch((error: AxiosError) => {
         reject(error);
       });
   });

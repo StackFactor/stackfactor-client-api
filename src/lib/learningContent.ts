@@ -288,6 +288,43 @@ export const getLearningContentList = (
 };
 
 /**
+ * Get learning content scene audio
+ * @param {String} id
+ * @param {String} microSkillId
+ * @param {String} learningActivityId
+ * @param {String} sceneId
+ * @param {String} token
+ * @param {String} version
+ */
+export const getLearningContentMicroSkillLearningContentActivitySceneAudio = (
+  contentId: string,
+  microSkillId: string,
+  learningActivityId: string,
+  sceneId: string,
+  token: string,
+  version: string
+) => {
+  return new Promise((resolve, reject) => {
+    const confirmationRequest = client.get(
+      `/api/v1/learningcontent/audio/${contentId}/${microSkillId}/${learningActivityId}/${sceneId}/${version}`,
+      {
+        headers: {
+          authorization: token,
+        },
+        responseType: "blob",
+      }
+    );
+    confirmationRequest
+      .then((response: AxiosResponse) => {
+        resolve(response.data);
+      })
+      .catch((error: AxiosError) => {
+        reject(error);
+      });
+  });
+};
+
+/**
  * Upload media for a specific micro skill learning content activity
  * @param {String} id
  * @param {String} microskillid
