@@ -4,7 +4,7 @@ import { client } from "./axiosClient.js";
 /**
  * Get the integration configuration
  * @param {Array<String>} ids
- * @param {Array<Number>} types
+ * @param {Number} type
  * @param {String} token Authorization token
  * @returns {Promise<object>}
  */
@@ -16,7 +16,6 @@ export const getIntegrationsConfiguration = (
   return new Promise((resolve, reject) => {
     const requestData: { types: number[]; ids?: string[] } = { types: types };
     if (ids) requestData.ids = ids;
-    if (types) requestData.types = types;
     const confirmationRequest = client.post(
       "api/v1/integrationsconfiguration",
       requestData,
