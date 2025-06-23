@@ -16,6 +16,7 @@ export const getIntegrationsConfiguration = (
   return new Promise((resolve, reject) => {
     const requestData: { types: number[]; ids?: string[] } = { types: types };
     if (ids) requestData.ids = ids;
+    if (types) requestData.types = types;
     const confirmationRequest = client.post(
       "api/v1/integrationsconfiguration",
       requestData,

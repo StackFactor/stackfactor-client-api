@@ -12,6 +12,7 @@ interface IntegrationFilter {
   filter?: string[];
   type?: number;
   version: string;
+  includeDisabled?: boolean;
   includeSupportedCapabilities: boolean;
 }
 
@@ -144,6 +145,7 @@ export const getIntegrationInformationById = (
  * @param {Number} type The type of the integration
  * @param {String} version The version to be retrieved
  * @param {Boolean} includeSupportedCapabilities If true, the supported capabilities will be included in the response
+ * @param {Boolean} includeDisabled If true, the disabled integrations will be included in the response
  * @param {String} token Authorization token
  */
 export const getIntegrationsList = (
@@ -151,12 +153,14 @@ export const getIntegrationsList = (
   type: number,
   version: string,
   includeSupportedCapabilities: boolean,
+  includeDisabled: boolean,
   token: string
 ): Promise<object> => {
   return new Promise((resolve, reject) => {
     const requestData: IntegrationFilter = {
       includeSupportedCapabilities: includeSupportedCapabilities,
       version: version,
+      includeDisabled: includeDisabled,
     };
     if (filter) requestData.filter = filter;
     if (type) requestData.type = type;
