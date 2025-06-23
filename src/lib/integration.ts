@@ -160,10 +160,10 @@ export const getIntegrationsList = (
     const requestData: IntegrationFilter = {
       includeSupportedCapabilities: includeSupportedCapabilities,
       version: version,
+      type: type,
       includeDisabled: includeDisabled,
     };
     if (filter) requestData.filter = filter;
-    if (type) requestData.type = type;
     const confirmationRequest = client.post(
       `api/v1/integrations`,
       requestData,
