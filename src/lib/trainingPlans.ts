@@ -6,16 +6,19 @@ import { client } from "./axiosClient.js";
  * @param {String} id The id of the training plan to be deleted
  * @param {String} token Authorization token
  */
-export const archiveTrainingPlan = (id: string, token: string): Promise<object> => {
+export const archiveTrainingPlan = (
+  id: string,
+  token: string
+): Promise<object> => {
   return new Promise((resolve, reject) => {
     const request = client.get(`api/v1/trainingplans/archive/${id}`, {
       headers: { authorization: token },
     });
     request
-      .then((response : AxiosResponse) => {
+      .then((response: AxiosResponse) => {
         resolve(response.data);
       })
-      .catch((error : AxiosError) => {
+      .catch((error: AxiosError) => {
         reject(error);
       });
   });
@@ -35,21 +38,19 @@ export const createTrainingPlan = (
   token: string
 ): Promise<void> => {
   return new Promise((resolve, reject) => {
-    const requestData: { version: string; includeDeleted: boolean; includeDetailedInformation: boolean; returnDefaultIfVersionNotAvailable: boolean; fields?: string[]; types?: number[]; users?: string[] } = {
-      version: "1.0",
-      includeDeleted: false,
-      includeDetailedInformation: true,
-      returnDefaultIfVersionNotAvailable: true,
-      types: [type],
-    };
-    const confirmationRequest = client.put("api/v1/trainingplans", requestData, {
-      headers: { authorization: token },
-    });
+    const requestData = { data: data, type: type, saveAsDraft: saveAsDraft };
+    const confirmationRequest = client.put(
+      "api/v1/trainingplans",
+      requestData,
+      {
+        headers: { authorization: token },
+      }
+    );
     confirmationRequest
-      .then((response : AxiosResponse) => {
+      .then((response: AxiosResponse) => {
         resolve(response.data);
       })
-      .catch((error : AxiosError) => {
+      .catch((error: AxiosError) => {
         reject(error);
       });
   });
@@ -76,10 +77,10 @@ export const deleteTrainingPlan = (
       data: data,
     });
     request
-      .then((response : AxiosResponse) => {
+      .then((response: AxiosResponse) => {
         resolve(response.data);
       })
-      .catch((error : AxiosError) => {
+      .catch((error: AxiosError) => {
         reject(error);
       });
   });
@@ -99,10 +100,10 @@ export const discardTrainingPlanChanges = (
       headers: { authorization: token },
     });
     request
-      .then((response : AxiosResponse) => {
+      .then((response: AxiosResponse) => {
         resolve(response.data);
       })
-      .catch((error : AxiosError) => {
+      .catch((error: AxiosError) => {
         reject(error);
       });
   });
@@ -124,7 +125,12 @@ export const generateNewBaseline = (
   token: string
 ): Promise<object> => {
   return new Promise((resolve, reject) => {
-    const requestData: { data: object; returnMinimized: boolean; saveBaseline: boolean; id?: string } = {
+    const requestData: {
+      data: object;
+      returnMinimized: boolean;
+      saveBaseline: boolean;
+      id?: string;
+    } = {
       data: data,
       returnMinimized: returnMinimized,
       saveBaseline: saveBaseline,
@@ -138,10 +144,10 @@ export const generateNewBaseline = (
       }
     );
     confirmationRequest
-      .then((response : AxiosResponse) => {
+      .then((response: AxiosResponse) => {
         resolve(response.data);
       })
-      .catch((error : AxiosError) => {
+      .catch((error: AxiosError) => {
         reject(error);
       });
   });
@@ -166,10 +172,10 @@ export const getTrainingPlanById = (
       }
     );
     confirmationRequest
-      .then((response : AxiosResponse) => {
+      .then((response: AxiosResponse) => {
         resolve(response.data);
       })
-      .catch((error : AxiosError) => {
+      .catch((error: AxiosError) => {
         reject(error);
       });
   });
@@ -183,14 +189,17 @@ export const getAllTrainingPlansTasksSummary = (
   token: string | null = null
 ): Promise<object> => {
   return new Promise((resolve, reject) => {
-    const confirmationRequest = client.get(`api/v1/trainingplans/taskssummary`, {
-      headers: token ? { authorization: token } : {},
-    });
+    const confirmationRequest = client.get(
+      `api/v1/trainingplans/taskssummary`,
+      {
+        headers: token ? { authorization: token } : {},
+      }
+    );
     confirmationRequest
-      .then((response : AxiosResponse) => {
+      .then((response: AxiosResponse) => {
         resolve(response.data);
       })
-      .catch((error : AxiosError) => {
+      .catch((error: AxiosError) => {
         reject(error);
       });
   });
@@ -218,7 +227,15 @@ export const getListOfTrainingPlans = (
   token: string
 ): Promise<object> => {
   return new Promise((resolve, reject) => {
-    const requestData: { version: string; includeDeleted: boolean; includeDetailedInformation: boolean; returnDefaultIfVersionNotAvailable: boolean; fields?: string[]; types?: number[]; users?: string[] } = {
+    const requestData: {
+      version: string;
+      includeDeleted: boolean;
+      includeDetailedInformation: boolean;
+      returnDefaultIfVersionNotAvailable: boolean;
+      fields?: string[];
+      types?: number[];
+      users?: string[];
+    } = {
       version: version,
       includeDeleted: includeDeleted,
       includeDetailedInformation: includeDetailedInformation,
@@ -227,14 +244,18 @@ export const getListOfTrainingPlans = (
     if (fields) requestData.fields = fields;
     if (types) requestData.types = types;
     if (users) requestData.users = users;
-    const confirmationRequest = client.post(`api/v1/trainingplans`, requestData, {
-      headers: { authorization: token },
-    });
+    const confirmationRequest = client.post(
+      `api/v1/trainingplans`,
+      requestData,
+      {
+        headers: { authorization: token },
+      }
+    );
     confirmationRequest
-      .then((response : AxiosResponse) => {
+      .then((response: AxiosResponse) => {
         resolve(response.data);
       })
-      .catch((error : AxiosError) => {
+      .catch((error: AxiosError) => {
         reject(error);
       });
   });
@@ -262,10 +283,10 @@ export const publishTrainingPlan = (
       }
     );
     confirmationRequest
-      .then((response : AxiosResponse) => {
+      .then((response: AxiosResponse) => {
         resolve(response.data);
       })
-      .catch((error : AxiosError) => {
+      .catch((error: AxiosError) => {
         reject(error);
       });
   });
@@ -298,10 +319,10 @@ export const updateTrainingPlan = (
       }
     );
     confirmationRequest
-      .then((response : AxiosResponse) => {
+      .then((response: AxiosResponse) => {
         resolve(response.data);
       })
-      .catch((error : AxiosError) => {
+      .catch((error: AxiosError) => {
         reject(error);
       });
   });
@@ -331,7 +352,7 @@ export const updateTrainingPlanTaskStatus = (
       .then(() => {
         resolve({});
       })
-      .catch((error : AxiosError) => {
+      .catch((error: AxiosError) => {
         reject(error);
       });
   });
@@ -361,7 +382,7 @@ export const updateActivities = (
       .then(() => {
         resolve({});
       })
-      .catch((error : AxiosError) => {
+      .catch((error: AxiosError) => {
         reject(error);
       });
   });
