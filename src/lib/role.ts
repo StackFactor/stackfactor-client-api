@@ -17,10 +17,10 @@ export const createRole = (data: object, token: string): Promise<object> => {
       }
     );
     confirmationRequest
-      .then((response : AxiosResponse) => {
+      .then((response: AxiosResponse) => {
         resolve(response.data);
       })
-      .catch((error : AxiosError) => {
+      .catch((error: AxiosError) => {
         reject(error);
       });
   });
@@ -39,13 +39,13 @@ export const createRoleFromTemplate = (
   token: string
 ): Promise<object> => {
   return new Promise((resolve, reject) => {
-    const requestData: { 
+    const requestData: {
       data: object;
-      includeDeleted: boolean; 
-      includeDetailedInformation: boolean; 
-      namesOnly: boolean; 
-      returnDefaultIfVersionNotAvailable: boolean; 
-      version: string; 
+      includeDeleted: boolean;
+      includeDetailedInformation: boolean;
+      namesOnly: boolean;
+      returnDefaultIfVersionNotAvailable: boolean;
+      version: string;
       filter?: object;
       templateId: string;
     } = {
@@ -65,10 +65,10 @@ export const createRoleFromTemplate = (
       }
     );
     confirmationRequest
-      .then((response : AxiosResponse) => {
+      .then((response: AxiosResponse) => {
         resolve(response.data);
       })
-      .catch((error : AxiosError) => {
+      .catch((error: AxiosError) => {
         reject(error);
       });
   });
@@ -87,7 +87,7 @@ export const deleteRole = (
   token: string
 ): Promise<object> => {
   return new Promise((resolve, reject) => {
-    const data: { id: string, comments?: string } = {
+    const data: { id: string; comments?: string } = {
       id: id,
     };
     if (comments) data.comments = comments;
@@ -96,10 +96,10 @@ export const deleteRole = (
       data: data,
     });
     request
-      .then((response : AxiosResponse) => {
+      .then((response: AxiosResponse) => {
         resolve(response.data);
       })
-      .catch((error : AxiosError) => {
+      .catch((error: AxiosError) => {
         reject(error);
       });
   });
@@ -111,7 +111,10 @@ export const deleteRole = (
  * @param {String} token Authorization token
  * @returns {Promise<object>}
  */
-export const discardRoleChanges = (id: string, token: string): Promise<object> => {
+export const discardRoleChanges = (
+  id: string,
+  token: string
+): Promise<object> => {
   return new Promise((resolve, reject) => {
     const data = {};
     const request = client.get(`api/v1/roles/discard/${id}`, {
@@ -119,10 +122,10 @@ export const discardRoleChanges = (id: string, token: string): Promise<object> =
       data: data,
     });
     request
-      .then((response : AxiosResponse) => {
+      .then((response: AxiosResponse) => {
         resolve(response.data);
       })
-      .catch((error : AxiosError) => {
+      .catch((error: AxiosError) => {
         reject(error);
       });
   });
@@ -139,10 +142,10 @@ export const getImportedRoleTemplates = (token: string): Promise<object> => {
       headers: { authorization: token },
     });
     request
-      .then((response : AxiosResponse) => {
+      .then((response: AxiosResponse) => {
         resolve(response.data);
       })
-      .catch((error : AxiosError) => {
+      .catch((error: AxiosError) => {
         reject(error);
       });
   });
@@ -170,10 +173,10 @@ export const getRoleInformationById = (
       }
     );
     confirmationRequest
-      .then((response : AxiosResponse) => {
+      .then((response: AxiosResponse) => {
         resolve(response.data);
       })
-      .catch((error : AxiosError) => {
+      .catch((error: AxiosError) => {
         reject(error);
       });
   });
@@ -200,12 +203,12 @@ export const getRolesList = (
   token: string
 ): Promise<object> => {
   return new Promise((resolve, reject) => {
-    const requestData: { 
-      includeDeleted: boolean; 
-      includeDetailedInformation: boolean; 
-      namesOnly: boolean; 
-      returnDefaultIfVersionNotAvailable: boolean; 
-      version: string; 
+    const requestData: {
+      includeDeleted: boolean;
+      includeDetailedInformation: boolean;
+      namesOnly: boolean;
+      returnDefaultIfVersionNotAvailable: boolean;
+      version: string;
       filter?: object;
     } = {
       includeDeleted: includeDeleted,
@@ -219,10 +222,10 @@ export const getRolesList = (
       headers: { authorization: token },
     });
     confirmationRequest
-      .then((response : AxiosResponse) => {
+      .then((response: AxiosResponse) => {
         resolve(response.data);
       })
-      .catch((error : AxiosError) => {
+      .catch((error: AxiosError) => {
         reject(error);
       });
   });
@@ -234,7 +237,10 @@ export const getRolesList = (
  * @param {String} token
  * @returns {Promise<object>}
  */
-export const getRoleTemplateUpdates = (id: string, token: string): Promise<object> => {
+export const getRoleTemplateUpdates = (
+  id: string,
+  token: string
+): Promise<object> => {
   return new Promise((resolve, reject) => {
     const confirmationRequest = client.get(
       `api/v1/roles/getroletemplateupdates/${id}`,
@@ -243,10 +249,10 @@ export const getRoleTemplateUpdates = (id: string, token: string): Promise<objec
       }
     );
     confirmationRequest
-      .then((response : AxiosResponse) => {
+      .then((response: AxiosResponse) => {
         resolve(response.data);
       })
-      .catch((error : AxiosError) => {
+      .catch((error: AxiosError) => {
         reject(error);
       });
   });
@@ -263,9 +269,8 @@ export const importRoleTemplates = (
   token: string
 ): Promise<object> => {
   return new Promise((resolve, reject) => {
-    const requestData: { roles: object[]; jobDescription: string; userid?: string } = {
-      roles: data,
-      jobDescription: "default job description", // Add a default job description or pass it as a parameter
+    const requestData = {
+      data: data,
     };
     const confirmationRequest = client.post(
       `api/v1/roles/importRoleTemplates`,
@@ -275,10 +280,10 @@ export const importRoleTemplates = (
       }
     );
     confirmationRequest
-      .then((response : AxiosResponse) => {
+      .then((response: AxiosResponse) => {
         resolve(response.data);
       })
-      .catch((error : AxiosError) => {
+      .catch((error: AxiosError) => {
         reject(error);
       });
   });
@@ -299,14 +304,18 @@ export const publishRole = (
   return new Promise((resolve, reject) => {
     const data: { comments?: string } = {};
     if (comments) data.comments = comments;
-    const confirmationRequest = client.post(`api/v1/roles/publish/${id}`, data, {
-      headers: { authorization: token },
-    });
+    const confirmationRequest = client.post(
+      `api/v1/roles/publish/${id}`,
+      data,
+      {
+        headers: { authorization: token },
+      }
+    );
     confirmationRequest
-      .then((response : AxiosResponse) => {
+      .then((response: AxiosResponse) => {
         resolve(response.data);
       })
-      .catch((error : AxiosError) => {
+      .catch((error: AxiosError) => {
         reject(error);
       });
   });
@@ -329,14 +338,18 @@ export const setRoleInformation = (
       data: data,
       id: id,
     };
-    const confirmationRequest = client.post(`api/v1/roles/update`, requestData, {
-      headers: { authorization: token },
-    });
+    const confirmationRequest = client.post(
+      `api/v1/roles/update`,
+      requestData,
+      {
+        headers: { authorization: token },
+      }
+    );
     confirmationRequest
-      .then((response : AxiosResponse) => {
+      .then((response: AxiosResponse) => {
         resolve(response.data);
       })
-      .catch((error : AxiosError) => {
+      .catch((error: AxiosError) => {
         reject(error);
       });
   });
@@ -367,10 +380,10 @@ export const setRoleInformationFromTemplate = (
       }
     );
     confirmationRequest
-      .then((response : AxiosResponse) => {
+      .then((response: AxiosResponse) => {
         resolve(response.data);
       })
-      .catch((error : AxiosError) => {
+      .catch((error: AxiosError) => {
         reject(error);
       });
   });
@@ -391,7 +404,11 @@ export const setUserRoles = (
   token: string
 ): Promise<object> => {
   return new Promise((resolve, reject) => {
-    const requestData: { roles: object[]; jobDescription: string; userid?: string } = {
+    const requestData: {
+      roles: object[];
+      jobDescription: string;
+      userid?: string;
+    } = {
       roles: roles,
       jobDescription: jobDescription,
     };
@@ -400,10 +417,10 @@ export const setUserRoles = (
       headers: { authorization: token },
     });
     request
-      .then((response : AxiosResponse) => {
+      .then((response: AxiosResponse) => {
         resolve(response.data);
       })
-      .catch((error : AxiosError) => {
+      .catch((error: AxiosError) => {
         reject(error);
       });
   });
@@ -430,10 +447,10 @@ export const watchRole = (
       headers: { authorization: token },
     });
     confirmationRequest
-      .then((response : AxiosResponse) => {
+      .then((response: AxiosResponse) => {
         resolve(response.data);
       })
-      .catch((error : AxiosError) => {
+      .catch((error: AxiosError) => {
         reject(error);
       });
   });
