@@ -12,10 +12,11 @@ interface LearningContentData {
 }
 
 interface GenerateLearningActivityContentData {
+  contentType: string;
+  integrationId: string;
   learningObjectives: string;
   learningActivity: object;
   microSkillId: string;
-  sections: string[];
   otherLearningActivities?: string[];
 }
 
@@ -147,7 +148,8 @@ export const discardLearningContentChanges = (
  * @param {String} microSkillId
  * @param {Object} learningActivity
  * @param {List<String>} otherLearningActivities
- * @param {List<String>} sections
+ * @param {String} integrationId
+ * @param {String} contentType
  * @param {String} token
  */
 export const generateLearningActivityContent = (
@@ -156,7 +158,8 @@ export const generateLearningActivityContent = (
   microSkillId: string,
   learningActivity: object,
   otherLearningActivities: string[],
-  sections: string[],
+  integrationId: string,
+  contentType: string,
   token: string
 ): Promise<object> => {
   return new Promise((resolve, reject) => {
@@ -164,7 +167,8 @@ export const generateLearningActivityContent = (
       learningObjectives: learningObjectives,
       learningActivity: learningActivity,
       microSkillId: microSkillId,
-      sections: sections,
+      integrationId: integrationId,
+      contentType: contentType,
     };
     if (otherLearningActivities) {
       requestData.otherLearningActivities = otherLearningActivities;
@@ -275,6 +279,43 @@ export const getLearningContentList = (
       requestData,
       {
         headers: { authorization: token },
+      }
+    );
+    confirmationRequest
+      .then((response: AxiosResponse) => {
+        resolve(response.data);
+      })
+      .catch((error: AxiosError) => {
+        reject(error);
+      });
+  });
+};
+
+/**
+ * Get learning content scene audio
+ * @param {String} id
+ * @param {String} microSkillId
+ * @param {String} learningActivityId
+ * @param {String} sceneId
+ * @param {String} token
+ * @param {String} version
+ */
+export const getLearningContentMicroSkillLearningContentActivitySceneAudio = (
+  contentId: string,
+  microSkillId: string,
+  learningActivityId: string,
+  sceneId: string,
+  token: string,
+  version: string
+) => {
+  return new Promise((resolve, reject) => {
+    const confirmationRequest = client.get(
+      `/api/v1/learningcontent/audio/${contentId}/${microSkillId}/${learningActivityId}/${sceneId}/${version}`,
+      {
+        headers: {
+          authorization: token,
+        },
+        responseType: "blob",
       }
     );
     confirmationRequest
