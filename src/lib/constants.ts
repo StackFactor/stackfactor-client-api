@@ -67,7 +67,7 @@ export const PERMISSIONS = {
 } as const;
 
 export const PERMISSION_DESCRIPTIONS: { [key: string]: string } = {
-  "651d81d626fb9aafa4077520": "Access to content generators",
+  "651d81d626fb9aafa4077520": "Access to AI",
   "5ea3d1152839450e16e72bba": "Author content",
   "5ea3d10bea252025c8ec351b": "Promote content",
   "61970935cee185acf08111f6": "Manage content providers",
