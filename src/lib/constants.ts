@@ -67,6 +67,7 @@ export const PERMISSIONS = {
 } as const;
 
 export const PERMISSION_DESCRIPTIONS: { [key: string]: string } = {
+  "651d81d626fb9aafa4077520": "Access to content generators",
   "5ea3d1152839450e16e72bba": "Author content",
   "5ea3d10bea252025c8ec351b": "Promote content",
   "61970935cee185acf08111f6": "Manage content providers",
@@ -79,7 +80,8 @@ export const PERMISSION_DESCRIPTIONS: { [key: string]: string } = {
   "5dd61305a73c68b44c3f0827": "Manage learning paths",
   "5dd612d5338ea9a6ae6326da": "Manage organization information",
   "5fac210e7e6539d37a897c94": "Auto approve own profile information updates",
-  "650fadb23956a2154ac890ac": "Skip assessment when updating own profile information",
+  "650fadb23956a2154ac890ac":
+    "Skip assessment when updating own profile information",
   "5fac21164351c6727a34cd4e": "Auto approve own skill set updates",
   "66ff566a911d938bc00618bf": "Manage security",
   "5e1570e087d836dc77888a5f": "Manage settings",
