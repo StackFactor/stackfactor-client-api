@@ -351,6 +351,7 @@ export const getLearningContentMicroSkillLearningContentActivityMedia = (
         headers: {
           authorization: token,
         },
+        responseType: "blob",
       }
     );
     confirmationRequest
@@ -607,7 +608,7 @@ export const setLearningContentTags = (
  * @param {String} microskillid
  * @param {String} activityId
  * @param {String} mediaId
- * @param {File} file
+ * @param {Blob} blob
  * @param {String} token
  * @returns {Promise<object>} The response from the server
  */
@@ -616,11 +617,11 @@ export const uploadLearningContentMicroSkillLearningContentActivityMedia = (
   microskillid: string,
   activityId: string,
   mediaId: string,
-  file: File,
+  blob: Blob,
   token: string
 ): Promise<object> => {
   const formData = new FormData();
-  formData.append("file", file);
+  formData.append("file", blob, "media.bin");
   return new Promise((resolve, reject) => {
     const confirmationRequest = client.post(
       `api/v1/learningcontent/media/${id}/${microskillid}/${activityId}/${mediaId}`,
