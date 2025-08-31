@@ -28,33 +28,36 @@ export const client = axios.create({
  * @returns {string}
  */
 export const errorToString = (error: AxiosError): string => {
-  if (error != null) {
-    if (error.response?.data) {
-      let asString = "";
-      const responseData = error.response.data as CustomAxiosResponse;
-      if (Array.isArray(responseData.errors)) {
-        responseData.errors.forEach(
-          (item: ErrorResponse, index: number) => {
+  try {
+    if (error != null) {
+      if (error.response?.data) {
+        let asString = "";
+        const responseData = error.response.data as CustomAxiosResponse;
+        if (Array.isArray(responseData.errors)) {
+          responseData.errors.forEach((item: ErrorResponse, index: number) => {
             asString += `${index > 0 ? ", " : ""} ${item.msg} param ${
               item.param
             } ${item.value ? `value ${item.value.toString()}` : ""}`;
-          }
-        );
-        return asString;
-      } else if (responseData.error) {
-        return responseData.error;
-      } else if (responseData.errors) {
-        return JSON.stringify(responseData.errors);
-      } else if (error.response.statusText) {
-        return error.response.statusText.toString();
+          });
+          return asString;
+        } else if (responseData.error) {
+          return responseData.error;
+        } else if (responseData.errors) {
+          return JSON.stringify(responseData.errors);
+        } else if (error.response.statusText) {
+          return error.response.statusText.toString();
+        } else {
+          return responseData.toString();
+        }
       } else {
-        return responseData.toString();
+        return error.message ? error.message : "Unknown error";
       }
     } else {
-      return error.message ? error.message : "Unknown error";
+      return "Unknown error";
     }
+  } catch {
+    return "Unknown error";
   }
-  return "Unknown error";
 };
 
 /**
