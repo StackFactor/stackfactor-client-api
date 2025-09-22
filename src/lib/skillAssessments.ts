@@ -128,6 +128,33 @@ export const getById = (id: string, token: string): Promise<object> => {
 };
 
 /**
+ * Get skill assessment completion status by team
+ * @param teamId The id of the team
+ * @param token Authorization token
+ * @returns Promise<object>
+ */
+export const getSkillAssessmentCompletionStatusByTeam = (
+  teamId: string,
+  token: string
+): Promise<object> => {
+  return new Promise((resolve, reject) => {
+    const confirmationRequest = client.get(
+      `api/v1/skillassessments/getcompletionstatusbyteam/${teamId}`,
+      {
+        headers: { authorization: token },
+      }
+    );
+    confirmationRequest
+      .then((response: AxiosResponse) => {
+        resolve(response.data);
+      })
+      .catch((error: AxiosError) => {
+        reject(error);
+      });
+  });
+};
+
+/**
  * Get skill assessment by user and skill
  * @param {String} userId
  * @param {String} skillId
