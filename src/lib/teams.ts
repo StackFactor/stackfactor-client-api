@@ -108,7 +108,7 @@ export const getSkillAssessmentCompletionStatusByTeam = (
 ): Promise<object> => {
   return new Promise((resolve, reject) => {
     const confirmationRequest = client.get(
-      `api/v1/skillassessments/getcompletionstatusbyteam/${teamId}`,
+      `api/v1/teams/getcompletionstatusbyteam/${teamId}`,
       {
         headers: { authorization: token },
       }
