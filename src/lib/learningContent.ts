@@ -12,10 +12,11 @@ interface LearningContentData {
 }
 
 interface GenerateLearningActivityContentData {
+  contentType: string;
+  integrationId: string;
   learningObjectives: string;
   learningActivity: object;
   microSkillId: string;
-  sections: string[];
   otherLearningActivities?: string[];
 }
 
@@ -147,7 +148,8 @@ export const discardLearningContentChanges = (
  * @param {String} microSkillId
  * @param {Object} learningActivity
  * @param {List<String>} otherLearningActivities
- * @param {List<String>} sections
+ * @param {String} integrationId
+ * @param {String} contentType
  * @param {String} token
  */
 export const generateLearningActivityContent = (
@@ -156,7 +158,8 @@ export const generateLearningActivityContent = (
   microSkillId: string,
   learningActivity: object,
   otherLearningActivities: string[],
-  sections: string[],
+  integrationId: string,
+  contentType: string,
   token: string
 ): Promise<object> => {
   return new Promise((resolve, reject) => {
@@ -164,7 +167,8 @@ export const generateLearningActivityContent = (
       learningObjectives: learningObjectives,
       learningActivity: learningActivity,
       microSkillId: microSkillId,
-      sections: sections,
+      integrationId: integrationId,
+      contentType: contentType,
     };
     if (otherLearningActivities) {
       requestData.otherLearningActivities = otherLearningActivities;
@@ -288,6 +292,43 @@ export const getLearningContentList = (
 };
 
 /**
+ * Get learning content scene audio
+ * @param {String} id
+ * @param {String} microSkillId
+ * @param {String} learningActivityId
+ * @param {String} sceneId
+ * @param {String} token
+ * @param {String} version
+ */
+export const getLearningContentMicroSkillLearningContentActivitySceneAudio = (
+  contentId: string,
+  microSkillId: string,
+  learningActivityId: string,
+  sceneId: string,
+  token: string,
+  version: string
+) => {
+  return new Promise((resolve, reject) => {
+    const confirmationRequest = client.get(
+      `/api/v1/learningcontent/audio/${contentId}/${microSkillId}/${learningActivityId}/${sceneId}/${version}`,
+      {
+        headers: {
+          authorization: token,
+        },
+        responseType: "blob",
+      }
+    );
+    confirmationRequest
+      .then((response: AxiosResponse) => {
+        resolve(response.data);
+      })
+      .catch((error: AxiosError) => {
+        reject(error);
+      });
+  });
+};
+
+/**
  * Upload media for a specific micro skill learning content activity
  * @param {String} id
  * @param {String} microskillid
@@ -310,6 +351,7 @@ export const getLearningContentMicroSkillLearningContentActivityMedia = (
         headers: {
           authorization: token,
         },
+        responseType: "blob",
       }
     );
     confirmationRequest
@@ -566,7 +608,7 @@ export const setLearningContentTags = (
  * @param {String} microskillid
  * @param {String} activityId
  * @param {String} mediaId
- * @param {File} file
+ * @param {Blob} blob
  * @param {String} token
  * @returns {Promise<object>} The response from the server
  */
@@ -575,11 +617,11 @@ export const uploadLearningContentMicroSkillLearningContentActivityMedia = (
   microskillid: string,
   activityId: string,
   mediaId: string,
-  file: File,
+  blob: Blob,
   token: string
 ): Promise<object> => {
   const formData = new FormData();
-  formData.append("file", file);
+  formData.append("file", blob, "media.bin");
   return new Promise((resolve, reject) => {
     const confirmationRequest = client.post(
       `api/v1/learningcontent/media/${id}/${microskillid}/${activityId}/${mediaId}`,
