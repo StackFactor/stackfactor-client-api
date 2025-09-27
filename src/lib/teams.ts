@@ -23,10 +23,10 @@ export const addUsersToTeam = (
       { headers: { authorization: authToken } }
     );
     request
-      .then((response : AxiosResponse) => {
+      .then((response: AxiosResponse) => {
         resolve(response.data);
       })
-      .catch((error : AxiosError) => {
+      .catch((error: AxiosError) => {
         reject(error);
       });
   });
@@ -57,10 +57,10 @@ export const createTeam = (
       { headers: { authorization: authToken } }
     );
     request
-      .then((response : AxiosResponse) => {
+      .then((response: AxiosResponse) => {
         resolve(response.data);
       })
-      .catch((error : AxiosError) => {
+      .catch((error: AxiosError) => {
         reject(error);
       });
   });
@@ -87,10 +87,37 @@ export const deleteTeam = (
       },
     });
     request
-      .then((response : AxiosResponse) => {
+      .then((response: AxiosResponse) => {
         resolve(response.data);
       })
-      .catch((error : AxiosError) => {
+      .catch((error: AxiosError) => {
+        reject(error);
+      });
+  });
+};
+
+/**
+ * Get skill assessment completion status by team
+ * @param teamId The id of the team
+ * @param token Authorization token
+ * @returns Promise<object>
+ */
+export const getSkillAssessmentCompletionStatusByTeam = (
+  teamId: string,
+  token: string
+): Promise<object> => {
+  return new Promise((resolve, reject) => {
+    const confirmationRequest = client.get(
+      `api/v1/teams/getcompletionstatusbyteam/${teamId}`,
+      {
+        headers: { authorization: token },
+      }
+    );
+    confirmationRequest
+      .then((response: AxiosResponse) => {
+        resolve(response.data);
+      })
+      .catch((error: AxiosError) => {
         reject(error);
       });
   });
@@ -117,10 +144,10 @@ export const getTeamById = (
       { headers: { authorization: authToken } }
     );
     request
-      .then((response : AxiosResponse) => {
+      .then((response: AxiosResponse) => {
         resolve(response.data);
       })
-      .catch((error : AxiosError) => {
+      .catch((error: AxiosError) => {
         reject(error);
       });
   });
@@ -141,10 +168,10 @@ export const getTeamByIdRoles = (
       headers: { authorization: authToken },
     });
     request
-      .then((response : AxiosResponse) => {
+      .then((response: AxiosResponse) => {
         resolve(response.data);
       })
-      .catch((error : AxiosError) => {
+      .catch((error: AxiosError) => {
         reject(error);
       });
   });
@@ -161,10 +188,10 @@ export const getTeams = (authToken: string): Promise<object> => {
       headers: { authorization: authToken },
     });
     request
-      .then((response : AxiosResponse) => {
+      .then((response: AxiosResponse) => {
         resolve(response.data);
       })
-      .catch((error : AxiosError) => {
+      .catch((error: AxiosError) => {
         reject(error);
       });
   });
@@ -191,10 +218,10 @@ export const getTeamByUserId = (
       { headers: { authorization: authToken } }
     );
     request
-      .then((response : AxiosResponse) => {
+      .then((response: AxiosResponse) => {
         resolve(response.data);
       })
-      .catch((error : AxiosError) => {
+      .catch((error: AxiosError) => {
         reject(error);
       });
   });
@@ -219,10 +246,10 @@ export const getTopTeam = (
       { headers: { authorization: authToken } }
     );
     request
-      .then((response : AxiosResponse) => {
+      .then((response: AxiosResponse) => {
         resolve(response.data);
       })
-      .catch((error : AxiosError) => {
+      .catch((error: AxiosError) => {
         reject(error);
       });
   });
@@ -250,10 +277,10 @@ export const removeUsersFromTeam = (
       { headers: { authorization: authToken } }
     );
     request
-      .then((response : AxiosResponse) => {
+      .then((response: AxiosResponse) => {
         resolve(response.data);
       })
-      .catch((error : AxiosError) => {
+      .catch((error: AxiosError) => {
         reject(error);
       });
   });
@@ -265,7 +292,10 @@ export const removeUsersFromTeam = (
  * @param {String} authToken The authentication token
  * @returns {Promise<object>}
  */
-export const setDefault = (teamId: string, authToken: string): Promise<object> => {
+export const setDefault = (
+  teamId: string,
+  authToken: string
+): Promise<object> => {
   return new Promise((resolve, reject) => {
     const request = client.put(
       `api/v1/teams/setDefault/`,
@@ -275,10 +305,10 @@ export const setDefault = (teamId: string, authToken: string): Promise<object> =
       { headers: { authorization: authToken } }
     );
     request
-      .then((response : AxiosResponse) => {
+      .then((response: AxiosResponse) => {
         resolve(response.data);
       })
-      .catch((error : AxiosError) => {
+      .catch((error: AxiosError) => {
         reject(error);
       });
   });
@@ -306,10 +336,10 @@ export const updateTeam = (
       { headers: { authorization: authToken } }
     );
     request
-      .then((response : AxiosResponse) => {
+      .then((response: AxiosResponse) => {
         resolve(response.data);
       })
-      .catch((error : AxiosError) => {
+      .catch((error: AxiosError) => {
         reject(error);
       });
   });
