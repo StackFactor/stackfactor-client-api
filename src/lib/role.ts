@@ -10,7 +10,7 @@ import { client } from "./axiosClient.js";
 export const createRole = (data: object, token: string): Promise<object> => {
   return new Promise((resolve, reject) => {
     const confirmationRequest = client.put(
-      "api/v1/roles",
+      "/api/v1/roles",
       { data: data },
       {
         headers: { authorization: token },
@@ -58,7 +58,7 @@ export const createRoleFromTemplate = (
       version: "1.0",
     };
     const confirmationRequest = client.put(
-      "api/v1/roles/createfromtemplate/",
+      "/api/v1/roles/createfromtemplate/",
       requestData,
       {
         headers: { authorization: token },
@@ -91,7 +91,7 @@ export const deleteRole = (
       id: id,
     };
     if (comments) data.comments = comments;
-    const request = client.delete(`api/v1/roles/`, {
+    const request = client.delete(`/api/v1/roles/`, {
       headers: { authorization: token },
       data: data,
     });
@@ -117,7 +117,7 @@ export const discardRoleChanges = (
 ): Promise<object> => {
   return new Promise((resolve, reject) => {
     const data = {};
-    const request = client.get(`api/v1/roles/discard/${id}`, {
+    const request = client.get(`/api/v1/roles/discard/${id}`, {
       headers: { authorization: token },
       data: data,
     });
@@ -138,7 +138,7 @@ export const discardRoleChanges = (
  */
 export const getImportedRoleTemplates = (token: string): Promise<object> => {
   return new Promise((resolve, reject) => {
-    const request = client.get(`api/v1/roles/getimportedroletemplates`, {
+    const request = client.get(`/api/v1/roles/getimportedroletemplates`, {
       headers: { authorization: token },
     });
     request
@@ -167,7 +167,7 @@ export const getRoleInformationById = (
 ): Promise<object> => {
   return new Promise((resolve, reject) => {
     const confirmationRequest = client.get(
-      `api/v1/roles/role/${id}/${version}/${returnNullIfVersionNotFound}`,
+      `/api/v1/roles/role/${id}/${version}/${returnNullIfVersionNotFound}`,
       {
         headers: { authorization: token },
       }
@@ -218,7 +218,7 @@ export const getRolesList = (
       version: version,
     };
     if (filter) requestData.filter = filter;
-    const confirmationRequest = client.post(`api/v1/roles`, requestData, {
+    const confirmationRequest = client.post(`/api/v1/roles`, requestData, {
       headers: { authorization: token },
     });
     confirmationRequest
@@ -243,7 +243,7 @@ export const getRoleTemplateUpdates = (
 ): Promise<object> => {
   return new Promise((resolve, reject) => {
     const confirmationRequest = client.get(
-      `api/v1/roles/getroletemplateupdates/${id}`,
+      `/api/v1/roles/getroletemplateupdates/${id}`,
       {
         headers: { authorization: token },
       }
@@ -273,7 +273,7 @@ export const importRoleTemplates = (
       data: data,
     };
     const confirmationRequest = client.post(
-      `api/v1/roles/importRoleTemplates`,
+      `/api/v1/roles/importRoleTemplates`,
       requestData,
       {
         headers: { authorization: token },
@@ -305,7 +305,7 @@ export const publishRole = (
     const data: { comments?: string } = {};
     if (comments) data.comments = comments;
     const confirmationRequest = client.post(
-      `api/v1/roles/publish/${id}`,
+      `/api/v1/roles/publish/${id}`,
       data,
       {
         headers: { authorization: token },
@@ -339,7 +339,7 @@ export const setRoleInformation = (
       id: id,
     };
     const confirmationRequest = client.post(
-      `api/v1/roles/update`,
+      `/api/v1/roles/update`,
       requestData,
       {
         headers: { authorization: token },
@@ -373,7 +373,7 @@ export const setRoleInformationFromTemplate = (
       id: id,
     };
     const confirmationRequest = client.post(
-      `api/v1/roles/updatefromtemplate/`,
+      `/api/v1/roles/updatefromtemplate/`,
       requestData,
       {
         headers: { authorization: token },
@@ -413,7 +413,7 @@ export const setUserRoles = (
       jobDescription: jobDescription,
     };
     if (id) requestData.userid = id;
-    const request = client.post(`api/v1/roles/settouser/`, requestData, {
+    const request = client.post(`/api/v1/roles/settouser/`, requestData, {
       headers: { authorization: token },
     });
     request
@@ -443,9 +443,13 @@ export const watchRole = (
       id: id,
       watch: watch,
     };
-    const confirmationRequest = client.post(`api/v1/roles/watch`, requestData, {
-      headers: { authorization: token },
-    });
+    const confirmationRequest = client.post(
+      `/api/v1/roles/watch`,
+      requestData,
+      {
+        headers: { authorization: token },
+      }
+    );
     confirmationRequest
       .then((response: AxiosResponse) => {
         resolve(response.data);

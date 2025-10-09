@@ -13,16 +13,16 @@ export const getTrainingPlanProficiencyLevel = (
 ): Promise<object> => {
   return new Promise((resolve, reject) => {
     const confirmationRequest = client.get(
-      `api/v1/trainingplans/proficiencylevels/${proficiencyLevelId}`,
+      `/api/v1/trainingplans/proficiencylevels/${proficiencyLevelId}`,
       {
         headers: { authorization: token },
       }
     );
     confirmationRequest
-      .then((response : AxiosResponse) => {
+      .then((response: AxiosResponse) => {
         resolve(response.data);
       })
-      .catch((error : AxiosError) => {
+      .catch((error: AxiosError) => {
         reject(error);
       });
   });
@@ -49,17 +49,17 @@ export const getTrainingPlanProficiencyLevelList = (
       includeDetailedInformation: includeDetailedInformation,
     };
     const confirmationRequest = client.post(
-      `api/v1/trainingplans/proficiencylevels`,
+      `/api/v1/trainingplans/proficiencylevels`,
       requestData,
       {
         headers: { authorization: token },
       }
     );
     confirmationRequest
-      .then((response : AxiosResponse) => {
+      .then((response: AxiosResponse) => {
         resolve(response.data);
       })
-      .catch((error : AxiosError) => {
+      .catch((error: AxiosError) => {
         reject(error);
       });
   });
@@ -77,7 +77,7 @@ export const reorderTrainingPlansProficiencyLevels = (
 ): Promise<void> => {
   return new Promise((resolve, reject) => {
     const confirmationRequest = client.post(
-      `api/v1/trainingplans/proficiencylevels/reorder`,
+      `/api/v1/trainingplans/proficiencylevels/reorder`,
       { order: order },
       {
         headers: { authorization: token },
@@ -87,7 +87,7 @@ export const reorderTrainingPlansProficiencyLevels = (
       .then(() => {
         resolve();
       })
-      .catch((error : AxiosError) => {
+      .catch((error: AxiosError) => {
         reject(error);
       });
   });
@@ -107,7 +107,7 @@ export const updateTrainingPlanProficiencyLevel = (
 ): Promise<void> => {
   return new Promise((resolve, reject) => {
     const confirmationRequest = client.post(
-      `api/v1/trainingplans/proficiencylevel/${proficiencyLevelId}`,
+      `/api/v1/trainingplans/proficiencylevel/${proficiencyLevelId}`,
       data,
       {
         headers: { authorization: token },
@@ -117,7 +117,7 @@ export const updateTrainingPlanProficiencyLevel = (
       .then(() => {
         resolve();
       })
-      .catch((error : AxiosError) => {
+      .catch((error: AxiosError) => {
         reject(error);
       });
   });

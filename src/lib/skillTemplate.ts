@@ -7,19 +7,26 @@ import { client } from "./axiosClient.js";
  * @param {String} token Authorization token
  * @returns {Promise<object>}
  */
-export const createSkillTemplate = (data: object, token: string): Promise<object> => {
+export const createSkillTemplate = (
+  data: object,
+  token: string
+): Promise<object> => {
   return new Promise((resolve, reject) => {
     const requestData = {
       data: data,
     };
-    const confirmationRequest = client.put("api/v1/skilltemplates", requestData, {
-      headers: { authorization: token },
-    });
+    const confirmationRequest = client.put(
+      "/api/v1/skilltemplates",
+      requestData,
+      {
+        headers: { authorization: token },
+      }
+    );
     confirmationRequest
-      .then((response : AxiosResponse) => {
+      .then((response: AxiosResponse) => {
         resolve(response.data);
       })
-      .catch((error : AxiosError) => {
+      .catch((error: AxiosError) => {
         reject(error);
       });
   });
@@ -42,15 +49,15 @@ export const deleteSkillTemplate = (
   };
   if (comments) data.comments = comments;
   return new Promise((resolve, reject) => {
-    const request = client.delete(`api/v1/skilltemplates/`, {
+    const request = client.delete(`/api/v1/skilltemplates/`, {
       headers: { authorization: token },
       data: data,
     });
     request
-      .then((response : AxiosResponse) => {
+      .then((response: AxiosResponse) => {
         resolve(response.data);
       })
-      .catch((error : AxiosError) => {
+      .catch((error: AxiosError) => {
         reject(error);
       });
   });
@@ -68,15 +75,15 @@ export const discardSkillTemplateChanges = (
 ): Promise<object> => {
   return new Promise((resolve, reject) => {
     const data = {};
-    const request = client.get(`api/v1/skilltemplates/discard/${id}`, {
+    const request = client.get(`/api/v1/skilltemplates/discard/${id}`, {
       headers: { authorization: token },
       data: data,
     });
     request
-      .then((response : AxiosResponse) => {
+      .then((response: AxiosResponse) => {
         resolve(response.data);
       })
-      .catch((error : AxiosError) => {
+      .catch((error: AxiosError) => {
         reject(error);
       });
   });
@@ -98,16 +105,16 @@ export const getSkillTemplateInformationById = (
 ): Promise<object> => {
   return new Promise((resolve, reject) => {
     const confirmationRequest = client.get(
-      `api/v1/skilltemplates/${id}/${version}/${returnNullIfVersionNotFound}`,
+      `/api/v1/skilltemplates/${id}/${version}/${returnNullIfVersionNotFound}`,
       {
         headers: { authorization: token },
       }
     );
     confirmationRequest
-      .then((response : AxiosResponse) => {
+      .then((response: AxiosResponse) => {
         resolve(response.data);
       })
-      .catch((error : AxiosError) => {
+      .catch((error: AxiosError) => {
         reject(error);
       });
   });
@@ -130,24 +137,29 @@ export const getSkillTemplateList = (
   token: string
 ): Promise<object> => {
   return new Promise((resolve, reject) => {
-    const requestData: { includeDeleted: boolean; namesOnly: boolean; version: string; filter?: string[] } = {
+    const requestData: {
+      includeDeleted: boolean;
+      namesOnly: boolean;
+      version: string;
+      filter?: string[];
+    } = {
       includeDeleted: includeDeleted,
       namesOnly: namesOnly,
       version: version,
     };
     if (filter) requestData.filter = filter;
     const confirmationRequest = client.post(
-      `api/v1/skilltemplates`,
+      `/api/v1/skilltemplates`,
       requestData,
       {
         headers: { authorization: token },
       }
     );
     confirmationRequest
-      .then((response : AxiosResponse) => {
+      .then((response: AxiosResponse) => {
         resolve(response.data);
       })
-      .catch((error : AxiosError) => {
+      .catch((error: AxiosError) => {
         reject(error);
       });
   });
@@ -160,14 +172,14 @@ export const getSkillTemplateList = (
  */
 export const getTechnologyStacks = (token: string): Promise<object> => {
   return new Promise((resolve, reject) => {
-    const confirmationRequest = client.get(`api/v1/skilltemplates/stacks`, {
+    const confirmationRequest = client.get(`/api/v1/skilltemplates/stacks`, {
       headers: { authorization: token },
     });
     confirmationRequest
-      .then((response : AxiosResponse) => {
+      .then((response: AxiosResponse) => {
         resolve(response.data);
       })
-      .catch((error : AxiosError) => {
+      .catch((error: AxiosError) => {
         reject(error);
       });
   });
@@ -189,17 +201,17 @@ export const publishTemplate = (
     const data: { comments?: string } = {};
     if (comments) data.comments = comments;
     const confirmationRequest = client.post(
-      `api/v1/skilltemplates/publish/${id}`,
+      `/api/v1/skilltemplates/publish/${id}`,
       data,
       {
         headers: { authorization: token },
       }
     );
     confirmationRequest
-      .then((response : AxiosResponse) => {
+      .then((response: AxiosResponse) => {
         resolve(response.data);
       })
-      .catch((error : AxiosError) => {
+      .catch((error: AxiosError) => {
         reject(error);
       });
   });
@@ -223,17 +235,17 @@ export const setTemplateInformation = (
       id: id,
     };
     const confirmationRequest = client.post(
-      `api/v1/skilltemplates/update`,
+      `/api/v1/skilltemplates/update`,
       requestData,
       {
         headers: { authorization: token },
       }
     );
     confirmationRequest
-      .then((response : AxiosResponse) => {
+      .then((response: AxiosResponse) => {
         resolve(response.data);
       })
-      .catch((error : AxiosError) => {
+      .catch((error: AxiosError) => {
         reject(error);
       });
   });
@@ -257,17 +269,17 @@ export const setTemplateTags = (
       id: id,
     };
     const confirmationRequest = client.post(
-      `api/v1/skilltemplates/updatetags/`,
+      `/api/v1/skilltemplates/updatetags/`,
       requestData,
       {
         headers: { authorization: token },
       }
     );
     confirmationRequest
-      .then((response : AxiosResponse) => {
+      .then((response: AxiosResponse) => {
         resolve(response.data);
       })
-      .catch((error : AxiosError) => {
+      .catch((error: AxiosError) => {
         reject(error);
       });
   });
@@ -279,23 +291,26 @@ export const setTemplateTags = (
  * @param {String} token Authorization token
  * @returns {Promise<object>}
  */
-export const validateTemplate = (id: string, token: string): Promise<object> => {
+export const validateTemplate = (
+  id: string,
+  token: string
+): Promise<object> => {
   return new Promise((resolve, reject) => {
     const requestData = {
       id: id,
     };
     const confirmationRequest = client.post(
-      `api/v1/skilltemplates/validate/`,
+      `/api/v1/skilltemplates/validate/`,
       requestData,
       {
         headers: { authorization: token },
       }
     );
     confirmationRequest
-      .then((response : AxiosResponse) => {
+      .then((response: AxiosResponse) => {
         resolve(response.data);
       })
-      .catch((error : AxiosError) => {
+      .catch((error: AxiosError) => {
         reject(error);
       });
   });
@@ -319,17 +334,17 @@ export const watchSkillTemplate = (
       watch: watch,
     };
     const confirmationRequest = client.post(
-      `api/v1/skilltemplates/watch`,
+      `/api/v1/skilltemplates/watch`,
       requestData,
       {
         headers: { authorization: token },
       }
     );
     confirmationRequest
-      .then((response : AxiosResponse) => {
+      .then((response: AxiosResponse) => {
         resolve(response.data);
       })
-      .catch((error : AxiosError) => {
+      .catch((error: AxiosError) => {
         reject(error);
       });
   });

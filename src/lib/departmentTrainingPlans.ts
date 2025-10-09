@@ -29,7 +29,7 @@ export const createDepartmentTrainingPlan = (
       activities: activities || [],
     };
     const confirmationRequest = client.put(
-      "api/v1/departmentTrainingPlans",
+      "/api/v1/departmentTrainingPlans",
       requestData,
       {
         headers: { authorization: token },
@@ -56,7 +56,7 @@ export const deleteDepartmentTrainingPlan = (
   token: string
 ): Promise<object> => {
   return new Promise((resolve, reject) => {
-    const request = client.delete(`api/v1/departmenttrainingplans/`, {
+    const request = client.delete(`/api/v1/departmenttrainingplans/`, {
       headers: { authorization: token },
       data: {
         id: id,
@@ -86,7 +86,7 @@ export const getDepartmentTrainingPlanInformationById = (
 ): Promise<object> => {
   return new Promise((resolve, reject) => {
     const confirmationRequest = client.get(
-      `api/v1/departmenttrainingplans/${id}/${version}`,
+      `/api/v1/departmenttrainingplans/${id}/${version}`,
       {
         headers: { authorization: token },
       }
@@ -119,7 +119,7 @@ export const getDepartmentTrainingPlanList = (
       version: version,
     };
     const confirmationRequest = client.post(
-      `api/v1/departmenttrainingplans`,
+      `/api/v1/departmenttrainingplans`,
       requestData,
       {
         headers: { authorization: token },
@@ -147,7 +147,7 @@ export const publishDepartmentTrainingPlan = (
 ): Promise<object> => {
   return new Promise((resolve, reject) => {
     const confirmationRequest = client.post(
-      `api/v1/departmenttrainingplans/publish/${id}`,
+      `/api/v1/departmenttrainingplans/publish/${id}`,
       {},
       {
         headers: { authorization: token },
@@ -180,7 +180,7 @@ export const setDepartmentTrainingPlanInformation = (
       data: data,
     };
     const confirmationRequest = client.post(
-      `api/v1/departmenttrainingplans/${id}`,
+      `/api/v1/departmenttrainingplans/${id}`,
       requestData,
       {
         headers: { authorization: token },

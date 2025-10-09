@@ -17,7 +17,7 @@ export const comments = (
 ): Promise<object> => {
   return new Promise((resolve, reject) => {
     const confirmationRequest = client.post(
-      "api/v1/logger/comments/",
+      "/api/v1/logger/comments/",
       {
         data: data,
         elementId: elementId,
@@ -28,10 +28,10 @@ export const comments = (
       }
     );
     confirmationRequest
-      .then((response : AxiosResponse) => {
+      .then((response: AxiosResponse) => {
         resolve(response.data);
       })
-      .catch((error : AxiosError) => {
+      .catch((error: AxiosError) => {
         reject(error);
       });
   });
@@ -52,17 +52,17 @@ export const getListByElementId = (
   token: string
 ): Promise<object> => {
   return new Promise((resolve, reject) => {
-    const data: { elementsPerPage?: number, page?: number } = {};
+    const data: { elementsPerPage?: number; page?: number } = {};
     if (elementsPerPage !== null) data.elementsPerPage = elementsPerPage;
     if (page !== null) data.page = page;
-    const getTokensRequest = client.post(`api/v1/logger/${elementId}`, data, {
+    const getTokensRequest = client.post(`/api/v1/logger/${elementId}`, data, {
       headers: { authorization: token },
     });
     getTokensRequest
       .then((result) => {
         resolve(result.data);
       })
-      .catch((error : AxiosError) => {
+      .catch((error: AxiosError) => {
         reject(error);
       });
   });

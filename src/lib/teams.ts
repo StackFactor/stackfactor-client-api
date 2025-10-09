@@ -15,7 +15,7 @@ export const addUsersToTeam = (
 ): Promise<object> => {
   return new Promise((resolve, reject) => {
     const request = client.post(
-      `api/v1/teams/users/add`,
+      `/api/v1/teams/users/add`,
       {
         teamId: teamId,
         users: users,
@@ -48,7 +48,7 @@ export const createTeam = (
 ): Promise<object> => {
   return new Promise((resolve, reject) => {
     const request = client.post(
-      `api/v1/teams/team`,
+      `/api/v1/teams/team`,
       {
         name: name,
         managerId: managerId,
@@ -79,7 +79,7 @@ export const deleteTeam = (
   authToken: string
 ): Promise<object> => {
   return new Promise((resolve, reject) => {
-    const request = client.delete(`api/v1/teams/delete`, {
+    const request = client.delete(`/api/v1/teams/delete`, {
       headers: { authorization: authToken },
       data: {
         id: teamId,
@@ -108,7 +108,7 @@ export const getSkillAssessmentCompletionStatusByTeam = (
 ): Promise<object> => {
   return new Promise((resolve, reject) => {
     const confirmationRequest = client.get(
-      `api/v1/teams/getcompletionstatusbyteam/${teamId}`,
+      `/api/v1/teams/getcompletionstatusbyteam/${teamId}`,
       {
         headers: { authorization: token },
       }
@@ -137,7 +137,7 @@ export const getTeamById = (
 ): Promise<object> => {
   return new Promise((resolve, reject) => {
     const request = client.post(
-      `api/v1/teams/team/${teamId}`,
+      `/api/v1/teams/team/${teamId}`,
       {
         includeUserSummaryInformation: includeUserSummaryInformation,
       },
@@ -164,7 +164,7 @@ export const getTeamByIdRoles = (
   authToken: string
 ): Promise<object> => {
   return new Promise((resolve, reject) => {
-    const request = client.get(`api/v1/teams/getroles/${teamId}`, {
+    const request = client.get(`/api/v1/teams/getroles/${teamId}`, {
       headers: { authorization: authToken },
     });
     request
@@ -184,7 +184,7 @@ export const getTeamByIdRoles = (
  */
 export const getTeams = (authToken: string): Promise<object> => {
   return new Promise((resolve, reject) => {
-    const request = client.get(`api/v1/teams/`, {
+    const request = client.get(`/api/v1/teams/`, {
       headers: { authorization: authToken },
     });
     request
@@ -239,7 +239,7 @@ export const getTopTeam = (
 ): Promise<object> => {
   return new Promise((resolve, reject) => {
     const request = client.post(
-      `api/v1/teams/gettopteam`,
+      `/api/v1/teams/gettopteam`,
       {
         includeUserSummaryInformation: includeUserSummaryInformation,
       },
@@ -269,7 +269,7 @@ export const removeUsersFromTeam = (
 ): Promise<object> => {
   return new Promise((resolve, reject) => {
     const request = client.post(
-      `api/v1/teams/users/remove/`,
+      `/api/v1/teams/users/remove/`,
       {
         teamId: teamId,
         users: users,
@@ -298,7 +298,7 @@ export const setDefault = (
 ): Promise<object> => {
   return new Promise((resolve, reject) => {
     const request = client.put(
-      `api/v1/teams/setDefault/`,
+      `/api/v1/teams/setDefault/`,
       {
         id: teamId,
       },
@@ -328,7 +328,7 @@ export const updateTeam = (
 ): Promise<object> => {
   return new Promise((resolve, reject) => {
     const request = client.patch(
-      `api/v1/teams/team/`,
+      `/api/v1/teams/team/`,
       {
         id: teamId,
         data: data,

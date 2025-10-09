@@ -7,19 +7,26 @@ import { client } from "./axiosClient.js";
  * @param {String} token Authorization token
  * @returns {Promise<object>}
  */
-export const createRoleTemplate = (data: object, token: string): Promise<object> => {
+export const createRoleTemplate = (
+  data: object,
+  token: string
+): Promise<object> => {
   return new Promise((resolve, reject) => {
     const requestData = {
       data: data,
     };
-    const confirmationRequest = client.put("api/v1/roletemplates", requestData, {
-      headers: { authorization: token },
-    });
+    const confirmationRequest = client.put(
+      "/api/v1/roletemplates",
+      requestData,
+      {
+        headers: { authorization: token },
+      }
+    );
     confirmationRequest
-      .then((response : AxiosResponse) => {
+      .then((response: AxiosResponse) => {
         resolve(response.data);
       })
-      .catch((error : AxiosError) => {
+      .catch((error: AxiosError) => {
         reject(error);
       });
   });
@@ -38,19 +45,19 @@ export const deleteRoleTemplate = (
   token: string
 ): Promise<object> => {
   return new Promise((resolve, reject) => {
-    const data: { id: string, comments?: string } = {
+    const data: { id: string; comments?: string } = {
       id: id,
     };
     if (comments) data.comments = comments;
-    const request = client.delete(`api/v1/roletemplates/`, {
+    const request = client.delete(`/api/v1/roletemplates/`, {
       headers: { authorization: token },
       data: data,
     });
     request
-      .then((response : AxiosResponse) => {
+      .then((response: AxiosResponse) => {
         resolve(response.data);
       })
-      .catch((error : AxiosError) => {
+      .catch((error: AxiosError) => {
         reject(error);
       });
   });
@@ -68,15 +75,15 @@ export const discardRoleTemplateChanges = (
 ): Promise<object> => {
   return new Promise((resolve, reject) => {
     const data = {};
-    const request = client.get(`api/v1/roletemplates/discard/${id}`, {
+    const request = client.get(`/api/v1/roletemplates/discard/${id}`, {
       headers: { authorization: token },
       data: data,
     });
     request
-      .then((response : AxiosResponse) => {
+      .then((response: AxiosResponse) => {
         resolve(response.data);
       })
-      .catch((error : AxiosError) => {
+      .catch((error: AxiosError) => {
         reject(error);
       });
   });
@@ -96,16 +103,16 @@ export const getRoleTemplateInformationById = (
 ): Promise<object> => {
   return new Promise((resolve, reject) => {
     const confirmationRequest = client.get(
-      `api/v1/roletemplates/${id}/${version}`,
+      `/api/v1/roletemplates/${id}/${version}`,
       {
         headers: { authorization: token },
       }
     );
     confirmationRequest
-      .then((response : AxiosResponse) => {
+      .then((response: AxiosResponse) => {
         resolve(response.data);
       })
-      .catch((error : AxiosError) => {
+      .catch((error: AxiosError) => {
         reject(error);
       });
   });
@@ -128,20 +135,29 @@ export const getRoleTemplateList = (
   token: string
 ): Promise<object> => {
   return new Promise((resolve, reject) => {
-    const requestData: { includeDeleted: boolean; namesOnly: boolean; version: string; filter?: string[] } = {
+    const requestData: {
+      includeDeleted: boolean;
+      namesOnly: boolean;
+      version: string;
+      filter?: string[];
+    } = {
       includeDeleted: includeDeleted,
       namesOnly: namesOnly,
       version: version,
     };
     if (filter) requestData.filter = filter;
-    const confirmationRequest = client.post(`api/v1/roletemplates`, requestData, {
-      headers: { authorization: token },
-    });
+    const confirmationRequest = client.post(
+      `/api/v1/roletemplates`,
+      requestData,
+      {
+        headers: { authorization: token },
+      }
+    );
     confirmationRequest
-      .then((response : AxiosResponse) => {
+      .then((response: AxiosResponse) => {
         resolve(response.data);
       })
-      .catch((error : AxiosError) => {
+      .catch((error: AxiosError) => {
         reject(error);
       });
   });
@@ -163,17 +179,17 @@ export const publishTemplate = (
     const data: { comments?: string } = {};
     if (comments) data.comments = comments;
     const confirmationRequest = client.post(
-      `api/v1/roletemplates/publish/${id}`,
+      `/api/v1/roletemplates/publish/${id}`,
       data,
       {
         headers: { authorization: token },
       }
     );
     confirmationRequest
-      .then((response : AxiosResponse) => {
+      .then((response: AxiosResponse) => {
         resolve(response.data);
       })
-      .catch((error : AxiosError) => {
+      .catch((error: AxiosError) => {
         reject(error);
       });
   });
@@ -197,17 +213,17 @@ export const setTemplateInformation = (
       id: id,
     };
     const confirmationRequest = client.post(
-      `api/v1/roletemplates/update`,
+      `/api/v1/roletemplates/update`,
       requestData,
       {
         headers: { authorization: token },
       }
     );
     confirmationRequest
-      .then((response : AxiosResponse) => {
+      .then((response: AxiosResponse) => {
         resolve(response.data);
       })
-      .catch((error : AxiosError) => {
+      .catch((error: AxiosError) => {
         reject(error);
       });
   });
@@ -231,17 +247,17 @@ export const setTemplateTags = (
       id: id,
     };
     const confirmationRequest = client.post(
-      `api/v1/roletemplates/updatetags/`,
+      `/api/v1/roletemplates/updatetags/`,
       requestData,
       {
         headers: { authorization: token },
       }
     );
     confirmationRequest
-      .then((response : AxiosResponse) => {
+      .then((response: AxiosResponse) => {
         resolve(response.data);
       })
-      .catch((error : AxiosError) => {
+      .catch((error: AxiosError) => {
         reject(error);
       });
   });
@@ -265,17 +281,17 @@ export const watchRoleTemplate = (
       watch: watch,
     };
     const confirmationRequest = client.post(
-      `api/v1/roletemplates/watch`,
+      `/api/v1/roletemplates/watch`,
       requestData,
       {
         headers: { authorization: token },
       }
     );
     confirmationRequest
-      .then((response : AxiosResponse) => {
+      .then((response: AxiosResponse) => {
         resolve(response.data);
       })
-      .catch((error : AxiosError) => {
+      .catch((error: AxiosError) => {
         reject(error);
       });
   });

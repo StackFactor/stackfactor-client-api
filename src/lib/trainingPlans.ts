@@ -11,7 +11,7 @@ export const archiveTrainingPlan = (
   token: string
 ): Promise<object> => {
   return new Promise((resolve, reject) => {
-    const request = client.get(`api/v1/trainingplans/archive/${id}`, {
+    const request = client.get(`/api/v1/trainingplans/archive/${id}`, {
       headers: { authorization: token },
     });
     request
@@ -40,7 +40,7 @@ export const createTrainingPlan = (
   return new Promise((resolve, reject) => {
     const requestData = { data: data, type: type, saveAsDraft: saveAsDraft };
     const confirmationRequest = client.put(
-      "api/v1/trainingplans",
+      "/api/v1/trainingplans",
       requestData,
       {
         headers: { authorization: token },
@@ -72,7 +72,7 @@ export const deleteTrainingPlan = (
       id: id,
     };
     if (comments) data.comments = comments;
-    const request = client.delete(`api/v1/trainingplans/`, {
+    const request = client.delete(`/api/v1/trainingplans/`, {
       headers: { authorization: token },
       data: data,
     });
@@ -96,7 +96,7 @@ export const discardTrainingPlanChanges = (
   token: string
 ): Promise<object> => {
   return new Promise((resolve, reject) => {
-    const request = client.get(`api/v1/trainingplans/discard/${id}`, {
+    const request = client.get(`/api/v1/trainingplans/discard/${id}`, {
       headers: { authorization: token },
     });
     request
@@ -137,7 +137,7 @@ export const generateNewBaseline = (
     };
     if (id) requestData.id = id;
     const confirmationRequest = client.post(
-      "api/v1/trainingplans/generatenewbaseline",
+      "/api/v1/trainingplans/generatenewbaseline",
       requestData,
       {
         headers: { authorization: token },
@@ -166,7 +166,7 @@ export const getTrainingPlanById = (
 ): Promise<object> => {
   return new Promise((resolve, reject) => {
     const confirmationRequest = client.get(
-      `api/v1/trainingplans/${id}/${version}`,
+      `/api/v1/trainingplans/${id}/${version}`,
       {
         headers: { authorization: token },
       }
@@ -190,7 +190,7 @@ export const getAllTrainingPlansTasksSummary = (
 ): Promise<object> => {
   return new Promise((resolve, reject) => {
     const confirmationRequest = client.get(
-      `api/v1/trainingplans/taskssummary`,
+      `/api/v1/trainingplans/taskssummary`,
       {
         headers: token ? { authorization: token } : {},
       }
@@ -245,7 +245,7 @@ export const getListOfTrainingPlans = (
     if (types) requestData.types = types;
     if (users) requestData.users = users;
     const confirmationRequest = client.post(
-      `api/v1/trainingplans`,
+      `/api/v1/trainingplans`,
       requestData,
       {
         headers: { authorization: token },
@@ -276,7 +276,7 @@ export const publishTrainingPlan = (
     const data: { comments?: string } = {};
     if (comments) data.comments = comments;
     const confirmationRequest = client.post(
-      `api/v1/trainingplans/publish/${id}`,
+      `/api/v1/trainingplans/publish/${id}`,
       data,
       {
         headers: { authorization: token },
@@ -312,7 +312,7 @@ export const updateTrainingPlan = (
       saveAsDraft,
     };
     const confirmationRequest = client.put(
-      `api/v1/trainingplans/update/${planId}`,
+      `/api/v1/trainingplans/update/${planId}`,
       requestData,
       {
         headers: { authorization: token },
@@ -345,9 +345,13 @@ export const updateTrainingPlanTaskStatus = (
       id: id,
       status: status,
     };
-    const confirmationRequest = client.post(`api/v1/trainingplans/task`, data, {
-      headers: { authorization: token },
-    });
+    const confirmationRequest = client.post(
+      `/api/v1/trainingplans/task`,
+      data,
+      {
+        headers: { authorization: token },
+      }
+    );
     confirmationRequest
       .then(() => {
         resolve({});
@@ -372,7 +376,7 @@ export const updateActivities = (
 ): Promise<object> => {
   return new Promise((resolve, reject) => {
     const confirmationRequest = client.post(
-      `api/v1/trainingplans/${planId}/activities`,
+      `/api/v1/trainingplans/${planId}/activities`,
       data,
       {
         headers: { authorization: token },

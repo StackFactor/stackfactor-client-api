@@ -11,7 +11,7 @@ export const getTalentTransformationStepsForCurrentUser = (
 ): Promise<object> => {
   return new Promise((resolve, reject) => {
     const request = client.get(
-      `api/v1/talenttransformation/getforcurrentuser`,
+      `/api/v1/talenttransformation/getforcurrentuser`,
       authToken
         ? {
             headers: { authorization: authToken },
@@ -19,10 +19,10 @@ export const getTalentTransformationStepsForCurrentUser = (
         : {}
     );
     request
-      .then((response : AxiosResponse) => {
+      .then((response: AxiosResponse) => {
         resolve(response.data);
       })
-      .catch((error : AxiosError) => {
+      .catch((error: AxiosError) => {
         reject(error);
       });
   });
@@ -33,10 +33,12 @@ export const getTalentTransformationStepsForCurrentUser = (
  * @param {String} authToken
  * @returns {Promise<object>} The talent transformation summary
  */
-export const getTalentTransformationSummary = (authToken: string): Promise<object> => {
+export const getTalentTransformationSummary = (
+  authToken: string
+): Promise<object> => {
   return new Promise((resolve, reject) => {
     const request = client.get(
-      `api/v1/talenttransformation/summary`,
+      `/api/v1/talenttransformation/summary`,
       authToken
         ? {
             headers: { authorization: authToken },
@@ -44,10 +46,10 @@ export const getTalentTransformationSummary = (authToken: string): Promise<objec
         : {}
     );
     request
-      .then((response : AxiosResponse) => {
+      .then((response: AxiosResponse) => {
         resolve(response.data);
       })
-      .catch((error : AxiosError) => {
+      .catch((error: AxiosError) => {
         reject(error);
       });
   });
@@ -65,7 +67,7 @@ export const getTalentTransformationSummaryForTeam = (
 ): Promise<object> => {
   return new Promise((resolve, reject) => {
     const request = client.get(
-      `api/v1/talenttransformation/summaryforteam/${teamId}`,
+      `/api/v1/talenttransformation/summaryforteam/${teamId}`,
       authToken
         ? {
             headers: { authorization: authToken },
@@ -73,10 +75,10 @@ export const getTalentTransformationSummaryForTeam = (
         : {}
     );
     request
-      .then((response : AxiosResponse) => {
+      .then((response: AxiosResponse) => {
         resolve(response.data);
       })
-      .catch((error : AxiosError) => {
+      .catch((error: AxiosError) => {
         reject(error);
       });
   });
@@ -103,17 +105,17 @@ export const setTalentTransformationStepData = (
       returnAllStepsStatuses: returnAllStepsStatuses,
     };
     const confirmationRequest = client.post(
-      `api/v1/talenttransformation/setdata/`,
+      `/api/v1/talenttransformation/setdata/`,
       requestData,
       {
         headers: { authorization: token },
       }
     );
     confirmationRequest
-      .then((response : AxiosResponse) => {
+      .then((response: AxiosResponse) => {
         resolve(response.data);
       })
-      .catch((error : AxiosError) => {
+      .catch((error: AxiosError) => {
         reject(error);
       });
   });

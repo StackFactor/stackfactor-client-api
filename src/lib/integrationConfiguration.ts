@@ -17,7 +17,7 @@ export const getIntegrationsConfiguration = (
     const requestData: { types: number[]; ids?: string[] } = { types: types };
     if (ids) requestData.ids = ids;
     const confirmationRequest = client.post(
-      "api/v1/integrationsconfiguration",
+      "/api/v1/integrationsconfiguration",
       requestData,
       {
         headers: { authorization: token },
@@ -54,7 +54,7 @@ export const saveIntegrationConfiguration = (
       type: type,
     };
     const confirmationRequest = client.put(
-      `api/v1/integrationsconfiguration`,
+      `/api/v1/integrationsconfiguration`,
       requestData,
       {
         headers: { authorization: token },
@@ -91,7 +91,7 @@ export const testIntegrationConfiguration = (
       type: type,
     };
     const confirmationRequest = client.post(
-      `api/v1/integrationsconfiguration/testConfiguration`,
+      `/api/v1/integrationsconfiguration/testConfiguration`,
       requestData,
       {
         headers: { authorization: token },

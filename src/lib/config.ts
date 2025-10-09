@@ -13,14 +13,14 @@ export const getConfigurationById = (
 ): Promise<object> => {
   return new Promise((resolve, reject) => {
     const getConfigInformationRequest = client.get(
-      `api/v1/configurations/configuration/id/${id}`,
+      `/api/v1/configurations/configuration/id/${id}`,
       { headers: { authorization: authToken } }
     );
     getConfigInformationRequest
-      .then((response : AxiosResponse) => {
+      .then((response: AxiosResponse) => {
         resolve(response.data);
       })
-      .catch((error : AxiosError) => {
+      .catch((error: AxiosError) => {
         reject(error);
       });
   });
@@ -38,14 +38,14 @@ export const getConfigurationByType = (
 ): Promise<object> => {
   return new Promise((resolve, reject) => {
     const getConfigInformationRequest = client.get(
-      `api/v1/configurations/configuration/type/${type}`,
+      `/api/v1/configurations/configuration/type/${type}`,
       { headers: { authorization: authToken } }
     );
     getConfigInformationRequest
-      .then((response : AxiosResponse) => {
+      .then((response: AxiosResponse) => {
         resolve(response.data);
       })
-      .catch((error : AxiosError) => {
+      .catch((error: AxiosError) => {
         reject(error);
       });
   });
@@ -65,15 +65,15 @@ export const setConfigurationById = (
 ): Promise<object> => {
   return new Promise((resolve, reject) => {
     const getConfigInformationRequest = client.post(
-      `api/v1/configurations/configuration/${id}`,
+      `/api/v1/configurations/configuration/${id}`,
       { data: data },
       { headers: { authorization: authToken } }
     );
     getConfigInformationRequest
-      .then((response : AxiosResponse) => {
+      .then((response: AxiosResponse) => {
         resolve(response.data);
       })
-      .catch((error : AxiosError) => {
+      .catch((error: AxiosError) => {
         reject(error);
       });
   });

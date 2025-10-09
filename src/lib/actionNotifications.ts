@@ -8,14 +8,14 @@ import { client } from "./axiosClient.js";
  */
 export const getAllUserNotifications = (token: string): Promise<object> => {
   return new Promise((resolve, reject) => {
-    const request = client.get(`api/v1/actionnotifications`, {
+    const request = client.get(`/api/v1/actionnotifications`, {
       headers: { authorization: token },
     });
     request
-      .then((response : AxiosResponse) => {
+      .then((response: AxiosResponse) => {
         resolve(response.data);
       })
-      .catch((error : AxiosError) => {
+      .catch((error: AxiosError) => {
         reject(error);
       });
   });
@@ -35,7 +35,7 @@ export const markNotifications = (
 ): Promise<object> => {
   return new Promise((resolve, reject) => {
     const request = client.put(
-      `api/v1/actionnotifications/mark`,
+      `/api/v1/actionnotifications/mark`,
       {
         ids: ids,
         status: status,
@@ -43,10 +43,10 @@ export const markNotifications = (
       { headers: { authorization: authToken } }
     );
     request
-      .then((response : AxiosResponse) => {
+      .then((response: AxiosResponse) => {
         resolve(response.data);
       })
-      .catch((error : AxiosError) => {
+      .catch((error: AxiosError) => {
         reject(error);
       });
   });
@@ -68,7 +68,7 @@ export const processNotification = (
 ): Promise<object> => {
   return new Promise((resolve, reject) => {
     const request = client.put(
-      `api/v1/actionnotifications/process`,
+      `/api/v1/actionnotifications/process`,
       {
         id: id,
         action: action,
@@ -77,10 +77,10 @@ export const processNotification = (
       { headers: { authorization: authToken } }
     );
     request
-      .then((response : AxiosResponse) => {
+      .then((response: AxiosResponse) => {
         resolve(response.data);
       })
-      .catch((error : AxiosError) => {
+      .catch((error: AxiosError) => {
         reject(error);
       });
   });

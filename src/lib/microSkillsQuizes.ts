@@ -15,16 +15,16 @@ export const getResponses = (
 ): Promise<object> => {
   return new Promise((resolve, reject) => {
     const confirmationRequest = client.get(
-      `api/v1/microskillsresponses/${learningContentId}/${microSkillId}`,
+      `/api/v1/microskillsresponses/${learningContentId}/${microSkillId}`,
       {
         headers: { authorization: token },
       }
     );
     confirmationRequest
-      .then((response : AxiosResponse) => {
+      .then((response: AxiosResponse) => {
         resolve(response.data);
       })
-      .catch((error : AxiosError) => {
+      .catch((error: AxiosError) => {
         reject(error);
       });
   });
@@ -49,17 +49,17 @@ export const saveResponses = (
       responses: responses,
     };
     const confirmationRequest = client.post(
-      `api/v1/microskillsresponses/${learningContentId}/${microSkillId}`,
+      `/api/v1/microskillsresponses/${learningContentId}/${microSkillId}`,
       data,
       {
         headers: { authorization: token },
       }
     );
     confirmationRequest
-      .then((response : AxiosResponse) => {
+      .then((response: AxiosResponse) => {
         resolve(response.data);
       })
-      .catch((error : AxiosError) => {
+      .catch((error: AxiosError) => {
         reject(error);
       });
   });

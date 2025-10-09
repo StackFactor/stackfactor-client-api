@@ -20,17 +20,17 @@ export const addEntryToArrayBusinessProperty = (
       data: data,
     };
     const confirmationRequest = client.post(
-      `api/v1/user/arrayproperty/${userId}/${property}`,
+      `/api/v1/user/arrayproperty/${userId}/${property}`,
       requestData,
       {
         headers: { authorization: token },
       }
     );
     confirmationRequest
-      .then((response : AxiosResponse) => {
+      .then((response: AxiosResponse) => {
         resolve(response.data);
       })
-      .catch((error : AxiosError) => {
+      .catch((error: AxiosError) => {
         reject(error);
       });
   });
@@ -52,16 +52,16 @@ export const removeEntryFromArrayBusinessProperty = (
 ): Promise<object> => {
   return new Promise((resolve, reject) => {
     const confirmationRequest = client.delete(
-      `api/v1/user/arrayproperty/${userId}/${property}/${id}`,
+      `/api/v1/user/arrayproperty/${userId}/${property}/${id}`,
       {
         headers: { authorization: token },
       }
     );
     confirmationRequest
-      .then((response : AxiosResponse) => {
+      .then((response: AxiosResponse) => {
         resolve(response.data);
       })
-      .catch((error : AxiosError) => {
+      .catch((error: AxiosError) => {
         reject(error);
       });
   });
@@ -88,17 +88,17 @@ export const updateEntryfromArrayBusinessProperty = (
       data: data,
     };
     const confirmationRequest = client.patch(
-      `api/v1/user/arrayproperty/${userId}/${property}/${id}`,
+      `/api/v1/user/arrayproperty/${userId}/${property}/${id}`,
       requestData,
       {
         headers: { authorization: token },
       }
     );
     confirmationRequest
-      .then((response : AxiosResponse) => {
+      .then((response: AxiosResponse) => {
         resolve(response.data);
       })
-      .catch((error : AxiosError) => {
+      .catch((error: AxiosError) => {
         reject(error);
       });
   });

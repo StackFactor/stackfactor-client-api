@@ -51,7 +51,7 @@ export const generateContent = (
       auth: {
         token: token,
       },
-      path: `api/v1/contentgenerators/generate`,
+      path: `/api/v1/contentgenerators/generate`,
       transports: ["websocket"],
       withCredentials: true,
     });
@@ -105,7 +105,7 @@ export const generateContentAsync = (
     };
     if (integrationId) data_.integrationId = integrationId;
     const request = client.post(
-      `api/v1/contentgeneratorsasync/generate`,
+      `/api/v1/contentgeneratorsasync/generate`,
       data_,
       {
         headers: { authorization: token },

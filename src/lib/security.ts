@@ -9,14 +9,14 @@ import { client } from "./axiosClient.js";
 export const getAuthConnections = (authToken: string): Promise<object> => {
   return new Promise((resolve, reject) => {
     const getConfigInformationRequest = client.get(
-      `api/v1/security/authconnections`,
+      `/api/v1/security/authconnections`,
       { headers: { authorization: authToken } }
     );
     getConfigInformationRequest
-      .then((response : AxiosResponse) => {
+      .then((response: AxiosResponse) => {
         resolve(response.data);
       })
-      .catch((error : AxiosError) => {
+      .catch((error: AxiosError) => {
         reject(error);
       });
   });
@@ -34,15 +34,15 @@ export const setAuthConnections = (
 ): Promise<object> => {
   return new Promise((resolve, reject) => {
     const setConfigInformationRequest = client.post(
-      `api/v1/security/authconnections`,
+      `/api/v1/security/authconnections`,
       { data: data },
       { headers: { authorization: authToken } }
     );
     setConfigInformationRequest
-      .then((response : AxiosResponse) => {
+      .then((response: AxiosResponse) => {
         resolve(response.data);
       })
-      .catch((error : AxiosError) => {
+      .catch((error: AxiosError) => {
         reject(error);
       });
   });
@@ -54,18 +54,21 @@ export const setAuthConnections = (
  * @param {String} authToken
  * @returns {Promise<object>}
  */
-export const resetMFA = (userId: string, authToken: string): Promise<object> => {
+export const resetMFA = (
+  userId: string,
+  authToken: string
+): Promise<object> => {
   return new Promise((resolve, reject) => {
     const resetMFARequest = client.post(
-      `api/v1/security/resetmfa`,
+      `/api/v1/security/resetmfa`,
       userId ? {} : { userId: userId },
       { headers: { authorization: authToken } }
     );
     resetMFARequest
-      .then((response : AxiosResponse) => {
+      .then((response: AxiosResponse) => {
         resolve(response.data);
       })
-      .catch((error : AxiosError) => {
+      .catch((error: AxiosError) => {
         reject(error);
       });
   });
@@ -79,14 +82,14 @@ export const resetMFA = (userId: string, authToken: string): Promise<object> => 
 export const synchronizeWithAuth0 = (authToken: string): Promise<object> => {
   return new Promise((resolve, reject) => {
     const synchronizeRequest = client.get(
-      `api/v1/security/synchronizewithauth0`,
+      `/api/v1/security/synchronizewithauth0`,
       { headers: { authorization: authToken } }
     );
     synchronizeRequest
-      .then((response : AxiosResponse) => {
+      .then((response: AxiosResponse) => {
         resolve(response.data);
       })
-      .catch((error : AxiosError) => {
+      .catch((error: AxiosError) => {
         reject(error);
       });
   });

@@ -38,7 +38,7 @@ export const createLearningContent = (
       data: data,
     };
     const confirmationRequest = client.put(
-      "api/v1/learningcontent",
+      "/api/v1/learningcontent",
       requestData,
       {
         headers: { authorization: token },
@@ -71,7 +71,7 @@ export const deleteLearningContent = (
   };
   if (comments) data.comments = comments;
   return new Promise((resolve, reject) => {
-    const request = client.delete(`api/v1/learningcontent/`, {
+    const request = client.delete(`/api/v1/learningcontent/`, {
       headers: { authorization: token },
       data: data,
     });
@@ -103,7 +103,7 @@ export const deleteLearningContentMicroSkillLearningContentActivityMedia = (
 ): Promise<object> => {
   return new Promise((resolve, reject) => {
     const confirmationRequest = client.delete(
-      `api/v1/learningcontent/media/${id}/${microskillid}/${activityId}/${mediaId}`,
+      `/api/v1/learningcontent/media/${id}/${microskillid}/${activityId}/${mediaId}`,
       {
         headers: { authorization: token },
       }
@@ -130,7 +130,7 @@ export const discardLearningContentChanges = (
 ): Promise<object> => {
   return new Promise((resolve, reject) => {
     const data = {};
-    const request = client.get(`api/v1/learningcontent/discard/${id}`, {
+    const request = client.get(`/api/v1/learningcontent/discard/${id}`, {
       headers: { authorization: token },
       data: data,
     });
@@ -183,7 +183,7 @@ export const generateLearningActivityContent = (
       auth: {
         token: token,
       },
-      path: `api/v1/contentgenerators/generatelearningactivitycontent`,
+      path: `/api/v1/contentgenerators/generatelearningactivitycontent`,
       transports: ["websocket"],
       withCredentials: true,
     });
@@ -223,7 +223,7 @@ export const generateMicroSkillTestKnowledge = (
       microSkill: microSkill,
     };
     const confirmationRequest = client.post(
-      `api/v1/learningcontent/generatemicroskilltestknowledge`,
+      `/api/v1/learningcontent/generatemicroskilltestknowledge`,
       data,
       {
         headers: { authorization: token },
@@ -253,7 +253,7 @@ export const getLearningContentInformationById = (
 ): Promise<object> => {
   return new Promise((resolve, reject) => {
     const confirmationRequest = client.get(
-      `api/v1/learningcontent/${id}/${version}`,
+      `/api/v1/learningcontent/${id}/${version}`,
       {
         headers: { authorization: token },
       }
@@ -293,7 +293,7 @@ export const getLearningContentList = (
     };
     if (filter) requestData.filter = filter;
     const confirmationRequest = client.post(
-      `api/v1/learningcontent`,
+      `/api/v1/learningcontent`,
       requestData,
       {
         headers: { authorization: token },
@@ -364,7 +364,7 @@ export const getLearningContentMicroSkillLearningContentActivityMedia = (
 ): Promise<object> => {
   return new Promise((resolve, reject) => {
     const confirmationRequest = client.get(
-      `api/v1/learningcontent/media/${id}/${microskillid}/${activityId}/${mediaId}`,
+      `/api/v1/learningcontent/media/${id}/${microskillid}/${activityId}/${mediaId}`,
       {
         headers: {
           authorization: token,
@@ -395,7 +395,7 @@ export const migrateLearningContentStorageType = (
   return new Promise((resolve, reject) => {
     const data = {};
     const confirmationRequest = client.post(
-      `api/v1/learningcontent/migratestorage/${id}`,
+      `/api/v1/learningcontent/migratestorage/${id}`,
       data,
       {
         headers: { authorization: token },
@@ -428,7 +428,7 @@ export const publishLearningContent = (
     if (comments) data.comments = comments;
 
     const confirmationRequest = client.post(
-      `api/v1/learningcontent/publish/${id}`,
+      `/api/v1/learningcontent/publish/${id}`,
       data,
       {
         headers: { authorization: token },
@@ -462,7 +462,7 @@ export const setLearningContentInformation = (
       id: id,
     };
     const confirmationRequest = client.post(
-      `api/v1/learningcontent/update`,
+      `/api/v1/learningcontent/update`,
       requestData,
       {
         headers: { authorization: token },
@@ -496,7 +496,7 @@ export const setLearningContentPartialContentInformation = (
       id: id,
     };
     const confirmationRequest = client.post(
-      `api/v1/learningcontent/updatepartialcontent/${id}`,
+      `/api/v1/learningcontent/updatepartialcontent/${id}`,
       requestData,
       {
         headers: { authorization: token },
@@ -536,7 +536,7 @@ export const setLearningContentLearningContentInformation = (
       microSkillId: microSkillId,
     };
     const confirmationRequest = client.post(
-      `api/v1/learningcontent/updatelearningcontent/`,
+      `/api/v1/learningcontent/updatelearningcontent/`,
       requestData,
       {
         headers: { authorization: token },
@@ -571,7 +571,7 @@ export const setLearningContentLearningMicroSkillContentInformation = (
       data: data,
     };
     const confirmationRequest = client.post(
-      `api/v1/learningcontent/updatemicroskilllearningcontent/${id}/${microskillid}`,
+      `/api/v1/learningcontent/updatemicroskilllearningcontent/${id}/${microskillid}`,
       requestData,
       {
         headers: { authorization: token },
@@ -604,7 +604,7 @@ export const setLearningContentTags = (
       id: id,
     };
     const confirmationRequest = client.post(
-      `api/v1/learningcontent/updatetags/`,
+      `/api/v1/learningcontent/updatetags/`,
       requestData,
       {
         headers: { authorization: token },
@@ -642,7 +642,7 @@ export const uploadLearningContentMicroSkillLearningContentActivityMedia = (
   formData.append("file", blob, "media.bin");
   return new Promise((resolve, reject) => {
     const confirmationRequest = client.post(
-      `api/v1/learningcontent/media/${id}/${microskillid}/${activityId}/${mediaId}`,
+      `/api/v1/learningcontent/media/${id}/${microskillid}/${activityId}/${mediaId}`,
       formData,
       {
         headers: {
@@ -678,7 +678,7 @@ export const watchLearningContent = (
       watch: watch,
     };
     const confirmationRequest = client.post(
-      `api/v1/learningcontent/watch`,
+      `/api/v1/learningcontent/watch`,
       requestData,
       {
         headers: { authorization: token },

@@ -15,7 +15,7 @@ export const addPermissionsToGroup = (
 ): Promise<object> => {
   return new Promise((resolve, reject) => {
     const request = client.post(
-      `api/v1/groups/permissions/add`,
+      `/api/v1/groups/permissions/add`,
       {
         groupId: groupId,
         permissions: permissions,
@@ -23,10 +23,10 @@ export const addPermissionsToGroup = (
       { headers: { authorization: authToken } }
     );
     request
-      .then((response : AxiosResponse) => {
+      .then((response: AxiosResponse) => {
         resolve(response.data);
       })
-      .catch((error : AxiosError) => {
+      .catch((error: AxiosError) => {
         reject(error);
       });
   });
@@ -46,7 +46,7 @@ export const addUsersToGroup = (
 ): Promise<object> => {
   return new Promise((resolve, reject) => {
     const request = client.post(
-      `api/v1/groups/users/add`,
+      `/api/v1/groups/users/add`,
       {
         groupId: groupId,
         users: users,
@@ -54,10 +54,10 @@ export const addUsersToGroup = (
       { headers: { authorization: authToken } }
     );
     request
-      .then((response : AxiosResponse) => {
+      .then((response: AxiosResponse) => {
         resolve(response.data);
       })
-      .catch((error : AxiosError) => {
+      .catch((error: AxiosError) => {
         reject(error);
       });
   });
@@ -77,7 +77,7 @@ export const createGroup = (
 ): Promise<object> => {
   return new Promise((resolve, reject) => {
     const request = client.post(
-      `api/v1/groups/group`,
+      `/api/v1/groups/group`,
       {
         name: name,
         description: description,
@@ -85,10 +85,10 @@ export const createGroup = (
       { headers: { authorization: authToken } }
     );
     request
-      .then((response : AxiosResponse) => {
+      .then((response: AxiosResponse) => {
         resolve(response.data);
       })
-      .catch((error : AxiosError) => {
+      .catch((error: AxiosError) => {
         reject(error);
       });
   });
@@ -107,7 +107,7 @@ export const deleteGroup = (
   authToken: string
 ): Promise<object> => {
   return new Promise((resolve, reject) => {
-    const request = client.delete(`api/v1/groups/delete`, {
+    const request = client.delete(`/api/v1/groups/delete`, {
       headers: { authorization: authToken },
       data: {
         id: groupId,
@@ -115,10 +115,10 @@ export const deleteGroup = (
       },
     });
     request
-      .then((response : AxiosResponse) => {
+      .then((response: AxiosResponse) => {
         resolve(response.data);
       })
-      .catch((error : AxiosError) => {
+      .catch((error: AxiosError) => {
         reject(error);
       });
   });
@@ -131,14 +131,14 @@ export const deleteGroup = (
  */
 export const getAllPermissions = (authToken: string): Promise<object> => {
   return new Promise((resolve, reject) => {
-    const request = client.get(`api/v1/groups/permissions/getAllPermissions`, {
+    const request = client.get(`/api/v1/groups/permissions/getAllPermissions`, {
       headers: { authorization: authToken },
     });
     request
-      .then((response : AxiosResponse) => {
+      .then((response: AxiosResponse) => {
         resolve(response.data);
       })
-      .catch((error : AxiosError) => {
+      .catch((error: AxiosError) => {
         reject(error);
       });
   });
@@ -150,16 +150,19 @@ export const getAllPermissions = (authToken: string): Promise<object> => {
  * @param {String} authToken The authentication token
  * @returns {Promise<object>}
  */
-export const getGroupById = (groupId: string, authToken: string): Promise<object> => {
+export const getGroupById = (
+  groupId: string,
+  authToken: string
+): Promise<object> => {
   return new Promise((resolve, reject) => {
-    const request = client.get(`api/v1/groups/group/${groupId}`, {
+    const request = client.get(`/api/v1/groups/group/${groupId}`, {
       headers: { authorization: authToken },
     });
     request
-      .then((response : AxiosResponse) => {
+      .then((response: AxiosResponse) => {
         resolve(response.data);
       })
-      .catch((error : AxiosError) => {
+      .catch((error: AxiosError) => {
         reject(error);
       });
   });
@@ -172,14 +175,14 @@ export const getGroupById = (groupId: string, authToken: string): Promise<object
  */
 export const getGroups = (authToken: string): Promise<object> => {
   return new Promise((resolve, reject) => {
-    const request = client.get(`api/v1/groups/`, {
+    const request = client.get(`/api/v1/groups/`, {
       headers: { authorization: authToken },
     });
     request
-      .then((response : AxiosResponse) => {
+      .then((response: AxiosResponse) => {
         resolve(response.data);
       })
-      .catch((error : AxiosError) => {
+      .catch((error: AxiosError) => {
         reject(error);
       });
   });
@@ -192,14 +195,14 @@ export const getGroups = (authToken: string): Promise<object> => {
  */
 export const getUserPermissions = (authToken: string): Promise<object> => {
   return new Promise((resolve, reject) => {
-    const request = client.get(`api/v1/groups/users/getuserpermissions`, {
+    const request = client.get(`/api/v1/groups/users/getuserpermissions`, {
       headers: { authorization: authToken },
     });
     request
-      .then((response : AxiosResponse) => {
+      .then((response: AxiosResponse) => {
         resolve(response.data);
       })
-      .catch((error : AxiosError) => {
+      .catch((error: AxiosError) => {
         reject(error);
       });
   });
@@ -219,7 +222,7 @@ export const removePermissionsFromGroup = (
 ): Promise<object> => {
   return new Promise((resolve, reject) => {
     const request = client.post(
-      `api/v1/groups/permissions/remove/`,
+      `/api/v1/groups/permissions/remove/`,
       {
         groupId: groupId,
         permissions: permissions,
@@ -227,10 +230,10 @@ export const removePermissionsFromGroup = (
       { headers: { authorization: authToken } }
     );
     request
-      .then((response : AxiosResponse) => {
+      .then((response: AxiosResponse) => {
         resolve(response.data);
       })
-      .catch((error : AxiosError) => {
+      .catch((error: AxiosError) => {
         reject(error);
       });
   });
@@ -250,7 +253,7 @@ export const removeUsersFromGroup = (
 ): Promise<object> => {
   return new Promise((resolve, reject) => {
     const request = client.post(
-      `api/v1/groups/users/remove/`,
+      `/api/v1/groups/users/remove/`,
       {
         groupId: groupId,
         users: users,
@@ -258,10 +261,10 @@ export const removeUsersFromGroup = (
       { headers: { authorization: authToken } }
     );
     request
-      .then((response : AxiosResponse) => {
+      .then((response: AxiosResponse) => {
         resolve(response.data);
       })
-      .catch((error : AxiosError) => {
+      .catch((error: AxiosError) => {
         reject(error);
       });
   });
@@ -273,20 +276,23 @@ export const removeUsersFromGroup = (
  * @param {String} authToken The authentication token
  * @returns {Promise<object>}
  */
-export const setDefault = (groupId: string, authToken: string): Promise<object> => {
+export const setDefault = (
+  groupId: string,
+  authToken: string
+): Promise<object> => {
   return new Promise((resolve, reject) => {
     const request = client.put(
-      `api/v1/groups/setDefault/`,
+      `/api/v1/groups/setDefault/`,
       {
         id: groupId,
       },
       { headers: { authorization: authToken } }
     );
     request
-      .then((response : AxiosResponse) => {
+      .then((response: AxiosResponse) => {
         resolve(response.data);
       })
-      .catch((error : AxiosError) => {
+      .catch((error: AxiosError) => {
         reject(error);
       });
   });
@@ -308,7 +314,7 @@ export const updateGroup = (
 ): Promise<object> => {
   return new Promise((resolve, reject) => {
     const request = client.patch(
-      `api/v1/groups/group/`,
+      `/api/v1/groups/group/`,
       {
         id: groupId,
         name: name,
@@ -317,10 +323,10 @@ export const updateGroup = (
       { headers: { authorization: authToken } }
     );
     request
-      .then((response : AxiosResponse) => {
+      .then((response: AxiosResponse) => {
         resolve(response.data);
       })
-      .catch((error : AxiosError) => {
+      .catch((error: AxiosError) => {
         reject(error);
       });
   });

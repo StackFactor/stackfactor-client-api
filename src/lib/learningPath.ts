@@ -17,20 +17,23 @@ interface LearningPathData {
  * @param {String} token Authorization token
  * @returns {Promise<object>}
  */
-export const createLearningPath = (data: object, token: string): Promise<object> => {
+export const createLearningPath = (
+  data: object,
+  token: string
+): Promise<object> => {
   return new Promise((resolve, reject) => {
     const confirmationRequest = client.put(
-      "api/v1/learningpaths",
+      "/api/v1/learningpaths",
       { data: data },
       {
         headers: { authorization: token },
       }
     );
     confirmationRequest
-      .then((response : AxiosResponse) => {
+      .then((response: AxiosResponse) => {
         resolve(response.data);
       })
-      .catch((error : AxiosError) => {
+      .catch((error: AxiosError) => {
         reject(error);
       });
   });
@@ -43,21 +46,25 @@ export const createLearningPath = (data: object, token: string): Promise<object>
  * @param {String} token Authorization token
  * @returns {Promise<object>}
  */
-export const deleteLearningPath = (id: string, comments: string, token: string): Promise<object> => {
+export const deleteLearningPath = (
+  id: string,
+  comments: string,
+  token: string
+): Promise<object> => {
   return new Promise((resolve, reject) => {
     const data: LearningPathData = {
       id: id,
     };
     if (comments) data.comments = comments;
-    const request = client.delete(`api/v1/learningpaths/`, {
+    const request = client.delete(`/api/v1/learningpaths/`, {
       headers: { authorization: token },
       data: data,
     });
     request
-      .then((response : AxiosResponse) => {
+      .then((response: AxiosResponse) => {
         resolve(response.data);
       })
-      .catch((error : AxiosError) => {
+      .catch((error: AxiosError) => {
         reject(error);
       });
   });
@@ -69,18 +76,21 @@ export const deleteLearningPath = (id: string, comments: string, token: string):
  * @param {String} token Authorization token
  * @returns {Promise<object>}
  */
-export const discardLearningPathChanges = (id: string, token: string): Promise<object> => {
+export const discardLearningPathChanges = (
+  id: string,
+  token: string
+): Promise<object> => {
   return new Promise((resolve, reject) => {
     const data = {};
-    const request = client.get(`api/v1/learningpaths/discard/${id}`, {
+    const request = client.get(`/api/v1/learningpaths/discard/${id}`, {
       headers: { authorization: token },
       data: data,
     });
     request
-      .then((response : AxiosResponse) => {
+      .then((response: AxiosResponse) => {
         resolve(response.data);
       })
-      .catch((error : AxiosError) => {
+      .catch((error: AxiosError) => {
         reject(error);
       });
   });
@@ -93,19 +103,23 @@ export const discardLearningPathChanges = (id: string, token: string): Promise<o
  * @param {String} token Authorization token
  * @returns {Promise<object>}
  */
-export const getLearningPathInformationById = (id: string, version: string, token: string): Promise<object> => {
+export const getLearningPathInformationById = (
+  id: string,
+  version: string,
+  token: string
+): Promise<object> => {
   return new Promise((resolve, reject) => {
     const confirmationRequest = client.get(
-      `api/v1/learningpaths/${id}/${version}`,
+      `/api/v1/learningpaths/${id}/${version}`,
       {
         headers: { authorization: token },
       }
     );
     confirmationRequest
-      .then((response : AxiosResponse) => {
+      .then((response: AxiosResponse) => {
         resolve(response.data);
       })
-      .catch((error : AxiosError) => {
+      .catch((error: AxiosError) => {
         reject(error);
       });
   });
@@ -132,17 +146,17 @@ export const getLearningPathsList = (
     };
     if (list) requestData.list = list;
     const confirmationRequest = client.post(
-      `api/v1/learningpaths`,
+      `/api/v1/learningpaths`,
       requestData,
       {
         headers: { authorization: token },
       }
     );
     confirmationRequest
-      .then((response : AxiosResponse) => {
+      .then((response: AxiosResponse) => {
         resolve(response.data);
       })
-      .catch((error : AxiosError) => {
+      .catch((error: AxiosError) => {
         reject(error);
       });
   });
@@ -155,22 +169,26 @@ export const getLearningPathsList = (
  * @param {String} token Authorization token
  * @returns {Promise<object>}
  */
-export const publishLearningPath = (id: string, comments: string, token: string): Promise<object> => {
+export const publishLearningPath = (
+  id: string,
+  comments: string,
+  token: string
+): Promise<object> => {
   return new Promise((resolve, reject) => {
     const data: LearningPathData = {};
     if (comments) data.comments = comments;
     const confirmationRequest = client.post(
-      `api/v1/learningpaths/publish/${id}`,
+      `/api/v1/learningpaths/publish/${id}`,
       data,
       {
         headers: { authorization: token },
       }
     );
     confirmationRequest
-      .then((response : AxiosResponse) => {
+      .then((response: AxiosResponse) => {
         resolve(response.data);
       })
-      .catch((error : AxiosError) => {
+      .catch((error: AxiosError) => {
         reject(error);
       });
   });
@@ -183,24 +201,28 @@ export const publishLearningPath = (id: string, comments: string, token: string)
  * @param {String} token Authorization token
  * @returns {Promise<object>}
  */
-export const setLearningPathInformation = (id: string, data: object, token: string): Promise<object> => {
+export const setLearningPathInformation = (
+  id: string,
+  data: object,
+  token: string
+): Promise<object> => {
   return new Promise((resolve, reject) => {
     const requestData: LearningPathData = {
       data: data,
       id: id,
     };
     const confirmationRequest = client.post(
-      `api/v1/learningpaths/update/`,
+      `/api/v1/learningpaths/update/`,
       requestData,
       {
         headers: { authorization: token },
       }
     );
     confirmationRequest
-      .then((response : AxiosResponse) => {
+      .then((response: AxiosResponse) => {
         resolve(response.data);
       })
-      .catch((error : AxiosError) => {
+      .catch((error: AxiosError) => {
         reject(error);
       });
   });
@@ -213,24 +235,28 @@ export const setLearningPathInformation = (id: string, data: object, token: stri
  * @param {String} token Authorization token
  * @returns {Promise<object>}
  */
-export const setLearningPathTags = (id: string, tags: object, token: string): Promise<object> => {
+export const setLearningPathTags = (
+  id: string,
+  tags: object,
+  token: string
+): Promise<object> => {
   return new Promise((resolve, reject) => {
     const requestData: LearningPathData = {
       tags: tags,
       id: id,
     };
     const confirmationRequest = client.post(
-      `api/v1/learningpaths/updatetags/`,
+      `/api/v1/learningpaths/updatetags/`,
       requestData,
       {
         headers: { authorization: token },
       }
     );
     confirmationRequest
-      .then((response : AxiosResponse) => {
+      .then((response: AxiosResponse) => {
         resolve(response.data);
       })
-      .catch((error : AxiosError) => {
+      .catch((error: AxiosError) => {
         reject(error);
       });
   });

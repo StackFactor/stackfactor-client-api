@@ -15,7 +15,7 @@ export const getTenantInformation = (
     const requestData = {
       categories: category,
     };
-    const request = client.post("api/v1/tenants/tenant/get", requestData, {
+    const request = client.post("/api/v1/tenants/tenant/get", requestData, {
       headers: { authorization: token },
     });
     request
@@ -46,7 +46,7 @@ export const setTenantInformation = (
       data: data,
     };
     const confirmationRequest = client.post(
-      "api/v1/tenants/tenant/set",
+      "/api/v1/tenants/tenant/set",
       requestData,
       {
         headers: { authorization: token },

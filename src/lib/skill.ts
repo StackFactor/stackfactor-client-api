@@ -10,17 +10,17 @@ import { client } from "./axiosClient.js";
 export const createSkill = (data: object, token: string): Promise<object> => {
   return new Promise((resolve, reject) => {
     const confirmationRequest = client.put(
-      "api/v1/skills",
+      "/api/v1/skills",
       { data: data },
       {
         headers: { authorization: token },
       }
     );
     confirmationRequest
-      .then((response : AxiosResponse) => {
+      .then((response: AxiosResponse) => {
         resolve(response.data);
       })
-      .catch((error : AxiosError) => {
+      .catch((error: AxiosError) => {
         reject(error);
       });
   });
@@ -41,17 +41,17 @@ export const createSkillsFromTemplates = (
       templateIds: templateIds,
     };
     const confirmationRequest = client.put(
-      "api/v1/skills/createfromtemplate/",
+      "/api/v1/skills/createfromtemplate/",
       requestData,
       {
         headers: { authorization: token },
       }
     );
     confirmationRequest
-      .then((response : AxiosResponse) => {
+      .then((response: AxiosResponse) => {
         resolve(response.data);
       })
-      .catch((error : AxiosError) => {
+      .catch((error: AxiosError) => {
         reject(error);
       });
   });
@@ -74,15 +74,15 @@ export const deleteSkill = (
       id: id,
     };
     if (comments) data.comments = comments;
-    const request = client.delete(`api/v1/skills/`, {
+    const request = client.delete(`/api/v1/skills/`, {
       headers: { authorization: token },
       data: data,
     });
     request
-      .then((response : AxiosResponse) => {
+      .then((response: AxiosResponse) => {
         resolve(response.data);
       })
-      .catch((error : AxiosError) => {
+      .catch((error: AxiosError) => {
         reject(error);
       });
   });
@@ -94,18 +94,21 @@ export const deleteSkill = (
  * @param {String} token Authorization token
  * @returns {Promise<object>}
  */
-export const discardSkillChanges = (id: string, token: string): Promise<object> => {
+export const discardSkillChanges = (
+  id: string,
+  token: string
+): Promise<object> => {
   return new Promise((resolve, reject) => {
     const data = {};
-    const request = client.get(`api/v1/skills/discard/${id}`, {
+    const request = client.get(`/api/v1/skills/discard/${id}`, {
       headers: { authorization: token },
       data: data,
     });
     request
-      .then((response : AxiosResponse) => {
+      .then((response: AxiosResponse) => {
         resolve(response.data);
       })
-      .catch((error : AxiosError) => {
+      .catch((error: AxiosError) => {
         reject(error);
       });
   });
@@ -118,14 +121,14 @@ export const discardSkillChanges = (id: string, token: string): Promise<object> 
  */
 export const getImportedSkillTemplates = (token: string): Promise<object> => {
   return new Promise((resolve, reject) => {
-    const request = client.get(`api/v1/skills/getimportedskilltemplates`, {
+    const request = client.get(`/api/v1/skills/getimportedskilltemplates`, {
       headers: { authorization: token },
     });
     request
-      .then((response : AxiosResponse) => {
+      .then((response: AxiosResponse) => {
         resolve(response.data);
       })
-      .catch((error : AxiosError) => {
+      .catch((error: AxiosError) => {
         reject(error);
       });
   });
@@ -145,16 +148,16 @@ export const getSkillRelatedRoles = (
 ): Promise<object> => {
   return new Promise((resolve, reject) => {
     const confirmationRequest = client.get(
-      `api/v1/skills/getskillrelatedroles/${id}/${includeRoleInformation}`,
+      `/api/v1/skills/getskillrelatedroles/${id}/${includeRoleInformation}`,
       {
         headers: { authorization: token },
       }
     );
     confirmationRequest
-      .then((response : AxiosResponse) => {
+      .then((response: AxiosResponse) => {
         resolve(response.data);
       })
-      .catch((error : AxiosError) => {
+      .catch((error: AxiosError) => {
         reject(error);
       });
   });
@@ -172,16 +175,16 @@ export const getSkillRequiredAssessmentType = (
 ): Promise<object> => {
   return new Promise((resolve, reject) => {
     const confirmationRequest = client.get(
-      `api/v1/skills/getrequiredassessmenttype/${id}`,
+      `/api/v1/skills/getrequiredassessmenttype/${id}`,
       {
         headers: { authorization: token },
       }
     );
     confirmationRequest
-      .then((response : AxiosResponse) => {
+      .then((response: AxiosResponse) => {
         resolve(response.data);
       })
-      .catch((error : AxiosError) => {
+      .catch((error: AxiosError) => {
         reject(error);
       });
   });
@@ -203,16 +206,16 @@ export const getSkillInformationById = (
 ): Promise<object> => {
   return new Promise((resolve, reject) => {
     const confirmationRequest = client.get(
-      `api/v1/skills/skill/${id}/${version}/${returnNullIfVersionNotFound}`,
+      `/api/v1/skills/skill/${id}/${version}/${returnNullIfVersionNotFound}`,
       {
         headers: { authorization: token },
       }
     );
     confirmationRequest
-      .then((response : AxiosResponse) => {
+      .then((response: AxiosResponse) => {
         resolve(response.data);
       })
-      .catch((error : AxiosError) => {
+      .catch((error: AxiosError) => {
         reject(error);
       });
   });
@@ -245,14 +248,14 @@ export const getSkillList = (
       filter: filter,
     };
     if (filter) requestData.filter = filter;
-    const confirmationRequest = client.post(`api/v1/skills`, requestData, {
+    const confirmationRequest = client.post(`/api/v1/skills`, requestData, {
       headers: { authorization: token },
     });
     confirmationRequest
-      .then((response : AxiosResponse) => {
+      .then((response: AxiosResponse) => {
         resolve(response.data);
       })
-      .catch((error : AxiosError) => {
+      .catch((error: AxiosError) => {
         reject(error);
       });
   });
@@ -274,16 +277,16 @@ export const getTeamSkillsById = (
 ): Promise<object> => {
   return new Promise((resolve, reject) => {
     const confirmationRequest = client.get(
-      `api/v1/skills/getteambyid/${teamId}/${maxDepth}/${returnNullIfVersionNotFound}`,
+      `/api/v1/skills/getteambyid/${teamId}/${maxDepth}/${returnNullIfVersionNotFound}`,
       {
         headers: { authorization: token },
       }
     );
     confirmationRequest
-      .then((response : AxiosResponse) => {
+      .then((response: AxiosResponse) => {
         resolve(response.data);
       })
-      .catch((error : AxiosError) => {
+      .catch((error: AxiosError) => {
         reject(error);
       });
   });
@@ -301,16 +304,16 @@ export const getCurrentUserTeamSkills = (
 ): Promise<object> => {
   return new Promise((resolve, reject) => {
     const confirmationRequest = client.get(
-      `api/v1/skills/getcurrentuserteam/${maxDepth}`,
+      `/api/v1/skills/getcurrentuserteam/${maxDepth}`,
       {
         headers: { authorization: token },
       }
     );
     confirmationRequest
-      .then((response : AxiosResponse) => {
+      .then((response: AxiosResponse) => {
         resolve(response.data);
       })
-      .catch((error : AxiosError) => {
+      .catch((error: AxiosError) => {
         reject(error);
       });
   });
@@ -328,16 +331,16 @@ export const getSkillTemplateUpdates = (
 ): Promise<object> => {
   return new Promise((resolve, reject) => {
     const confirmationRequest = client.get(
-      `api/v1/skills/getskilltemplateupdates/${id}`,
+      `/api/v1/skills/getskilltemplateupdates/${id}`,
       {
         headers: { authorization: token },
       }
     );
     confirmationRequest
-      .then((response : AxiosResponse) => {
+      .then((response: AxiosResponse) => {
         resolve(response.data);
       })
-      .catch((error : AxiosError) => {
+      .catch((error: AxiosError) => {
         reject(error);
       });
   });
@@ -361,17 +364,17 @@ export const importSkillTemplates = (
       publish: publish,
     };
     const confirmationRequest = client.post(
-      `api/v1/skills/importtemplates`,
+      `/api/v1/skills/importtemplates`,
       requestData,
       {
         headers: { authorization: token },
       }
     );
     confirmationRequest
-      .then((response : AxiosResponse) => {
+      .then((response: AxiosResponse) => {
         resolve(response.data);
       })
-      .catch((error : AxiosError) => {
+      .catch((error: AxiosError) => {
         reject(error);
       });
   });
@@ -392,14 +395,18 @@ export const publishSkill = (
   return new Promise((resolve, reject) => {
     const data: { comments?: string } = {};
     if (comments) data.comments = comments;
-    const confirmationRequest = client.post(`api/v1/skills/publish/${id}`, data, {
-      headers: { authorization: token },
-    });
+    const confirmationRequest = client.post(
+      `/api/v1/skills/publish/${id}`,
+      data,
+      {
+        headers: { authorization: token },
+      }
+    );
     confirmationRequest
-      .then((response : AxiosResponse) => {
+      .then((response: AxiosResponse) => {
         resolve(response.data);
       })
-      .catch((error : AxiosError) => {
+      .catch((error: AxiosError) => {
         reject(error);
       });
   });
@@ -423,17 +430,17 @@ export const setSkillInformation = (
       id: id,
     };
     const confirmationRequest = client.post(
-      `api/v1/skills/update/`,
+      `/api/v1/skills/update/`,
       requestData,
       {
         headers: { authorization: token },
       }
     );
     confirmationRequest
-      .then((response : AxiosResponse) => {
+      .then((response: AxiosResponse) => {
         resolve(response.data);
       })
-      .catch((error : AxiosError) => {
+      .catch((error: AxiosError) => {
         reject(error);
       });
   });
@@ -457,17 +464,17 @@ export const setSkillInformationFromTemplate = (
       id: id,
     };
     const confirmationRequest = client.post(
-      `api/v1/skills/updatefromtemplate/`,
+      `/api/v1/skills/updatefromtemplate/`,
       requestData,
       {
         headers: { authorization: token },
       }
     );
     confirmationRequest
-      .then((response : AxiosResponse) => {
+      .then((response: AxiosResponse) => {
         resolve(response.data);
       })
-      .catch((error : AxiosError) => {
+      .catch((error: AxiosError) => {
         reject(error);
       });
   });
@@ -485,17 +492,17 @@ export const validateSkill = (id: string, token: string): Promise<object> => {
       id: id,
     };
     const confirmationRequest = client.post(
-      `api/v1/skills/validate/`,
+      `/api/v1/skills/validate/`,
       requestData,
       {
         headers: { authorization: token },
       }
     );
     confirmationRequest
-      .then((response : AxiosResponse) => {
+      .then((response: AxiosResponse) => {
         resolve(response.data);
       })
-      .catch((error : AxiosError) => {
+      .catch((error: AxiosError) => {
         reject(error);
       });
   });
@@ -518,14 +525,18 @@ export const watchSkill = (
       id: id,
       watch: watch,
     };
-    const confirmationRequest = client.post(`api/v1/skills/watch`, requestData, {
-      headers: { authorization: token },
-    });
+    const confirmationRequest = client.post(
+      `/api/v1/skills/watch`,
+      requestData,
+      {
+        headers: { authorization: token },
+      }
+    );
     confirmationRequest
-      .then((response : AxiosResponse) => {
+      .then((response: AxiosResponse) => {
         resolve(response.data);
       })
-      .catch((error : AxiosError) => {
+      .catch((error: AxiosError) => {
         reject(error);
       });
   });

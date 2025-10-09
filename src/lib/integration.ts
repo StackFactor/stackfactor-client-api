@@ -44,7 +44,7 @@ export const createIntegration = (
       data: data,
     };
     const confirmationRequest = client.put(
-      "api/v1/integrations/",
+      "/api/v1/integrations/",
       requestData,
       {
         headers: { authorization: token },
@@ -70,7 +70,7 @@ export const deleteIntegration = (
   token: string
 ): Promise<object> => {
   return new Promise((resolve, reject) => {
-    const request = client.delete(`api/v1/integrations/`, {
+    const request = client.delete(`/api/v1/integrations/`, {
       headers: { authorization: token },
       data: {
         id: id,
@@ -97,7 +97,7 @@ export const discardIntegrationChanges = (
 ): Promise<object> => {
   return new Promise((resolve, reject) => {
     const data = {};
-    const request = client.get(`api/v1/integrations/discard/${id}`, {
+    const request = client.get(`/api/v1/integrations/discard/${id}`, {
       headers: { authorization: token },
       data: data,
     });
@@ -124,7 +124,7 @@ export const getIntegrationInformationById = (
 ): Promise<object> => {
   return new Promise((resolve, reject) => {
     const confirmationRequest = client.get(
-      `api/v1/integrations/${id}/${version}`,
+      `/api/v1/integrations/${id}/${version}`,
       {
         headers: { authorization: token },
       }
@@ -165,7 +165,7 @@ export const getIntegrationsList = (
     };
     if (filter) requestData.filter = filter;
     const confirmationRequest = client.post(
-      `api/v1/integrations`,
+      `/api/v1/integrations`,
       requestData,
       {
         headers: { authorization: token },
@@ -198,7 +198,7 @@ export const getContentInformationByUrl = (
       verb: verb,
     };
     const confirmationRequest = client.post(
-      `api/v1/contentproviders/getcontentinformationbyurl`,
+      `/api/v1/contentproviders/getcontentinformationbyurl`,
       requestData,
       {
         headers: { authorization: token },
@@ -305,7 +305,7 @@ export const getEnabledContentProviders = (
 ): Promise<object> => {
   return new Promise((resolve, reject) => {
     const confirmationRequest = client.get(
-      `api/v1/contentproviders/getenabledcontentproviders/${userId}`,
+      `/api/v1/contentproviders/getenabledcontentproviders/${userId}`,
       {
         headers: { authorization: token },
       }
@@ -331,7 +331,7 @@ export const publishIntegration = (
 ): Promise<object> => {
   return new Promise((resolve, reject) => {
     const confirmationRequest = client.post(
-      `api/v1/integrations/publish/${id}`,
+      `/api/v1/integrations/publish/${id}`,
       {},
       {
         headers: { authorization: token },
@@ -363,7 +363,7 @@ export const setIntegrationInformation = (
       data: data,
     };
     const confirmationRequest = client.post(
-      `api/v1/integrations/${id}`,
+      `/api/v1/integrations/${id}`,
       requestData,
       {
         headers: { authorization: token },
@@ -390,7 +390,7 @@ export const setDefaultIntegration = (
 ): Promise<object> => {
   return new Promise((resolve, reject) => {
     const confirmationRequest = client.post(
-      `api/v1/integrations/${id}/default`,
+      `/api/v1/integrations/${id}/default`,
       "",
       {
         headers: { authorization: token },
