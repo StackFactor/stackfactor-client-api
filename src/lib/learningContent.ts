@@ -179,14 +179,17 @@ export const generateLearningActivityContent = (
       requestData.otherLearningActivities = otherLearningActivities;
     }
     // Use socket.io for real-time progress updates
-    const socket = io(getBaseUrl(), {
-      auth: {
-        token: token,
-      },
-      path: `/api/v1/contentgenerators/generatelearningactivitycontent`,
-      transports: ["websocket"],
-      withCredentials: true,
-    });
+    const socket = io(
+      getBaseUrl() +
+        `/api/v1/contentgenerators/generatelearningactivitycontent`,
+      {
+        auth: {
+          token: token,
+        },
+        transports: ["websocket"],
+        withCredentials: true,
+      }
+    );
 
     // Socket event handlers
     socket.on("connect", () => {
