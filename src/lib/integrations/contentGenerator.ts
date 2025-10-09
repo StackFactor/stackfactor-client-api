@@ -51,13 +51,13 @@ export const generateContent = (
       auth: {
         token: token,
       },
-      path: `/api/v1/contentgenerators/generate`,
+      path: `/api/v1/contentgenerators`,
       transports: ["websocket"],
       withCredentials: true,
     });
     // Socket event handlers
     socket.on("connect", () => {
-      socket.emit("data", requestData);
+      socket.emit("generate", requestData);
     });
     socket.on("progress", (data) => {
       if (onProgressStatus) {

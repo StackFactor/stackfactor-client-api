@@ -183,14 +183,14 @@ export const generateLearningActivityContent = (
       auth: {
         token: token,
       },
-      path: `/api/v1/contentgenerators/generatelearningactivitycontent`,
+      path: `/api/v1/contentgenerators`,
       transports: ["websocket"],
       withCredentials: true,
     });
 
     // Socket event handlers
     socket.on("connect", () => {
-      socket.emit("data", requestData);
+      socket.emit("generatelearningactivitycontent", requestData);
     });
     socket.on("progress", (data) => {
       if (onProgressStatus) {
