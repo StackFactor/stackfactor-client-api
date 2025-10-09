@@ -1,5 +1,6 @@
 import { AxiosError, AxiosResponse } from "axios";
 import { client } from "../axiosClient.js";
+import { getBaseUrl } from "../utils.js";
 import { io } from "socket.io-client";
 
 interface GenerateContentData {
@@ -46,7 +47,7 @@ export const generateContent = (
     // Add integrationId if provided
     if (integrationId) requestData.integrationId = integrationId;
     // Use socket.io for real-time progress updates
-    const socket = io(process.env.REACT_APP_API_URL || "", {
+    const socket = io(getBaseUrl(), {
       auth: {
         token: token,
       },
