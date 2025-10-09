@@ -104,7 +104,7 @@ export const generateContentAsync = (
     };
     if (integrationId) data_.integrationId = integrationId;
     const request = client.post(
-      `api/v1/contentgenerators/generateasync`,
+      `api/v1/contentgeneratorsasync/generate`,
       data_,
       {
         headers: { authorization: token },
