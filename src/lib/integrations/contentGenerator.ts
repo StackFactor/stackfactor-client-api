@@ -47,10 +47,11 @@ export const generateContent = (
     // Add integrationId if provided
     if (integrationId) requestData.integrationId = integrationId;
     // Use socket.io for real-time progress updates
-    const socket = io(getBaseUrl() + `/api/v1/contentgenerators/generate`, {
+    const socket = io(getBaseUrl(), {
       auth: {
         token: token,
       },
+      path: `/api/v1/contentgenerators/generate`,
       transports: ["websocket"],
       withCredentials: true,
     });
