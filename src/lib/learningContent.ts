@@ -1,5 +1,6 @@
 import { AxiosError, AxiosResponse } from "axios";
 import { client } from "./axiosClient.js";
+import { io } from "socket.io-client";
 
 interface LearningContentData {
   data?: object;
@@ -18,6 +19,7 @@ interface GenerateLearningActivityContentData {
   learningActivity: object;
   microSkillId: string;
   otherLearningActivities?: string[];
+  skillId: string;
 }
 
 /**
@@ -160,7 +162,8 @@ export const generateLearningActivityContent = (
   otherLearningActivities: string[],
   integrationId: string,
   contentType: string,
-  token: string
+  token: string,
+  onProgressStatus?: (data: object) => void
 ): Promise<object> => {
   return new Promise((resolve, reject) => {
     const requestData: GenerateLearningActivityContentData = {
@@ -169,24 +172,38 @@ export const generateLearningActivityContent = (
       microSkillId: microSkillId,
       integrationId: integrationId,
       contentType: contentType,
+      skillId: skillId,
     };
     if (otherLearningActivities) {
       requestData.otherLearningActivities = otherLearningActivities;
     }
-    const request = client.post(
-      `api/v1/learningcontent/generatelearningactivitycontent/${skillId}`,
-      requestData,
-      {
-        headers: { authorization: token },
+    // Use socket.io for real-time progress updates
+    const socket = io(process.env.REACT_APP_API_URL || "", {
+      auth: {
+        token: token,
+      },
+      path: `api/v1/contentgenerators/generatelearningactivitycontent`,
+      transports: ["websocket"],
+      withCredentials: true,
+    });
+
+    // Socket event handlers
+    socket.on("connect", () => {
+      socket.emit("data", requestData);
+    });
+    socket.on("progress", (data) => {
+      if (onProgressStatus) {
+        onProgressStatus(data);
       }
-    );
-    request
-      .then((response: AxiosResponse) => {
-        resolve(response.data);
-      })
-      .catch((error: AxiosError) => {
-        reject(error);
-      });
+    });
+    socket.on("complete", (data) => {
+      socket.disconnect();
+      resolve(data);
+    });
+    socket.on("error", (err) => {
+      socket.disconnect();
+      reject(err);
+    });
   });
 };
 

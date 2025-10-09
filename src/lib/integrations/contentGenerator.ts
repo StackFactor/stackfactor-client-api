@@ -39,12 +39,12 @@ export const generateContent = (
 ): Promise<object> => {
   return new Promise((resolve, reject) => {
     // Prepare data
-    const data_: GenerateContentData = {
+    const requestData: GenerateContentData = {
       data: data,
       contentType: contentType,
     };
     // Add integrationId if provided
-    if (integrationId) data_.integrationId = integrationId;
+    if (integrationId) requestData.integrationId = integrationId;
     // Use socket.io for real-time progress updates
     const socket = io(process.env.REACT_APP_API_URL || "", {
       auth: {
@@ -56,7 +56,7 @@ export const generateContent = (
     });
     // Socket event handlers
     socket.on("connect", () => {
-      socket.emit("data", data_);
+      socket.emit("data", requestData);
     });
     socket.on("progress", (data) => {
       if (onProgressStatus) {
