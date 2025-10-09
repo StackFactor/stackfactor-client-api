@@ -1,8 +1,9 @@
 import { AxiosError, AxiosResponse } from "axios";
 import { client } from "../axiosClient.js";
+import { io } from "socket.io-client";
 
 interface GenerateContentData {
-  data: string[];
+  data: object;
   contentType: string;
   integrationId?: string;
 }
@@ -16,36 +17,60 @@ interface GenerateContentAsyncData {
   comments: string;
 }
 
+interface ProgressData {
+  progress: object;
+}
+
 /**
  * Generate content
  * @param {Array<String>} data
  * @param {String} contentType
  * @param {String} integrationId
  * @param {String} token
+ * @param {Boolean} realtimeProgressStatus
  * @returns {Promise<object>}
  */
 export const generateContent = (
-  data: string[],
+  data: object,
   contentType: string,
   integrationId: string,
-  token: string
+  token: string,
+  onProgressStatus: ((progress: ProgressData) => void) | null = null
 ): Promise<object> => {
   return new Promise((resolve, reject) => {
+    // Prepare data
     const data_: GenerateContentData = {
       data: data,
       contentType: contentType,
     };
+    // Add integrationId if provided
     if (integrationId) data_.integrationId = integrationId;
-    const request = client.post(`api/v1/contentgenerators/generate`, data_, {
-      headers: { authorization: token },
+    // Use socket.io for real-time progress updates
+    const socket = io(process.env.REACT_APP_API_URL || "", {
+      auth: {
+        token: token,
+      },
+      path: `api/v1/contentgenerators/generate`,
+      transports: ["websocket"],
+      withCredentials: true,
     });
-    request
-      .then((response : AxiosResponse) => {
-        resolve(response.data);
-      })
-      .catch((error : AxiosError) => {
-        reject(error);
-      });
+    // Socket event handlers
+    socket.on("connect", () => {
+      socket.emit("data", data_);
+    });
+    socket.on("progress", (data) => {
+      if (onProgressStatus) {
+        onProgressStatus(data);
+      }
+    });
+    socket.on("complete", (data) => {
+      socket.disconnect();
+      resolve(data);
+    });
+    socket.on("error", (err) => {
+      socket.disconnect();
+      reject(err);
+    });
   });
 };
 
@@ -86,12 +111,11 @@ export const generateContentAsync = (
       }
     );
     request
-      .then((response : AxiosResponse) => {
+      .then((response: AxiosResponse) => {
         resolve(response.data);
       })
-      .catch((error : AxiosError) => {
+      .catch((error: AxiosError) => {
         reject(error);
       });
   });
 };
-
