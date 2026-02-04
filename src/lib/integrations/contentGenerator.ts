@@ -36,7 +36,7 @@ export const generateContent = (
   contentType: string,
   integrationId: string,
   token: string,
-  onProgressStatus: ((progress: ProgressData) => void) | null = null
+  onProgressStatus: ((progress: ProgressData) => void) | null = null,
 ): Promise<object> => {
   return new Promise((resolve, reject) => {
     // Prepare data
@@ -94,7 +94,7 @@ export const generateContentAsync = (
   elementType: string,
   integrationId: string,
   comments: string,
-  token: string
+  token: string,
 ): Promise<object> => {
   return new Promise((resolve, reject) => {
     const data_: GenerateContentAsyncData = {
@@ -110,7 +110,7 @@ export const generateContentAsync = (
       data_,
       {
         headers: { authorization: token },
-      }
+      },
     );
     request
       .then((response: AxiosResponse) => {
