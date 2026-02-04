@@ -54,6 +54,7 @@ export const generateContent = (
       path: `/api/v1/contentgenerators`,
       transports: ["websocket"],
       withCredentials: true,
+      reconnection: false,
     });
     // Socket event handlers
     socket.on("connect", () => {

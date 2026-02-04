@@ -31,7 +31,7 @@ interface GenerateLearningActivityContentData {
  */
 export const createLearningContent = (
   data: object,
-  token: string
+  token: string,
 ): Promise<object> => {
   return new Promise((resolve, reject) => {
     const requestData: LearningContentData = {
@@ -42,7 +42,7 @@ export const createLearningContent = (
       requestData,
       {
         headers: { authorization: token },
-      }
+      },
     );
     confirmationRequest
       .then((response: AxiosResponse) => {
@@ -64,7 +64,7 @@ export const createLearningContent = (
 export const deleteLearningContent = (
   id: string,
   comments: string,
-  token: string
+  token: string,
 ): Promise<object> => {
   const data: LearningContentData = {
     id: id,
@@ -99,14 +99,14 @@ export const deleteLearningContentMicroSkillLearningContentActivityMedia = (
   microskillid: string,
   activityId: string,
   mediaId: string,
-  token: string
+  token: string,
 ): Promise<object> => {
   return new Promise((resolve, reject) => {
     const confirmationRequest = client.delete(
       `/api/v1/learningcontent/media/${id}/${microskillid}/${activityId}/${mediaId}`,
       {
         headers: { authorization: token },
-      }
+      },
     );
     confirmationRequest
       .then((response: AxiosResponse) => {
@@ -126,7 +126,7 @@ export const deleteLearningContentMicroSkillLearningContentActivityMedia = (
  */
 export const discardLearningContentChanges = (
   id: string,
-  token: string
+  token: string,
 ): Promise<object> => {
   return new Promise((resolve, reject) => {
     const data = {};
@@ -164,7 +164,7 @@ export const generateLearningActivityContent = (
   integrationId: string,
   contentType: string,
   token: string,
-  onProgressStatus?: (data: object) => void
+  onProgressStatus?: (data: object) => void,
 ): Promise<object> => {
   return new Promise((resolve, reject) => {
     const requestData: GenerateLearningActivityContentData = {
@@ -186,6 +186,7 @@ export const generateLearningActivityContent = (
       path: `/api/v1/contentgenerators`,
       transports: ["websocket"],
       withCredentials: true,
+      reconnection: false,
     });
 
     // Socket event handlers
@@ -212,30 +213,46 @@ export const generateLearningActivityContent = (
  * Generate micro skill test knowledge
  * @param {String} microSkill
  * @param {String} token
+ * @param {Function} onProgressStatus Optional callback for progress updates
  * @returns {Promise<object>}
  */
 export const generateMicroSkillTestKnowledge = (
   microSkill: string,
-  token: string
+  token: string,
+  onProgressStatus?: (data: object) => void,
 ): Promise<object> => {
   return new Promise((resolve, reject) => {
-    const data = {
+    const requestData = {
       microSkill: microSkill,
     };
-    const confirmationRequest = client.post(
-      `/api/v1/learningcontent/generatemicroskilltestknowledge`,
-      data,
-      {
-        headers: { authorization: token },
+    // Use socket.io for real-time progress updates
+    const socket = io(getBaseUrl(), {
+      auth: {
+        token: token,
+      },
+      path: `/api/v1/contentgenerators`,
+      transports: ["websocket"],
+      withCredentials: true,
+      reconnection: false,
+    });
+
+    // Socket event handlers
+    socket.on("connect", () => {
+      socket.emit("generatemicroskilltestknowledge", requestData);
+    });
+    socket.on("progress", (data) => {
+      if (onProgressStatus) {
+        onProgressStatus(data);
       }
-    );
-    confirmationRequest
-      .then((response: AxiosResponse) => {
-        resolve(response.data);
-      })
-      .catch((error: AxiosError) => {
-        reject(error);
-      });
+    });
+    socket.on("complete", (data) => {
+      socket.disconnect();
+      resolve(data);
+    });
+    socket.on("error", (err) => {
+      socket.disconnect();
+      reject(err);
+    });
   });
 };
 
@@ -249,14 +266,14 @@ export const generateMicroSkillTestKnowledge = (
 export const getLearningContentInformationById = (
   id: string,
   version: string,
-  token: string
+  token: string,
 ): Promise<object> => {
   return new Promise((resolve, reject) => {
     const confirmationRequest = client.get(
       `/api/v1/learningcontent/${id}/${version}`,
       {
         headers: { authorization: token },
-      }
+      },
     );
     confirmationRequest
       .then((response: AxiosResponse) => {
@@ -280,7 +297,7 @@ export const getLearningContentList = (
   filter: string[],
   version: string,
   includeDeleted: boolean,
-  token: string
+  token: string,
 ): Promise<object[]> => {
   return new Promise((resolve, reject) => {
     const requestData: {
@@ -297,7 +314,7 @@ export const getLearningContentList = (
       requestData,
       {
         headers: { authorization: token },
-      }
+      },
     );
     confirmationRequest
       .then((response: AxiosResponse) => {
@@ -324,7 +341,7 @@ export const getLearningContentMicroSkillLearningContentActivitySceneAudio = (
   learningActivityId: string,
   sceneId: string,
   token: string,
-  version: string
+  version: string,
 ) => {
   return new Promise((resolve, reject) => {
     const confirmationRequest = client.get(
@@ -334,7 +351,7 @@ export const getLearningContentMicroSkillLearningContentActivitySceneAudio = (
           authorization: token,
         },
         responseType: "blob",
-      }
+      },
     );
     confirmationRequest
       .then((response: AxiosResponse) => {
@@ -360,7 +377,7 @@ export const getLearningContentMicroSkillLearningContentActivityMedia = (
   microskillid: string,
   activityId: string,
   mediaId: string,
-  token: string
+  token: string,
 ): Promise<object> => {
   return new Promise((resolve, reject) => {
     const confirmationRequest = client.get(
@@ -370,7 +387,7 @@ export const getLearningContentMicroSkillLearningContentActivityMedia = (
           authorization: token,
         },
         responseType: "blob",
-      }
+      },
     );
     confirmationRequest
       .then((response: AxiosResponse) => {
@@ -390,7 +407,7 @@ export const getLearningContentMicroSkillLearningContentActivityMedia = (
  */
 export const migrateLearningContentStorageType = (
   id: string,
-  token: string
+  token: string,
 ): Promise<object> => {
   return new Promise((resolve, reject) => {
     const data = {};
@@ -399,7 +416,7 @@ export const migrateLearningContentStorageType = (
       data,
       {
         headers: { authorization: token },
-      }
+      },
     );
     confirmationRequest
       .then((response: AxiosResponse) => {
@@ -421,7 +438,7 @@ export const migrateLearningContentStorageType = (
 export const publishLearningContent = (
   id: string,
   comments: string,
-  token: string
+  token: string,
 ): Promise<object> => {
   return new Promise((resolve, reject) => {
     const data: LearningContentData = {};
@@ -432,7 +449,7 @@ export const publishLearningContent = (
       data,
       {
         headers: { authorization: token },
-      }
+      },
     );
     confirmationRequest
       .then((response: AxiosResponse) => {
@@ -454,7 +471,7 @@ export const publishLearningContent = (
 export const setLearningContentInformation = (
   id: string,
   data: object,
-  token: string
+  token: string,
 ): Promise<object> => {
   return new Promise((resolve, reject) => {
     const requestData: LearningContentData = {
@@ -466,7 +483,7 @@ export const setLearningContentInformation = (
       requestData,
       {
         headers: { authorization: token },
-      }
+      },
     );
     confirmationRequest
       .then((response: AxiosResponse) => {
@@ -488,7 +505,7 @@ export const setLearningContentInformation = (
 export const setLearningContentPartialContentInformation = (
   id: string,
   data: object,
-  token: string
+  token: string,
 ): Promise<object> => {
   return new Promise((resolve, reject) => {
     const requestData: LearningContentData = {
@@ -500,7 +517,7 @@ export const setLearningContentPartialContentInformation = (
       requestData,
       {
         headers: { authorization: token },
-      }
+      },
     );
     confirmationRequest
       .then((response: AxiosResponse) => {
@@ -526,7 +543,7 @@ export const setLearningContentLearningContentInformation = (
   learningcontentid: string,
   microSkillId: string,
   data: object,
-  token: string
+  token: string,
 ): Promise<string> => {
   return new Promise((resolve, reject) => {
     const requestData: LearningContentData = {
@@ -540,7 +557,7 @@ export const setLearningContentLearningContentInformation = (
       requestData,
       {
         headers: { authorization: token },
-      }
+      },
     );
     confirmationRequest
       .then((response: AxiosResponse) => {
@@ -564,7 +581,7 @@ export const setLearningContentLearningMicroSkillContentInformation = (
   id: string,
   microskillid: string,
   data: object,
-  token: string
+  token: string,
 ): Promise<string> => {
   return new Promise((resolve, reject) => {
     const requestData: LearningContentData = {
@@ -575,7 +592,7 @@ export const setLearningContentLearningMicroSkillContentInformation = (
       requestData,
       {
         headers: { authorization: token },
-      }
+      },
     );
     confirmationRequest
       .then((response: AxiosResponse) => {
@@ -596,7 +613,7 @@ export const setLearningContentLearningMicroSkillContentInformation = (
 export const setLearningContentTags = (
   id: string,
   tags: object,
-  token: string
+  token: string,
 ): Promise<object> => {
   return new Promise((resolve, reject) => {
     const requestData: LearningContentData = {
@@ -608,7 +625,7 @@ export const setLearningContentTags = (
       requestData,
       {
         headers: { authorization: token },
-      }
+      },
     );
     confirmationRequest
       .then((response: AxiosResponse) => {
@@ -636,7 +653,7 @@ export const uploadLearningContentMicroSkillLearningContentActivityMedia = (
   activityId: string,
   mediaId: string,
   blob: Blob,
-  token: string
+  token: string,
 ): Promise<object> => {
   const formData = new FormData();
   formData.append("file", blob, "media.bin");
@@ -649,7 +666,7 @@ export const uploadLearningContentMicroSkillLearningContentActivityMedia = (
           authorization: token,
           "Content-Type": "multipart/form-data",
         },
-      }
+      },
     );
     confirmationRequest
       .then((response: AxiosResponse) => {
@@ -670,7 +687,7 @@ export const uploadLearningContentMicroSkillLearningContentActivityMedia = (
 export const watchLearningContent = (
   id: string,
   watch: boolean,
-  token: string
+  token: string,
 ): Promise<object> => {
   return new Promise((resolve, reject) => {
     const requestData: LearningContentData = {
@@ -682,7 +699,7 @@ export const watchLearningContent = (
       requestData,
       {
         headers: { authorization: token },
-      }
+      },
     );
     confirmationRequest
       .then((response: AxiosResponse) => {
