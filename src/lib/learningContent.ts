@@ -206,6 +206,11 @@ export const generateLearningActivityContent = (
       socket.disconnect();
       reject(err);
     });
+    socket.on("disconnect", (reason) => {
+      if (reason !== "io client disconnect") {
+        reject(new Error(`Socket disconnected: ${reason}`));
+      }
+    });
   });
 };
 
@@ -252,6 +257,11 @@ export const generateMicroSkillTestKnowledge = (
     socket.on("error", (err) => {
       socket.disconnect();
       reject(err);
+    });
+    socket.on("disconnect", (reason) => {
+      if (reason !== "io client disconnect") {
+        reject(new Error(`Socket disconnected: ${reason}`));
+      }
     });
   });
 };

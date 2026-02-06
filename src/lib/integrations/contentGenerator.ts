@@ -73,6 +73,11 @@ export const generateContent = (
       socket.disconnect();
       reject(err);
     });
+    socket.on("disconnect", (reason) => {
+      if (reason !== "io client disconnect") {
+        reject(new Error(`Socket disconnected: ${reason}`));
+      }
+    });
   });
 };
 
