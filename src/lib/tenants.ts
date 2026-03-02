@@ -9,7 +9,7 @@ import { client } from "./axiosClient.js";
  */
 export const getTenantInformation = (
   category: string[],
-  token: string
+  token: string,
 ): Promise<object> => {
   return new Promise((resolve, reject) => {
     const requestData = {
@@ -18,6 +18,24 @@ export const getTenantInformation = (
     const request = client.post("/api/v1/tenants/tenant/get", requestData, {
       headers: { authorization: token },
     });
+    request
+      .then((response: AxiosResponse) => {
+        resolve(response.data ? response.data : null);
+      })
+      .catch((error: AxiosError) => {
+        reject(error);
+      });
+  });
+};
+
+/**
+ * Get tenant look and feel information
+ * @param name Tenant name
+ * @returns {Promise<object>}
+ */
+export const getTenantLookNFeel = (name: string): Promise<object> => {
+  return new Promise((resolve, reject) => {
+    const request = client.get(`/api/v1/tenants/tenant/getlooknfeel/${name}`);
     request
       .then((response: AxiosResponse) => {
         resolve(response.data ? response.data : null);
@@ -38,7 +56,7 @@ export const getTenantInformation = (
 export const setTenantInformation = (
   category: string,
   data: object,
-  token: string
+  token: string,
 ): Promise<object> => {
   return new Promise((resolve, reject) => {
     const requestData = {
@@ -50,7 +68,7 @@ export const setTenantInformation = (
       requestData,
       {
         headers: { authorization: token },
-      }
+      },
     );
     confirmationRequest
       .then((response: AxiosResponse) => {

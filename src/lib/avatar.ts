@@ -8,6 +8,7 @@ import { client } from "./axiosClient.js";
  * @param {Number} width
  * @param {Number} height
  * @param {String} token
+ * @param {String} title
  * @returns {Promise<Blob>}
  */
 export const getAvatar = (
@@ -15,20 +16,21 @@ export const getAvatar = (
   type: string,
   width: number,
   height: number,
-  token: string
+  token: string,
+  title: string = "",
 ): Promise<Blob> => {
   return new Promise((resolve, reject) => {
     const confirmationRequest = client.get(
-      `/api/v1/avatar/getavatar/${elementId}/${type}/${width}/${height}`,
+      `/api/v1/avatar/getavatar/${elementId}/${type}/${width}/${height}${title?.length > 0 ? `/${title}` : ""}`,
       {
         headers: {
           authorization: token,
         },
         responseType: "blob",
-      }
+      },
     );
     confirmationRequest
-      .then((response : AxiosResponse) => {
+      .then((response: AxiosResponse) => {
         resolve(response.data);
       })
       .catch(() => {
