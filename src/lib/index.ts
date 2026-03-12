@@ -12,6 +12,7 @@ export * as address from "./address.js";
 export * as config from "./config.js";
 export * from "./constants.js";
 export * as contentGenerator from "./integrations/contentGenerator.js";
+export * as customFields from "./customFields.js";
 export * as dashboard from "./dashboard.js";
 export * as departmentTraingPlans from "./departmentTrainingPlans.js";
 export * as integration from "./integration.js";
