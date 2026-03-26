@@ -9,11 +9,11 @@ dotenv.config();
 export const getBaseUrl = (): string => {
   if (process.env.REACT_APP_BACKEND_URL) {
     return process.env.REACT_APP_BACKEND_URL;
+  } else if (process.env.BACKEND_URL) {
+    return process.env.BACKEND_URL;
   } else {
     switch (process.env.REACT_APP_NODE_ENV) {
       case "development":
-      case null:
-      case undefined:
         return "https://localhost";
       case "testing":
         return "https://qaapi.stackfactor.ai";
@@ -24,7 +24,7 @@ export const getBaseUrl = (): string => {
       case "security":
         return "https://csapi.stackfactor.ai";
       default:
-        throw new Error("Invalid environment");
+        return "https://localhost";
     }
   }
 };
