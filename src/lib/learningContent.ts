@@ -183,7 +183,7 @@ export const generateLearningActivityContent = (
       auth: {
         token: token,
       },
-      path: `/api/v1/contentgenerators`,
+      path: `/api/v1/realtime`,
       transports: ["websocket"],
       withCredentials: true,
       reconnection: false,
@@ -235,7 +235,7 @@ export const generateMicroSkillTestKnowledge = (
       auth: {
         token: token,
       },
-      path: `/api/v1/contentgenerators`,
+      path: `/api/v1/realtime`,
       transports: ["websocket"],
       withCredentials: true,
       reconnection: false,
