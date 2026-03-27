@@ -18,6 +18,7 @@ export * as departmentTraingPlans from "./departmentTrainingPlans.js";
 export * as integration from "./integration.js";
 export * as integrationConfiguration from "./integrationConfiguration.js";
 export * as groups from "./groups.js";
+export * as labSessions from "./labSessions.js";
 export * as learningContent from "./learningContent.js";
 export * as learningPath from "./learningPath.js";
 export * as logger from "./logger.js";
