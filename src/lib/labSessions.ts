@@ -8,51 +8,9 @@ interface LaunchLabSessionData {
   mode: "default" | "preview";
 }
 
-interface CreateNewLabSessionData {
-  learningContentId: string;
-  learningContentMicroSkillId: string;
-  labId: string;
-}
-
 interface ProgressData {
   progress: object;
 }
-
-/**
- * Create a new lab session
- * @param {String} learningContentId - The id of the learning content associated with the lab session
- * @param {String} learningContentMicroSkillId - The id of the micro-skill associated with the learning content
- * @param {String} labId - The id of the lab from the learning content microskill associated with the lab session
- * @param {String} token Authorization token
- */
-export const createLabSession = (
-  learningContentId: string,
-  learningContentMicroSkillId: string,
-  labId: string,
-  token: string,
-): Promise<object> => {
-  return new Promise((resolve, reject) => {
-    const requestData: CreateNewLabSessionData = {
-      learningContentId,
-      learningContentMicroSkillId,
-      labId,
-    };
-    const confirmationRequest = client.put(
-      "/api/v1/labsessions/",
-      requestData,
-      {
-        headers: { authorization: token },
-      },
-    );
-    confirmationRequest
-      .then((response: AxiosResponse) => {
-        resolve(response.data);
-      })
-      .catch((error: AxiosError) => {
-        reject(error);
-      });
-  });
-};
 
 /**
  * Delete lab session

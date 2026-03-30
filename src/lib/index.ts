@@ -24,6 +24,7 @@ export * as learningPath from "./learningPath.js";
 export * as logger from "./logger.js";
 export * as microSkillsQuizes from "./microSkillsQuizes.js";
 export * as quotas from "./quotas.js";
+export * as reports from "./reports.js";
 export * as role from "./role.js";
 export * as roleTemplate from "./roleTemplate.js";
 export * as security from "./security.js";
