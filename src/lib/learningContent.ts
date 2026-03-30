@@ -689,6 +689,221 @@ export const uploadLearningContentMicroSkillLearningContentActivityMedia = (
 };
 
 /**
+ * Generate lab configuration content
+ * @param {String} skillId The id of the skill
+ * @param {String} proficiencyLevel The proficiency level
+ * @param {Number} labType The lab type
+ * @param {Object} labConfiguration The lab configuration
+ * @param {String} token Authorization token
+ * @param {String} integrationId Optional integration id
+ * @param {Function} onProgressStatus Optional callback for progress updates
+ * @returns {Promise<object>} The generated content
+ */
+export const generateLabConfigurationContent = (
+  skillId: string,
+  proficiencyLevel: string,
+  labType: number,
+  labConfiguration: object,
+  token: string,
+  integrationId?: string,
+  onProgressStatus?: (data: object) => void,
+): Promise<object> => {
+  return new Promise((resolve, reject) => {
+    const requestData: {
+      skillId: string;
+      proficiencyLevel: string;
+      labType: number;
+      labConfiguration: object;
+      integrationId?: string;
+    } = {
+      skillId: skillId,
+      proficiencyLevel: proficiencyLevel,
+      labType: labType,
+      labConfiguration: labConfiguration,
+    };
+    if (integrationId) {
+      requestData.integrationId = integrationId;
+    }
+    // Use socket.io for real-time progress updates
+    const socket = io(getBaseUrl(), {
+      auth: {
+        token: token,
+      },
+      path: `/api/v1/realtime`,
+      transports: ["websocket"],
+      withCredentials: true,
+      reconnection: false,
+    });
+
+    // Socket event handlers
+    socket.on("connect", () => {
+      socket.emit("generatelabconfigurationcontent", requestData);
+    });
+    socket.on("progress", (data) => {
+      if (onProgressStatus) {
+        onProgressStatus(data);
+      }
+    });
+    socket.on("complete", (data) => {
+      socket.disconnect();
+      resolve(data);
+    });
+    socket.on("error", (err) => {
+      socket.disconnect();
+      reject(err);
+    });
+    socket.on("disconnect", (reason) => {
+      if (reason !== "io client disconnect") {
+        reject(new Error(`Socket disconnected: ${reason}`));
+      }
+    });
+  });
+};
+
+/**
+ * Get media for a specific lab configuration
+ * @param {String} id The id of the learning content
+ * @param {String} labConfigurationId The id of the lab configuration
+ * @param {String} mediaId The id of the media
+ * @param {String} token Authorization token
+ * @returns {Promise<object>} The response from the server
+ */
+export const getLearningContentLabConfigurationMedia = (
+  id: string,
+  labConfigurationId: string,
+  mediaId: string,
+  token: string,
+): Promise<object> => {
+  return new Promise((resolve, reject) => {
+    const confirmationRequest = client.get(
+      `/api/v1/learningcontent/media/lab/${id}/${labConfigurationId}/${mediaId}`,
+      {
+        headers: {
+          authorization: token,
+        },
+        responseType: "blob",
+      },
+    );
+    confirmationRequest
+      .then((response: AxiosResponse) => {
+        resolve(response.data);
+      })
+      .catch((error: AxiosError) => {
+        reject(error);
+      });
+  });
+};
+
+/**
+ * Upload media for a specific lab configuration
+ * @param {String} id The id of the learning content
+ * @param {String} labConfigurationId The id of the lab configuration
+ * @param {String} mediaId The id of the media
+ * @param {Blob} blob The media file to upload
+ * @param {String} token Authorization token
+ * @returns {Promise<object>} The response from the server
+ */
+export const uploadLearningContentLabConfigurationMedia = (
+  id: string,
+  labConfigurationId: string,
+  mediaId: string,
+  blob: Blob,
+  token: string,
+): Promise<object> => {
+  const formData = new FormData();
+  formData.append("file", blob, "media.bin");
+  return new Promise((resolve, reject) => {
+    const confirmationRequest = client.post(
+      `/api/v1/learningcontent/media/lab/${id}/${labConfigurationId}/${mediaId}`,
+      formData,
+      {
+        headers: {
+          authorization: token,
+          "Content-Type": "multipart/form-data",
+        },
+      },
+    );
+    confirmationRequest
+      .then((response: AxiosResponse) => {
+        resolve(response.data);
+      })
+      .catch((error: AxiosError) => {
+        reject(error);
+      });
+  });
+};
+
+/**
+ * Update a single lab configuration for a specific learning content
+ * @param {String} id The id of the learning content
+ * @param {String} labConfigurationId The id of the lab configuration
+ * @param {Object} data The lab configuration data
+ * @param {String} token Authorization token
+ * @returns {Promise<object>} The response from the server
+ */
+export const updateLearningContentLabConfiguration = (
+  id: string,
+  labConfigurationId: string,
+  data: object,
+  token: string,
+): Promise<object> => {
+  return new Promise((resolve, reject) => {
+    const requestData = {
+      id: id,
+      labConfigurationId: labConfigurationId,
+      data: data,
+    };
+    const confirmationRequest = client.post(
+      `/api/v1/learningcontent/updatelabconfiguration`,
+      requestData,
+      {
+        headers: { authorization: token },
+      },
+    );
+    confirmationRequest
+      .then((response: AxiosResponse) => {
+        resolve(response.data);
+      })
+      .catch((error: AxiosError) => {
+        reject(error);
+      });
+  });
+};
+
+/**
+ * Update lab configurations for a specific learning content
+ * @param {String} id The id of the learning content
+ * @param {Array<Object>} data The lab configurations data
+ * @param {String} token Authorization token
+ * @returns {Promise<object>} The response from the server
+ */
+export const updateLearningContentLabConfigurations = (
+  id: string,
+  data: object[],
+  token: string,
+): Promise<object> => {
+  return new Promise((resolve, reject) => {
+    const requestData = {
+      data: data,
+    };
+    const confirmationRequest = client.post(
+      `/api/v1/learningcontent/updatelabconfigurations/${id}`,
+      requestData,
+      {
+        headers: { authorization: token },
+      },
+    );
+    confirmationRequest
+      .then((response: AxiosResponse) => {
+        resolve(response.data);
+      })
+      .catch((error: AxiosError) => {
+        reject(error);
+      });
+  });
+};
+
+/**
  * Watch learning content
  * @param {String} id The id of the learning content to be updated
  * @param {Boolean} watch Set to true or false

@@ -5,6 +5,7 @@ import { io } from "socket.io-client";
 
 interface LaunchLabSessionData {
   id: string;
+  mode: "default" | "preview";
 }
 
 interface CreateNewLabSessionData {
@@ -112,6 +113,7 @@ export const getLabSessionReadiness = (
  */
 export const launchLabSession = (
   id: string,
+  mode: "default" | "preview" = "default",
   token: string,
   onProgressStatus: ((progress: ProgressData) => void) | null = null,
 ): Promise<object> => {
@@ -119,6 +121,7 @@ export const launchLabSession = (
     // Prepare data
     const requestData: LaunchLabSessionData = {
       id,
+      mode,
     };
     // Use socket.io for real-time progress updates
     const socket = io(getBaseUrl(), {
