@@ -9,6 +9,31 @@ interface TrainingSummaryFilter {
 }
 
 /**
+ * Get available filters for training summary details
+ * @param {String} token Authorization token
+ * @returns {Promise<object>} The available filter options (businessUnits, organizations, costCenters, teams)
+ */
+export const getTrainingSummaryDetailFilters = (
+  token: string,
+): Promise<object> => {
+  return new Promise((resolve, reject) => {
+    const request = client.get(
+      `/api/v1/reports/trainingsummarydetailfilters/`,
+      {
+        headers: { authorization: token },
+      },
+    );
+    request
+      .then((response: AxiosResponse) => {
+        resolve(response.data);
+      })
+      .catch((error: AxiosError) => {
+        reject(error);
+      });
+  });
+};
+
+/**
  * Get training summary details filtered by team dimensions and time interval
  * @param {Object} filter Filter with optional businessUnit, organization, costCenter, teamId
  * @param {String} interval The time-window: "thisWeek", "thisMonth", "thisQuarter", or "thisYear"
