@@ -18,7 +18,8 @@ type TrainingSummaryInterval =
 type TrainingSummarySchema =
   | "LEARNING_ACTIVITIES_COMPLETED"
   | "TIME_SPENT_IN_TRAINING"
-  | "PROFICIENCY_LEVEL_COMPLETION";
+  | "PROFICIENCY_LEVEL_COMPLETION"
+  | "PROFICIENCY_IMPROVEMENT";
 
 /**
  * Get available filters for training summary details
