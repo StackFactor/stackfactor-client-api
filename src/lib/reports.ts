@@ -22,6 +22,26 @@ type TrainingSummarySchema =
   | "PROFICIENCY_IMPROVEMENT";
 
 /**
+ * Get objectives KPI actuals
+ * @param {String} token Authorization token
+ * @returns {Promise<object>} The objectives KPI actuals
+ */
+export const getObjectivesKpiActuals = (token: string): Promise<object> => {
+  return new Promise((resolve, reject) => {
+    const request = client.get(`/api/v1/reports/getobjectiveskpiactuals/`, {
+      headers: { authorization: token },
+    });
+    request
+      .then((response: AxiosResponse) => {
+        resolve(response.data);
+      })
+      .catch((error: AxiosError) => {
+        reject(error);
+      });
+  });
+};
+
+/**
  * Get available filters for training summary details
  * @param {String} token Authorization token
  * @returns {Promise<object>} The available filter options (businessUnits, organizations, costCenters, teams)
