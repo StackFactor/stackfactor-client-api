@@ -22,6 +22,34 @@ type TrainingSummarySchema =
   | "PROFICIENCY_IMPROVEMENT";
 
 /**
+ * Get objective KPI actuals for a specific KPI
+ * @param {Object} data The KPI data
+ * @param {String} token Authorization token
+ * @returns {Promise<object>} The objective KPI actuals
+ */
+export const getObjectiveKPIActuals = (
+  data: object,
+  token: string,
+): Promise<object> => {
+  return new Promise((resolve, reject) => {
+    const confirmationRequest = client.post(
+      `/api/v1/reports/getobjectivekpiactuals/`,
+      data,
+      {
+        headers: { authorization: token },
+      },
+    );
+    confirmationRequest
+      .then((response: AxiosResponse) => {
+        resolve(response.data);
+      })
+      .catch((error: AxiosError) => {
+        reject(error);
+      });
+  });
+};
+
+/**
  * Get objectives KPI actuals
  * @param {String} token Authorization token
  * @returns {Promise<object>} The objectives KPI actuals
