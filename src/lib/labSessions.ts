@@ -13,6 +13,32 @@ interface ProgressData {
 }
 
 /**
+ * Create a lab session
+ * @param {object} data The lab session data
+ * @param {String} token Authorization token
+ * @returns {Promise<object>}
+ */
+export const createLabSession = (
+  data: object,
+  token: string,
+): Promise<object> => {
+  return new Promise((resolve, reject) => {
+    const request = client.post(
+      `/api/v1/labsessions/`,
+      { data },
+      { headers: { authorization: token } },
+    );
+    request
+      .then((response: AxiosResponse) => {
+        resolve(response.data);
+      })
+      .catch((error: AxiosError) => {
+        reject(error);
+      });
+  });
+};
+
+/**
  * Delete lab session
  * @param {String} id The id of the lab session to be deleted
  * @param {String} token Authorization token
@@ -113,5 +139,33 @@ export const launchLabSession = (
         reject(new Error(`Socket disconnected: ${reason}`));
       }
     });
+  });
+};
+
+/**
+ * Update a lab session
+ * @param {String} id The id of the lab session to update
+ * @param {object} data The lab session data
+ * @param {String} token Authorization token
+ * @returns {Promise<object>}
+ */
+export const updateLabSession = (
+  id: string,
+  data: object,
+  token: string,
+): Promise<object> => {
+  return new Promise((resolve, reject) => {
+    const request = client.put(
+      `/api/v1/labsessions/${id}`,
+      { data },
+      { headers: { authorization: token } },
+    );
+    request
+      .then((response: AxiosResponse) => {
+        resolve(response.data);
+      })
+      .catch((error: AxiosError) => {
+        reject(error);
+      });
   });
 };
