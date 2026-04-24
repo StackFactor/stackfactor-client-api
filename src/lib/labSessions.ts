@@ -65,20 +65,18 @@ export const deleteLabSession = (
 };
 
 /**
- * Get a lab session for a user and lab config
- * @param {String} userId The id of the user
+ * Get the current user's lab session for a lab config
  * @param {String} labConfigId The id of the lab config
  * @param {String} token Authorization token
  * @returns {Promise<object>}
  */
 export const getLabSessionByUserAndLabConfig = (
-  userId: string,
   labConfigId: string,
   token: string,
 ): Promise<object> => {
   return new Promise((resolve, reject) => {
     const request = client.get(
-      `/api/v1/labsessions/byUserAndLabConfig/${userId}/${labConfigId}`,
+      `/api/v1/labsessions/byUserAndLabConfig/${labConfigId}`,
       { headers: { authorization: token } },
     );
     request
@@ -116,17 +114,13 @@ export const getLabSessionReadiness = (
 };
 
 /**
- * Get lab sessions for a user
- * @param {String} userId The id of the user
+ * Get lab sessions for the current user
  * @param {String} token Authorization token
  * @returns {Promise<object>}
  */
-export const getLabSessionsForUser = (
-  userId: string,
-  token: string,
-): Promise<object> => {
+export const getLabSessionsForUser = (token: string): Promise<object> => {
   return new Promise((resolve, reject) => {
-    const request = client.get(`/api/v1/labsessions/byUser/${userId}`, {
+    const request = client.get(`/api/v1/labsessions/byUser`, {
       headers: { authorization: token },
     });
     request
