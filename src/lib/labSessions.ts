@@ -65,6 +65,33 @@ export const deleteLabSession = (
 };
 
 /**
+ * Get a lab session for a user and lab config
+ * @param {String} userId The id of the user
+ * @param {String} labConfigId The id of the lab config
+ * @param {String} token Authorization token
+ * @returns {Promise<object>}
+ */
+export const getLabSessionByUserAndLabConfig = (
+  userId: string,
+  labConfigId: string,
+  token: string,
+): Promise<object> => {
+  return new Promise((resolve, reject) => {
+    const request = client.get(
+      `/api/v1/labsessions/byUserAndLabConfig/${userId}/${labConfigId}`,
+      { headers: { authorization: token } },
+    );
+    request
+      .then((response: AxiosResponse) => {
+        resolve(response.data);
+      })
+      .catch((error: AxiosError) => {
+        reject(error);
+      });
+  });
+};
+
+/**
  * Get lab session readiness status
  * @param {String} id The id of the lab session
  * @param {String} token Authorization token
@@ -76,6 +103,30 @@ export const getLabSessionReadiness = (
 ): Promise<object> => {
   return new Promise((resolve, reject) => {
     const request = client.get(`/api/v1/labsessions/${id}`, {
+      headers: { authorization: token },
+    });
+    request
+      .then((response: AxiosResponse) => {
+        resolve(response.data);
+      })
+      .catch((error: AxiosError) => {
+        reject(error);
+      });
+  });
+};
+
+/**
+ * Get lab sessions for a user
+ * @param {String} userId The id of the user
+ * @param {String} token Authorization token
+ * @returns {Promise<object>}
+ */
+export const getLabSessionsForUser = (
+  userId: string,
+  token: string,
+): Promise<object> => {
+  return new Promise((resolve, reject) => {
+    const request = client.get(`/api/v1/labsessions/byUser/${userId}`, {
       headers: { authorization: token },
     });
     request
