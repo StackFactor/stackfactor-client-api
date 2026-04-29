@@ -98,15 +98,16 @@ import { role } from '@stackfactor/client-api';
 
 **Returns:** Promise resolving to the updates object.
 
-### importRoleTemplates(data: object[], token: string): Promise<object>
+### importRoleTemplates(data: object[], token: string, onProgressStatus?: (data: object) => void): Promise<object>
 
-**Description:** Import role templates.
+**Description:** Import role templates over a websocket. Server-side progress is streamed back through the optional callback (server emits 0–90% during the import itself and 90–100% during the post-import event fan-out).
 **Parameters:**
 
 - `data` (Array<Object>): The list of role templates to import.
 - `token` (String): Authorization token.
+- `onProgressStatus` (Function, optional): Callback invoked with `{ percentage, details }` updates as the import progresses.
 
-**Returns:** Promise resolving to the result object.
+**Returns:** Promise resolving to `{ roles, skills }`.
 
 ### publishRole(id: number, comments: string, token: string): Promise<object>
 

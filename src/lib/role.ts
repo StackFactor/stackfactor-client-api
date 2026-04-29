@@ -1,5 +1,7 @@
 import { AxiosError, AxiosResponse } from "axios";
 import { client } from "./axiosClient.js";
+import { getBaseUrl } from "./utils.js";
+import { io } from "socket.io-client";
 
 /**
  * Create role and set information
@@ -259,33 +261,56 @@ export const getRoleTemplateUpdates = (
 };
 
 /**
- * Import role templates
+ * Import role templates over a websocket so progress can be streamed back to
+ * the caller. The server emits 0–90% during the actual import and 90–100%
+ * during the post-import event fan-out.
  * @param {Array<Object>} data The list of role templates to be imported
- * @param {String} token
- * @returns {Promise<object>}
+ * @param {String} token Authorization token
+ * @param {Function} onProgressStatus Optional callback for progress updates
+ * @returns {Promise<object>} Resolves with `{ roles, skills }`
  */
 export const importRoleTemplates = (
   data: object[],
-  token: string
+  token: string,
+  onProgressStatus?: (data: object) => void,
 ): Promise<object> => {
   return new Promise((resolve, reject) => {
     const requestData = {
       data: data,
     };
-    const confirmationRequest = client.post(
-      `/api/v1/roles/importRoleTemplates`,
-      requestData,
-      {
-        headers: { authorization: token },
+    // Use socket.io for real-time progress updates
+    const socket = io(getBaseUrl(), {
+      auth: {
+        token: token,
+      },
+      path: `/api/v1/realtime`,
+      transports: ["websocket"],
+      withCredentials: true,
+      reconnection: false,
+    });
+
+    // Socket event handlers
+    socket.on("connect", () => {
+      socket.emit("importroles", requestData);
+    });
+    socket.on("progress", (progress) => {
+      if (onProgressStatus) {
+        onProgressStatus(progress);
       }
-    );
-    confirmationRequest
-      .then((response: AxiosResponse) => {
-        resolve(response.data);
-      })
-      .catch((error: AxiosError) => {
-        reject(error);
-      });
+    });
+    socket.on("complete", (result) => {
+      socket.disconnect();
+      resolve(result);
+    });
+    socket.on("error", (err) => {
+      socket.disconnect();
+      reject(err);
+    });
+    socket.on("disconnect", (reason) => {
+      if (reason !== "io client disconnect") {
+        reject(new Error(`Socket disconnected: ${reason}`));
+      }
+    });
   });
 };
 
