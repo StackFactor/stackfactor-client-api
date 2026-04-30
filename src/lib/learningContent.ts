@@ -2,6 +2,7 @@ import { AxiosError, AxiosResponse } from "axios";
 import { getBaseUrl } from "./utils.js";
 import { client } from "./axiosClient.js";
 import { io } from "socket.io-client";
+import type { SocketError } from "./socketError.js";
 
 interface LearningContentData {
   data?: object;
@@ -202,7 +203,7 @@ export const generateLearningActivityContent = (
       socket.disconnect();
       resolve(data);
     });
-    socket.on("error", (err) => {
+    socket.on("error", (err: SocketError) => {
       socket.disconnect();
       reject(err);
     });
@@ -254,7 +255,7 @@ export const generateMicroSkillTestKnowledge = (
       socket.disconnect();
       resolve(data);
     });
-    socket.on("error", (err) => {
+    socket.on("error", (err: SocketError) => {
       socket.disconnect();
       reject(err);
     });
@@ -748,7 +749,7 @@ export const generateLabConfigurationContent = (
       socket.disconnect();
       resolve(data);
     });
-    socket.on("error", (err) => {
+    socket.on("error", (err: SocketError) => {
       socket.disconnect();
       reject(err);
     });

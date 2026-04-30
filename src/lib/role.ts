@@ -2,6 +2,7 @@ import { AxiosError, AxiosResponse } from "axios";
 import { client } from "./axiosClient.js";
 import { getBaseUrl } from "./utils.js";
 import { io } from "socket.io-client";
+import type { SocketError } from "./socketError.js";
 
 /**
  * Create role and set information
@@ -29,50 +30,59 @@ export const createRole = (data: object, token: string): Promise<object> => {
 };
 
 /**
- * Create from from template
- * @param {String} templateId
- * @param {Object} data
+ * Create a role from a template over a websocket so progress can be streamed
+ * back to the caller. The server emits 0–90% during the actual creation and
+ * 90–100% during the post-create event fan-out.
+ * @param {String} templateId The id of the role template to create from
+ * @param {Object} data Role overrides (skills, settings, etc.)
  * @param {String} token Authorization token
- * @returns {Promise<object>}
+ * @param {Function} onProgressStatus Optional callback for progress updates
+ * @returns {Promise<object>} Resolves with `{ role, skills }`
  */
 export const createRoleFromTemplate = (
   templateId: string,
   data: object,
-  token: string
+  token: string,
+  onProgressStatus?: (data: object) => void,
 ): Promise<object> => {
   return new Promise((resolve, reject) => {
-    const requestData: {
-      data: object;
-      includeDeleted: boolean;
-      includeDetailedInformation: boolean;
-      namesOnly: boolean;
-      returnDefaultIfVersionNotAvailable: boolean;
-      version: string;
-      filter?: object;
-      templateId: string;
-    } = {
+    const requestData = {
       data: data,
       templateId: templateId,
-      includeDeleted: false,
-      includeDetailedInformation: false,
-      namesOnly: false,
-      returnDefaultIfVersionNotAvailable: false,
-      version: "1.0",
     };
-    const confirmationRequest = client.put(
-      "/api/v1/roles/createfromtemplate/",
-      requestData,
-      {
-        headers: { authorization: token },
+    // Use socket.io for real-time progress updates
+    const socket = io(getBaseUrl(), {
+      auth: {
+        token: token,
+      },
+      path: `/api/v1/realtime`,
+      transports: ["websocket"],
+      withCredentials: true,
+      reconnection: false,
+    });
+
+    // Socket event handlers
+    socket.on("connect", () => {
+      socket.emit("createrolefromtemplate", requestData);
+    });
+    socket.on("progress", (progress) => {
+      if (onProgressStatus) {
+        onProgressStatus(progress);
       }
-    );
-    confirmationRequest
-      .then((response: AxiosResponse) => {
-        resolve(response.data);
-      })
-      .catch((error: AxiosError) => {
-        reject(error);
-      });
+    });
+    socket.on("complete", (result) => {
+      socket.disconnect();
+      resolve(result);
+    });
+    socket.on("error", (err: SocketError) => {
+      socket.disconnect();
+      reject(err);
+    });
+    socket.on("disconnect", (reason) => {
+      if (reason !== "io client disconnect") {
+        reject(new Error(`Socket disconnected: ${reason}`));
+      }
+    });
   });
 };
 
@@ -302,7 +312,7 @@ export const importRoleTemplates = (
       socket.disconnect();
       resolve(result);
     });
-    socket.on("error", (err) => {
+    socket.on("error", (err: SocketError) => {
       socket.disconnect();
       reject(err);
     });

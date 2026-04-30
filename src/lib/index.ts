@@ -11,6 +11,8 @@ export * as avatar from "./avatar.js";
 export * as address from "./address.js";
 export * as config from "./config.js";
 export * from "./constants.js";
+export { isSocketError } from "./socketError.js";
+export type { SocketError } from "./socketError.js";
 export * as contentGenerator from "./integrations/contentGenerator.js";
 export * as customFields from "./customFields.js";
 export * as dashboard from "./dashboard.js";

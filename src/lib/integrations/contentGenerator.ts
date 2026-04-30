@@ -2,6 +2,7 @@ import { AxiosError, AxiosResponse } from "axios";
 import { client } from "../axiosClient.js";
 import { getBaseUrl } from "../utils.js";
 import { io } from "socket.io-client";
+import type { SocketError } from "../socketError.js";
 
 interface GenerateContentData {
   data: object;
@@ -69,7 +70,7 @@ export const generateContent = (
       socket.disconnect();
       resolve(data);
     });
-    socket.on("error", (err) => {
+    socket.on("error", (err: SocketError) => {
       socket.disconnect();
       reject(err);
     });

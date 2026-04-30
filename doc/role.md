@@ -20,16 +20,17 @@ import { role } from '@stackfactor/client-api';
 
 **Returns:** Promise resolving to the created role object.
 
-### createRoleFromTemplate(templateId: string, data: object, token: string): Promise<object>
+### createRoleFromTemplate(templateId: string, data: object, token: string, onProgressStatus?: (data: object) => void): Promise<object>
 
-**Description:** Create a role from a template.
+**Description:** Create a role from a template over a websocket. Server-side progress is streamed back through the optional callback (server emits 0–90% during the create itself and 90–100% during the post-create event fan-out).
 **Parameters:**
 
 - `templateId` (String): The template ID.
-- `data` (Object): Role data.
+- `data` (Object): Role overrides (skills, settings, etc.).
 - `token` (String): Authorization token.
+- `onProgressStatus` (Function, optional): Callback invoked with `{ percentage, details }` updates as the create progresses.
 
-**Returns:** Promise resolving to the created role object.
+**Returns:** Promise resolving to `{ role, skills }`.
 
 ### deleteRole(id: string, comments: string, token: string): Promise<object>
 
