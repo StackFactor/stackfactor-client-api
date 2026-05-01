@@ -11,6 +11,7 @@ interface GenerateContentData {
 }
 
 interface GenerateContentAsyncData {
+  id: string;
   data: object;
   contentType: string;
   elementType: string;
@@ -83,30 +84,30 @@ export const generateContent = (
 
 /**
  * Generate content async
- * @param {Object} data
- * @param {String} contentType
- * @param {String} elementType
- * @param {String} integrationId
- * @param {String} comments
- * @param {String} token
+ * @param {String} id The id of the element for which the content is being generated
+ * @param {String} elementType The type of the element for which the content is being generated (e.g. "skill", "skill template", etc.)
+ * @param {Object} data The data to use for content generation
+ * @param {String} contentType The type of content to generate (e.g. "text", "image", etc.)
+ * @param {String} comments Any comments to include with the content generation request
+ * @param {String} token The authentication token
  * @returns {Promise<object>}
  */
 export const generateContentAsync = (
+  id: string,
+  elementType: string,
   data: object,
   contentType: string,
-  elementType: string,
-  integrationId: string,
   comments: string,
   token: string,
 ): Promise<object> => {
   return new Promise((resolve, reject) => {
     const data_: GenerateContentAsyncData = {
       data: data,
+      id: id,
       comments: comments,
       contentType: contentType,
       elementType: elementType,
     };
-    if (integrationId) data_.integrationId = integrationId;
     const request = client.post(
       `/api/v1/contentgeneratorsasync/generate`,
       data_,
