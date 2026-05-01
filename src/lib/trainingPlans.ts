@@ -1,5 +1,7 @@
 import { AxiosError, AxiosResponse } from "axios";
 import { client } from "./axiosClient.js";
+import { getBaseUrl } from "./utils.js";
+import { io } from "socket.io-client";
 
 /**
  * Archive the training plan
@@ -110,19 +112,24 @@ export const discardTrainingPlanChanges = (
 };
 
 /**
- * Create a new baseline
+ * Create a new baseline over a websocket so progress can be streamed back to
+ * the caller. The server emits 0–95% during generation (per-recipient fan-out
+ * dominates) and 100% on completion.
  * @param {String} id The Id of the plan for which a new baseline is to be generated
  * @param {Object} data The data
  * @param {Boolean} returnMinimized If set to true just high level plan baseline information will be returned
  * @param {Boolean} saveBaseline If set to true it will save the baseline
  * @param {String} token Authorization token
+ * @param {Function} onProgressStatus Optional callback for progress updates
+ * @returns {Promise<object>} Resolves with the generated plan version
  */
 export const generateNewBaseline = (
   id: string,
   data: object,
   returnMinimized: boolean,
   saveBaseline: boolean,
-  token: string
+  token: string,
+  onProgressStatus?: (data: object) => void,
 ): Promise<object> => {
   return new Promise((resolve, reject) => {
     const requestData: {
@@ -136,20 +143,39 @@ export const generateNewBaseline = (
       saveBaseline: saveBaseline,
     };
     if (id) requestData.id = id;
-    const confirmationRequest = client.post(
-      "/api/v1/trainingplans/generatenewbaseline",
-      requestData,
-      {
-        headers: { authorization: token },
+    // Use socket.io for real-time progress updates
+    const socket = io(getBaseUrl(), {
+      auth: {
+        token: token,
+      },
+      path: `/api/v1/realtime`,
+      transports: ["websocket"],
+      withCredentials: true,
+      reconnection: false,
+    });
+
+    // Socket event handlers
+    socket.on("connect", () => {
+      socket.emit("generatenewprojectbaseline", requestData);
+    });
+    socket.on("progress", (progress) => {
+      if (onProgressStatus) {
+        onProgressStatus(progress);
       }
-    );
-    confirmationRequest
-      .then((response: AxiosResponse) => {
-        resolve(response.data);
-      })
-      .catch((error: AxiosError) => {
-        reject(error);
-      });
+    });
+    socket.on("complete", (result) => {
+      socket.disconnect();
+      resolve(result);
+    });
+    socket.on("error", (err) => {
+      socket.disconnect();
+      reject(err);
+    });
+    socket.on("disconnect", (reason) => {
+      if (reason !== "io client disconnect") {
+        reject(new Error(`Socket disconnected: ${reason}`));
+      }
+    });
   });
 };
 

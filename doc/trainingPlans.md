@@ -52,15 +52,19 @@ import { trainingPlans } from '@stackfactor/client-api';
 
 **Returns:** Promise resolving to the result object.
 
-### generateNewBaseline(id: string, token: string): Promise<object>
+### generateNewBaseline(id: string, data: object, returnMinimized: boolean, saveBaseline: boolean, token: string, onProgressStatus?: (data: object) => void): Promise<object>
 
-**Description:** Generate a new baseline for a training plan.
+**Description:** Generate a new baseline for a training plan over a websocket. Progress is streamed back through the optional callback as each recipient's epics are computed (0–85%), through indexing/scheduling (85–90%), and through the optional save phase (90–95%). Final 100% fires on completion.
 **Parameters:**
 
-- `id` (String): The training plan ID.
+- `id` (String): The training plan ID. Pass an empty string / null to generate a new plan.
+- `data` (Object): Plan settings (recipients, learning preferences, goals, etc.).
+- `returnMinimized` (Boolean): When true, only a minimized summary is returned.
+- `saveBaseline` (Boolean): When true, the generated baseline is persisted.
 - `token` (String): Authorization token.
+- `onProgressStatus` (Function, optional): Callback invoked with `{ percentage, details }` updates as the generation progresses.
 
-**Returns:** Promise resolving to the result object.
+**Returns:** Promise resolving to the generated plan version (full or minimized).
 
 ### getAllTrainingPlansTasksSummary(userId: string, token: string): Promise<object>
 
