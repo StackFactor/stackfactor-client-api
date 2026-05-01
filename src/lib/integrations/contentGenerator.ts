@@ -11,7 +11,6 @@ interface GenerateContentData {
 }
 
 interface GenerateContentAsyncData {
-  id: string;
   data: object;
   contentType: string;
   elementType: string;
@@ -84,7 +83,6 @@ export const generateContent = (
 
 /**
  * Generate content async
- * @param {String} id
  * @param {Object} data
  * @param {String} contentType
  * @param {String} elementType
@@ -94,7 +92,6 @@ export const generateContent = (
  * @returns {Promise<object>}
  */
 export const generateContentAsync = (
-  id: string,
   data: object,
   contentType: string,
   elementType: string,
@@ -104,7 +101,6 @@ export const generateContentAsync = (
 ): Promise<object> => {
   return new Promise((resolve, reject) => {
     const data_: GenerateContentAsyncData = {
-      id: id,
       data: data,
       comments: comments,
       contentType: contentType,
