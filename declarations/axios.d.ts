@@ -1,1 +1,1 @@
-declare module 'axios';
+// axios provides its own type definitions

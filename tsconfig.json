@@ -1,23 +1,19 @@
 {
   "compilerOptions": {
     "target": "ES2020",
-    "module": "ESNext",
-    "moduleResolution": "Node",
+    "module": "nodenext",
+    "moduleResolution": "nodenext",
     "strict": true,
     "declaration": true,
     "declarationMap": true,
     "forceConsistentCasingInFileNames": true,
     "sourceMap": true,
+    "rootDir": "./src",
     "outDir": "dist",
     "esModuleInterop": true,
     "skipLibCheck": true,
-    "resolveJsonModule": true,
-    "typeRoots": [
-      "./node_modules/@types/axios",
-      "./node_modules/@types/node",
-      "./declarations"
-    ]
+    "resolveJsonModule": true
   },
-  "include": ["src", "index.d.ts"],
+  "include": ["src", "declarations", "index.d.ts"],
   "exclude": ["node_modules", "dist", "**/*.test.ts"]
 }
