@@ -264,3 +264,84 @@ export const setPolicyTemplateTags = (
       });
   });
 };
+
+/**
+ * Get the policy template related standard templates
+ * @param {String} id The policy template id
+ * @param {String} token Authorization token
+ * @returns {Promise<object>}
+ */
+export const getPolicyTemplateRelatedStandardTemplates = (
+  id: string,
+  token: string,
+): Promise<object> => {
+  return new Promise((resolve, reject) => {
+    const confirmationRequest = client.get(
+      `/api/v1/policytemplates/standardtemplates/${id}`,
+      {
+        headers: { authorization: token },
+      },
+    );
+    confirmationRequest
+      .then((response: AxiosResponse) => {
+        resolve(response.data);
+      })
+      .catch((error: AxiosError) => {
+        reject(error);
+      });
+  });
+};
+
+/**
+ * Get the policy template related requirement templates
+ * @param {String} id The policy template id
+ * @param {String} token Authorization token
+ * @returns {Promise<object>}
+ */
+export const getPolicyTemplateRelatedRequirementTemplates = (
+  id: string,
+  token: string,
+): Promise<object> => {
+  return new Promise((resolve, reject) => {
+    const confirmationRequest = client.get(
+      `/api/v1/policytemplates/requirementtemplates/${id}`,
+      {
+        headers: { authorization: token },
+      },
+    );
+    confirmationRequest
+      .then((response: AxiosResponse) => {
+        resolve(response.data);
+      })
+      .catch((error: AxiosError) => {
+        reject(error);
+      });
+  });
+};
+
+/**
+ * Get the policy template related control templates
+ * @param {String} id The policy template id
+ * @param {String} token Authorization token
+ * @returns {Promise<object>}
+ */
+export const getPolicyTemplateRelatedControlTemplates = (
+  id: string,
+  token: string,
+): Promise<object> => {
+  return new Promise((resolve, reject) => {
+    const confirmationRequest = client.get(
+      `/api/v1/policytemplates/controltemplates/${id}`,
+      {
+        headers: { authorization: token },
+      },
+    );
+    confirmationRequest
+      .then((response: AxiosResponse) => {
+        resolve(response.data);
+      })
+      .catch((error: AxiosError) => {
+        reject(error);
+      });
+  });
+};

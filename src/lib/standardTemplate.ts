@@ -264,3 +264,84 @@ export const setStandardTemplateTags = (
       });
   });
 };
+
+/**
+ * Get the standard template related policy templates
+ * @param {String} id The standard template id
+ * @param {String} token Authorization token
+ * @returns {Promise<object>}
+ */
+export const getStandardTemplateRelatedPolicyTemplates = (
+  id: string,
+  token: string,
+): Promise<object> => {
+  return new Promise((resolve, reject) => {
+    const confirmationRequest = client.get(
+      `/api/v1/standardtemplates/policytemplates/${id}`,
+      {
+        headers: { authorization: token },
+      },
+    );
+    confirmationRequest
+      .then((response: AxiosResponse) => {
+        resolve(response.data);
+      })
+      .catch((error: AxiosError) => {
+        reject(error);
+      });
+  });
+};
+
+/**
+ * Get the standard template related requirement templates
+ * @param {String} id The standard template id
+ * @param {String} token Authorization token
+ * @returns {Promise<object>}
+ */
+export const getStandardTemplateRelatedRequirementTemplates = (
+  id: string,
+  token: string,
+): Promise<object> => {
+  return new Promise((resolve, reject) => {
+    const confirmationRequest = client.get(
+      `/api/v1/standardtemplates/requirementtemplates/${id}`,
+      {
+        headers: { authorization: token },
+      },
+    );
+    confirmationRequest
+      .then((response: AxiosResponse) => {
+        resolve(response.data);
+      })
+      .catch((error: AxiosError) => {
+        reject(error);
+      });
+  });
+};
+
+/**
+ * Get the standard template related control templates
+ * @param {String} id The standard template id
+ * @param {String} token Authorization token
+ * @returns {Promise<object>}
+ */
+export const getStandardTemplateRelatedControlTemplates = (
+  id: string,
+  token: string,
+): Promise<object> => {
+  return new Promise((resolve, reject) => {
+    const confirmationRequest = client.get(
+      `/api/v1/standardtemplates/controltemplates/${id}`,
+      {
+        headers: { authorization: token },
+      },
+    );
+    confirmationRequest
+      .then((response: AxiosResponse) => {
+        resolve(response.data);
+      })
+      .catch((error: AxiosError) => {
+        reject(error);
+      });
+  });
+};
