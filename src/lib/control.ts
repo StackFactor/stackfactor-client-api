@@ -151,7 +151,7 @@ export const getControlInformationById = (
  * @param {String} version The version to be retrieved
  * @param {Boolean} includeDeleted If true it will return deleted records as well
  * @param {Boolean} returnDefaultIfVersionNotAvailable Return the default version if published not available
- * @param {Boolean} namesOnly Return only the names of the controls
+ * @param {String} details The level of detail to return ("ID", "NAME", "DEFAULT")
  * @param {String} token Authorization token
  * @returns {Promise<object>}
  */
@@ -160,13 +160,13 @@ export const getControlList = (
   version: string,
   includeDeleted: boolean,
   returnDefaultIfVersionNotAvailable: boolean,
-  namesOnly: boolean,
+  details: string,
   token: string,
 ): Promise<object> => {
   return new Promise((resolve, reject) => {
     const requestData = {
       includeDeleted: includeDeleted,
-      namesOnly: namesOnly,
+      details: details,
       returnDefaultIfVersionNotAvailable: returnDefaultIfVersionNotAvailable,
       version: version,
       filter: filter,

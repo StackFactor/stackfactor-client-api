@@ -125,7 +125,7 @@ export const getPolicyTemplateInformationById = (
  * @param {Array<String>} filter The filter used to select the template
  * @param {String} version The version to be retrieved
  * @param {Boolean} includeDeleted When true it will return the deleted records as well
- * @param {Boolean} namesOnly When true it will return only the names of the templates
+ * @param {String} details The level of detail to return ("ID", "NAME", "DEFAULT")
  * @param {String} token Authorization token
  * @returns {Promise<object>}
  */
@@ -133,18 +133,18 @@ export const getPolicyTemplateList = (
   filter: string[],
   version: string,
   includeDeleted: boolean,
-  namesOnly: boolean,
+  details: string,
   token: string,
 ): Promise<object> => {
   return new Promise((resolve, reject) => {
     const requestData: {
       includeDeleted: boolean;
-      namesOnly: boolean;
+      details: string;
       version: string;
       filter?: string[];
     } = {
       includeDeleted: includeDeleted,
-      namesOnly: namesOnly,
+      details: details,
       version: version,
     };
     if (filter) requestData.filter = filter;
